@@ -36,8 +36,8 @@ Contributions are welcome! Please open an issue or submit a pull request for imp
 ## Contact Information
 
 For questions, support, or feedback, please contact:  
-**Email:** support@webuni.com  
-**Website:** [www.webuni.com](https://www.webuni.com)
+**Email:** contactus@aviyamagnus.com 
+**Website:** www.aviyamagnus.com
 
 ---
 
