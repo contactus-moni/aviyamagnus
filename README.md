@@ -7,7 +7,7 @@ This repository contains the full source code for the Aviya Magnus website, whic
 
 ## **Live Site**
 View the live website here:  
-[https://contactus-moni.github.io/aviyamagnus.com/](https://contactus-moni.github.io/aviyamagnus.com/)
+[[https://contactus-moni.github.io/aviyamagnus.com/](https://contactus-moni.github.io/aviyamagnus.com/)](http://www.contactus.aviyamagnus.com/)
 
 ---
 
