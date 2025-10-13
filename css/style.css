@@ -238,31 +238,6 @@ p {
 /*------------------
   Hero Section
 ---------------------*/
-
-.hero-section {
-	height: 948px;
-}
-{
-    height: 948px;
-    background-image: url('images/hero-bg.jpg'); /* Make sure this image is in your images folder */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-	.categorie-item .ci-thumb {
-    height: 148px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.course-item .course-thumb {
-    height: 270px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-	
-
 .hero-text {
 	text-align: center;
 	padding-top: 340px;
