@@ -1,2 +1,0 @@
-# aviyamagnus
-Online Tutoring Platform
