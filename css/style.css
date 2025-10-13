@@ -1,12 +1,9 @@
 /* =================================
 ------------------------------------
-  Aviya Magnus - Education Template
+  WebUni - Education Template
   Version: 1.0
  ------------------------------------ 
  ====================================*/
-/* Times New Roman, Monotype Corsiva, Bodoni MT, French Script MT assumed installed on system */
-@import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap'); /* fallback */
-@import url('https://fonts.googleapis.com/css2?family=Monotype+Corsiva&display=swap'); /* fallback */
 
 /*----------------------------------------*/
 /* Template default CSS
@@ -14,10 +11,10 @@
 
 html,
 body {
-    height: 100%;
-    font-family: 'Times New Roman', serif; /* Content */
-    -webkit-font-smoothing: antialiased;
-    font-smoothing: antialiased;
+	height: 100%;
+	font-family: 'Raleway', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 h1,
@@ -26,39 +23,83 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
-    font-weight: 600;
-    color: #474747;
-    font-family: 'Arabic Typewriting', monospace; /* Headings */
+	margin: 0;
+	font-weight: 600;
+	color: #474747;
 }
 
-h1 { font-size: 70px; }
-h2 { font-size: 36px; font-family: 'Bodoni MT', serif; } /* Subheadings */
-h3 { font-size: 30px; font-family: 'Bodoni MT', serif; }
-h4 { font-size: 24px; font-family: 'Bodoni MT', serif; }
-h5 { font-size: 20px; font-family: 'Bodoni MT', serif; }
-h6 { font-size: 16px; font-family: 'Bodoni MT', serif; }
+h1 {
+	font-size: 70px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 24px;
+}
+
+h5 {
+	font-size: 20px;
+}
+
+h6 {
+	font-size: 16px;
+}
 
 p {
-    font-size: 14.1px;
-    color: #878787;
-    line-height: 2.2;
-    font-weight: 500;
-    font-family: 'Times New Roman', serif; /* Content */
+	font-size: 14.1px;
+	color: #878787;
+	line-height: 2.2;
+	font-weight: 500;
 }
 
-/* Quotes */
-.quote, blockquote {
-    font-family: 'Monotype Corsiva', cursive;
-    font-style: italic;
+img {
+	max-width: 100%;
 }
 
-/* Footer texts */
-.footer-section, 
-.footer-section p, 
-.footer-menu li a, 
-.widget-item ul li {
-    font-family: 'French Script MT', cursive;
+input:focus,
+select:focus,
+button:focus,
+textarea:focus {
+	outline: none;
+}
+
+::-webkit-input-placeholder {
+	font-style: italic;
+}
+
+::-ms-input-placeholder {
+	font-style: italic;
+}
+
+:-ms-input-placeholder {
+	font-style: italic;
+}
+
+::placeholder {
+	font-style: italic;
+}
+
+a:hover {
+	color: #d82a4e;
+}
+
+a:hover,
+a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
 }
 
 /*---------------------
