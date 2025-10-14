@@ -1,99 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Courses - Aviya Magnus</title><link rel="stylesheet" href="/css/style.css"></head>
+<head>
+  <title>Courses - WebUni</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Courses offered by Aviyamagnus">
+  <meta name="keywords" content="webuni, aviyamagnus, courses, certifications, skill development">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->   
+  <link href="img/favicon.ico" rel="shortcut icon"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="css/owl.carousel.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
 <body>
-<!-- HEADER START -->
+
+<!-- Page Preloader -->
+<div id="preloder">
+  <div class="loader"></div>
+</div>
+
+<!-- Header section -->
 <header class="header-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-3">
-        <div class="site-logo"><a href="/index.html"><img src="/img/logo.png" alt="Logo" style="max-width:100%;height:auto;"></a></div>
-        <div class="nav-switch"><i class="fa fa-bars"></i></div>
+        <div class="site-logo">
+          <img src="img/logo.png" alt="Logo">
+        </div>
+        <div class="nav-switch">
+          <i class="fa fa-bars"></i>
+        </div>
       </div>
       <div class="col-lg-9 col-md-9">
+        <a href="#" class="site-btn header-btn">Login</a>
         <nav class="main-menu">
           <ul>
             <li><a href="/index.html">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/courses.html">Courses</a></li>
-            <li><a href="/testimonial.html">Testimonials</a></li>
-            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/about/about.html">About</a></li>
+            <li><a href="/courses/courses.html">Courses</a></li>
+            <li><a href="/testimonial/testimonial.html">Testimonials</a></li>
+            <li><a href="/faq/faq.html">FAQ</a></li>
             <li><a href="/contact.html">Contact</a></li>
-              </ul>
-            </li>
           </ul>
         </nav>
       </div>
     </div>
   </div>
 </header>
-<!-- HEADER END -->
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  const loginToggle = document.getElementById('loginToggle');
-  const loginMenu = document.getElementById('loginMenu');
-  if(loginToggle && loginMenu){
-    loginToggle.addEventListener('click', function(e){ e.preventDefault(); loginMenu.classList.toggle('show'); });
-    document.addEventListener('click', function (event) {
-      if (!loginToggle.contains(event.target) && !loginMenu.contains(event.target)) {
-        loginMenu.classList.remove('show');
-      }
-    });
-  }
-});
-</script>
-<style>
-.header-section{background:#003366;padding:18px 0;color:#fff}
-.main-menu ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;align-items:center;justify-content:flex-end}
-.main-menu a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px}
-.site-btn{background:#ff9900;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none;display:inline-block}
-.dropdown-menu{display:none;position:absolute;background:#fff;color:#333;border-radius:6px;padding:8px 0;min-width:160px;box-shadow:0 6px 20px rgba(0,0,0,0.12);}
-.dropdown-menu.show{display:block}
-.dropdown-menu li{list-style:none}
-.dropdown-menu li a{display:block;padding:8px 16px;color:#333}
-@media (max-width:991px){ .main-menu ul{flex-direction:column;display:none} .nav-switch{display:block} .nav-switch.active + .main-menu ul{display:flex} }
-</style>
-<section class="page-section">
+<!-- Header section end -->
+
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="img/page-bg/3.jpg">
   <div class="container">
-    <div class="section-title"><h2>All Courses</h2></div>
-    <div class="course-grid">
-      <div class="course-card"><h4>Human Resource</h4><p>People & culture, recruitment, training.</p><p><a class="site-btn" href="/dashboard/student.html">Enroll</a></p></div>
-      <div class="course-card"><h4>Finance & Accounting</h4><p>Accounting, reporting, financial planning.</p><p><a class="site-btn" href="/dashboard/student.html">Enroll</a></p></div>
-      <div class="course-card"><h4>Marketing & Sales</h4><p>Strategy, digital marketing, sales.</p><p><a class="site-btn" href="/dashboard/student.html">Enroll</a></p></div>
+    <div class="site-breadcrumb">
+      <a href="#">Home</a>
+      <span>Courses</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+<!-- Courses Section -->
+<section class="contact-page spad pb-0">
+  <div class="container">
+    <div class="section-title text-white text-left">
+      <h2>Explore Our Certification Programs</h2>
+      <p>Enhance your skills with industry-relevant certifications tailored for students and professionals alike.</p>
+    </div>
+
+    <div class="text-white">
+      <h4 class="mt-4">🔹 Business & Administration</h4>
+      <ul>
+        <li>✔ Human Resource Management</li>
+        <li>✔ Accounting & Financial Planning</li>
+        <li>✔ Marketing & Sales Strategies</li>
+        <li>✔ Banking & Financial Services</li>
+        <li>✔ Supply Chain & Logistics</li>
+      </ul>
+
+      <h4 class="mt-4">🔹 Management & Leadership</h4>
+      <ul>
+        <li>Operational Management</li>
+        <li>Entrepreneurship & Startup Ecosystem</li>
+        <li>Business Analytics & Intelligence</li>
+        <li>Team Leadership & Management</li>
+        <li>Event Management & Planning</li>
+      </ul>
+
+      <h4 class="mt-4">🔹 Law & Education</h4>
+      <ul>
+        <li>Corporate Law & Intellectual Property Rights</li>
+        <li>Labour Law & Industrial Relations</li>
+        <li>Contract Drafting & Negotiation</li>
+        <li>Modern Teaching Techniques</li>
+        <li>Communication & Soft Skills Development</li>
+      </ul>
+
+      <h4 class="mt-4">🔹 Technology & Tools</h4>
+      <ul>
+        <li>Business Tools: Excel, Power BI, Tableau</li>
+        <li>Digital Marketing Essentials</li>
+        <li>Introduction to Python for Business</li>
+        <li>CRM & ERP System Basics</li>
+      </ul>
+
+      <h4 class="mt-4">🔹 Custom Programs for Institutions</h4>
+      <p>We design specialized course bundles for colleges and universities. These programs are aligned with their academic goals and industry relevance. Each institution can customize:</p>
+      <ul>
+        <li>Duration (1 day to 6 months)</li>
+        <li>Delivery mode (online/offline/hybrid)</li>
+        <li>Certification types (participation, merit, skill-based)</li>
+        <li>Assessment formats</li>
+      </ul>
+
+      <p class="mt-4">All courses include hands-on assignments, case studies, and mentorship support to ensure real-world learning outcomes.</p>
     </div>
   </div>
 </section>
-<!-- FOOTER START -->
-<footer class="footer-section spad pb-0" style="background:#f8f9fb;padding:40px 0;margin-top:40px;">
+<!-- Courses Section end -->
+
+<!-- Banner Section -->
+<section class="banner-section spad">
   <div class="container">
-    <div style="display:flex;gap:30px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:200px">
-        <h4>Contact Info</h4>
-        <p>1/101, Kavari Street, Latteri<br>Vellore 632202<br>+918248802124</p>
-        <p><a href="mailto:contactus@aviyamagnus.com">contactus@aviyamagnus.com</a></p>
-      </div>
-      <div style="flex:1;min-width:200px">
-        <h4>Quick Links</h4>
-        <ul style="list-style:none;padding:0;">
-          <li><a href="/about/about.html">About</a></li>
-          <li><a href="/courses/courses.html">Courses</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div style="flex:1;min-width:200px">
-        <h4>Newsletter</h4>
-        <form id="footerNewsletter"><input placeholder="E-mail" style="padding:8px;margin-right:6px"><button class="site-btn" type="button">Subscribe</button></form>
-      </div>
+    <div class="section-title mb-0 pb-2">
+      <h2>Ready to Skill Up?</h2>
+      <p>Reach out to us to know more about courses or create a customized certification package for your institution.</p>
     </div>
-    <div style="text-align:center;margin-top:24px;color:#777">
-      © <span id="yr"></span> Aviya Magnus. All rights reserved.
+    <div class="text-center pt-5">
+      <a href="/contact.html" class="site-btn">Contact Us</a>
     </div>
   </div>
-</footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<style>.footer-section h4{margin:0 0 8px 0}</style>
-<!-- FOOTER END -->
+</section>
 
-<script src="/js/main.js"></script>
-</body>
-</html>
+<!-- Footer Section -->
+<footer class="footer-section spad pb-0">
+  <div class="footer-top">
+    <div class="footer-warp">
+      <div class="row">
+        <div class="widget-item">
+          <h4>Contact Info</h4>
+          <ul class="contact-list">
+            <li>1/101, Kavarai Street, Latteri <br>Vellore 632202</li>
+            <li>+918248802124</li>
+            <li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
+          </ul>
+        </div>
+        <div class="widget-item">
+          <h4>Business Administration</h4>
+          <ul>
+            <li><a href="#">Human Resource</a></li>
+            <li><a href="#">Marketing & Sales</a></li>
+            <li><a href="#">Accounting & Finance</a></li>
+            <li><a href="#">Banking Finance</a></li>
+            <li><a href="#">Supply Chain Management</a></li>
+          </ul>
+        </div>
+        <div class="widget-item">
+          <h4>Business & Management</h4>
+          <ul>
+            <li><a href="#">Operational Management</a></li>
+            <li><a href="#">Entrepreneurship & Startups</a></li>
+            <li><a href="#">Business Analytics</a></li>
+            <li><a href="#">Leadership & Team Management</a></li>
+            <li><a href="#">Event Management</a></li>
+          </ul>
+        </div>
+        <div class="widget-item">
+          <h4>Education & Law</h4>
+          <ul>
+            <li><a href="#">Corporate Law & Intellectual Property Rights</a></li>
+            <li><a href="#">Labor Law & Industrial Relations</a></li>
+            <li><a href="#">Contract Management</a></li>
+            <li><a href="#">Education & Teaching</a></li>
+            <li><a href="#">Communication & Soft Skills</a></li>
+          </ul>
+        </div>
+        <div class="widget-item">
+          <h4>Newsletter</h4>
+          <form class="footer-newslatter">
+            <input type="email" placeholder="E-mail">
+            <button class="site-btn">Subscribe</button>
+            <p>*We don’t spam</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-warp">
+      <ul class="footer-menu">
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+      <div class="copyright">
+        &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | Made with 
+        <i class="fa fa-heart
