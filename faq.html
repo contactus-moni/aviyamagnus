@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>FAQ - Aviya Magnus</title><link rel="stylesheet" href="/css/style.css"></head>
+<head>
+  <title>FAQs - Aviya Magnus</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Frequently Asked Questions - Aviya Magnus">
+  <meta name="keywords" content="faq, Aviya Magnus, questions, education, support">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicon -->   
+  <link href="img/favicon.ico" rel="shortcut icon"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="css/owl.carousel.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
 <body>
-<!-- HEADER START -->
+
+<!-- Page Preloader -->
+<div id="preloder">
+  <div class="loader"></div>
+</div>
+
+<!-- Header section -->
 <header class="header-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-3">
-        <div class="site-logo"><a href="/index.html"><img src="/img/logo.png" alt="Logo" style="max-width:100%;height:auto;"></a></div>
-        <div class="nav-switch"><i class="fa fa-bars"></i></div>
+        <div class="site-logo">
+          <img src="img/logo.png" alt="Logo">
+        </div>
+        <div class="nav-switch">
+          <i class="fa fa-bars"></i>
+        </div>
       </div>
       <div class="col-lg-9 col-md-9">
+        <a href="#" class="site-btn header-btn">Login</a>
         <nav class="main-menu">
           <ul>
             <li><a href="/index.html">Home</a></li>
@@ -19,78 +48,75 @@
             <li><a href="/testimonial.html">Testimonials</a></li>
             <li><a href="/faq.html">FAQ</a></li>
             <li><a href="/contact.html">Contact</a></li>
-              </ul>
-            </li>
           </ul>
         </nav>
       </div>
     </div>
   </div>
 </header>
-<!-- HEADER END -->
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  const loginToggle = document.getElementById('loginToggle');
-  const loginMenu = document.getElementById('loginMenu');
-  if(loginToggle && loginMenu){
-    loginToggle.addEventListener('click', function(e){ e.preventDefault(); loginMenu.classList.toggle('show'); });
-    document.addEventListener('click', function (event) {
-      if (!loginToggle.contains(event.target) && !loginMenu.contains(event.target)) {
-        loginMenu.classList.remove('show');
-      }
-    });
-  }
-});
-</script>
-<style>
-.header-section{background:#003366;padding:18px 0;color:#fff}
-.main-menu ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;align-items:center;justify-content:flex-end}
-.main-menu a{color:#fff;text-decoration:none;padding:8px 12px;border-radius:6px}
-.site-btn{background:#ff9900;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none;display:inline-block}
-.dropdown-menu{display:none;position:absolute;background:#fff;color:#333;border-radius:6px;padding:8px 0;min-width:160px;box-shadow:0 6px 20px rgba(0,0,0,0.12);}
-.dropdown-menu.show{display:block}
-.dropdown-menu li{list-style:none}
-.dropdown-menu li a{display:block;padding:8px 16px;color:#333}
-@media (max-width:991px){ .main-menu ul{flex-direction:column;display:none} .nav-switch{display:block} .nav-switch.active + .main-menu ul{display:flex} }
-</style>
-<section class="page-section">
-  <div class="container">
-    <h2>FAQ</h2>
-    <div class="faq-item"><h4>How do I enroll?</h4><p>Click Enroll on any course and create an account.</p></div>
-    <div class="faq-item"><h4>Do you offer certification?</h4><p>Yes — certificates available upon completion.</p></div>
-  </div>
-</section>
-<!-- FOOTER START -->
-<footer class="footer-section spad pb-0" style="background:#f8f9fb;padding:40px 0;margin-top:40px;">
-  <div class="container">
-    <div style="display:flex;gap:30px;flex-wrap:wrap;">
-      <div style="flex:1;min-width:200px">
-        <h4>Contact Info</h4>
-        <p>1/101, Kavari Street, Latteri<br>Vellore 632202<br>+918248802124</p>
-        <p><a href="mailto:contactus@aviyamagnus.com">contactus@aviyamagnus.com</a></p>
-      </div>
-      <div style="flex:1;min-width:200px">
-        <h4>Quick Links</h4>
-        <ul style="list-style:none;padding:0;">
-          <li><a href="/about/about.html">About</a></li>
-          <li><a href="/courses/courses.html">Courses</a></li>
-          <li><a href="/contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div style="flex:1;min-width:200px">
-        <h4>Newsletter</h4>
-        <form id="footerNewsletter"><input placeholder="E-mail" style="padding:8px;margin-right:6px"><button class="site-btn" type="button">Subscribe</button></form>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:24px;color:#777">
-      © <span id="yr"></span> Aviya Magnus. All rights reserved.
-    </div>
-  </div>
-</footer>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<style>.footer-section h4{margin:0 0 8px 0}</style>
-<!-- FOOTER END -->
+<!-- Header section end -->
 
-<script src="/js/main.js"></script>
-</body>
-</html>
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="img/page-bg/3.jpg">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="#">Home</a>
+      <span>FAQs</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+<!-- FAQ Section -->
+<section class="contact-page spad pb-0">
+  <div class="container">
+    <div class="section-title text-white text-left">
+      <h2>Frequently Asked Questions</h2>
+      <p>Find answers to common queries about our programs, partnerships, and services.</p>
+    </div>
+
+    <div class="text-white">
+      <div class="mb-4">
+        <h4>1. What is Aviya Magnus?</h4>
+        <p>Aviya Magnus is a professional tutoring and certification platform that offers practical, career-focused courses in computer basics, spoken English, finance, HR, business management, banking, commerce, trading, and skill development.</p>
+      </di
+                <h4>2. Who can join your courses?</h4>
+        <p>Our courses are designed for students, fresh graduates, job seekers, working professionals, and anyone looking to improve their skills or career opportunities.</p>
+      </di
+                <h4>3. Do you provide online or offline classes?</h4>
+        <p>We provide both online and offline classes to suit your convenience. You can choose the mode that works best for you</p>
+      </di
+                <h4>4. What is the duration of the courses?</h4>
+        <p>Most basic certification courses range from 1 to 3 months, depending on the subject and learning pace.</p>
+      </di
+                <h4>5. Will I receive a certificate after completing the course?</h4>
+        <p>Yes, all students receive a recognized certification from Aviya Magnus after successful completion of their course.</p>
+      </di
+                <h4>6. Are your courses practical or only theory-based?</h4>
+        <p>Our training is hands-on and practical. We focus on real-world applications, case studies, and live examples to ensure you can use your skills immediately..</p>
+      </di
+                <h4>7. How are the classes conducted online?</h4>
+        <p>Online classes are conducted through Zoom/Google Meet with live interaction, recorded sessions (where available), and digital study materials.</p>
+      </di
+                <h4>8. Do you offer demo classes?</h4>
+        <p>Yes! We offer free demo classes so you can experience our teaching style before enrolling.</p>
+      </di
+                <h4>9. What are the fees for your courses?</h4>
+        <p>WCourse fees vary based on the program. Please contact us directly for detailed fee structures and any ongoing offers..</p>
+      </di
+                <h4>10. Can working professionals join your courses?</h4>
+        <p>Absolutely! Our flexible schedules and online options make it easy for working professionals to upgrade their skills.</p>
+      </di
+                <h4>11. Do you provide placement support?</h4>
+        <p>Yes, we provide career guidance, resume building, and interview preparation support. While we don’t guarantee jobs, many of our students have successfully secured opportunities through our network.</p>
+      </di
+                <h4>12. What makes Aviya Magnus different from others?</h4>
+        <p>Our focus is on practical training, personalized attention, and career readiness. We don’t just teach subjects — we prepare you for real-world challenges.</p>
+      </di
+                <h4>13. How can I enroll in a course?</h4>
+        <p>You can enroll by filling out the enrollment form on our website, contacting us via phone/WhatsApp, or visiting our office for offline registration.</p>
+      </di
+                <h4>14. Do you provide study materials?</h4>
+        <p>Yes, we provide digital notes, assignments, and practice exercises for every course. Some programs also include downloadable templates and case studies.</p>
+      </di
+        
