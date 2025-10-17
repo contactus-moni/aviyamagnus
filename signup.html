@@ -4,25 +4,113 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
+
+  <style>
+    /* Make sure to match your website's colors, fonts, and theme */
+    body {
+      font-family: 'Arial', sans-serif; /* Replace with your site's font */
+      background-color: #f0f4f7; /* Replace with your background color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #ffffff; /* White background for the form */
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for the form */
+      width: 350px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2d3e50; /* Dark blue or your theme's primary color */
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #4a4a4a; /* Dark gray color for labels */
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: #f9f9f9; /* Light background for inputs */
+    }
+
+    input:focus, select:focus {
+      border-color: #0056b3; /* Blue border on focus, replace with your theme color */
+      background-color: #fff;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #0056b3; /* Primary theme color for the button */
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #003f7f; /* Darker blue when hovered */
+    }
+
+    .form-footer {
+      margin-top: 15px;
+    }
+
+    .form-footer a {
+      text-decoration: none;
+      color: #0056b3; /* Matching theme color for the link */
+      font-size: 14px;
+    }
+
+    .form-footer a:hover {
+      color: #003f7f; /* Darker blue on hover */
+    }
+  </style>
 </head>
 <body>
-  <h1>Sign Up</h1>
-  <form id="signUpForm">
-    <label for="email">Email:</label>
-    <input type="email" id="signupEmail" required><br>
 
-    <label for="password">Password:</label>
-    <input type="password" id="signupPassword" required><br>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <form id="signUpForm">
+      <label for="signupEmail">Email:</label>
+      <input type="email" id="signupEmail" required>
 
-    <label for="role">Select Role:</label>
-    <select id="signupRole" required>
-      <option value="student">Student</option>
-      <option value="tutor">Tutor</option>
-      <option value="parent">Parent</option>
-    </select><br>
+      <label for="signupPassword">Password:</label>
+      <input type="password" id="signupPassword" required>
 
-    <button type="submit">Sign Up</button>
-  </form>
+      <label for="signupRole">Select Role:</label>
+      <select id="signupRole" required>
+        <option value="student">Student</option>
+        <option value="tutor">Tutor</option>
+        <option value="parent">Parent</option>
+      </select>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="form-footer">
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
 
   <script>
     const signUpForm = document.getElementById('signUpForm');
@@ -34,9 +122,9 @@
       const role = document.getElementById('signupRole').value;
 
       try {
-        // Send data to your backend PHP file (change this URL to match your live backend)
+        // Make sure the request is POST
         const response = await fetch('https://yourbackenddomain.com/register.php', {
-          method: 'POST',
+          method: 'POST',  // Ensuring POST request
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           body: `email=${email}&password=${password}&role=${role}`,
         });
@@ -44,9 +132,8 @@
         const result = await response.json();
 
         if (result.message === 'Registration successful!') {
-          // Redirect to the login page after successful registration
           alert('Sign Up Successful!');
-          window.location.href = 'login.html';  // Redirect to login page
+          window.location.href = 'login.html'; // Redirect to login page
         } else {
           alert('Error: ' + result.message);
         }
@@ -56,5 +143,6 @@
       }
     });
   </script>
+
 </body>
 </html>
