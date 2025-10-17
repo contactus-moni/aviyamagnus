@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register, Login, Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Registration Form -->
+    <div id="registerFormDiv">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="email" id="registerEmail" placeholder="Email" required />
+            <input type="password" id="registerPassword" placeholder="Password" required />
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <button onclick="showLogin()">Login</button></p>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginFormDiv" style="display: none;">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Email" required />
+            <input type="password" id="loginPassword" placeholder="Password" required />
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <button onclick="showRegister()">Register</button></p>
+    </div>
+
+    <!-- Dashboard (Visible after successful login) -->
+    <div id="dashboardDiv" style="display: none;">
+        <h2>Welcome, <span id="userName"></span></h2>
+        <button onclick="logout()">Logout</button>
+        <h3>Your Messages:</h3>
+        <div id="messages"></div>
+    </div>
+
+    <!-- Link to JavaScript file for functionality -->
+    <script src="register-login-dashboard.js"></script>
+</body>
+</html>
