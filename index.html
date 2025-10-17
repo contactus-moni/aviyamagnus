@@ -23,6 +23,59 @@
 	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Role-Based Content</title>
+  <style>
+    /* Some basic CSS to hide content */
+    #studentContent, #tutorContent, #parentContent {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Content specific to students -->
+  <div id="studentContent">
+    <h2>Welcome, Student!</h2>
+    <p>This content is only visible to students.</p>
+  </div>
+
+  <!-- Content specific to tutors -->
+  <div id="tutorContent">
+    <h2>Welcome, Tutor!</h2>
+    <p>This content is only visible to tutors.</p>
+  </div>
+
+  <!-- Content specific to parents -->
+  <div id="parentContent">
+    <h2>Welcome, Parent!</h2>
+    <p>This content is only visible to parents.</p>
+  </div>
+
+  <!-- JavaScript for handling the role-based content -->
+  <script>
+    window.onload = () => {
+      const userRole = localStorage.getItem('userRole');
+      
+      if (userRole === 'student') {
+        // Display student-specific content
+        document.getElementById('studentContent').style.display = 'block';
+        document.getElementById('tutorContent').style.display = 'none';
+        document.getElementById('parentContent').style.display = 'none';
+      } else if (userRole === 'tutor') {
+        // Display tutor-specific content
+        document.getElementById('studentContent').style.display = 'none';
+        document.getElementById('tutorContent').style.display = 'block';
+        document.getElementById('parentContent').style.display = 'none';
+      } else if (userRole === 'parent') {
+        // Display parent-specific content
+        document.getElementById('studentContent').style.display = 'none';
+        document.getElementById('tutorContent').style.display = 'none';
+        document.getElementById('parentContent').style.display = 'block';
+      }
+    };
+  </script>
 
 </head>
 <body>
@@ -496,6 +549,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/main.js"></script>
 
 </html>
+
 
 
 
