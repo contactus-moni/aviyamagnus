@@ -113,13 +113,13 @@
   </div>
 
   <script>
-    const signUpForm = document.getElementById('signUpForm');
+    const signUpForm = document.postElementById('signUpForm');
     signUpForm.addEventListener('submit', async (event) => {
       event.preventDefault(); // Prevent default form submission
 
-      const email = document.getElementById('signupEmail').value;
-      const password = document.getElementById('signupPassword').value;
-      const role = document.getElementById('signupRole').value;
+      const email = document.postElementById('signupEmail').value;
+      const password = document.postElementById('signupPassword').value;
+      const role = document.postElementById('signupRole').value;
 
       try {
         // Make sure the request is POST
