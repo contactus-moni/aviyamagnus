@@ -59,6 +59,23 @@ signUpForm.addEventListener('submit', async (event) => {
     alert('An error occurred during sign-up');
   }
 });
+    <form id="signupForm" method="POST" action="https://aviyamagnus.rf.gd/register.php">
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" required><br>
+
+  <label for="password">Password:</label>
+  <input type="password" name="password" id="password" required><br>
+
+  <label for="role">Role:</label>
+  <select name="role" id="role" required>
+    <option value="student">Student</option>
+    <option value="tutor">Tutor</option>
+    <option value="parent">Parent</option>
+  </select><br>
+
+  <button type="submit">Register</button>
+</form>
+
 
   </script>
 </body>
