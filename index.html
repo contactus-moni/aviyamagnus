@@ -125,19 +125,19 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 </form>
-<input type="text" placeholder="Name">
-<input type="text" class="last-s" placeholder="E-mail"> 
-    <select name="user_type" required>
-        <option value="">Select Role</option>
-        <option value="student">Student</option>
-        <option value="parent">Parent</option>
-        <option value="tutor">Tutor</option>
-    </select>
-<button class="site-btn">Sign Up Now</button>
-				</div>
-			</div>
-		</div>
-	</section>
+<input type="text" placeholder="Name" name="name">
+<input type="text" class="last-s" placeholder="E-mail" name="email">
+
+<!-- New dropdown to select user type -->
+<select name="user_type" required>
+    <option value="">Select Role</option>
+    <option value="student">Student</option>
+    <option value="parent">Parent</option>
+    <option value="tutor">Tutor</option>
+</select>
+					
+<button class="site-btn" type="submit">Sign Up Now</button>
+</form>
 	<!-- Hero section end -->
 
 
@@ -577,6 +577,7 @@ form.addEventListener('submit', async (e) => {
 </script>
 
 </html>
+
 
 
 
