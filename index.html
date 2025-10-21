@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzz<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Aviya Magnus - Education Template</title>
@@ -125,9 +125,24 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<form class="intro-newslatter">
-						<input type="text" placeholder="Name">
-						<input type="text" class="last-s" placeholder="E-mail">
-						<button class="site-btn">Sign Up Now</button>
+<form id="basicForm" onsubmit="redirectToSignup(event)">
+  <input type="text" id="name" name="name" placeholder="Enter your name" required>
+  <input type="email" id="email" name="email" placeholder="Enter your email" required>
+  <button type="submit">Sign Up</button>
+</form>
+
+<script>
+function redirectToSignup(event) {
+  event.preventDefault(); // prevent default form submission
+
+  // get values
+  const name = encodeURIComponent(document.getElementById('name').value);
+  const email = encodeURIComponent(document.getElementById('email').value);
+
+  // redirect to signup.html with URL parameters
+  window.location.href = `signup.html?name=${name}&email=${email}`;
+}
+</script>
 					</form>
 				</div>
 			</div>
@@ -576,6 +591,7 @@ Copyright &copy;<script>document.write(new Date().postFullYear());</script> All 
 
 </body>
 </html>
+
 
 
 
