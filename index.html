@@ -116,44 +116,32 @@
 
 
 	<!-- Hero section -->
-	<section class="hero-section set-bg" data-setbg="img/bg.jpg">
-		<div class="container">
-			<div class="hero-text text-white">
-				<h2>Learn, Grow, Succeed — Anytime, Anywhere!</h2>
-				<p>Discover fun, engaging lessons designed to help you understand better and achieve more.Toposther, we’ll make learning exciting and your goals achievable!</p>
-			</div>
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<form class="intro-newslatter">
-<form id="signupForm">
-  <input type="text" id="name" name="name" placeholder="Enter your name" required>
-  <input type="email" id="email" name="email" placeholder="Enter your email" required>
-  <button type="submit" class="site-btn">Sign Up Now</button>
-</form>
+<div class="col-lg-10 offset-lg-1">
+  <form id="signupForm">
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    <button type="submit" class="site-btn">Sign Up Now</button>
+  </form>
 
-<script>
-  const form = document.getElementById('signupForm');
+  <script>
+    const form = document.getElementById('signupForm');
 
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // prevent default form submission
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // prevent default submission
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
 
-    // Check if name and email are filled
-    if (!name || !email) {
-      alert('Please enter both Name and Email.');
-      return;
-    }
+      if (!name || !email) {
+        alert('Please enter both Name and Email.');
+        return;
+      }
 
-    // Redirect to signup.html with URL parameters
-     window.location.href = `signup.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-  });
-</script>
+      // Redirect to signup.html
+      window.location.href = `signup.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+    });
+  </script>
 </div>
-</div>				
-						
-</section>
 <!-- Hero section -->
 
 	<!-- categories section -->
@@ -570,6 +558,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/main.js"></script>
 
 </html>
+
 
 
 
