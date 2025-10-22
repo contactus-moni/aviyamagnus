@@ -158,6 +158,11 @@
   <div class="otp-row">
     <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required>
     <button type="button" class="otp-btn btn-dark" onclick="sendPhoneOtp()">Send OTP</button>
+	    <select name="role" required>
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="parent">Parent</option>
+        <option value="tutor">Tutor</option>
   </div>
   <input type="text" id="phoneOtp" name="phoneOtp" placeholder="Enter Phone OTP" class="otp-input">
 </div>
