@@ -47,71 +47,106 @@
   <!-- Header section end -->
 	
 	<!-- signup section -->
-	</div><section class="signup-section spad">
-		<div class="signup-bg set-bg" data-setbg="img/bg.jpg"></div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="signup-warp">
-						<div class="section-title text-white text-left">
-							<h2>Complete Your Registration</h2>
-							<p>Sign up now to access personalized learning, expert guidance, and a world of online courses designed just for you.</p>
-							</div>
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<form class="intro-newslatter">
-<form id="signupForm" onsubmit="return handleSignup(event)">
-  <input type="text" id="fname" name="fname" placeholder="First Name" required>
-  <input type="text" id="lname" name="lname" placeholder="Last Name" required>
-  <input type="email" id="email" name="email" readonly required>
-  <input type="tel" id="contact" name="contact" placeholder="Contact Number" required>
-  <input type="password" id="password" name="password" placeholder="Create Password" required>
-  <input type="password" id="confirm_password" placeholder="Confirm Password" required>
-  
-  <input type="text" id="email_otp" name="email_otp" placeholder="Enter Email OTP" required>
-  <input type="text" id="phone_otp" name="phone_otp" placeholder="Enter Phone OTP" required>
-  
-  <button type="submit" class="site-btn">Finish Sign Up</button>
-</form>
-										</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<section class="registration-section set-bg" data-setbg="img/bg.jpg">
+    <div class="container">
+        <div class="registration-text text-white text-center mb-4">
+            <h2>Register to Learn, Grow, and Succeed!</h2>
+            <p>Fill in your details to start your journey with us. Verify your email and phone to secure your account.</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form id="registrationForm" onsubmit="return handleRegistration(event)">
+                    <!-- First Name -->
+                    <div class="form-group">
+                        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group">
+                        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    </div>
+
+                    <!-- Contact Number -->
+                    <div class="form-group">
+                        <input type="tel" id="contactNumber" name="contactNumber" placeholder="Contact Number" required>
+                        <button type="button" id="sendPhoneOTP" onclick="sendPhoneOTP()">Send OTP</button>
+                    </div>
+
+                    <!-- Phone OTP -->
+                    <div class="form-group">
+                        <input type="text" id="phoneOTP" name="phoneOTP" placeholder="Enter Phone OTP" required>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Email Address" required>
+                        <button type="button" id="sendEmailOTP" onclick="sendEmailOTP()">Send OTP</button>
+                    </div>
+
+                    <!-- Email OTP -->
+                    <div class="form-group">
+                        <input type="text" id="emailOTP" name="emailOTP" placeholder="Enter Email OTP" required>
+                    </div>
+
+                    <!-- Captcha -->
+                    <div class="form-group">
+                        <label for="captcha">Captcha: <span id="captchaText"></span></label>
+                        <input type="text" id="captcha" name="captcha" placeholder="Enter Captcha" required>
+                        <button type="button" onclick="generateCaptcha()">Refresh Captcha</button>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="site-btn">Register Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    // --- Captcha ---
+    function generateCaptcha() {
+        const captcha = Math.random().toString(36).substring(2, 8).toUpperCase();
+        document.getElementById('captchaText').textContent = captcha;
+    }
+    generateCaptcha();
 
-    // Collect form data
-    const formData = new FormData(this);
-
-    // Password match validation
-    const pass = document.getElementById('password').value;
-    const confirm = document.getElementById('confirm_password').value;
-    if(pass !== confirm){
-        alert("Passwords do not match!");
-        return;
+    // --- Placeholder functions for OTP sending ---
+    function sendEmailOTP() {
+        const email = document.getElementById('email').value;
+        alert('OTP sent to ' + email + ' (implement actual sending in backend)');
     }
 
-    // Send data via fetch to PHP backend
-    fetch('https://subdomain.yourdomain.com/signup.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.status === "success"){
-            alert(data.message);
-            window.location.href = "login.html"; // Redirect to login page
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(err => console.error(err));
-});
-</script>
+    function sendPhoneOTP() {
+        const phone = document.getElementById('contactNumber').value;
+        alert('OTP sent to ' + phone + ' (implement actual sending in backend)');
+    }
 
+    // --- Registration Submit ---
+    function handleRegistration(event) {
+        event.preventDefault();
+
+        // Collect form data
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const contactNumber = document.getElementById('contactNumber').value;
+        const email = document.getElementById('email').value;
+        const phoneOTP = document.getElementById('phoneOTP').value;
+        const emailOTP = document.getElementById('emailOTP').value;
+        const captchaInput = document.getElementById('captcha').value;
+        const captchaText = document.getElementById('captchaText').textContent;
+
+        // Simple captcha check
+        if(captchaInput !== captchaText){
+            alert('Captcha does not match!');
+            generateCaptcha();
+            return false;
+        }
+
+        // Here, you should add backend verification for emailOTP and phoneOTP
+        alert('Form submitted successfully! Implement backend saving and verification logic.');
+    }
+</script>
 	<!-- signup section end -->
 
 
