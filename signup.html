@@ -142,6 +142,11 @@
       <p>Start your learning journey — Create your account below.</p>
 
       <form id="signupForm" class="signup-form" onsubmit="return submitSignupForm(event)">
+		  	    <select name="role" required>
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="parent">Parent</option>
+        <option value="tutor">Tutor</option>
         <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
         <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
 <!-- Email Field with OTP -->
@@ -158,11 +163,6 @@
   <div class="otp-row">
     <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required>
     <button type="button" class="otp-btn btn-dark" onclick="sendPhoneOtp()">Send OTP</button>
-	    <select name="role" required>
-        <option value="">Select Role</option>
-        <option value="student">Student</option>
-        <option value="parent">Parent</option>
-        <option value="tutor">Tutor</option>
   </div>
   <input type="text" id="phoneOtp" name="phoneOtp" placeholder="Enter Phone OTP" class="otp-input">
 </div>
