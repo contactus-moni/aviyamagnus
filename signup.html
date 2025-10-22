@@ -158,12 +158,12 @@
   <script src="js/main.js"></script>
 
   <script>
-    // Auto-fill from URL
+    // --- Auto-fill First Name and Email from URL ---
     const params = new URLSearchParams(window.location.search);
     document.getElementById('fname').value = params.get('name') || '';
     document.getElementById('email').value = params.get('email') || '';
 
-    // Captcha generator
+    // --- Captcha generator ---
     function generateCaptcha() {
       const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
       let captcha = '';
@@ -172,7 +172,7 @@
     }
     generateCaptcha();
 
-    // Password + Captcha validation
+    // --- Password + Captcha validation ---
     function validateForm() {
       const pass = document.getElementById("password").value;
       const confirm = document.getElementById("confirm_password").value;
@@ -190,21 +190,12 @@
       return true;
     }
 
-    // OTP send (mock demo)
+    // --- OTP send (mock demo) ---
     function sendOTP() {
       alert("A verification code has been sent to your registered Email & Mobile.");
       // In production, use AJAX call to send_otp.php
     }
-  <script>
-  const name = localStorage.getItem("signupName") || "";
-  const email = localStorage.getItem("signupEmail") || "";
-
-  const nameField = document.getElementById("name");
-  const emailField = document.getElementById("email");
-
-  if (nameField) nameField.value = name;
-  if (emailField) emailField.value = email;
-</script>
+  </script>
 
 </body>
 </html>
