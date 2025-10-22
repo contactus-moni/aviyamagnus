@@ -129,12 +129,12 @@
 window.location.href = "signup.html?name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email);
   <input type="text" id="name" name="name" placeholder="Enter your name" required>
   <input type="email" id="email" name="email" placeholder="Enter your email" required>
-  <button type="submit" class="site-btn">Sign Up Now</button>
+  <button type="button" class="site-btn" onclick="window.location.href='signup.html'">Sign Up Now</button>
 </form>
 
 <script>
   function handleSignup(event) {
-    event.preventDefault(); // stop page reload
+    event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -609,6 +609,7 @@ Copyright &copy;<script>document.write(new Date().postFullYear());</script> All 
 
 </body>
 </html>
+
 
 
 
