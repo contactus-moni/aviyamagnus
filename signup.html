@@ -56,10 +56,12 @@
 						<div class="section-title text-white text-left">
 							<h2>Complete Your Registration</h2>
 							<p>Sign up now to access personalized learning, expert guidance, and a world of online courses designed just for you.</p>
-						</div>
-						<!-- signup form -->
-<form id="signupForm">
-  <input type="text" id="fname" name="fname" placeholder="First Name" readonly required>
+							</div>
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<form class="intro-newslatter">
+<form id="signupForm" onsubmit="return handleSignup(event)">
+  <input type="text" id="fname" name="fname" placeholder="First Name" required>
   <input type="text" id="lname" name="lname" placeholder="Last Name" required>
   <input type="email" id="email" name="email" readonly required>
   <input type="tel" id="contact" name="contact" placeholder="Contact Number" required>
