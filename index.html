@@ -126,6 +126,7 @@
 				<div class="col-lg-10 offset-lg-1">
 					<form class="intro-newslatter">
 <form id="signupForm" onsubmit="return handleSignup(event)">
+window.location.href = "signup.html?name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email);
   <input type="text" id="name" name="name" placeholder="Enter your name" required>
   <input type="email" id="email" name="email" placeholder="Enter your email" required>
   <button type="submit" class="site-btn">Sign Up Now</button>
@@ -142,10 +143,6 @@
       alert("Please enter both your name and email before continuing.");
       return false;
     }
-
-    // ✅ Redirect to signup.html (make sure file name/path is correct)
-    window.location.href = `signup.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-    return false;
   }
 </script>
 
@@ -612,6 +609,7 @@ Copyright &copy;<script>document.write(new Date().postFullYear());</script> All 
 
 </body>
 </html>
+
 
 
 
