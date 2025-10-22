@@ -196,9 +196,14 @@
       // In production, use AJAX call to send_otp.php
     }
   <script>
-  const params = new URLSearchParams(window.location.search);
-  document.getElementById("name").value = params.get("name") || "";
-  document.getElementById("email").value = params.get("email") || "";
+  const name = localStorage.getItem("signupName") || "";
+  const email = localStorage.getItem("signupEmail") || "";
+
+  const nameField = document.getElementById("name");
+  const emailField = document.getElementById("email");
+
+  if (nameField) nameField.value = name;
+  if (emailField) emailField.value = email;
 </script>
 
 </body>
