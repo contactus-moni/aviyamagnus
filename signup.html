@@ -307,36 +307,74 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/circle-progress.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
-	<script>
-function submitSignupForm(event) {
-  event.preventDefault();
+<script>
+let emailVerified = false;
+let phoneVerified = false;
 
-  const formData = new FormData(document.getElementById("signupForm"));
+function sendEmailOtp() {
+    const email = document.getElementById("email").value.trim();
+    if(!email) return alert("Enter email first");
 
-  fetch("signup_process.php", {
-    method: "POST",
-    body: formData
-  })
-  .then(res => res.json())
-  .then(data => {
-    if(data.status === "success") {
-      alert(data.message);
-      window.location.href = "success.html"; // redirect to success page
-    } else {
-      alert(data.message);
-    }
-  })
-  .catch(err => {
-    alert("Error connecting to server");
-    console.error(err);
-  });
+    // Send AJAX request to PHP to generate OTP
+    fetch("signup_process.php", {
+        method: "POST",
+        body: new FormData(document.getElementById("signupForm"))
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === "success"){
+            alert("Email OTP sent: "+data.email_otp); // demo, remove OTP in production
+        } else {
+            alert(data.message);
+        }
+    });
+}
 
-  return false;
+function sendPhoneOtp() {
+    const mobile = document.getElementById("mobile").value.trim();
+    if(!mobile) return alert("Enter mobile first");
+
+    fetch("signup_process.php", {
+        method: "POST",
+        body: new FormData(document.getElementById("signupForm"))
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.status === "success"){
+            alert("Phone OTP sent: "+data.phone_otp); // demo, replace with SMS API
+        } else {
+            alert(data.message);
+        }
+    });
+}
+
+function submitSignupForm(event){
+    event.preventDefault();
+    const emailOtp = document.getElementById("emailOtp").value.trim();
+    const phoneOtp = document.getElementById("phoneOtp").value.trim();
+
+    if(!emailOtp || !phoneOtp) return alert("Please enter both OTPs");
+
+    // Submit form along with OTPs for verification
+    const formData = new FormData(document.getElementById("signupForm"));
+    formData.append("emailOtpInput", emailOtp);
+    formData.append("phoneOtpInput", phoneOtp);
+
+    fetch("verify_otp.php", { // we will create this next
+        method:"POST",
+        body: formData
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.status==="success"){
+            alert("Registration complete!");
+            window.location.href = "success.html";
+        } else {
+            alert(data.message);
+        }
+    });
 }
 </script>
-
-
-</html>
 
 </body>
 </html>
