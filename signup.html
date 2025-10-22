@@ -195,6 +195,11 @@
       alert("A verification code has been sent to your registered Email & Mobile.");
       // In production, use AJAX call to send_otp.php
     }
-  </script>
+  <script>
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById("name").value = params.get("name") || "";
+  document.getElementById("email").value = params.get("email") || "";
+</script>
+
 </body>
 </html>
