@@ -125,30 +125,30 @@
 			<div class="row">
 				<div class="col-lg-10 offset-lg-1">
 					<form class="intro-newslatter">
-<form action="https://aviyamagnus.rf.gd/signup.php" method="POST">
-<form id="signupForm">
+<form id="signupForm" onsubmit="return handleSignup(event)">
   <input type="text" id="name" name="name" placeholder="Enter your name" required>
   <input type="email" id="email" name="email" placeholder="Enter your email" required>
   <button type="submit" class="site-btn">Sign Up Now</button>
 </form>
 
 <script>
-  document.getElementById("signupForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form from reloading the page
+  function handleSignup(event) {
+    event.preventDefault(); // stop page reload
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
 
-    // Check if both fields are filled
-    if (name === "" || email === "") {
+    if (!name || !email) {
       alert("Please enter both your name and email before continuing.");
-      return;
+      return false;
     }
 
-    // Redirect to signup.html and pass name & email in URL
+    // ✅ Redirect to signup.html (make sure file name/path is correct)
     window.location.href = `signup.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-  });
+    return false;
+  }
 </script>
+
 
 </form>
 
@@ -612,6 +612,7 @@ Copyright &copy;<script>document.write(new Date().postFullYear());</script> All 
 
 </body>
 </html>
+
 
 
 
