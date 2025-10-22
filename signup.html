@@ -365,6 +365,17 @@ function submitSignupForm(event){
     const formData = new FormData(document.getElementById("signupForm"));
     formData.append("emailOtpInput", emailOtp);
     formData.append("phoneOtpInput", phoneOtp);
+	
+	// send signup (calls signup_process.php)
+document.getElementById('sendOtpBtn').addEventListener('click', async ()=> {
+  const fd = new FormData(document.getElementById('signupForm'));
+  const res = await fetch('signup_process.php', { method:'POST', body: fd });
+  const j = await res.json();
+  document.getElementById('otpMessage').innerText = j.message;
+});
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+
 
     fetch("verify_otp.php", { // we will create this next
         method:"POST",
