@@ -18,7 +18,12 @@
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 
-</head>
+  	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+  </head>
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -36,130 +41,78 @@
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
 					</div>
-				</div>
+            <li><a href="/index.html">Home</a></li>          
+        </div>
 				<div class="col-lg-9 col-md-9">
-					<a href="login-options.html"" class="site-btn header-btn">Login</a>
-					<nav class="main-menu">
-						<ul>
-            <li><a href="/index.html">Home</a></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</div>
 	</header>
-	<!-- Header section end -->
+  <!-- Header section end -->
 
-
-	<!-- Hero section -->
-	</div><section class="signup-section spad">
+	<!-- Hero & Registration section -->
 	<section class="hero-section set-bg" data-setbg="img/bg.jpg">
 		<div class="container">
-			<div class="hero-text text-white">
-				<section class="registration-section set-bg" data-setbg="img/bg.jpg">
-    <div class="container">
-        <div class="registration-text text-white text-center mb-4">
-            <h2>Register to Learn, Grow, and Succeed!</h2>
-            <p>Fill in your details to start your journey with us. Verify your email and phone to secure your account.</p>
-        </div>
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2">
-                <form id="registrationForm" onsubmit="return handleRegistration(event)">
-                    <!-- First Name -->
-                    <div class="form-group">
-                        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-                    </div>
+			<div class="registration-text text-white text-center mb-5">
+				<h2>Register to Learn, Grow, and Succeed!</h2>
+				<p>Fill in your details to start your journey with us. Verify your email and phone to secure your account.</p>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-lg-6 col-md-8">
+					<form id="registrationForm" onsubmit="return handleRegistration(event)" class="registration-form">
+						<!-- First Name -->
+						<div class="form-group">
+							<input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+						</div>
 
-                    <!-- Last Name -->
-                    <div class="form-group">
-                        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-                    </div>
+						<!-- Last Name -->
+						<div class="form-group">
+							<input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+						</div>
 
-                    <!-- Contact Number -->
-                    <div class="form-group">
-                        <input type="tel" id="contactNumber" name="contactNumber" placeholder="Contact Number" required>
-                        <button type="button" id="sendPhoneOTP" onclick="sendPhoneOTP()">Send OTP</button>
-                    </div>
+						<!-- Contact Number + OTP -->
+						<div class="form-group otp-group">
+							<input type="tel" id="contactNumber" name="contactNumber" placeholder="Contact Number" required>
+							<button type="button" id="sendPhoneOTP" onclick="sendPhoneOTP()">Send OTP</button>
+						</div>
 
-                    <!-- Phone OTP -->
-                    <div class="form-group">
-                        <input type="text" id="phoneOTP" name="phoneOTP" placeholder="Enter Phone OTP" required>
-                    </div>
+						<!-- Phone OTP -->
+						<div class="form-group">
+							<input type="text" id="phoneOTP" name="phoneOTP" placeholder="Enter Phone OTP" required>
+						</div>
 
-                    <!-- Email Address -->
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Email Address" required>
-                        <button type="button" id="sendEmailOTP" onclick="sendEmailOTP()">Send OTP</button>
-                    </div>
+						<!-- Email + OTP -->
+						<div class="form-group otp-group">
+							<input type="email" id="email" name="email" placeholder="Email Address" required>
+							<button type="button" id="sendEmailOTP" onclick="sendEmailOTP()">Send OTP</button>
+						</div>
 
-                    <!-- Email OTP -->
-                    <div class="form-group">
-                        <input type="text" id="emailOTP" name="emailOTP" placeholder="Enter Email OTP" required>
-                    </div>
+						<!-- Email OTP -->
+						<div class="form-group">
+							<input type="text" id="emailOTP" name="emailOTP" placeholder="Enter Email OTP" required>
+						</div>
 
-                    <!-- Captcha -->
-                    <div class="form-group">
-                        <label for="captcha">Captcha: <span id="captchaText"></span></label>
-                        <input type="text" id="captcha" name="captcha" placeholder="Enter Captcha" required>
-                        <button type="button" onclick="generateCaptcha()">Refresh Captcha</button>
-                    </div>
+						<!-- Captcha -->
+						<div class="form-group">
+							<label for="captcha">Captcha: <span id="captchaText"></span></label>
+							<div class="otp-group">
+								<input type="text" id="captcha" name="captcha" placeholder="Enter Captcha" required>
+								<button type="button" onclick="generateCaptcha()">Refresh Captcha</button>
+							</div>
+						</div>
 
-                    <!-- Submit -->
-                    <button type="submit" class="site-btn">Register Now</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
-<script>
-    // --- Captcha ---
-    function generateCaptcha() {
-        const captcha = Math.random().toString(36).substring(2, 8).toUpperCase();
-        document.getElementById('captchaText').textContent = captcha;
-    }
-    generateCaptcha();
-
-    // --- Placeholder functions for OTP sending ---
-    function sendEmailOTP() {
-        const email = document.getElementById('email').value;
-        alert('OTP sent to ' + email + ' (implement actual sending in backend)');
-    }
-
-    function sendPhoneOTP() {
-        const phone = document.getElementById('contactNumber').value;
-        alert('OTP sent to ' + phone + ' (implement actual sending in backend)');
-    }
-
-    // --- Registration Submit ---
-    function handleRegistration(event) {
-        event.preventDefault();
-
-        // Collect form data
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const contactNumber = document.getElementById('contactNumber').value;
-        const email = document.getElementById('email').value;
-        const phoneOTP = document.getElementById('phoneOTP').value;
-        const emailOTP = document.getElementById('emailOTP').value;
-        const captchaInput = document.getElementById('captcha').value;
-        const captchaText = document.getElementById('captchaText').textContent;
-
-        // Simple captcha check
-        if(captchaInput !== captchaText){
-            alert('Captcha does not match!');
-            generateCaptcha();
-            return false;
-        }
-
-        // Here, you should add backend verification for emailOTP and phoneOTP
-        alert('Form submitted successfully! Implement backend saving and verification logic.');
-    }
-</script>
+						<!-- Submit -->
+						<button type="submit" class="site-btn w-100">Register Now</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
 	<!-- signup section end -->
 
-
-	<!-- footer section -->
+	<!-- Footer section -->
 	<footer class="footer-section spad pb-0">
 		<div class="footer-top">
 			<div class="footer-warp">
@@ -220,14 +173,13 @@
 					<li><a href="#">Register</a></li>
 					<li><a href="#">Privacy</a></li>
 				</ul>
-				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
-<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
+				<div class="copyright">
+					Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
+				</div>
 			</div>
 		</div>
 	</footer> 
 	<!-- footer section end -->
-
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-3.2.1.min.js"></script>
@@ -237,4 +189,40 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
 
+	<script>
+		// --- Captcha ---
+		function generateCaptcha() {
+			const captcha = Math.random().toString(36).substring(2, 8).toUpperCase();
+			document.getElementById('captchaText').textContent = captcha;
+		}
+		generateCaptcha();
+
+		// --- Placeholder functions for OTP sending ---
+		function sendEmailOTP() {
+			const email = document.getElementById('email').value;
+			alert('OTP sent to ' + email + ' (implement actual sending in backend)');
+		}
+
+		function sendPhoneOTP() {
+			const phone = document.getElementById('contactNumber').value;
+			alert('OTP sent to ' + phone + ' (implement actual sending in backend)');
+		}
+
+		// --- Registration Submit ---
+		function handleRegistration(event) {
+			event.preventDefault();
+
+			const captchaInput = document.getElementById('captcha').value;
+			const captchaText = document.getElementById('captchaText').textContent;
+
+			if(captchaInput !== captchaText){
+				alert('Captcha does not match!');
+				generateCaptcha();
+				return false;
+			}
+
+			alert('Form submitted successfully! Implement backend saving and verification logic.');
+		}
+	</script>
+</body>
 </html>
