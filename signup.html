@@ -307,6 +307,34 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/circle-progress.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
+	<script>
+function submitSignupForm(event) {
+  event.preventDefault();
+
+  const formData = new FormData(document.getElementById("signupForm"));
+
+  fetch("signup_process.php", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.status === "success") {
+      alert(data.message);
+      window.location.href = "success.html"; // redirect to success page
+    } else {
+      alert(data.message);
+    }
+  })
+  .catch(err => {
+    alert("Error connecting to server");
+    console.error(err);
+  });
+
+  return false;
+}
+</script>
+
 
 </html>
 
