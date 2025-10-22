@@ -1,201 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Your Registration | Aviya Magnus</title>
+	<meta charset="UTF-8">
+	<title>Complete Your Registration | Aviya Magnus</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Aviya Magnus Education Template">
+	<meta name="keywords" content="Aviya Magnus, education, creative, html">
 
-  <!-- Favicon -->
-  <link href="img/favicon.ico" rel="shortcut icon"/>
+	<!-- Favicon -->   
+	<link href="img/favicon.ico" rel="shortcut icon"/>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800&display=swap" rel="stylesheet">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="css/font-awesome.min.css"/>
-  <link rel="stylesheet" href="css/owl.carousel.css"/>
-  <link rel="stylesheet" href="css/style.css"/>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 
-  <style>
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: #121212 url('img/bg.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
+	<style>
+		.signup-section {
+			position: relative;
+			padding: 100px 0;
+			background: url('img/signup-bg.jpg') no-repeat center center;
+			background-size: cover;
+			color: #fff;
+		}
 
-    .signup-container {
-      background: rgba(20, 20, 20, 0.95);
-      padding: 50px 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-      width: 400px;
-      text-align: center;
-    }
+		.signup-warp {
+			background: rgba(0,0,0,0.7);
+			padding: 50px;
+			border-radius: 10px;
+		}
 
-    h2 {
-      color: #ff2c2c;
-      font-weight: 700;
-      margin-bottom: 25px;
-      font-size: 28px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+		.signup-warp h2 {
+			color: #ff2c2c;
+			font-size: 32px;
+			margin-bottom: 20px;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
 
-    input, select {
-      width: 100%;
-      background: #1e1e1e;
-      color: #fff;
-      border: 1px solid #333;
-      border-radius: 6px;
-      padding: 12px;
-      margin-bottom: 15px;
-      font-size: 15px;
-      transition: 0.3s;
-    }
+		.signup-warp p {
+			color: #ddd;
+			margin-bottom: 30px;
+		}
 
-    input:focus, select:focus {
-      border-color: #ff2c2c;
-      outline: none;
-    }
+		.signup-form input, 
+		.signup-form select {
+			width: 100%;
+			padding: 12px;
+			margin-bottom: 15px;
+			border-radius: 5px;
+			border: none;
+			font-size: 14px;
+		}
 
-    input::placeholder {
-      color: #aaa;
-    }
+		.signup-form button {
+			width: 100%;
+			padding: 12px;
+			background: #ff2c2c;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: 0.3s;
+		}
 
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #ff2c2c;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 16px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-bottom: 10px;
-    }
+		.signup-form button:hover {
+			background: #e01d1d;
+		}
 
-    button:hover {
-      background: #e01d1d;
-    }
+		.captcha-box {
+			display: flex;
+			gap: 10px;
+			margin-bottom: 15px;
+		}
 
-    .error {
-      color: #ff6666;
-      font-size: 13px;
-      display: none;
-      margin-bottom: 10px;
-    }
+		.captcha-text {
+			background: #2a2a2a;
+			color: #ff2c2c;
+			font-weight: bold;
+			text-align: center;
+			letter-spacing: 2px;
+			width: 100px;
+			border-radius: 4px;
+			padding: 8px;
+			border: none;
+		}
 
-    .captcha-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-
-    .captcha-text {
-      background: #2a2a2a;
-      color: #ff2c2c;
-      font-weight: bold;
-      text-align: center;
-      letter-spacing: 2px;
-      width: 100px;
-      border: none;
-      border-radius: 4px;
-      padding: 8px;
-    }
-
-    .note {
-      font-size: 12px;
-      color: #aaa;
-      margin-top: 10px;
-    }
-  </style>
+		.error {
+			color: #ff6666;
+			font-size: 13px;
+			display: none;
+			margin-bottom: 10px;
+		}
+	</style>
 </head>
 <body>
 
-  <div class="signup-container">
-    <h2>Complete Your Registration</h2>
+	<!-- Page Preloader -->
+	<div id="preloder"><div class="loader"></div></div>
 
-    <form id="signupForm" action="https://yourbackend.infinityfreeapp.com/signup.php" method="POST" onsubmit="return validateForm()">
-      
-      <input type="text" id="fname" name="fname" placeholder="First Name" readonly required>
-      <input type="text" id="lname" name="lname" placeholder="Last Name" required>
-      <input type="email" id="email" name="email" readonly required>
-      <input type="tel" id="contact" name="contact" placeholder="Contact Number" pattern="[0-9]{10}" maxlength="10" required>
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="site-logo">
+						<img src="img/logo.png" alt="">
+					</div>
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9">
+					<a href="login-options.html" class="site-btn header-btn">Login</a>
+					<nav class="main-menu">
+						<ul>
+							<li><a href="/index.html">Home</a></li>
+							<li><a href="/about.html">About</a></li>
+							<li><a href="/courses.html">Courses</a></li>
+							<li><a href="/testimonial.html">Testimonials</a></li>
+							<li><a href="/faq.html">FAQ</a></li>
+							<li><a href="/contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
 
-      <input type="password" id="password" name="password" placeholder="Create Password" required>
-      <input type="password" id="confirm_password" placeholder="Confirm Password" required>
-      <p class="error" id="error-message">Passwords do not match!</p>
+	<!-- Signup section -->
+	<section class="signup-section spad">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
+					<div class="signup-warp">
+						<h2>Complete Your Registration</h2>
+						<p>Sign up now to access personalized learning, expert guidance, and a world of online courses.</p>
+						
+						<form id="signupForm" class="signup-form" action="https://yourbackend.infinityfreeapp.com/signup.php" method="POST" onsubmit="return validateForm()">
+							<input type="text" id="fname" name="fname" placeholder="First Name" readonly required>
+							<input type="text" id="lname" name="lname" placeholder="Last Name" required>
+							<input type="email" id="email" name="email" readonly required>
+							<input type="tel" id="contact" name="contact" placeholder="Contact Number" pattern="[0-9]{10}" maxlength="10" required>
+							<input type="password" id="password" name="password" placeholder="Create Password" required>
+							<input type="password" id="confirm_password" placeholder="Confirm Password" required>
+							<p class="error" id="error-message">Passwords do not match!</p>
 
-      <div class="captcha-box">
-        <input type="text" id="captchaText" class="captcha-text" readonly>
-        <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
-      </div>
+							<div class="captcha-box">
+								<input type="text" id="captchaText" class="captcha-text" readonly>
+								<input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+							</div>
 
-      <button type="button" onclick="sendOTP()">Send Verification Code</button>
-      <input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+							<button type="button" onclick="sendOTP()">Send Verification Code</button>
+							<input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+							<button type="submit">Finish Sign Up</button>
+						</form>
 
-      <button type="submit">Finish Sign Up</button>
-      <p class="note">By signing up, you agree to our <a href="#" style="color:#ff2c2c;">Terms & Privacy Policy</a>.</p>
-    </form>
-  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-  <!-- JavaScript -->
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/main.js"></script>
+	<!-- Footer section -->
+	<footer class="footer-section spad pb-0">
+		<div class="footer-top">
+			<div class="footer-warp">
+				<div class="row">
+					<div class="widpost-item">
+						<h4>Contact Info</h4>
+						<ul class="contact-list">
+							<li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
+							<li>+918248802124</li>
+							<li>contactus@aviyamagnus.com</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
-  <script>
-    // --- Auto-fill First Name and Email from URL ---
-    const params = new URLSearchParams(window.location.search);
-    document.getElementById('fname').value = params.get('name') || '';
-    document.getElementById('email').value = params.get('email') || '';
+	<!-- Scripts -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
 
-    // --- Captcha generator ---
-    function generateCaptcha() {
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      let captcha = '';
-      for (let i = 0; i < 5; i++) captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-      document.getElementById('captchaText').value = captcha;
-    }
-    generateCaptcha();
+	<script>
+		// Auto-fill first name & email from URL
+		const params = new URLSearchParams(window.location.search);
+		document.getElementById('fname').value = params.get('name') || '';
+		document.getElementById('email').value = params.get('email') || '';
 
-    // --- Password + Captcha validation ---
-    function validateForm() {
-      const pass = document.getElementById("password").value;
-      const confirm = document.getElementById("confirm_password").value;
-      const captchaText = document.getElementById("captchaText").value;
-      const captchaInput = document.getElementById("captchaInput").value;
+		// Captcha generator
+		function generateCaptcha() {
+			const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+			let captcha = '';
+			for (let i = 0; i < 5; i++) captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+			document.getElementById('captchaText').value = captcha;
+		}
+		generateCaptcha();
 
-      if (pass !== confirm) {
-        document.getElementById("error-message").style.display = "block";
-        return false;
-      }
-      if (captchaText !== captchaInput) {
-        alert("Captcha is incorrect!");
-        return false;
-      }
-      return true;
-    }
+		// Password + Captcha validation
+		function validateForm() {
+			const pass = document.getElementById("password").value;
+			const confirm = document.getElementById("confirm_password").value;
+			const captchaText = document.getElementById("captchaText").value;
+			const captchaInput = document.getElementById("captchaInput").value;
 
-    // --- OTP send (mock demo) ---
-    function sendOTP() {
-      alert("A verification code has been sent to your registered Email & Mobile.");
-      // In production, use AJAX call to send_otp.php
-    }
-  </script>
+			if (pass !== confirm) {
+				document.getElementById("error-message").style.display = "block";
+				return false;
+			}
+			if (captchaText !== captchaInput) {
+				alert("Captcha is incorrect!");
+				return false;
+			}
+			return true;
+		}
+
+		// OTP send (mock)
+		function sendOTP() {
+			alert("A verification code has been sent to your registered Email & Mobile.");
+		}
+	</script>
 
 </body>
 </html>
