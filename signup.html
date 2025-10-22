@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>Aviya Magnus - Education Template</title>
 	<meta charset="UTF-8">
-	<title>Complete Your Registration | Aviya Magnus</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Aviya Magnus Education Template">
 	<meta name="keywords" content="Aviya Magnus, education, creative, html">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->   
 	<link href="img/favicon.ico" rel="shortcut icon"/>
 
@@ -18,12 +17,14 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
-	
+
+</head>
+<body>
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-	
+
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
@@ -35,19 +36,27 @@
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
 					</div>
-            <li><a href="/index.html">Home</a></li>          
-        </div>
+				</div>
 				<div class="col-lg-9 col-md-9">
+					<a href="login-options.html"" class="site-btn header-btn">Login</a>
+					<nav class="main-menu">
+						<ul>
+            <li><a href="/index.html">Home</a></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</div>
 	</header>
-  <!-- Header section end -->
-	
-	<!-- signup section -->
-<section class="registration-section set-bg" data-setbg="img/bg.jpg">
+	<!-- Header section end -->
+
+
+	<!-- Hero section -->
+	</div><section class="signup-section spad">
+	<section class="hero-section set-bg" data-setbg="img/bg.jpg">
+		<div class="container">
+			<div class="hero-text text-white">
+				<section class="registration-section set-bg" data-setbg="img/bg.jpg">
     <div class="container">
         <div class="registration-text text-white text-center mb-4">
             <h2>Register to Learn, Grow, and Succeed!</h2>
@@ -150,7 +159,6 @@
 	<!-- signup section end -->
 
 
-
 	<!-- footer section -->
 	<footer class="footer-section spad pb-0">
 		<div class="footer-top">
@@ -228,46 +236,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/circle-progress.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
-		<script>
-		// Auto-fill first name & email from URL
-		const params = new URLSearchParams(window.location.search);
-		document.getElementById('fname').value = params.get('name') || '';
-		document.getElementById('email').value = params.get('email') || '';
-
-		// Captcha generator
-		function generateCaptcha() {
-			const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-			let captcha = '';
-			for (let i = 0; i < 5; i++) captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-			document.getElementById('captchaText').value = captcha;
-		}
-		generateCaptcha();
-
-		// Password + Captcha validation
-		function validateForm() {
-			const pass = document.getElementById("password").value;
-			const confirm = document.getElementById("confirm_password").value;
-			const captchaText = document.getElementById("captchaText").value;
-			const captchaInput = document.getElementById("captchaInput").value;
-
-			if (pass !== confirm) {
-				document.getElementById("error-message").style.display = "block";
-				return false;
-			}
-			if (captchaText !== captchaInput) {
-				alert("Captcha is incorrect!");
-				return false;
-			}
-			return true;
-		}
-
-		// OTP send (mock)
-		function sendOTP() {
-			alert("A verification code has been sent to your registered Email & Mobile.");
-		}
-	</script>
-
-</body>
-</html>
 
 </html>
