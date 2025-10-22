@@ -167,5 +167,46 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/circle-progress.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
+		<script>
+		// Auto-fill first name & email from URL
+		const params = new URLSearchParams(window.location.search);
+		document.getElementById('fname').value = params.get('name') || '';
+		document.getElementById('email').value = params.get('email') || '';
+
+		// Captcha generator
+		function generateCaptcha() {
+			const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+			let captcha = '';
+			for (let i = 0; i < 5; i++) captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+			document.getElementById('captchaText').value = captcha;
+		}
+		generateCaptcha();
+
+		// Password + Captcha validation
+		function validateForm() {
+			const pass = document.getElementById("password").value;
+			const confirm = document.getElementById("confirm_password").value;
+			const captchaText = document.getElementById("captchaText").value;
+			const captchaInput = document.getElementById("captchaInput").value;
+
+			if (pass !== confirm) {
+				document.getElementById("error-message").style.display = "block";
+				return false;
+			}
+			if (captchaText !== captchaInput) {
+				alert("Captcha is incorrect!");
+				return false;
+			}
+			return true;
+		}
+
+		// OTP send (mock)
+		function sendOTP() {
+			alert("A verification code has been sent to your registered Email & Mobile.");
+		}
+	</script>
+
+</body>
+</html>
 
 </html>
