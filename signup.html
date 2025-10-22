@@ -18,65 +18,12 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/owl.carousel.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
-
-<style>
-	/* Signup section overall */
-	.signup-section {
-		position: relative;
-		padding: 100px 0;
-		background: url('img/bg.jpg') no-repeat center center;
-		background-size: cover;
-		color: #fff; /* default text color */
-	}
-
-	.signup-warp {
-		background: rgba(0,0,0,0.7);
-		padding: 50px;
-		border-radius: 10px;
-	}
-
-	/* Main heading (h2) */
-	.signup-warp h2 {
-		color: #ff2c2c; /* red color as per index page */
-		font-size: 32px;
-		margin-bottom: 20px;
-		font-weight: 700;
-		text-transform: uppercase;
-	}
-
-	/* Paragraphs under heading */
-	.signup-warp p {
-		color: #ff6666; /* lighter red for description text */
-		margin-bottom: 30px;
-		font-size: 16px;
-	}
-
-	/* Form input placeholders */
-	.signup-form input::placeholder {
-		color: #ff9999; /* soft red placeholder */
-	}
-
-	/* Buttons */
-	.signup-form button {
-		background: #ff2c2c; /* red button */
-		color: #fff;
-		border-radius: 5px;
-		font-weight: 600;
-		font-size: 16px;
-		transition: 0.3s;
-	}
-
-	.signup-form button:hover {
-		background: #e01d1d; /* darker red on hover */
-	}
-</style>
-
-</head>
-<body>
-
-	<!-- Page Preloader -->
-	<div id="preloder"><div class="loader"></div></div>
-
+	
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+	
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
@@ -88,36 +35,31 @@
 					<div class="nav-switch">
 						<i class="fa fa-bars"></i>
 					</div>
-				</div>
+            <li><a href="/index.html">Home</a></li>          
+        </div>
 				<div class="col-lg-9 col-md-9">
-					<a href="login-options.html" class="site-btn header-btn">Login</a>
-					<nav class="main-menu">
-						<ul>
-							<li><a href="/index.html">Home</a></li>
-							<li><a href="/about.html">About</a></li>
-							<li><a href="/courses.html">Courses</a></li>
-							<li><a href="/testimonial.html">Testimonials</a></li>
-							<li><a href="/faq.html">FAQ</a></li>
-							<li><a href="/contact.html">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</div>
 	</header>
-
-	<!-- Signup section -->
+  <!-- Header section end -->
+	
+	<!-- signup section -->
 	</div><section class="signup-section spad">
-		<div class="signup-bg set-bg" data-setbg="img/bg.jpg"></div>
+		<div class="signup-bg set-bg" data-setbg="img/signup-bg.jpg"></div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="signup-warp">
 						<div class="section-title text-white text-left">
-						<h2>Complete Your Registration</h2>
-						<p>Sign up now to access personalized learning, expert guidance, and a world of online courses.</p>
-					
-							<input type="text" placeholder="First Name" required>
+							<h2>Sign up to became a teacher</h2>
+							<p>Sign up now to access personalized learning, expert guidance, and a world of online courses designed just for you.</p>
+						</div>
+						<!-- signup form -->
+						<form class="signup-form">
+<input type="text" placeholder="First Name" required>
 							<input type="text" placeholder="Last Name" required>
 							<input type="text" placeholder="Your E-mail" required>
 							<input type="text" placeholder="Your Phone" required>
@@ -139,75 +81,91 @@
 							
 							<button type="submit">Finish Sign Up</button>
 						</form>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<!-- signup section end -->
 
-	<!-- Footer section -->
+
+
+	<!-- footer section -->
 	<footer class="footer-section spad pb-0">
 		<div class="footer-top">
 			<div class="footer-warp">
 				<div class="row">
-					<div class="widpost-item">
+					<div class="widget-item">
 						<h4>Contact Info</h4>
 						<ul class="contact-list">
 							<li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
 							<li>+918248802124</li>
-							<li>contactus@aviyamagnus.com</li>
+							<li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
 						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Business Administration</h4>
+						<ul>
+							<li><a href="">Human Resoure</a></li>
+							<li><a href="">Marketing & Sales</a></li>
+							<li><a href="">Finance & Accounting</a></li>
+							<li><a href="">Banking Finane</a></li>
+							<li><a href="">Supply Chain Management</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Business & Management</h4>
+						<ul>
+							<li><a href="">Operations Management</a></li>
+							<li><a href="">Entrepreneurship & Startups</a></li>
+							<li><a href="">Business Analytics</a></li>
+							<li><a href="">Leadership & Team Management</a></li>
+							<li><a href="">Event Management</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Education & Law</h4>
+						<ul>
+							<li><a href="">Corporate Law & Intellectual Property Rights</a></li>
+							<li><a href="">Labor Law & Industrial Relations</a></li>
+							<li><a href="">Contract Management</a></li>
+							<li><a href="">Education & Teaching</a></li>
+							<li><a href="">Communication & Soft skills</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Newsletter</h4>
+						<form class="footer-newslatter">
+							<input type="email" placeholder="E-mail">
+							<button class="site-btn">Subscribe</button>
+							<p>*We don’t spam</p>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-	</footer>
+		<div class="footer-bottom">
+			<div class="footer-warp">
+				<ul class="footer-menu">
+					<li><a href="#">Terms & Conditions</a></li>
+					<li><a href="#">Register</a></li>
+					<li><a href="#">Privacy</a></li>
+				</ul>
+				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
+<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
+			</div>
+		</div>
+	</footer> 
+	<!-- footer section end -->
 
-	<!-- Scripts -->
+
+	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/mixitup.min.js"></script>
+	<script src="js/circle-progress.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
 
-	<script>
-		// Auto-fill first name & email from URL
-		const params = new URLSearchParams(window.location.search);
-		document.getElementById('fname').value = params.get('name') || '';
-		document.getElementById('email').value = params.get('email') || '';
-
-		// Captcha generator
-		function generateCaptcha() {
-			const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-			let captcha = '';
-			for (let i = 0; i < 5; i++) captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-			document.getElementById('captchaText').value = captcha;
-		}
-		generateCaptcha();
-
-		// Password + Captcha validation
-		function validateForm() {
-			const pass = document.getElementById("password").value;
-			const confirm = document.getElementById("confirm_password").value;
-			const captchaText = document.getElementById("captchaText").value;
-			const captchaInput = document.getElementById("captchaInput").value;
-
-			if (pass !== confirm) {
-				document.getElementById("error-message").style.display = "block";
-				return false;
-			}
-			if (captchaText !== captchaInput) {
-				alert("Captcha is incorrect!");
-				return false;
-			}
-			return true;
-		}
-
-		// OTP send (mock)
-		function sendOTP() {
-			alert("A verification code has been sent to your registered Email & Mobile.");
-		}
-	</script>
-
-</body>
 </html>
