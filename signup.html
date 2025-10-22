@@ -107,30 +107,38 @@
 	</header>
 
 	<!-- Signup section -->
-	<section class="signup-section spad">
-		<div class="container">
-			<div class="row justify-content-center">
+	</div><section class="signup-section spad">
+		<div class="signup-bg set-bg" data-setbg="img/bg.jpg"></div>
+		<div class="container-fluid">
+			<div class="row">
 				<div class="col-lg-6">
 					<div class="signup-warp">
+						<div class="section-title text-white text-left">
 						<h2>Complete Your Registration</h2>
 						<p>Sign up now to access personalized learning, expert guidance, and a world of online courses.</p>
 						
 						<form id="signupForm" class="signup-form" action="https://yourbackend.infinityfreeapp.com/signup.php" method="POST" onsubmit="return validateForm()">
-							<input type="text" id="fname" name="fname" placeholder="First Name" readonly required>
-							<input type="text" id="lname" name="lname" placeholder="Last Name" required>
-							<input type="email" id="email" name="email" readonly required>
-							<input type="tel" id="contact" name="contact" placeholder="Contact Number" pattern="[0-9]{10}" maxlength="10" required>
-							<input type="password" id="password" name="password" placeholder="Create Password" required>
-							<input type="password" id="confirm_password" placeholder="Confirm Password" required>
-							<p class="error" id="error-message">Passwords do not match!</p>
+						<form class="signup-form">
+							<input type="text" placeholder="First Name" required>
+							<input type="text" placeholder="Last Name" required>
+							<input type="text" placeholder="Your E-mail" required>
+							<input type="text" placeholder="Your Phone" required>
+				
 
 							<div class="captcha-box">
 								<input type="text" id="captchaText" class="captcha-text" readonly>
 								<input type="text" id="captchaInput" placeholder="Enter Captcha" required>
 							</div>
 
-							<button type="button" onclick="sendOTP()">Send Verification Code</button>
-							<input type="text" id="otp" name="otp" placeholder="Enter OTP" required>
+<div class="otp-section">
+  <button type="button" onclick="sendEmailOTP()">Send Email OTP</button>
+  <input type="text" id="email_otp" name="email_otp" placeholder="Enter Email OTP" required>
+</div>
+							<div class="otp-section">
+  <button type="button" onclick="sendPhoneOTP()">Send Phone OTP</button>
+  <input type="text" id="phone_otp" name="phone_otp" placeholder="Enter Phone OTP" required>
+</div>
+							
 							<button type="submit">Finish Sign Up</button>
 						</form>
 
