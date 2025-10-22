@@ -133,17 +133,26 @@ window.location.href = "signup.html?name=" + encodeURIComponent(name) + "&email=
 </form>
 
 <script>
-  function handleSignup(event) {
-    event.preventDefault();
+<script>
+  // Grab your signup button
+  const signupBtn = document.querySelector('.site-btn'); // your button class
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
+  signupBtn.addEventListener('click', function(e) {
+    // Get values from index page inputs
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
 
     if (!name || !email) {
-      alert("Please enter both your name and email before continuing.");
-      return false;
+      alert('Please enter both Name and Email.');
+      e.preventDefault();
+      return;
     }
-  }
+
+    // Redirect to signup.html with name & email in URL
+    window.location.href = `signup.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+  });
+</script>
+
 </script>
 
 
@@ -609,6 +618,7 @@ Copyright &copy;<script>document.write(new Date().postFullYear());</script> All 
 
 </body>
 </html>
+
 
 
 
