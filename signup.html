@@ -147,13 +147,13 @@
         <input type="email" id="email" name="email" placeholder="Email" required>
         <div style="display:flex;">
           <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" style="flex:1;">
-          <button type="button" class="otp-btn" onclick="sendEmailOtp()">Send OTP</button>
-        </div>
+          <button type="button" class="otp-btn btn-dark" onclick="sendEmailOtp()">Send OTP</button>
+        </div>	
 
         <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required>
         <div style="display:flex;">
           <input type="text" id="phoneOtp" name="phoneOtp" placeholder="Enter Phone OTP" style="flex:1;">
-          <button type="button" class="otp-btn" onclick="sendPhoneOtp()">Send OTP</button>
+          <button type="button" class="otp-btn btn-dark" onclick="sendPhoneOtp()">Send OTP</button>
         </div>
 
         <input type="password" id="password" name="password" placeholder="Password" required>
@@ -166,7 +166,7 @@
         </div>
         <p class="error-message" id="captchaError">Captcha mismatch!</p>
 
-        <button type="submit" class="site-btn">Register</button>
+        <button type="submit" class="site-btn btn-dark">Register</button>
       </form>
     </div>
   </section>
@@ -224,10 +224,85 @@
     window.onload = generateCaptcha;
   </script>
 
-  <!-- JS Files -->
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
+  <!-- footer section -->
+	<footer class="footer-section spad pb-0">
+		<div class="footer-top">
+			<div class="footer-warp">
+				<div class="row">
+					<div class="widget-item">
+						<h4>Contact Info</h4>
+						<ul class="contact-list">
+							<li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
+							<li>+918248802124</li>
+							<li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Business Administration</h4>
+						<ul>
+							<li><a href="">Human Resoure</a></li>
+							<li><a href="">Marketing & Sales</a></li>
+							<li><a href="">Finance & Accounting</a></li>
+							<li><a href="">Banking Finane</a></li>
+							<li><a href="">Supply Chain Management</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Business & Management</h4>
+						<ul>
+							<li><a href="">Operations Management</a></li>
+							<li><a href="">Entrepreneurship & Startups</a></li>
+							<li><a href="">Business Analytics</a></li>
+							<li><a href="">Leadership & Team Management</a></li>
+							<li><a href="">Event Management</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Education & Law</h4>
+						<ul>
+							<li><a href="">Corporate Law & Intellectual Property Rights</a></li>
+							<li><a href="">Labor Law & Industrial Relations</a></li>
+							<li><a href="">Contract Management</a></li>
+							<li><a href="">Education & Teaching</a></li>
+							<li><a href="">Communication & Soft skills</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Newsletter</h4>
+						<form class="footer-newslatter">
+							<input type="email" placeholder="E-mail">
+							<button class="site-btn">Subscribe</button>
+							<p>*We don’t spam</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="footer-warp">
+				<ul class="footer-menu">
+					<li><a href="#">Terms & Conditions</a></li>
+					<li><a href="#">Register</a></li>
+					<li><a href="#">Privacy</a></li>
+				</ul>
+				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
+<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
+			</div>
+		</div>
+	</footer> 
+	<!-- footer section end -->
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/mixitup.min.js"></script>
+	<script src="js/circle-progress.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
+
+</html>
 
 </body>
 </html>
