@@ -116,83 +116,45 @@
 
 
 	<!-- Hero section -->
-	<section class="hero-section set-bg" data-setbg="img/bg.jpg">
-		<div class="container">
-			<div class="hero-text text-white">
-				<h2>Learn, Grow, Succeed — Anytime, Anywhere!</h2>
-				<p>Discover fun, engaging lessons designed to help you understand better and achieve more.Toposther, we’ll make learning exciting and your goals achievable!</p>
-			</div>
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1">
-					<form class="intro-newslatter">
-<form id="signupForm" onsubmit="return handleSignup(event)">
-window.location.href = "signup.html?name=" + encodeURIComponent(name) + "&email=" + encodeURIComponent(email);
-  <input type="text" id="name" name="name" placeholder="Enter your name" required>
-  <input type="email" id="email" name="email" placeholder="Enter your email" required>
-  <button type="signupBtn" class="site-btn">Sign Up Now</button>
-</form>
+<section class="hero-section set-bg" data-setbg="img/bg.jpg">
+  <div class="container">
+    <div class="hero-text text-white">
+      <h2>Learn, Grow, Succeed — Anytime, Anywhere!</h2>
+      <p>
+        Discover fun, engaging lessons designed to help you understand better and achieve more.
+        Together, we’ll make learning exciting and your goals achievable!
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <form id="signupForm" class="intro-newslatter" onsubmit="return redirectToSignup(event)">
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          <button type="submit" id="signupBtn" class="site-btn">Sign Up Now</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script>
-  function handleSignup(event) {
-    event.preventDefault();
+  function redirectToSignup(event) {
+    event.preventDefault(); // stop default form behavior
 
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
-	document.getElementById("signupBtn").onclick = () => window.location.href = "signup.html";
-
 
     if (!name || !email) {
       alert("Please enter both your name and email before continuing.");
       return false;
     }
+
+    // redirect with parameters
+    window.location.href = `signup.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
   }
 </script>
 
-
-</form>
-
-<script>
-function redirectToSignup(event) {
-  event.preventDefault(); // prevent default form submission
-
-  // get values
-  const name = encodeURIComponent(document.getElementById('name').value);
-  const email = encodeURIComponent(document.getElementById('email').value);
-
-  // redirect to signup.html with URL parameters
-  window.location.href = `signup.html?name=${name}&email=${email}`;
-}
-</script>
-					</form>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Hero se
-
-<script>
-  function validateForm() {
-    const password = document.postElementById("password").value;
-    const confirmPassword = document.postElementById("confirm_password").value;
-    const errorMessage = document.postElementById("error-message");
-
-    if (password !== confirmPassword) {
-      errorMessage.style.display = "block";
-      return false;
-    } else {
-      errorMessage.style.display = "none";
-      return true;
-    }
-  }
-</script>
-
-</body>
-</html>
-     </form>
-        </div>
-      </div>
-    </div>
-  </section>
 	<!-- Hero section end -->
 
 
@@ -610,5 +572,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/main.js"></script>
 
 </html>
+
 
 
