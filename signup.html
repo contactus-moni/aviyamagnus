@@ -263,35 +263,36 @@
     window.onload = generateCaptcha;
 
     // Send Email OTP - LIVE CONNECTION
-    document.getElementById("sendEmailOtpBtn").addEventListener("click", function() {
-      const email = document.getElementById("email").value.trim();
+document.getElementById("sendEmailOtpBtn").addEventListener("click", function() {
+  const email = document.getElementById("email").value.trim();
 
-      if (email === "") {
-        alert("Please enter your email first.");
-        return;
-      }
+  if (!email) {
+    alert("Please enter your email first.");
+    return;
+  }
 
-      const btn = this;
-      btn.disabled = true;
-      btn.textContent = "Sending...";
+  const btn = this;
+  btn.disabled = true;
+  btn.textContent = "Sending...";
 
-      fetch("https://aviyamagnus.rf.gd/send_otp.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: "email=" + encodeURIComponent(email)
-      })
-      .then(response => response.text())
-      .then(data => {
-        alert("Server Response: " + data);
-        btn.disabled = false;
-        btn.textContent = "Send OTP";
-      })
-      .catch(error => {
-        alert("Error sending OTP: " + error);
-        btn.disabled = false;
-        btn.textContent = "Send OTP";
-      });
-    });
+  fetch("https://aviyamagnus.rf.gd/send_otp.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: "email=" + encodeURIComponent(email)
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert("Server Response: " + data);
+    btn.disabled = false;
+    btn.textContent = "Send OTP";
+  })
+  .catch(error => {
+    alert("Error sending OTP: " + error);
+    btn.disabled = false;
+    btn.textContent = "Send OTP";
+  });
+});
+
 
     // Placeholder function for phone OTP
     function sendPhoneOtp() {
