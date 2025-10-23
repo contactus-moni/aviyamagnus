@@ -139,7 +139,7 @@
   <section class="signup-section">
     <div class="container">
       <h2>Join Aviya Magnus</h2>
-      <p>Start your learning journey — Create your account below.</p>
+      <p>"Your Path to Growth Starts Here — Register Now."</p>
 
       <form id="signupForm" class="signup-form" onsubmit="return submitSignupForm(event)">
 		  	    <select name="role" required>
@@ -149,18 +149,19 @@
         <option value="tutor">Tutor</option>
         <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
         <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+
 <!-- Email Field with OTP -->
 <div class="form-group">
-<div style="display:flex; align-items:center; gap:10px;">
-  <input type="email" id="email" name="email" placeholder="Enter your email" required style="flex:1;">
-  <button type="button" id="sendEmailOtpBtn" class="site-btn btn-dark">Send OTP</button>
-</div>
+  <div style="display:flex; align-items:center; gap:10px;">
+    <input type="email" id="email" name="email" placeholder="Enter your email" required style="flex:1;">
+    <button type="button" id="sendEmailOtpBtn" class="site-btn btn-dark">Send OTP</button>
+  </div>
 
-<!-- OTP Input Field -->
-<div style="margin-top:10px;">
-  <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" required style="width:100%;">
+  <!-- OTP Input Field -->
+  <div style="margin-top:10px;">
+    <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" required style="width:100%;">
+  </div>
 </div>
-
 
 <!-- Mobile Field with OTP -->
 <div class="form-group">
@@ -186,74 +187,7 @@
     </div>
   </section>
 
-  <script>
-    // Generate random captcha
-    function generateCaptcha() {
-      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-      let code = '';
-      for (let i = 0; i < 5; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      document.getElementById('captchaText').textContent = code;
-    }
-
-    // OTP button placeholder actions
-    function sendEmailOtp() {
-      alert("Email OTP sent successfully (demo).");
-    }
-
-    function sendPhoneOtp() {
-      alert("Phone OTP sent successfully (demo).");
-    }
-
-    // Validate signup form
-    function validateForm(event) {
-      event.preventDefault();
-      const password = document.getElementById("password").value;
-      const confirmPassword = document.getElementById("confirmPassword").value;
-      const captcha = document.getElementById("captchaInput").value.trim();
-      const captchaText = document.getElementById("captchaText").textContent.trim();
-
-      const passwordError = document.getElementById("passwordError");
-      const captchaError = document.getElementById("captchaError");
-
-      passwordError.style.display = "none";
-      captchaError.style.display = "none";
-
-      if (password !== confirmPassword) {
-        passwordError.style.display = "block";
-        return false;
-      }
-
-      if (captcha !== captchaText) {
-        captchaError.style.display = "block";
-        return false;
-      }
-
-      alert("Registration successful! (Demo)");
-      window.location.href = "success.html";
-      return true;
-    }
-
-    // Load captcha on page ready
-    window.onload = generateCaptcha;
-	  document.getElementById('sendOtpBtn').addEventListener('click', async () => {
-  const form = document.getElementById('signupForm');
-  const fd = new FormData(form);
-  try {
-    const res = await fetch('https://aviyamagnus.rf.gd/signup_process.php', { // put correct path
-      method: 'POST', body: fd
-    });
-    const data = await res.json();
-    document.getElementById('msg').innerText = data.message;
-    console.log(data);
-  } catch (err) {
-    document.getElementById('msg').innerText = 'Network error: ' + err;
-  }
-});
-  </script>
-
-  <!-- footer section -->
+  <!-- Footer section -->
 	<footer class="footer-section spad pb-0">
 		<div class="footer-top">
 			<div class="footer-warp">
@@ -314,14 +248,13 @@
 					<li><a href="#">Register</a></li>
 					<li><a href="#">Privacy</a></li>
 				</ul>
-				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
-<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
+				<div class="copyright">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with ❤️ by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
+				</div>
 			</div>
 		</div>
 	</footer> 
 	<!-- footer section end -->
-
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-3.2.1.min.js"></script>
@@ -330,7 +263,20 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/circle-progress.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
+
 <script>
+// Captcha generation
+function generateCaptcha() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let code = '';
+  for (let i = 0; i < 5; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  document.getElementById('captchaText').textContent = code;
+}
+window.onload = generateCaptcha;
+
+// Send Email OTP - LIVE CONNECTION
 document.getElementById("sendEmailOtpBtn").addEventListener("click", function() {
   const email = document.getElementById("email").value.trim();
 
@@ -339,33 +285,28 @@ document.getElementById("sendEmailOtpBtn").addEventListener("click", function() 
     return;
   }
 
-  // Disable button temporarily to prevent spamming
   const btn = this;
   btn.disabled = true;
   btn.textContent = "Sending...";
 
-  // Send email to backend via AJAX
   fetch("https://aviyamagnus.rf.gd/send_otp.php", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: "email=" + encodeURIComponent(email)
   })
   .then(response => response.text())
   .then(data => {
-    alert(data); // Shows "OTP sent successfully!" or error
+    alert("Server Response: " + data);
     btn.disabled = false;
     btn.textContent = "Send OTP";
   })
   .catch(error => {
-    alert("Error sending OTP. Please try again.");
+    alert("Error sending OTP: " + error);
     btn.disabled = false;
     btn.textContent = "Send OTP";
   });
 });
 </script>
-
 
 </body>
 </html>
