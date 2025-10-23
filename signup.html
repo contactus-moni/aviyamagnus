@@ -271,7 +271,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("sendOtpBtn");
   btn.addEventListener("click", async () => {
-    const email = document.getElementById("email").value.trim();
+    const emailInput = document.getElementById("email");
+    if (!emailInput) {
+      console.error("Email input not found!");
+      return;
+    }
+    const email = emailInput.value.trim();
     if (!email) {
       alert("Please enter your email address first.");
       return;
@@ -285,11 +290,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       const text = await res.text();
       console.log("Response:", text);
+      alert("OTP sent! Check your email.");
     } catch (err) {
       console.error(err);
+      alert("Failed to send OTP. Try again later.");
     }
   });
 });
+
 </script>
 
 
