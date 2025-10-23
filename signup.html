@@ -266,7 +266,6 @@
     // Send Email OTP - LIVE CONNECTION
 document.getElementById("sendEmailOtpBtn").addEventListener("click", function() {
   const email = document.getElementById("email").value.trim();
-
   if (!email) {
     alert("Please enter your email first.");
     return;
@@ -278,22 +277,23 @@ document.getElementById("sendEmailOtpBtn").addEventListener("click", function() 
 
   fetch("https://aviyamagnus.rf.gd/send_otp.php", {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
     body: "email=" + encodeURIComponent(email)
   })
-  .then(response => response.text())
+  .then(res => res.text())
   .then(data => {
-    alert("Server Response: " + data);
+    alert(data);  // Should show OTP sent message
     btn.disabled = false;
     btn.textContent = "Send OTP";
   })
-  .catch(error => {
-    alert("Error sending OTP: " + error);
+  .catch(err => {
+    alert("Error sending OTP: " + err);
     btn.disabled = false;
     btn.textContent = "Send OTP";
   });
 });
-
 
     // Placeholder function for phone OTP
     function sendPhoneOtp() {
