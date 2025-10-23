@@ -151,13 +151,16 @@
         <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
 <!-- Email Field with OTP -->
 <div class="form-group">
-  <div class="otp-row">
-	  <form method="post" action="send_otp.php">
-    <input type="email" id="email" name="email" placeholder="Email" required>
-    <button type="button" class="otp-btn btn-dark" onclick="sendEmailOtp()">Send OTP</button>
-  </div>
-  <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" class="otp-input">
+<div style="display:flex; align-items:center; gap:10px;">
+  <input type="email" id="email" name="email" placeholder="Enter your email" required style="flex:1;">
+  <button type="button" id="sendEmailOtpBtn" class="site-btn btn-dark">Send OTP</button>
 </div>
+
+<!-- OTP Input Field -->
+<div style="margin-top:10px;">
+  <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" required style="width:100%;">
+</div>
+
 
 <!-- Mobile Field with OTP -->
 <div class="form-group">
