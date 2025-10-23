@@ -264,24 +264,34 @@
     window.onload = generateCaptcha;
 
     // Send Email OTP - LIVE CONNECTION
+<input type="email" id="email" placeholder="Enter your email">
+<button id="sendOtpBtn">Send OTP</button>
+
 <script>
-document.getElementById("sendOtpBtn").addEventListener("click", async () => {
-  const phone = document.getElementById("phone").value;
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("sendOtpBtn");
+  btn.addEventListener("click", async () => {
+    const email = document.getElementById("email").value.trim();
+    if (!email) {
+      alert("Please enter your email address first.");
+      return;
+    }
 
-  try {
-    const res = await fetch("https://aviyamagnus.rf.gd/sendotp.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone })
-    });
-
-    const data = await res.text();
-    alert(data);
-  } catch (err) {
-    console.error("Error sending OTP:", err);
-    alert("Error sending OTP: " + err);
-  }
+    try {
+      const res = await fetch("https://aviyamagnus.rf.gd/sendotp.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const text = await res.text();
+      console.log("Response:", text);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });
+</script>
+
 
 
     // Placeholder function for phone OTP
