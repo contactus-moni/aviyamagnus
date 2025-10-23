@@ -264,36 +264,25 @@
     window.onload = generateCaptcha;
 
     // Send Email OTP - LIVE CONNECTION
-document.getElementById("sendEmailOtpBtn").addEventListener("click", function() {
-  const email = document.getElementById("email").value.trim();
-  if (!email) {
-    alert("Please enter your email first.");
-    return;
-  }
+<script>
+document.getElementById("sendOtpBtn").addEventListener("click", async () => {
+  const phone = document.getElementById("phone").value;
 
-  const btn = this;
-  btn.disabled = true;
-  btn.textContent = "Sending...";
+  try {
+    const res = await fetch("https://aviyamagnus.rf.gd/sendotp.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ phone })
+    });
 
-  fetch("https://aviyamagnus.rf.gd/send_otp.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: "email=" + encodeURIComponent(email)
-  })
-  .then(res => res.text())
-  .then(data => {
-    alert(data);  // Should show OTP sent message
-    btn.disabled = false;
-    btn.textContent = "Send OTP";
-  })
-  .catch(err => {
+    const data = await res.text();
+    alert(data);
+  } catch (err) {
+    console.error("Error sending OTP:", err);
     alert("Error sending OTP: " + err);
-    btn.disabled = false;
-    btn.textContent = "Send OTP";
-  });
+  }
 });
+
 
     // Placeholder function for phone OTP
     function sendPhoneOtp() {
