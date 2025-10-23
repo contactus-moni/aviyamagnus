@@ -142,53 +142,56 @@
   </header>
 
   <!-- Signup Form Section -->
-  <section class="signup-section" role="main" aria-labelledby="signup-title">
-    <div class="container">
-      <h2 id="signup-title">Join Aviya Magnus</h2>
-      <p>Kickstart your learning journey — create your account below.</p>
+ <section class="signup-section" role="main" aria-labelledby="signup-title">
+  <div class="container">
+    <h2 id="signup-title">Join Aviya Magnus</h2>
+    <p>Kickstart your learning journey — create your account below.</p>
 
-      <form id="signupForm" class="signup-form" onsubmit="return validateForm(event)" novalidate>
-		  <form action="https://aviyamagnus.rf.gd/register.php" method="POST">
-        <label for="role" class="sr-only">Select Role</label>
-        <select name="role" id="role" required>
-          <option value="">Select Role</option>
-          <option value="student">Student</option>
-          <option value="parent">Parent</option>
-          <option value="tutor">Tutor</option>
-        </select>
+    <form id="signupForm" class="signup-form" action="https://aviyamagnus.rf.gd/register.php" method="POST" novalidate>
+      <label for="role" class="sr-only">Select Role</label>
+      <select name="role" id="role" required>
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="parent">Parent</option>
+        <option value="tutor">Tutor</option>
+      </select>
 
+      <div class="input-group">
         <input type="text" id="firstName" name="firstName" placeholder="First Name" required aria-required="true" />
         <input type="text" id="lastName" name="lastName" placeholder="Last Name" required aria-required="true" />
-        <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true" />
+      </div>
 
-        <!-- Email OTP -->
-        <div class="otp-row">
-          <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" required aria-required="true" />
-          <button type="button" id="sendEmailOtpBtn" class="otp-btn">Send Email OTP</button>
-        </div>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true" />
 
-        <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required aria-required="true" />
+      <!-- Email OTP -->
+      <div class="otp-row">
+        <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" required aria-required="true" />
+        <button type="button" id="sendEmailOtpBtn" class="otp-btn">Send OTP</button>
+      </div>
 
-        <!-- Phone OTP -->
-        <div class="otp-row">
-          <input type="text" id="phoneOtp" name="phoneOtp" placeholder="Enter Phone OTP" />
-          <button type="button" id="sendPhoneOtpBtn" class="otp-btn">Send Phone OTP</button>
-        </div>
+      <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required aria-required="true" />
 
-        <input type="password" id="password" name="password" placeholder="Password" required aria-required="true" />
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required aria-required="true" />
-        <p class="error-message" id="passwordError">Passwords do not match!</p>
+      <!-- Phone OTP -->
+      <div class="otp-row">
+        <input type="text" id="phoneOtp" name="phoneOtp" placeholder="Enter Phone OTP" />
+        <button type="button" id="sendPhoneOtpBtn" class="otp-btn">Send OTP</button>
+      </div>
 
-        <div class="captcha-box">
-          <div class="captcha" id="captchaText" aria-label="Captcha text"></div>
-          <input type="text" id="captchaInput" placeholder="Enter Captcha" required aria-required="true" style="width: 60%;" />
-        </div>
-        <p class="error-message" id="captchaError">Captcha mismatch!</p>
+      <input type="password" id="password" name="password" placeholder="Password" required aria-required="true" />
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required aria-required="true" />
+      <p class="error-message" id="passwordError">Passwords do not match!</p>
 
-        <button type="submit" class="site-btn" aria-label="Register">Register</button>
-      </form>
-    </div>
-  </section>
+      <div class="captcha-box">
+        <div class="captcha" id="captchaText" aria-label="Captcha text"></div>
+        <input type="text" id="captchaInput" placeholder="Enter Captcha" required aria-required="true" style="width: 60%;" />
+      </div>
+      <p class="error-message" id="captchaError">Captcha mismatch!</p>
+
+      <button type="submit" class="site-btn" aria-label="Register">Register</button>
+    </form>
+  </div>
+</section>
+
 
   <!-- footer section -->
 	<footer class="footer-section spad pb-0">
@@ -268,46 +271,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="js/main.js"></script>
 
   <script>
-    // Update year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+          document.getElementById("sendOtpBtn").addEventListener("click", function() {
+            var email = document.querySelector("input[name=email]").value;
+            
+            if (!email) {
+                alert("Please enter an email address.");
+                return;
+            }
 
-    // Captcha generation
-    function generateCaptcha() {
-      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-      let code = '';
-      for (let i = 0; i < 5; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      document.getElementById('captchaText').textContent = code;
-    }
-    window.onload = generateCaptcha;
-
-    // Send Email OTP handler
-    document.getElementById('sendEmailOtpBtn').addEventListener('click', async () => {
-      const email = document.getElementById('email').value.trim();
-      if (!email) {
-        alert('Please enter your email address first.');
-        return;
-      }
-
-      try {
-        const response = await fetch('https://aviyamagnus.rf.gd/send_otp.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
+            // AJAX call to send OTP
+            $.ajax({
+                url: 'send_otp.php',  // Backend file that handles OTP sending
+                type: 'POST',
+                data: { email: email },
+                success: function(response) {
+                    alert(response.message);
+                    // You can also add a timer here to enable resending OTP after some time
+                },
+                error: function(err) {
+                    alert("Error sending OTP. Please try again.");
+                }
+            });
         });
-
-        if (!response.ok) {
-          alert('Failed to send OTP. Please try again.');
-          return;
-        }
-
-        const text = await response.text();
-        alert('Server response: ' + text);
-      } catch (error) {
-        alert('Error sending OTP: ' + error.message);
-      }
-    });
 
     // Send Phone OTP placeholder
     document.getElementById('sendPhoneOtpBtn').addEventListener('click', () => {
