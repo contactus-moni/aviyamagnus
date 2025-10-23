@@ -331,84 +331,41 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/main.js"></script>
 <script>
-let emailVerified = false;
-let phoneVerified = false;
+document.getElementById("sendEmailOtpBtn").addEventListener("click", function() {
+  const email = document.getElementById("email").value.trim();
 
-function sendEmailOtp() {
-    const email = document.getElementById("email").value.trim();
-    if(!email) return alert("Enter email first");
+  if (email === "") {
+    alert("Please enter your email first.");
+    return;
+  }
 
-    // Send AJAX request to PHP to generate OTP
-    fetch("signup_process.php", {
-        method: "POST",
-        body: new FormData(document.getElementById("signupForm"))
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.status === "success"){
-            alert("Email OTP sent: "+data.email_otp); // demo, remove OTP in production
-        } else {
-            alert(data.message);
-        }
-    });
-}
+  // Disable button temporarily to prevent spamming
+  const btn = this;
+  btn.disabled = true;
+  btn.textContent = "Sending...";
 
-function sendPhoneOtp() {
-    const mobile = document.getElementById("mobile").value.trim();
-    if(!mobile) return alert("Enter mobile first");
-
-    fetch("signup_process.php", {
-        method: "POST",
-        body: new FormData(document.getElementById("signupForm"))
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.status === "success"){
-            alert("Phone OTP sent: "+data.phone_otp); // demo, replace with SMS API
-        } else {
-            alert(data.message);
-        }
-    });
-}
-
-function submitSignupForm(event){
-    event.preventDefault();
-    const emailOtp = document.getElementById("emailOtp").value.trim();
-    const phoneOtp = document.getElementById("phoneOtp").value.trim();
-
-    if(!emailOtp || !phoneOtp) return alert("Please enter both OTPs");
-
-    // Submit form along with OTPs for verification
-    const formData = new FormData(document.getElementById("signupForm"));
-    formData.append("emailOtpInput", emailOtp);
-    formData.append("phoneOtpInput", phoneOtp);
-	
-	// send signup (calls signup_process.php)
-document.getElementById('sendOtpBtn').addEventListener('click', async ()=> {
-  const fd = new FormData(document.getElementById('signupForm'));
-  const res = await fetch('signup_process.php', { method:'POST', body: fd });
-  const j = await res.json();
-  document.getElementById('otpMessage').innerText = j.message;
+  // Send email to backend via AJAX
+  fetch("https://aviyamagnus.rf.gd/send_otp.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: "email=" + encodeURIComponent(email)
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert(data); // Shows "OTP sent successfully!" or error
+    btn.disabled = false;
+    btn.textContent = "Send OTP";
+  })
+  .catch(error => {
+    alert("Error sending OTP. Please try again.");
+    btn.disabled = false;
+    btn.textContent = "Send OTP";
+  });
 });
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-
-
-    fetch("verify_otp.php", { // we will create this next
-        method:"POST",
-        body: formData
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        if(data.status==="success"){
-            alert("Registration complete!");
-            window.location.href = "success.html";
-        } else {
-            alert(data.message);
-        }
-    });
-}
 </script>
+
 
 </body>
 </html>
