@@ -229,32 +229,31 @@
     window.onload = generateCaptcha;
 
     // Send Email OTP - simulate sending OTP via API
-    document.getElementById('sendEmailOtpBtn').addEventListener('click', async () => {
-      const emailInput = document.getElementById('email');
-      const email = emailInput.value.trim();
-      if (!email) {
-        alert('Please enter your email address first.');
-        return;
-      }
+<form id="signupForm">
+  <input type="email" id="email" placeholder="Enter email" required />
+  <button type="button" id="sendOtpBtn">Send OTP</button>
+</form>
 
-      // Demo: replace with your actual API call
-      try {
-        // Example fetch POST request to your backend
-        /*
-        const response = await fetch('https://aviyamagnus.rf.gd/send_otp.php', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
-        });
-        const text = await response.text();
-        console.log('Response:', text);
-        */
-        alert('OTP sent! Check your email.');
-      } catch (err) {
-        console.error(err);
-        alert('Failed to send OTP. Try again later.');
-      }
-    });
+<script>
+  document.getElementById('sendOtpBtn').addEventListener('click', async (e) => {
+    e.preventDefault(); // prevent form submission
+    const email = document.getElementById('email').value.trim();
+    if (!email) {
+      alert('Enter email first');
+      return;
+    }
+    try {
+      const res = await fetch('https://your-backend/sendotp.php', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email })
+      });
+      const text = await res.text();
+      alert('OTP sent: ' + text);
+    } catch (err) {
+      alert('Error sending OTP');
+    }
+  });
 
     // Placeholder function for phone OTP
     function sendPhoneOtp() {
