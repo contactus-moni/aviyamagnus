@@ -142,52 +142,55 @@
   </header>
 
   <!-- Signup Form Section -->
-  <section class="signup-section" role="main" aria-labelledby="signup-title">
-    <div class="container">
-      <h2 id="signup-title">Join Aviya Magnus</h2>
-      <p>Kickstart your learning journey — create your account below.</p>
+ <section class="signup-section" role="main" aria-labelledby="signup-title">
+  <div class="container">
+    <h2 id="signup-title">Join Aviya Magnus</h2>
+    <p>Kickstart your learning journey — create your account below.</p>
 
-      <form id="signupForm" class="signup-form" onsubmit="return validateForm(event)" novalidate>
-        <label for="role" class="sr-only">Select Role</label>
-        <select name="role" id="role" required>
-          <option value="">Select Role</option>
-          <option value="student">Student</option>
-          <option value="parent">Parent</option>
-          <option value="tutor">Tutor</option>
-        </select>
+    <form id="signupForm" class="signup-form" onsubmit="return validateForm(event)" novalidate>
+      <label for="role" class="sr-only">Select Role</label>
+      <select name="role" id="role" required>
+        <option value="">Select Role</option>
+        <option value="student">Student</option>
+        <option value="parent">Parent</option>
+        <option value="tutor">Tutor</option>
+      </select>
 
-        <input type="text" id="firstName" name="firstName" placeholder="First Name" required aria-required="true" />
-        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required aria-required="true" />
-        <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true" />
+      <input type="text" id="firstName" name="firstName" placeholder="First Name" required aria-required="true" />
+      <input type="text" id="lastName" name="lastName" placeholder="Last Name" required aria-required="true" />
+      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true" />
 
-        <!-- Email OTP -->
-        <div class="otp-row">
-          <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" required aria-required="true" />
-          <button type="button" id="sendEmailOtpBtn" class="otp-btn" aria-label="Send email OTP">Send OTP</button>
-        </div>
+      <!-- Email OTP -->
+      <div class="otp-row" style="display: flex; gap: 8px; align-items: center; margin-bottom: 1em;">
+        <input type="text" id="emailOtp" name="emailOtp" placeholder="Enter Email OTP" required aria-required="true" style="flex: 1; min-width: 0;" />
+        <button type="button" id="sendOtpBtn">Send OTP</button>
 
-        <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required aria-required="true" />
+      </div>
 
-        <!-- Phone OTP -->
-        <div class="otp-row">
-          <input type="text" id="phoneOtp" name="phoneOtp" placeholder="Enter Phone OTP" />
-          <button type="button" class="otp-btn" onclick="sendPhoneOtp()" aria-label="Send phone OTP">Send OTP</button>
-        </div>
+      <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required aria-required="true" />
 
-        <input type="password" id="password" name="password" placeholder="Password" required aria-required="true" />
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required aria-required="true" />
-        <p class="error-message" id="passwordError">Passwords do not match!</p>
+      <!-- Phone OTP -->
+      <div class="otp-row" style="display: flex; gap: 8px; align-items: center; margin-bottom: 1em;">
+        <input type="text" id="phoneOtp" name="phoneOtp" placeholder="Enter Phone OTP" style="flex: 1; min-width: 0;" />
+        <button type="button" id="sendOtpBtn">Send OTP</button>
 
-        <div class="captcha-box">
-          <div class="captcha" id="captchaText" aria-label="Captcha text"></div>
-          <input type="text" id="captchaInput" placeholder="Enter Captcha" required aria-required="true" style="width: 60%;" />
-        </div>
-        <p class="error-message" id="captchaError">Captcha mismatch!</p>
+      </div>
 
-        <button type="submit" class="site-btn" aria-label="Register">Register</button>
-      </form>
-    </div>
-  </section>
+      <input type="password" id="password" name="password" placeholder="Password" required aria-required="true" />
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required aria-required="true" />
+      <p class="error-message" id="passwordError">Passwords do not match!</p>
+
+      <div class="captcha-box">
+        <div class="captcha" id="captchaText" aria-label="Captcha text"></div>
+        <input type="text" id="captchaInput" placeholder="Enter Captcha" required aria-required="true" style="width: 60%;" />
+      </div>
+      <p class="error-message" id="captchaError">Captcha mismatch!</p>
+
+      <button type="submit" class="site-btn" aria-label="Register">Register</button>
+    </form>
+  </div>
+</section>
+
 
   <!-- Footer Section -->
   <footer>
@@ -210,7 +213,7 @@
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
 
-  </script>
+  <script>
     // Update year in footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
