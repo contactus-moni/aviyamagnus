@@ -121,9 +121,21 @@
       error.style.display = "none";
     }
 
-    // ✅ All validations passed → Redirect to success.html
-    window.location.href = "success.html";
+  function redirectToSignup(event) {
+    event.preventDefault(); // stop default form behavior
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!name || !email) {
+      alert("Please enter both your name and email before continuing.");
+      return false;
+    }
+
+    // redirect with parameters
+    window.location.href = `https://contactus.aviyamagnus.com/success.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
   }
+</script>
 </script>
 	</section>
 	<!-- Hero section end-->
