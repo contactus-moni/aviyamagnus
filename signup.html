@@ -126,34 +126,66 @@
 </head>
 
 <body>
-  <!-- Header section -->
-  <header class="header-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-3">
-          <div class="site-logo">
-            <img src="img/logo.png" alt="Aviya Magnus Logo">
-          </div>
-          <div class="nav-switch">
-            <i class="fa fa-bars"></i>
-          </div>
-        </div>
-        <div class="col-lg-9 col-md-9">
-          <a href="login-options.html" class="site-btn header-btn">Login</a>
-          <nav class="main-menu">
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="courses.html">Courses</a></li>
-              <li><a href="testimonial.html">Testimonials</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
+	<!-- Header section -->
+  /* Light black highlighted header background */
+.header-section {
+  background: rgba(0, 0, 0, 0.7); /* semi-transparent black */
+  padding: 15px 0;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Make sure links and buttons stand out on dark background */
+.header-section .main-menu ul li a {
+  color: #fff;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.header-section .main-menu ul li a:hover {
+  color: #f6783a; /* orange hover accent */
+}
+
+.header-section .site-btn.header-btn {
+  background: #f6783a;
+  color: #fff;
+  border: none;
+}
+
+.header-section .site-btn.header-btn:hover {
+  background: #fff;
+  color: #f6783a;
+}
+
+	<header class="header-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="site-logo">
+						<img src="img/logo.png" alt="">
+					</div>
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9">
+					<a href="login-options.html"" class="site-btn header-btn">Login</a>
+					<nav class="main-menu">
+						<ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/courses.html">Courses</a></li>
+            <li><a href="/testimonial.html">Testimonials</a></li>
+            <li><a href="/faq.html">FAQ</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->
 
   <!-- Signup Form Section -->
   <section class="signup-section spad" role="main" aria-labelledby="signup-title">
