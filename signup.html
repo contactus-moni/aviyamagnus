@@ -1,175 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Aviya Magnus - Sign Up</title>
-  <meta charset="UTF-8">
-  <meta name="description" content="Sign up to Aviya Magnus Learning Portal">
-  <meta name="keywords" content="Aviya Magnus, Signup, Education, Learning">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="img/favicon.ico" rel="shortcut icon"/>
+	<title>Aviya Magnus - Education Template</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Aviya Magnus Education Template">
+	<meta name="keywords" content="Aviya Magnus, education, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->   
+	<link href="img/favicon.ico" rel="shortcut icon"/>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800&display=swap" rel="stylesheet">
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="css/font-awesome.min.css"/>
-  <link rel="stylesheet" href="css/owl.carousel.css"/>
-  <link rel="stylesheet" href="css/style.css"/>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 
-  <style>
-    /* Match index page look */
-    body {
-      font-family: 'Raleway', sans-serif;
-      background: url('img/bg.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-    }
-
-    .signup-section {
-      padding: 100px 20px;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 10px;
-      max-width: 700px;
-      margin: 120px auto;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .signup-section h2 {
-      font-weight: 700;
-      color: #fff;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .signup-section p {
-      text-align: center;
-      color: #ddd;
-      margin-bottom: 40px;
-    }
-
-    .signup-form input,
-    .signup-form select {
-      width: 100%;
-      padding: 12px 15px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-      border: none;
-      background: rgba(255, 255, 255, 0.9);
-      color: #000;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-
-    .signup-form select option {
-      color: #000;
-    }
-
-    .signup-form input:focus,
-    .signup-form select:focus {
-      outline: 2px solid #f6783a;
-    }
-
-    .captcha-box {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      gap: 10px;
-    }
-
-    .captcha {
-      background: #fff;
-      color: #000;
-      font-weight: 700;
-      padding: 8px 15px;
-      border-radius: 5px;
-      letter-spacing: 2px;
-      user-select: none;
-      font-size: 18px;
-      font-family: monospace;
-      min-width: 120px;
-      text-align: center;
-    }
-
-    .error-message {
-      color: #ff6b6b;
-      font-size: 14px;
-      display: none;
-      text-align: center;
-      margin-top: -10px;
-      margin-bottom: 15px;
-    }
-
-    .site-btn {
-      display: inline-block;
-      padding: 12px 40px;
-      background: #f6783a;
-      color: #fff;
-      text-transform: uppercase;
-      font-weight: 600;
-      border: none;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      width: 100%;
-    }
-
-    .site-btn:hover {
-      background: #fff;
-      color: #f6783a;
-      text-decoration: none;
-    }
-	    /* Light black highlighted header background */
-.header-section {
-  background: rgba(0, 0, 0, 0.7); /* semi-transparent black */
-  padding: 15px 0;
-  position: relative;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-/* Make sure links and buttons stand out on dark background */
-.header-section .main-menu ul li a {
-  color: #fff;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.header-section .main-menu ul li a:hover {
-  color: #f6783a; /* orange hover accent */
-}
-
-.header-section .site-btn.header-btn {
-  background: #f6783a;
-  color: #fff;
-  border: none;
-}
-
-.header-section .site-btn.header-btn:hover {
-  background: #fff;
-  color: #f6783a;
-}
-	  		  /* Make Login button red */
-.header-section .site-btn.header-btn {
-  background: #e63946; /* bright red tone */
-  color: #fff;
-  border: none;
-  transition: all 0.3s ease;
-}
-
-/* Hover effect — white background with red text */
-.header-section .site-btn.header-btn:hover {
-  background: #fff;
-  color: #e63946;
-  text-decoration: none;
-}
-  </style>
 </head>
-
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
@@ -194,9 +49,10 @@
 	</header>
 	<!-- Header section end -->
 
-  <!-- Signup Form Section -->
-  <section class="signup-section spad" role="main" aria-labelledby="signup-title">
-    <div class="container">
+
+	<!-- Hero section -->
+<section class="hero-section set-bg" data-setbg="img/bg.jpg">
+<div class="container">
       <h2 id="signup-title">Join Aviya Magnus</h2>
       <p>Start your learning journey — Create your free account today.</p>
 
@@ -233,8 +89,9 @@
       </form>
     </div>
   </section>
+	<!-- Hero section end-->
 
- <!-- footer section -->
+  <!-- footer section -->
 	<footer class="footer-section spad pb-0">
 		<div class="footer-top">
 			<div class="footer-warp">
@@ -303,7 +160,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer> 
 	<!-- footer section end -->
 
-  <!-- JS Files -->
+
+ <!-- JS Files -->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/owl.carousel.min.js"></script>
@@ -343,3 +201,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   </script>
 </body>
 </html>
+
+
+
+
