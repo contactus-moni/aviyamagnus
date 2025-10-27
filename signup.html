@@ -83,7 +83,7 @@
 
 
       <!-- Register Button -->
-<button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
+<button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button><button type="submit" class="site-btn" onclick="if(document.getElementById('signupForm').checkValidity()){window.location.href='success.html';}else{document.getElementById('signupForm').reportValidity();}">Register</button>
 
 <script>
   function validateAndRedirect(event) {
