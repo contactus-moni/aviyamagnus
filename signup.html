@@ -173,12 +173,6 @@
 					<a href="login-options.html"" class="site-btn header-btn">Login</a>
 					<nav class="main-menu">
 						<ul>
-            <li><a href="/index.html">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/courses.html">Courses</a></li>
-            <li><a href="/testimonial.html">Testimonials</a></li>
-            <li><a href="/faq.html">FAQ</a></li>
-            <li><a href="/contact.html">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -222,7 +216,20 @@
         <p class="error-message" id="captchaError">Captcha mismatch! Please try again.</p>
 
         <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
+		  /* Make Login button red */
+.header-section .site-btn.header-btn {
+  background: #e63946; /* bright red tone */
+  color: #fff;
+  border: none;
+  transition: all 0.3s ease;
+}
 
+/* Hover effect — white background with red text */
+.header-section .site-btn.header-btn:hover {
+  background: #fff;
+  color: #e63946;
+  text-decoration: none;
+}
       </form>
     </div>
   </section>
