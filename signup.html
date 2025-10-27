@@ -86,38 +86,46 @@
 <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
 
 <script>
-function validateAndRedirect() {
-    const form = document.getElementById('signupForm');
+  function validateAndRedirect(event) {
+    event.preventDefault(); // prevent default behavior if button inside a form
 
-    // Check if all required fields are filled
-    if (!form.checkValidity()) {
-        form.reportValidity(); // Shows browser's required field messages
-        return; // Stop if not valid
+    // Get all required field values
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const captchaText = document.getElementById("captchaText").textContent.trim();
+    const captchaInput = document.getElementById("captchaInput").value.trim();
+    const error = document.getElementById("captchaError");
+
+    // Validate required fields
+    if (!role || !firstName || !lastName || !email || !mobile) {
+      alert("Please fill in all required fields before continuing.");
+      return false;
     }
 
-    // Captcha validation
-    const captchaText = document.getElementById('captchaText').textContent.trim();
-    const captchaInput = document.getElementById('captchaInput').value.trim();
-    const error = document.getElementById('captchaError');
+    // Validate 10-digit mobile number
+    const mobilePattern = /^[0-9]{10}$/;
+    if (!mobilePattern.test(mobile)) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return false;
+    }
 
+    // Validate captcha
     if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
-        error.style.display = 'block';
-        generateCaptcha(); // Refresh captcha
-        return;
+      error.style.display = "block";
+      generateCaptcha(); // Refresh captcha
+      return false;
     } else {
-        error.style.display = 'none';
+      error.style.display = "none";
     }
 
-    // All validations passed — redirect
-    window.location.href = 'success.html';
-}
-
-// Initialize captcha on page load
-window.onload = generateCaptcha;
+    // ✅ All validations passed → Redirect to success.html
+    window.location.href = "success.html";
+  }
 </script>
-      </form>
-    </div>
-  </section>
+	</section>
 	<!-- Hero section end-->
 
   <!-- footer section -->
