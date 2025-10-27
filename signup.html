@@ -122,12 +122,7 @@
       color: #f6783a;
       text-decoration: none;
     }
-  </style>
-</head>
-
-<body>
-	<!-- Header section -->
-  /* Light black highlighted header background */
+	    /* Light black highlighted header background */
 .header-section {
   background: rgba(0, 0, 0, 0.7); /* semi-transparent black */
   padding: 15px 0;
@@ -157,7 +152,25 @@
   background: #fff;
   color: #f6783a;
 }
+	  		  /* Make Login button red */
+.header-section .site-btn.header-btn {
+  background: #e63946; /* bright red tone */
+  color: #fff;
+  border: none;
+  transition: all 0.3s ease;
+}
 
+/* Hover effect — white background with red text */
+.header-section .site-btn.header-btn:hover {
+  background: #fff;
+  color: #e63946;
+  text-decoration: none;
+}
+  </style>
+</head>
+
+<body>
+	<!-- Header section -->
 	<header class="header-section">
 		<div class="container">
 			<div class="row">
@@ -216,20 +229,7 @@
         <p class="error-message" id="captchaError">Captcha mismatch! Please try again.</p>
 
         <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
-		  /* Make Login button red */
-.header-section .site-btn.header-btn {
-  background: #e63946; /* bright red tone */
-  color: #fff;
-  border: none;
-  transition: all 0.3s ease;
-}
 
-/* Hover effect — white background with red text */
-.header-section .site-btn.header-btn:hover {
-  background: #fff;
-  color: #e63946;
-  text-decoration: none;
-}
       </form>
     </div>
   </section>
