@@ -329,6 +329,41 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
       // Here, you can add real signup logic or redirect
       return true;
     }
+	  import express from "express";
+import nodemailer from "nodemailer";
+
+const app = express();
+app.use(express.json());
+
+app.post("/send-otp", async (req, res) => {
+  const { email } = req.body;
+  const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "your_email@gmail.com",
+        pass: "your_app_password",
+      },
+    });
+
+    await transporter.sendMail({
+      from: "your_email@gmail.com",
+      to: email,
+      subject: "Your OTP Code",
+      text: `Your OTP is: ${otp}`,
+    });
+
+    res.json({ message: "OTP sent successfully", otp }); // remove otp in prod
+  } catch (error) {
+    console.error(error);
+    res.json({ message: "Failed to send OTP" });
+  }
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+
   </script>
 </body>
 </html>
