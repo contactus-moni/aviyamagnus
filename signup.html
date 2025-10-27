@@ -78,15 +78,18 @@
 				<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
 				<p class="error-message" id="passwordError">Passwords do not match!</p>
 
-				<div class="captcha-box">
-					<div class="captcha" id="captchaText"></div>
-					<input type="text" id="captchaInput" placeholder="Enter Captcha" required>
-				</div>
-				<p class="error-message" id="captchaError">Captcha mismatch! Please try again.</p>
+<!-- Captcha display and input -->
+<div class="captcha-box" style="margin-bottom: 15px;">
+    <div id="captchaText" 
+         style="font-weight: bold; font-size: 20px; letter-spacing: 5px; background: #eee; padding: 10px; width: fit-content; user-select: none;">
+    </div>
+    <input type="text" id="captchaInput" placeholder="Enter Captcha" required 
+           style="margin-top: 10px; padding: 8px; width: 100%; box-sizing: border-box;">
+    <p id="captchaError" style="color:red; display:none; margin-top:5px;">Captcha mismatch! Please try again.</p>
+    <button type="button" onclick="generateCaptcha()" 
+            style="margin-top:10px; padding:5px 10px;">Refresh Captcha</button>
+</div>
 
-				<button type="button" class="site-btn" onclick="submitSignup()">Register</button>
-			</form>
-		</div>
 	</section>
 
 	<footer class="footer-section spad pb-0">
