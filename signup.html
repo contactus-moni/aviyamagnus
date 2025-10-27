@@ -272,7 +272,32 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     }
 
     // Redirect to success.html
+    // Submit data to backend
+fetch('http://localhost:5000/register', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    role: document.getElementById('role').value,
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    countryCode: document.getElementById('countryCode').value,
+    mobile: document.getElementById('mobile').value,
+    password: document.getElementById('password').value
+  })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.message === 'User registered successfully!') {
     window.location.href = 'success.html';
+  } else {
+    alert('Error: ' + data.message);
+  }
+})
+.catch(err => {
+  alert('Server error: ' + err.message);
+});
+
   }
 
   // Initialize captcha on page load
