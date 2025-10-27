@@ -86,77 +86,19 @@
     <option value="+44">🇬🇧 +44</option>
     <option value="+61">🇦🇺 +61</option>
     <option value="+971">🇦🇪 +971</option>
-  </select>
-  <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required style="width: 70%; padding: 12px 15px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
-</div>
-<p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
+	          <input type="number" id="mobilenuber" name="number" placeholder="Enter your Mobile Number" required>
 
-
+	  
 <div class="captcha-box">
   <div class="captcha" id="captchaText"></div>
   <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
 </div>
-<p class="error-message" id="captchaError">Captcha mismatch! Please try again.</p>
->
 
 <button type="button" class="site-btn" 
 onclick="if(document.getElementById('signupForm').checkValidity()){const c=document.getElementById('captchaText').textContent.trim().toUpperCase();const i=document.getElementById('captchaInput').value.trim().toUpperCase();if(c===i){window.location.href='success.html';}else{document.getElementById('captchaError').style.display='block';generateCaptcha();}}else{document.getElementById('signupForm').reportValidity();}">
   Register
 </button>
 
-
-<script>
-  function validateAndRedirect(event) {
-    event.preventDefault(); // prevent default behavior if button inside a form
-
-    // Get all required field values
-    const firstName = document.getElementById("firstName").value.trim();
-    const lastName = document.getElementById("lastName").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const role = document.getElementById("role").value.trim();
-    const captchaText = document.getElementById("captchaText").textContent.trim();
-    const captchaInput = document.getElementById("captchaInput").value.trim();
-    const error = document.getElementById("captchaError");
-
-    // Validate required fields
-    if (!role || !firstName || !lastName || !email || !mobile) {
-      alert("Please fill in all required fields before continuing.");
-      return false;
-    }
-
-    // Validate 10-digit mobile number
-    const mobilePattern = /^[0-9]{10}$/;
-    if (!mobilePattern.test(mobile)) {
-      alert("Please enter a valid 10-digit mobile number.");
-      return false;
-    }
-
-    // Validate captcha
-    if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
-      error.style.display = "block";
-      generateCaptcha(); // Refresh captcha
-      return false;
-    } else {
-      error.style.display = "none";
-    }
-
-  function redirectToSignup(event) {
-    event.preventDefault(); // stop default form behavior
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-
-    if (!name || !email) {
-      alert("Please enter both your name and email before continuing.");
-      return false;
-    }
-
-    // redirect with parameters
-    window.location.href = `https://contactus.aviyamagnus.com/success.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-  }
-</script>
-</script>
 	</section>
 	<!-- Hero section end-->
 
@@ -302,6 +244,56 @@ fetch('http://localhost:5000/register', {
 
   // Initialize captcha on page load
   window.onload = generateCaptcha;
+
+  function validateAndRedirect(event) {
+    event.preventDefault(); // prevent default behavior if button inside a form
+
+    // Get all required field values
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const captchaText = document.getElementById("captchaText").textContent.trim();
+    const captchaInput = document.getElementById("captchaInput").value.trim();
+    const error = document.getElementById("captchaError");
+
+    // Validate required fields
+    if (!role || !firstName || !lastName || !email || !mobile) {
+      alert("Please fill in all required fields before continuing.");
+      return false;
+    }
+
+    // Validate 10-digit mobile number
+    const mobilePattern = /^[0-9]{10}$/;
+    if (!mobilePattern.test(mobile)) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return false;
+    }
+
+    // Validate captcha
+    if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
+      error.style.display = "block";
+      generateCaptcha(); // Refresh captcha
+      return false;
+    } else {
+      error.style.display = "none";
+    }
+
+  function redirectToSignup(event) {
+    event.preventDefault(); // stop default form behavior
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!name || !email) {
+      alert("Please enter both your name and email before continuing.");
+      return false;
+    }
+
+    // redirect with parameters
+    window.location.href = `https://contactus.aviyamagnus.com/success.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+  }
 
 
 </script>
