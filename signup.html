@@ -126,6 +126,19 @@
     mobile: document.getElementById('mobile').value,
     password: document.getElementById('password').value
   })
+				// Validate and submit form
+		function submitSignup() {
+			const form = document.getElementById('signupForm');
+			const role = document.getElementById('role').value.trim();
+			const firstName = document.getElementById('firstName').value.trim();
+			const lastName = document.getElementById('lastName').value.trim();
+			const email = document.getElementById('email').value.trim();
+			const countryCode = document.getElementById('countryCode').value.trim();
+			const mobile = document.getElementById('mobile').value.trim();
+			const password = document.getElementById('password').value.trim();
+			const confirmPassword = document.getElementById('confirmPassword').value.trim();
+			const captchaText = document.getElementById('captchaText').textContent.trim();
+			const captchaInput = document.getElementById('captchaInput').value.trim();
 })
 .then(res => res.json())
 .then(data => {
