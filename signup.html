@@ -71,6 +71,10 @@
             <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
           </div>
         </div>
+		  <input type="password" id="password" name="password" placeholder="Password" required>
+<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
+<p class="error-message" id="passwordError">Passwords do not match! Please re-enter.</p>
+
 
         <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
@@ -259,6 +263,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
   // Initialize captcha on page load
   window.onload = generateCaptcha;
+	
+	localStorage.setItem("userRole", document.getElementById("role").value);
+window.location.href = "dashboard.html";
+
 </script>
 
 </body>
