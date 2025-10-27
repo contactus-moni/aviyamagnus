@@ -2,52 +2,59 @@
 <html lang="en">
 <head>
   <title>Aviya Magnus - Sign Up</title>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Sign up to Aviya Magnus Learning Portal" />
-  <meta name="keywords" content="Aviya Magnus, Signup, Education, HTML" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="img/favicon.ico" rel="shortcut icon" />
+  <meta charset="UTF-8">
+  <meta name="description" content="Sign up to Aviya Magnus Learning Portal">
+  <meta name="keywords" content="Aviya Magnus, Signup, Education, Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="img/favicon.ico" rel="shortcut icon"/>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/font-awesome.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="css/owl.carousel.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
 
   <style>
+    /* Match index page look */
     body {
       font-family: 'Raleway', sans-serif;
-      background: url('img/page-bg/4.jpg') center center / cover no-repeat fixed;
+      background: url('img/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: #fff;
       margin: 0;
       padding: 0;
     }
+
     .signup-section {
-      padding: 80px 20px;
-      background: rgba(0, 0, 0, 0.6);
+      padding: 100px 20px;
+      background: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
       max-width: 700px;
-      margin: 80px auto;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      margin: 120px auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
+
     .signup-section h2 {
       font-weight: 700;
       color: #fff;
       text-align: center;
       margin-bottom: 20px;
     }
+
     .signup-section p {
       text-align: center;
       color: #ddd;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
+
     .signup-form input,
     .signup-form select {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
+      padding: 12px 15px;
+      margin-bottom: 20px;
       border-radius: 5px;
       border: none;
       background: rgba(255, 255, 255, 0.9);
@@ -55,40 +62,24 @@
       font-size: 16px;
       box-sizing: border-box;
     }
+
+    .signup-form select option {
+      color: #000;
+    }
+
     .signup-form input:focus,
     .signup-form select:focus {
-      outline: 2px solid #004aad;
+      outline: 2px solid #f6783a;
     }
-    .otp-row {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-    .otp-row input {
-      flex: 1;
-    }
-    .otp-btn,
-    .site-btn {
-      background: #004aad;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 16px;
-    }
-    .otp-btn:hover,
-    .site-btn:hover {
-      background: #003380;
-    }
+
     .captcha-box {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 20px;
+      gap: 10px;
     }
+
     .captcha {
       background: #fff;
       color: #000;
@@ -102,255 +93,204 @@
       min-width: 120px;
       text-align: center;
     }
+
     .error-message {
-      color: #ff6161;
+      color: #ff6b6b;
       font-size: 14px;
       display: none;
+      text-align: center;
       margin-top: -10px;
       margin-bottom: 15px;
     }
-    footer {
-      background: #111;
-      color: #aaa;
-      padding: 30px 20px;
-      font-size: 14px;
-      text-align: center;
-    }
-    footer a {
-      color: #5599ff;
+
+    .site-btn {
+      display: inline-block;
+      padding: 12px 40px;
+      background: #f6783a;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 600;
+      border: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
       text-decoration: none;
+      width: 100%;
     }
-    footer a:hover {
-      text-decoration: underline;
+
+    .site-btn:hover {
+      background: #fff;
+      color: #f6783a;
+      text-decoration: none;
     }
   </style>
 </head>
-<body>
 
-  <!-- Header -->
-  <header class="header-section" style="padding: 20px; background: rgba(0,0,0,0.7);">
-    <div class="container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: auto;">
-      <div class="site-logo">
-        <img src="img/logo.png" alt="Aviya Magnus Logo" style="height: 50px;" />
+<body>
+  <!-- Header section -->
+  <header class="header-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3">
+          <div class="site-logo">
+            <img src="img/logo.png" alt="Aviya Magnus Logo">
+          </div>
+          <div class="nav-switch">
+            <i class="fa fa-bars"></i>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9">
+          <a href="login-options.html" class="site-btn header-btn">Login</a>
+          <nav class="main-menu">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="courses.html">Courses</a></li>
+              <li><a href="testimonial.html">Testimonials</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
-      <nav>
-        <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-          <li><a href="/index.html" style="color: white; text-decoration: none;">Home</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
   <!-- Signup Form Section -->
- <section class="signup-section" role="main" aria-labelledby="signup-title">
-  <div class="container">
-    <h2 id="signup-title">Join Aviya Magnus</h2>
-    <p>Kickstart your learning journey — create your account below.</p>
+  <section class="signup-section spad" role="main" aria-labelledby="signup-title">
+    <div class="container">
+      <h2 id="signup-title">Join Aviya Magnus</h2>
+      <p>Start your learning journey — Create your free account today.</p>
 
-    <form id="signupForm" class="signup-form" action="https://aviyamagnus.rf.gd/register.php" method="POST" novalidate>
-      <label for="role" class="sr-only">Select Role</label>
-      <select name="role" id="role" required>
-        <option value="">Select Role</option>
-        <option value="student">Student</option>
-        <option value="parent">Parent</option>
-        <option value="tutor">Tutor</option>
-      </select>
+      <form id="signupForm" class="signup-form" novalidate>
+        <select name="role" id="role" required>
+          <option value="">Select Role</option>
+          <option value="student">Student</option>
+          <option value="parent">Parent</option>
+          <option value="tutor">Tutor</option>
+        </select>
 
-      <div class="input-group">
-        <input type="text" id="firstName" name="firstName" placeholder="First Name" required aria-required="true" />
-        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required aria-required="true" />
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+          </div>
+          <div class="col-md-6">
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+          </div>
+        </div>
+
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required>
+
+        <div class="captcha-box">
+          <div class="captcha" id="captchaText"></div>
+          <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+        </div>
+
+        <p class="error-message" id="captchaError">Captcha mismatch! Please try again.</p>
+
+        <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer section -->
+  <footer class="footer-section spad pb-0">
+    <div class="footer-top">
+      <div class="footer-warp">
+        <div class="row">
+          <div class="widget-item">
+            <h4>Contact Info</h4>
+            <ul class="contact-list">
+              <li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
+              <li>+91 8248802124</li>
+              <li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
+            </ul>
+          </div>
+          <div class="widget-item">
+            <h4>Business Administration</h4>
+            <ul>
+              <li><a href="#">Human Resource</a></li>
+              <li><a href="#">Marketing & Sales</a></li>
+              <li><a href="#">Finance & Accounting</a></li>
+              <li><a href="#">Banking Finance</a></li>
+              <li><a href="#">Supply Chain Management</a></li>
+            </ul>
+          </div>
+          <div class="widget-item">
+            <h4>Business & Management</h4>
+            <ul>
+              <li><a href="#">Operations Management</a></li>
+              <li><a href="#">Entrepreneurship & Startups</a></li>
+              <li><a href="#">Business Analytics</a></li>
+              <li><a href="#">Leadership & Team Management</a></li>
+              <li><a href="#">Event Management</a></li>
+            </ul>
+          </div>
+          <div class="widget-item">
+            <h4>Newsletter</h4>
+            <form class="footer-newslatter">
+              <input type="email" placeholder="E-mail">
+              <button class="site-btn">Subscribe</button>
+              <p>*We don’t spam</p>
+            </form>
+          </div>
+        </div>
       </div>
-
-      <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true" />
-
-      <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10}" required aria-required="true" />
-
-      <div class="captcha-box">
-        <div class="captcha" id="captchaText" aria-label="Captcha text"></div>
-        <input type="text" id="captchaInput" placeholder="Enter Captcha" required aria-required="true" style="width: 60%;" />
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-warp">
+        <ul class="footer-menu">
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Register</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+        <div class="copyright">
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+          All rights reserved | Made with <i class="fa fa-heart-o"></i> by 
+          <a href="https://aviyamagnus.com" target="_blank">Aviya Magnus</a>
+        </div>
       </div>
-      <p class="error-message" id="captchaError">Captcha mismatch!</p>
+    </div>
+  </footer>
 
-     <button type="button" class="site-btn" aria-label="Register" onclick="window.location.href='success.html'">
-  Register
-</button>
-
-    </form>
-  </div>
-</section>
-
-
-  <!-- footer section -->
-	<footer class="footer-section spad pb-0">
-		<div class="footer-top">
-			<div class="footer-warp">
-				<div class="row">
-					<div class="widget-item">
-						<h4>Contact Info</h4>
-						<ul class="contact-list">
-							<li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
-							<li>+918248802124</li>
-							<li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Business Administration</h4>
-						<ul>
-							<li><a href="">Human Resoure</a></li>
-							<li><a href="">Marketing & Sales</a></li>
-							<li><a href="">Finance & Accounting</a></li>
-							<li><a href="">Banking Finane</a></li>
-							<li><a href="">Supply Chain Management</a></li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Business & Management</h4>
-						<ul>
-							<li><a href="">Operations Management</a></li>
-							<li><a href="">Entrepreneurship & Startups</a></li>
-							<li><a href="">Business Analytics</a></li>
-							<li><a href="">Leadership & Team Management</a></li>
-							<li><a href="">Event Management</a></li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Education & Law</h4>
-						<ul>
-							<li><a href="">Corporate Law & Intellectual Property Rights</a></li>
-							<li><a href="">Labor Law & Industrial Relations</a></li>
-							<li><a href="">Contract Management</a></li>
-							<li><a href="">Education & Teaching</a></li>
-							<li><a href="">Communication & Soft skills</a></li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Newsletter</h4>
-						<form class="footer-newslatter">
-							<input type="email" placeholder="E-mail">
-							<button class="site-btn">Subscribe</button>
-							<p>*We don’t spam</p>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="footer-warp">
-				<ul class="footer-menu">
-					<li><a href="#">Terms & Conditions</a></li>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Privacy</a></li>
-				</ul>
-				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
-<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
-			</div>
-		</div>
-	</footer> 
-	<!-- footer section end -->
-
-  <!-- JS Libraries -->
+  <!-- JS Files -->
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/mixitup.min.js"></script>
-  <script src="js/circle-progress.min.js"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
 
+  <!-- Custom JS -->
   <script>
-          document.getElementById("sendOtpBtn").addEventListener("click", function() {
-            var email = document.querySelector("input[name=email]").value;
-            
-            if (!email) {
-                alert("Please enter an email address.");
-                return;
-            }
-
-            // AJAX call to send OTP
-            $.ajax({
-                url: 'send_otp.php',  // Backend file that handles OTP sending
-                type: 'POST',
-                data: { email: email },
-                success: function(response) {
-                    alert(response.message);
-                    // You can also add a timer here to enable resending OTP after some time
-                },
-                error: function(err) {
-                    alert("Error sending OTP. Please try again.");
-                }
-            });
-        });
-
-    // Send Phone OTP placeholder
-    document.getElementById('sendPhoneOtpBtn').addEventListener('click', () => {
-      alert('Phone OTP sent successfully (demo).');
-    });
-
-    // Form validation
-    function validateForm(event) {
-      event.preventDefault();
-
-      const password = document.getElementById('password').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-      const captcha = document.getElementById('captchaInput').value.trim();
-      const captchaText = document.getElementById('captchaText').textContent.trim();
-
-      const passwordError = document.getElementById('passwordError');
-      const captchaError = document.getElementById('captchaError');
-
-      passwordError.style.display = 'none';
-      captchaError.style.display = 'none';
-
-      if (password !== confirmPassword) {
-        passwordError.style.display = 'block';
-        return false;
+    // Generate captcha
+    function generateCaptcha() {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let captcha = '';
+      for (let i = 0; i < 5; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
       }
-
-      if (captcha.toUpperCase() !== captchaText.toUpperCase()) {
-        captchaError.style.display = 'block';
-        generateCaptcha(); // regenerate captcha on failure
-        return false;
-      }
-
-      alert('Registration successful! (Demo)');
-      // Here, you can add real signup logic or redirect
-      return true;
+      document.getElementById('captchaText').textContent = captcha;
     }
-	  import express from "express";
-import nodemailer from "nodemailer";
 
-const app = express();
-app.use(express.json());
+    function validateAndRedirect() {
+      const captchaText = document.getElementById('captchaText').textContent.trim();
+      const captchaInput = document.getElementById('captchaInput').value.trim();
+      const error = document.getElementById('captchaError');
 
-app.post("/send-otp", async (req, res) => {
-  const { email } = req.body;
-  const otp = Math.floor(100000 + Math.random() * 900000); // 6-digit OTP
+      if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
+        error.style.display = 'block';
+        generateCaptcha();
+        return;
+      } else {
+        error.style.display = 'none';
+      }
 
-  try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "your_email@gmail.com",
-        pass: "your_app_password",
-      },
-    });
+      // Redirect to success page
+      window.location.href = 'success.html';
+    }
 
-    await transporter.sendMail({
-      from: "your_email@gmail.com",
-      to: email,
-      subject: "Your OTP Code",
-      text: `Your OTP is: ${otp}`,
-    });
-
-    res.json({ message: "OTP sent successfully", otp }); // remove otp in prod
-  } catch (error) {
-    console.error(error);
-    res.json({ message: "Failed to send OTP" });
-  }
-});
-
-app.listen(3000, () => console.log("Server running on port 3000"));
-
+    // Initialize captcha on load
+    window.onload = generateCaptcha;
   </script>
 </body>
 </html>
