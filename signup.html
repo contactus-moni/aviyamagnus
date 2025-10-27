@@ -214,9 +214,21 @@ form.addEventListener("submit", async (e) => {
     role: document.getElementById("role").value
   };
 
-fetch("https://aviyamagnus.rf.gd/register.php")
-  .then(response => response.json())
-  .then(data => console.log(data));
+fetch("https://aviyamagnus.rf.gd/register.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    firstName: "John",
+    lastName: "Doe",
+    email: "john@example.com",
+    mobile: "9876543210",
+    password: "password123",
+    role: "student"
+  })
+})
+.then(res => res.json())
+.then(data => console.log(data));
+
 
 
     const result = await response.json();
