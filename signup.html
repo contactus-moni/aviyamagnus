@@ -73,12 +73,12 @@
         </div>
 		  <input type="password" id="password" name="password" placeholder="Password" required>
 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
-
+<p class="error-message" id="passwordError">Passwords do not match! Please re-enter.</p>
 
 
         <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-<div style="display: flex; gap: 10px;">
+        <div style="display: flex; gap: 10px;">
   <select id="countryCode" name="countryCode" required style="width: 30%; padding: 12px 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
     <option value="">Code</option>
     <option value="+91">🇮🇳 +91</option>
@@ -90,7 +90,7 @@
   <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required style="width: 70%; padding: 12px 15px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
 </div>
 <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
-</section>
+
 
 <div class="captcha-box">
   <div class="captcha" id="captchaText"></div>
