@@ -82,8 +82,39 @@
         </div>
 
 
-        <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
+      <!-- Register Button -->
+<button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
 
+<script>
+function validateAndRedirect() {
+    const form = document.getElementById('signupForm');
+
+    // Check if all required fields are filled
+    if (!form.checkValidity()) {
+        form.reportValidity(); // Shows browser's required field messages
+        return; // Stop if not valid
+    }
+
+    // Captcha validation
+    const captchaText = document.getElementById('captchaText').textContent.trim();
+    const captchaInput = document.getElementById('captchaInput').value.trim();
+    const error = document.getElementById('captchaError');
+
+    if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
+        error.style.display = 'block';
+        generateCaptcha(); // Refresh captcha
+        return;
+    } else {
+        error.style.display = 'none';
+    }
+
+    // All validations passed — redirect
+    window.location.href = 'success.html';
+}
+
+// Initialize captcha on page load
+window.onload = generateCaptcha;
+</script>
       </form>
     </div>
   </section>
