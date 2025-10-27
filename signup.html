@@ -81,10 +81,11 @@
           <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
         </div>
 
-		  <button type="submit" class="site-btn"
-  onclick="if(document.getElementById('signupForm').checkValidity()){window.location.href='success.html';}else{document.getElementById('signupForm').reportValidity();}">
+<button type="button" class="site-btn" 
+onclick="if(document.getElementById('signupForm').checkValidity()){const c=document.getElementById('captchaText').textContent.trim().toUpperCase();const i=document.getElementById('captchaInput').value.trim().toUpperCase();if(c===i){window.location.href='success.html';}else{document.getElementById('captchaError').style.display='block';generateCaptcha();}}else{document.getElementById('signupForm').reportValidity();}">
   Register
 </button>
+
 
 <script>
   function validateAndRedirect(event) {
