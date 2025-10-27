@@ -114,19 +114,31 @@
 			document.getElementById('captchaText').textContent = captcha;
 		}
 
-		// Validate and submit form
-		function submitSignup() {
-			const form = document.getElementById('signupForm');
-			const role = document.getElementById('role').value.trim();
-			const firstName = document.getElementById('firstName').value.trim();
-			const lastName = document.getElementById('lastName').value.trim();
-			const email = document.getElementById('email').value.trim();
-			const countryCode = document.getElementById('countryCode').value.trim();
-			const mobile = document.getElementById('mobile').value.trim();
-			const password = document.getElementById('password').value.trim();
-			const confirmPassword = document.getElementById('confirmPassword').value.trim();
-			const captchaText = document.getElementById('captchaText').textContent.trim();
-			const captchaInput = document.getElementById('captchaInput').value.trim();
+	fetch('http://localhost:5000/register', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    role: document.getElementById('role').value,
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    countryCode: document.getElementById('countryCode').value,
+    mobile: document.getElementById('mobile').value,
+    password: document.getElementById('password').value
+  })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.message === 'User registered successfully!') {
+    window.location.href = 'success.html';
+  } else {
+    alert('Error: ' + data.message);
+  }
+})
+.catch(err => {
+  alert('Server error: ' + err.message);
+});
+
 
 			// Reset error messages
 			document.getElementById('passwordError').style.display = 'none';
