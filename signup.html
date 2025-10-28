@@ -21,7 +21,7 @@
 
 	<style>
 		.signup-section {
-			background: url('img/signup-bg.jpg') center center / cover no-repeat;
+			background: url('img/bg.jpg') center center / cover no-repeat;
 			padding: 100px 0;
 		}
 
@@ -92,22 +92,26 @@
 			margin-bottom: 10px;
 		}
 
-		.site-btn {
-			width: 100%;
-			padding: 15px;
-			border: none;
-			border-radius: 5px;
-			background: #007bff;
-			color: #fff;
-			font-size: 16px;
-			font-weight: 600;
-			text-transform: uppercase;
-			transition: background 0.3s ease;
-		}
+.site-btn {
+  display: inline-block;
+  border: none;
+  background: #b30000; /* Dark red */
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 15px;
+  border-radius: 5px;
+  width: 100%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
 
-		.site-btn:hover {
-			background: #0056b3;
-		}
+.site-btn:hover {
+  background: #800000; /* Even darker red for hover */
+  color: #fff;
+}
+
 	</style>
 </head>
 
@@ -151,8 +155,16 @@
 	<section class="signup-section">
 		<div class="container">
 			<div class="signup-card">
-				<h2>Create Your Account</h2>
-				<form id="signupForm" class="signup-form">
+		<h2 id="signup-title">Join Aviya Magnus</h2>
+      <p>Transform Ambition into Achievement — Register Now to Begin Your Journey.</p>
+
+		<form id="signupForm" class="signup-form" novalidate>
+        <select name="role" id="role" required>
+          <option value="">Select Role</option>
+          <option value="student">Student</option>
+          <option value="parent">Parent</option>
+          <option value="tutor">Tutor</option>
+        </select>
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<input type="text" id="firstName" name="firstName" placeholder="First Name" required>
