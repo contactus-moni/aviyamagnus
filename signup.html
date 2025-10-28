@@ -1,198 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register - Aviya Magnus</title>
-<style>
-  body {
-    font-family: Times new roman, Arabic typewriter;
-    background: #f0f4f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-  }
+	<title>Register - Aviya Magnus</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Register - Aviya Magnus Education Platform">
+	<meta name="keywords" content="Aviya Magnus, Education, Registration, Learning">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  .signup-card {
-    background: #fff;
-    padding: 40px;
-    width: 100%;
-    max-width: 500px;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  }
+	<!-- Favicon -->   
+	<link href="img/favicon.ico" rel="shortcut icon"/>
 
-  .signup-card h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-  }
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
 
-.signup-section {
-  background-size: cover;
-  background-position: center;
-  padding: 100px 0;
-  position: relative;
-}
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 
-.signup-warp {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 50px;
-  border-radius: 10px;
-  color: #fff;
-}
+	<style>
+		.signup-section {
+			background: url('img/signup-bg.jpg') center center / cover no-repeat;
+			padding: 100px 0;
+		}
 
-.signup-warp h2 {
-  color: #fff;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
+		.signup-card {
+			background: rgba(255, 255, 255, 0.95);
+			padding: 40px;
+			max-width: 600px;
+			margin: auto;
+			border-radius: 10px;
+			box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+		}
 
-.signup-warp p {
-  color: #ddd;
-  margin-bottom: 30px;
-}
+		.signup-card h2 {
+			text-align: center;
+			color: #222;
+			font-weight: 700;
+			margin-bottom: 30px;
+		}
 
-.signup-form input,
-.signup-form select {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 5px;
-  background: rgba(255,255,255,0.9);
-  color: #000;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
+		.signup-form .form-row {
+			display: flex;
+			gap: 15px;
+			flex-wrap: wrap;
+		}
 
-.signup-form input:focus,
-.signup-form select:focus {
-  box-shadow: 0 0 10px rgba(0,123,255,0.5);
-  outline: none;
-}
+		.signup-form input, 
+		.signup-form select {
+			width: 100%;
+			padding: 12px 15px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			background: rgba(255,255,255,0.9);
+			color: #000;
+			font-size: 16px;
+			margin-bottom: 20px;
+			transition: all 0.3s ease;
+		}
 
-.captcha {
-  background: #fff;
-  color: #000;
-  font-weight: bold;
-  text-align: center;
-  padding: 12px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  letter-spacing: 3px;
-}
+		.signup-form input:focus,
+		.signup-form select:focus {
+			border-color: #007bff;
+			box-shadow: 0 0 8px rgba(0,123,255,0.3);
+			outline: none;
+		}
 
-.site-btn {
-  display: inline-block;
-  border: none;
-  background: #007BFF;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 15px;
-  border-radius: 5px;
-  width: 100%;
-  transition: all 0.3s ease;
-}
+		.captcha-box {
+			text-align: center;
+			margin-bottom: 20px;
+		}
 
-.site-btn:hover {
-  background: #0056b3;
-  color: #fff;
-}
+		.captcha {
+			background: #007bff;
+			color: #fff;
+			padding: 12px;
+			border-radius: 5px;
+			font-weight: bold;
+			font-size: 18px;
+			letter-spacing: 3px;
+			user-select: none;
+			margin-bottom: 10px;
+		}
 
-</style>
+		#captchaError {
+			color: red;
+			font-size: 14px;
+			display: none;
+			margin-top: -10px;
+			margin-bottom: 10px;
+		}
+
+		.site-btn {
+			width: 100%;
+			padding: 15px;
+			border: none;
+			border-radius: 5px;
+			background: #007bff;
+			color: #fff;
+			font-size: 16px;
+			font-weight: 600;
+			text-transform: uppercase;
+			transition: background 0.3s ease;
+		}
+
+		.site-btn:hover {
+			background: #0056b3;
+		}
+	</style>
 </head>
+
 <body>
+	<!-- Page Preloader -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 
-<div class="signup-card">
-  <section class="signup-section spad set-bg" data-setbg="img/signup-bg.jpg">
-  <h2>Create Your Account</h2>
-  <form id="signupForm">
-    <div class="form-row">
-      <div class="form-group">
-        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-      </div>
-      <div class="form-group">
-        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-      </div>
-    </div>
+	<!-- Header -->
+	<header class="header-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="site-logo">
+						<img src="img/logo.png" alt="Aviya Magnus Logo">
+					</div>
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9">
+					<a href="login-options.html" class="site-btn header-btn">Login</a>
+					<nav class="main-menu">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html">About</a></li>
+							<li><a href="courses.html">Courses</a></li>
+							<li><a href="testimonial.html">Testimonials</a></li>
+							<li><a href="faq.html">FAQ</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header End -->
 
-    <div class="form-row">
-      <div class="form-group">
-        <input type="password" id="password" name="password" placeholder="Password" required>
-      </div>
-      <div class="form-group">
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
-      </div>
-    </div>
+	<!-- Signup Section -->
+	<section class="signup-section">
+		<div class="container">
+			<div class="signup-card">
+				<h2>Create Your Account</h2>
+				<form id="signupForm" class="signup-form">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+						</div>
+						<div class="form-group col-md-6">
+							<input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+						</div>
+					</div>
 
-    <div class="form-group">
-      <input type="email" id="email" name="email" placeholder="Enter your email" required>
-    </div>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<input type="password" id="password" name="password" placeholder="Password" required>
+						</div>
+						<div class="form-group col-md-6">
+							<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
+						</div>
+					</div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <select id="countryCode" name="countryCode" required>
-          <option value="">Code</option>
-          <option value="+91">🇮🇳 +91</option>
-          <option value="+1">🇺🇸 +1</option>
-          <option value="+44">🇬🇧 +44</option>
-          <option value="+61">🇦🇺 +61</option>
-          <option value="+971">🇦🇪 +971</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required>
-      </div>
-    </div>
+					<input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-    <div class="captcha-box">
-      <div class="captcha" id="captchaText">ABCD</div>
-      <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
-      <p id="captchaError">Captcha does not match!</p>
-    </div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<select id="countryCode" name="countryCode" required>
+								<option value="">Code</option>
+								<option value="+91">🇮🇳 +91</option>
+								<option value="+1">🇺🇸 +1</option>
+								<option value="+44">🇬🇧 +44</option>
+								<option value="+61">🇦🇺 +61</option>
+								<option value="+971">🇦🇪 +971</option>
+							</select>
+						</div>
+						<div class="form-group col-md-8">
+							<input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required>
+						</div>
+					</div>
 
-    <button type="button" class="site-btn" 
-      onclick="
-        if(document.getElementById('signupForm').checkValidity()){
-          const c = document.getElementById('captchaText').textContent.trim().toUpperCase();
-          const i = document.getElementById('captchaInput').value.trim().toUpperCase();
-          if(c === i){
-            window.location.href='success.html';
-          } else {
-            document.getElementById('captchaError').style.display='block';
-            generateCaptcha();
-          }
-        } else {
-          document.getElementById('signupForm').reportValidity();
-        }
-      ">
-      Register
-    </button>
-  </form>
-</div>
+					<div class="captcha-box">
+						<div class="captcha" id="captchaText"></div>
+						<input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+						<p id="captchaError">Captcha does not match!</p>
+					</div>
 
-<script>
-  // Example simple captcha generator
-  function generateCaptcha() {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    let captcha = '';
-    for (let i = 0; i < 5; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    document.getElementById('captchaText').textContent = captcha;
-  }
+					<button type="button" class="site-btn"
+						onclick="
+							if(document.getElementById('signupForm').checkValidity()){
+								const c = document.getElementById('captchaText').textContent.trim().toUpperCase();
+								const i = document.getElementById('captchaInput').value.trim().toUpperCase();
+								if(c === i){
+									window.location.href='success.html';
+								} else {
+									document.getElementById('captchaError').style.display='block';
+									generateCaptcha();
+								}
+							} else {
+								document.getElementById('signupForm').reportValidity();
+							}
+						">
+						Register
+					</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- Signup Section End -->
 
-  generateCaptcha();
-</script>
-
-</body>
-</html>
- <!-- footer section -->
+	<!-- Footer -->
 	<footer class="footer-section spad pb-0">
 		<div class="footer-top">
 			<div class="footer-warp">
@@ -201,38 +227,38 @@
 						<h4>Contact Info</h4>
 						<ul class="contact-list">
 							<li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
-							<li>+918248802124</li>
+							<li>+91 8248802124</li>
 							<li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
 						</ul>
 					</div>
 					<div class="widget-item">
 						<h4>Business Administration</h4>
 						<ul>
-							<li><a href="">Human Resoure</a></li>
-							<li><a href="">Marketing & Sales</a></li>
-							<li><a href="">Finance & Accounting</a></li>
-							<li><a href="">Banking Finane</a></li>
-							<li><a href="">Supply Chain Management</a></li>
+							<li><a href="#">Human Resource</a></li>
+							<li><a href="#">Marketing & Sales</a></li>
+							<li><a href="#">Finance & Accounting</a></li>
+							<li><a href="#">Banking Finance</a></li>
+							<li><a href="#">Supply Chain Management</a></li>
 						</ul>
 					</div>
 					<div class="widget-item">
 						<h4>Business & Management</h4>
 						<ul>
-							<li><a href="">Operations Management</a></li>
-							<li><a href="">Entrepreneurship & Startups</a></li>
-							<li><a href="">Business Analytics</a></li>
-							<li><a href="">Leadership & Team Management</a></li>
-							<li><a href="">Event Management</a></li>
+							<li><a href="#">Operations Management</a></li>
+							<li><a href="#">Entrepreneurship & Startups</a></li>
+							<li><a href="#">Business Analytics</a></li>
+							<li><a href="#">Leadership & Team Management</a></li>
+							<li><a href="#">Event Management</a></li>
 						</ul>
 					</div>
 					<div class="widget-item">
 						<h4>Education & Law</h4>
 						<ul>
-							<li><a href="">Corporate Law & Intellectual Property Rights</a></li>
-							<li><a href="">Labor Law & Industrial Relations</a></li>
-							<li><a href="">Contract Management</a></li>
-							<li><a href="">Education & Teaching</a></li>
-							<li><a href="">Communication & Soft skills</a></li>
+							<li><a href="#">Corporate Law & IPR</a></li>
+							<li><a href="#">Labor Law & Industrial Relations</a></li>
+							<li><a href="#">Contract Management</a></li>
+							<li><a href="#">Education & Teaching</a></li>
+							<li><a href="#">Communication & Soft Skills</a></li>
 						</ul>
 					</div>
 					<div class="widget-item">
@@ -253,10 +279,34 @@
 					<li><a href="#">Register</a></li>
 					<li><a href="#">Privacy</a></li>
 				</ul>
-				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
-<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
+				<div class="copyright">
+					Copyright &copy;
+					<script>document.write(new Date().getFullYear());</script> All rights reserved |
+					Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+					<a href="https://aviyamagnus.com" target="_blank">Aviya Magnus</a>
+				</div>
 			</div>
 		</div>
-	</footer> 
-	<!-- footer section end -->
+	</footer>
+	<!-- Footer End -->
+
+	<!-- Scripts -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/main.js"></script>
+
+	<script>
+		function generateCaptcha() {
+			const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+			let captcha = '';
+			for (let i = 0; i < 5; i++) {
+				captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+			}
+			document.getElementById('captchaText').textContent = captcha;
+			document.getElementById('captchaError').style.display = 'none';
+		}
+		generateCaptcha();
+	</script>
+</body>
+</html>
