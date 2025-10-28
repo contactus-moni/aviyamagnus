@@ -242,24 +242,20 @@
         const data = { firstName, lastName, email, password, mobile, countryCode, role };
 
         // Send data to backend
-        fetch("https://aviyamagnus.rf.gd/register.php", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.message === "User registered successfully!") {
-                window.location.href = "success.html";
-            } else {
-                alert("Error: " + result.message);
-            }
-        })
-        .catch(error => {
-            console.error("Server error:", error);
-            alert("Server error. Check console.");
-        });
-    }
+fetch('https://aviyamagnus.rf.gd/register.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: new URLSearchParams({
+    username: 'JohnDoe',
+    email: 'john@example.com'
+  })
+})
+.then(response => response.text())
+.then(data => console.log(data))
+.catch(err => console.error(err));
+
 </script>
 
 </body>
