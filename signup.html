@@ -18,21 +18,45 @@
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/owl.carousel.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <!-- Prism core (if not already included) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
 
+    <!-- Prism (for code highlighting, optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
 
     <style>
+        body {
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('img/bg.jpg') no-repeat center center/cover;
+        }
+
         .signup-form {
             max-width: 600px;
-            margin: 0 auto;
-            padding: 25px;
+            width: 100%;
+            padding: 30px;
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .signup-form h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .signup-form p {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
         }
 
         .signup-form input,
@@ -46,19 +70,21 @@
             border: 1px solid #ccc;
         }
 
-        .row {
+        .signup-form .row {
             display: flex;
             gap: 15px;
         }
 
-        .row .col-md-6 {
+        .signup-form .row .col-md-6 {
             flex: 1;
         }
 
-        .error-message {
+        .signup-form .error-message {
             color: red;
             display: none;
             font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
         }
 
         .captcha-box {
@@ -78,33 +104,31 @@
             margin-bottom: 5px;
         }
 
-    .site-btn {
-        background: #ff4b5c; 
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-
-    .site-btn:hover {
-        background: #e03f4f;
+        .site-btn {
+            background: #ff4b5c; 
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: url('img/bg.jpg') no-repeat center center/cover;
+        .site-btn:hover {
+            background: #e03f4f;
+        }
+
+        @media(max-width: 600px) {
+            .signup-form .row {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
 
 <section class="hero-section">
-    <form id="signupForm" novalidate>
-        <h2 style="text-align:center;">Join Aviya Magnus</h2>
-        <p style="text-align:center;">Start your learning journey — Create your free account today.</p>
+    <form id="signupForm" class="signup-form" novalidate>
+        <h2>Join Aviya Magnus</h2>
+        <p>Start your learning journey — Create your free account today.</p>
 
         <select name="role" id="role" required>
             <option value="">Select Role</option>
@@ -138,7 +162,7 @@
             </select>
             <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required style="width:70%;">
         </div>
-        <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
+        <p class="error-message" id="mobileError">Please enter a valid 10-digit mobile number.</p>
 
         <div class="captcha-box">
             <div id="captchaText"></div>
@@ -148,67 +172,95 @@
         </div>
 
         <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
-</form>
+    </form>
 </section>
 
-<!-- JS Files -->
 <script>
-  function validateAndRedirect() {
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName = document.getElementById('lastName').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const mobile = document.getElementById('mobile').value.trim();
-    const role = document.getElementById('role').value.trim();
-    const captchaText = document.getElementById('captchaText').textContent.trim().toUpperCase();
-    const captchaInput = document.getElementById('captchaInput').value.trim().toUpperCase();
-    const captchaError = document.getElementById('captchaError');
-
-    // --- Frontend Validations ---
-    if (!firstName || !lastName || !email || !mobile || !role || !captchaInput) {
-      alert("Please fill in all required fields!");
-      return;
+    // Generate Captcha
+    function generateCaptcha() {
+        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        let captcha = '';
+        for (let i = 0; i < 6; i++) {
+            captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('captchaText').textContent = captcha;
     }
 
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (!emailPattern.test(email)) {
-      alert("Please enter a valid email address.");
-      return;
+    generateCaptcha(); // Initial captcha
+
+    function validateAndRedirect() {
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+        const mobile = document.getElementById('mobile').value.trim();
+        const role = document.getElementById('role').value.trim();
+        const countryCode = document.getElementById('countryCode').value.trim();
+        const captchaText = document.getElementById('captchaText').textContent.trim().toUpperCase();
+        const captchaInput = document.getElementById('captchaInput').value.trim().toUpperCase();
+
+        const passwordError = document.getElementById('passwordError');
+        const mobileError = document.getElementById('mobileError');
+        const captchaError = document.getElementById('captchaError');
+
+        // Reset error messages
+        passwordError.style.display = 'none';
+        mobileError.style.display = 'none';
+        captchaError.style.display = 'none';
+
+        // Frontend validation
+        if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !role || !countryCode || !captchaInput) {
+            alert("Please fill in all required fields!");
+            return;
+        }
+
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            passwordError.style.display = 'block';
+            return;
+        }
+
+        const mobilePattern = /^[0-9]{10}$/;
+        if (!mobilePattern.test(mobile)) {
+            mobileError.style.display = 'block';
+            return;
+        }
+
+        if (captchaInput !== captchaText) {
+            captchaError.style.display = 'block';
+            generateCaptcha();
+            return;
+        }
+
+        // Prepare data
+        const data = { firstName, lastName, email, password, mobile, countryCode, role };
+
+        // Send data to backend
+        fetch("https://aviyamagnus.rf.gd/register.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.message === "User registered successfully!") {
+                window.location.href = "success.html";
+            } else {
+                alert("Error: " + result.message);
+            }
+        })
+        .catch(error => {
+            console.error("Server error:", error);
+            alert("Server error. Check console.");
+        });
     }
-
-    const mobilePattern = /^[0-9]{10}$/;
-    if (!mobilePattern.test(mobile)) {
-      alert("Please enter a valid 10-digit mobile number.");
-      return;
-    }
-
-    if (captchaInput !== captchaText) {
-      captchaError.style.display = "block";
-      generateCaptcha();
-      return;
-    } else {
-      captchaError.style.display = "none";
-    }
-
-    // --- Send data to backend (register.php) ---
-    const data = { firstName, lastName, email, mobile, role };
-
-    fetch("https://aviyamagnus.rf.gd/register.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-      if (result.message === "User registered successfully!") {
-        window.location.href = "success.html";
-      } else {
-        alert("Error: " + result.message);
-      }
-    })
-    .catch(error => {
-      console.error("Server error:", error);
-      alert("Server error. Check console.");
-    });
-  }
 </script>
 
+</body>
+</html>
