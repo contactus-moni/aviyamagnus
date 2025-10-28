@@ -133,14 +133,14 @@
         </div>
         <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
 
-        <div class="captcha-box">
-            <div id="captchaText"></div>
-            <button type="button" onclick="generateCaptcha()" style="margin-bottom:5px;">Refresh Captcha</button>
-            <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
-            <p class="error-message" id="captchaError">Captcha mismatch!</p>
-        </div>
+<div class="captcha-box">
+  <div id="captchaText"></div>
+  <button type="button" class="refresh-btn" onclick="generateCaptcha()">↻ Refresh</button>
+</div>
+<input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+<p class="error-message" id="captchaError">Captcha incorrect! Try again.</p>
 
-        <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
+        <button type="submit" class="site-btn" onclick="validateAndRedirect(event)">Register</button>
     </form>
 </section>
 
