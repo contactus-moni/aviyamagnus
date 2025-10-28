@@ -6,7 +6,7 @@
 <title>Register - Aviya Magnus</title>
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: Times new roman, Arabic typewriter;
     background: #f0f4f8;
     display: flex;
     justify-content: center;
@@ -30,68 +30,86 @@
     color: #333;
   }
 
-  .form-group {
-    margin-bottom: 15px;
-  }
+.signup-section {
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  position: relative;
+}
 
-  .form-row {
-    display: flex;
-    gap: 10px;
-  }
+.signup-warp {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 50px;
+  border-radius: 10px;
+  color: #fff;
+}
 
-  .form-row .form-group {
-    flex: 1;
-  }
+.signup-warp h2 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
 
-  input, select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    box-sizing: border-box;
-  }
+.signup-warp p {
+  color: #ddd;
+  margin-bottom: 30px;
+}
 
-  .captcha-box {
-    margin-bottom: 15px;
-  }
+.signup-form input,
+.signup-form select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.9);
+  color: #000;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
 
-  .captcha {
-    padding: 12px;
-    background: #eee;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    user-select: none;
-  }
+.signup-form input:focus,
+.signup-form select:focus {
+  box-shadow: 0 0 10px rgba(0,123,255,0.5);
+  outline: none;
+}
 
-  #captchaError {
-    color: red;
-    font-size: 14px;
-    display: none;
-  }
+.captcha {
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
 
-  .site-btn {
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    background: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+.site-btn {
+  display: inline-block;
+  border: none;
+  background: #007BFF;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 15px;
+  border-radius: 5px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
 
-  .site-btn:hover {
-    background: #0056b3;
-  }
+.site-btn:hover {
+  background: #0056b3;
+  color: #fff;
+}
+
 </style>
 </head>
 <body>
 
 <div class="signup-card">
+  <section class="signup-section spad set-bg" data-setbg="img/signup-bg.jpg">
   <h2>Create Your Account</h2>
   <form id="signupForm">
     <div class="form-row">
@@ -174,3 +192,71 @@
 
 </body>
 </html>
+ <!-- footer section -->
+	<footer class="footer-section spad pb-0">
+		<div class="footer-top">
+			<div class="footer-warp">
+				<div class="row">
+					<div class="widget-item">
+						<h4>Contact Info</h4>
+						<ul class="contact-list">
+							<li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
+							<li>+918248802124</li>
+							<li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Business Administration</h4>
+						<ul>
+							<li><a href="">Human Resoure</a></li>
+							<li><a href="">Marketing & Sales</a></li>
+							<li><a href="">Finance & Accounting</a></li>
+							<li><a href="">Banking Finane</a></li>
+							<li><a href="">Supply Chain Management</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Business & Management</h4>
+						<ul>
+							<li><a href="">Operations Management</a></li>
+							<li><a href="">Entrepreneurship & Startups</a></li>
+							<li><a href="">Business Analytics</a></li>
+							<li><a href="">Leadership & Team Management</a></li>
+							<li><a href="">Event Management</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Education & Law</h4>
+						<ul>
+							<li><a href="">Corporate Law & Intellectual Property Rights</a></li>
+							<li><a href="">Labor Law & Industrial Relations</a></li>
+							<li><a href="">Contract Management</a></li>
+							<li><a href="">Education & Teaching</a></li>
+							<li><a href="">Communication & Soft skills</a></li>
+						</ul>
+					</div>
+					<div class="widget-item">
+						<h4>Newsletter</h4>
+						<form class="footer-newslatter">
+							<input type="email" placeholder="E-mail">
+							<button class="site-btn">Subscribe</button>
+							<p>*We don’t spam</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="footer-warp">
+				<ul class="footer-menu">
+					<li><a href="#">Terms & Conditions</a></li>
+					<li><a href="#">Register</a></li>
+					<li><a href="#">Privacy</a></li>
+				</ul>
+				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
+<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
+			</div>
+		</div>
+	</footer> 
+	<!-- footer section end -->
