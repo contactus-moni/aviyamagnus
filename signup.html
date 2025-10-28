@@ -1,99 +1,103 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Aviya Magnus - Education Template</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="Aviya Magnus Education Template">
-	<meta name="keywords" content="Aviya Magnus, education, creative, html">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicon -->   
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+    <meta charset="UTF-8">
+    <meta name="description" content="Aviya Magnus Education Template">
+    <meta name="keywords" content="Aviya Magnus, education, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviya Magnus - Signup</title>
 
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <!-- Favicon -->   
+    <link href="img/favicon.ico" rel="shortcut icon"/>
 
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
 
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/owl.carousel.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <style>
+        .signup-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+        }
+
+        .signup-form input,
+        .signup-form select,
+        .signup-form button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .col-md-6 {
+            flex: 1;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+            font-size: 14px;
+        }
+
+        .captcha-box {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        #captchaText {
+            font-weight: bold;
+            font-size: 22px;
+            letter-spacing: 5px;
+            background: #eee;
+            padding: 10px;
+            text-align: center;
+            user-select: none;
+            margin-bottom: 5px;
+        }
+
+    .site-btn {
+        background: #ff4b5c; 
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .site-btn:hover {
+        background: #e03f4f;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('img/bg.jpg') no-repeat center center/cover;
+        }
+    </style>
 </head>
 <body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
 
-<style>
-/* Container for phone input */
-.phone-container {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-  max-width: 400px; /* Optional: restrict max width */
-  margin-bottom: 15px; /* spacing from other inputs */
-}
-
-/* Country code select */
-.phone-container select#countryCode {
-  width: 30%;
-  padding: 10px 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc; /* visible border */
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-/* Mobile input */
-.phone-container input#mobile {
-  width: 70%;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: 1px solid #ccc; /* visible border */
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-</style>
-
-
-	<!-- Header section -->
-	<header class="header-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-3">
-					<div class="site-logo">
-						<img src="img/logo.png" alt="">
-					</div>
-					<div class="nav-switch">
-						<i class="fa fa-bars"></i>
-					</div>
-				</div>
-				<div class="col-lg-9 col-md-9">
-					<nav class="main-menu">
-						<ul>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!-- Header section end -->
-
-
-	<!-- Hero section -->
-<section class="hero-section set-bg" data-setbg="img/bg.jpg">
-<div class="container">
-      <h2 id="signup-title">Join Aviya Magnus</h2>
-      <p>Start your learning journey — Create your free account today.</p>
-
-      <form id="signupForm" class="signup-form" novalidate>
+<section class="hero-section">
+    <form method="POST" action="https://aviyamagnus.rf.gd/register.php">
+       <form id="signupForm" class="signup-form" novalidate>
         <select name="role" id="role" required>
           <option value="">Select Role</option>
           <option value="student">Student</option>
@@ -111,12 +115,13 @@
         </div>
 		  <input type="password" id="password" name="password" placeholder="Password" required>
 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
+<p class="error-message" id="passwordError">Passwords do not match! Please re-enter.</p>
 
 
         <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-div class="phone-container">
-  <select id="countryCode" name="countryCode" required>
+        <div style="display: flex; gap: 10px;">
+  <select id="countryCode" name="countryCode" required style="width: 30%; padding: 12px 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
     <option value="">Code</option>
     <option value="+91">🇮🇳 +91</option>
     <option value="+1">🇺🇸 +1</option>
@@ -124,13 +129,16 @@ div class="phone-container">
     <option value="+61">🇦🇺 +61</option>
     <option value="+971">🇦🇪 +971</option>
   </select>
-  <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required>
+  <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required style="width: 70%; padding: 12px 15px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
 </div>
+<p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
 
-		<div class="captcha-box">
+
+<div class="captcha-box">
   <div class="captcha" id="captchaText"></div>
   <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
 </div>
+<p class="error-message" id="captchaError">Captcha mismatch! Please try again.</p>
 >
 
 <button type="button" class="site-btn" 
@@ -192,152 +200,116 @@ onclick="if(document.getElementById('signupForm').checkValidity()){const c=docum
 </script>
 </script>
 	</section>
-	<!-- Hero section end-->
-
-  <!-- footer section -->
-	<footer class="footer-section spad pb-0">
-		<div class="footer-top">
-			<div class="footer-warp">
-				<div class="row">
-					<div class="widget-item">
-						<h4>Contact Info</h4>
-						<ul class="contact-list">
-							<li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
-							<li>+918248802124</li>
-							<li>contactus@aviyamagnus.com / monikaanandan@aviyamagnus.com</li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Business Administration</h4>
-						<ul>
-							<li><a href="">Human Resoure</a></li>
-							<li><a href="">Marketing & Sales</a></li>
-							<li><a href="">Finance & Accounting</a></li>
-							<li><a href="">Banking Finane</a></li>
-							<li><a href="">Supply Chain Management</a></li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Business & Management</h4>
-						<ul>
-							<li><a href="">Operations Management</a></li>
-							<li><a href="">Entrepreneurship & Startups</a></li>
-							<li><a href="">Business Analytics</a></li>
-							<li><a href="">Leadership & Team Management</a></li>
-							<li><a href="">Event Management</a></li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Education & Law</h4>
-						<ul>
-							<li><a href="">Corporate Law & Intellectual Property Rights</a></li>
-							<li><a href="">Labor Law & Industrial Relations</a></li>
-							<li><a href="">Contract Management</a></li>
-							<li><a href="">Education & Teaching</a></li>
-							<li><a href="">Communication & Soft skills</a></li>
-						</ul>
-					</div>
-					<div class="widget-item">
-						<h4>Newsletter</h4>
-						<form class="footer-newslatter">
-							<input type="email" placeholder="E-mail">
-							<button class="site-btn">Subscribe</button>
-							<p>*We don’t spam</p>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="footer-warp">
-				<ul class="footer-menu">
-					<li><a href="#">Terms & Conditions</a></li>
-					<li><a href="#">Register</a></li>
-					<li><a href="#">Privacy</a></li>
-				</ul>
-				<div class="copyright"><!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://aviyamagnus.com" target="_blank">aviyamagnus</a>
-<!-- Link back to aviyamagnus can't be removed. Template is licensed under CC BY 3.0. --></div>
-			</div>
-		</div>
-	</footer> 
-	<!-- footer section end -->
 
 
- <!-- JS Files -->
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/main.js"></script>
-
-  <!-- Custom JS -->
+<!-- JS Files -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
-  // Generate captcha
+
+    // Form validation & submission
+    function validateAndRedirect() {
+        const form = document.getElementById('signupForm');
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+        const mobile = document.getElementById('mobile').value.trim();
+        const captchaText = document.getElementById('captchaText').textContent.trim();
+        const captchaInput = document.getElementById('captchaInput').value.trim();
+
+        // Password match check
+        if (password !== confirmPassword) {
+            document.getElementById('passwordError').style.display = 'block';
+            return;
+        } else {
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+     // Generate random captcha
   function generateCaptcha() {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let captcha = '';
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 6; i++) {
       captcha += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     document.getElementById('captchaText').textContent = captcha;
   }
 
-  // Validate all fields + captcha, then redirect
-  function validateAndRedirect() {
-    const form = document.getElementById('signupForm');
-
-    // Check HTML5 required fields
-    if (!form.checkValidity()) {
-      form.reportValidity(); // Show native browser validation
-      return;
-    }
-
-    // Captcha validation
-    const captchaText = document.getElementById('captchaText').textContent.trim();
-    const captchaInput = document.getElementById('captchaInput').value.trim();
+  // Validate captcha input
+  function validateCaptcha() {
+    const userInput = document.getElementById('captchaInput').value.trim().toUpperCase();
+    const captcha = document.getElementById('captchaText').textContent.trim().toUpperCase();
     const error = document.getElementById('captchaError');
 
-    if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
-      error.style.display = 'block';
-      generateCaptcha();
-      return;
-    } else {
+    if (userInput === captcha) {
       error.style.display = 'none';
+      alert('Captcha correct! You can proceed.');
+      // You can trigger form submission here
+    } else {
+      error.style.display = 'block';
+      generateCaptcha(); // Refresh captcha
+      document.getElementById('captchaInput').value = ''; // Clear input
     }
-
-    // Redirect to success.html
-    // Submit data to backend
-fetch('http://localhost:5000/register', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    role: document.getElementById('role').value,
-    firstName: document.getElementById('firstName').value,
-    lastName: document.getElementById('lastName').value,
-    email: document.getElementById('email').value,
-    countryCode: document.getElementById('countryCode').value,
-    mobile: document.getElementById('mobile').value,
-    password: document.getElementById('password').value
-  })
-})
-.then(res => res.json())
-.then(data => {
-  if (data.message === 'User registered successfully!') {
-    window.location.href = 'success.html';
-  } else {
-    alert('Error: ' + data.message);
-  }
-})
-.catch(err => {
-  alert('Server error: ' + err.message);
-});
-
   }
 
   // Initialize captcha on page load
   window.onload = generateCaptcha;
+        // All validations passed — send data to backend
+const form = document.getElementById("registerForm");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = {
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    email: document.getElementById("email").value,
+    mobile: document.getElementById("mobile").value,
+    countryCode: document.getElementById("countryCode").value,
+    password: document.getElementById("password").value,
+    role: document.getElementById("role").value
+  };
+
+fetch("https://aviyamagnus.rf.gd/register.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    firstName: "John",
+    lastName: "Doe",
+    email: "john@example.com",
+    mobile: "9876543210",
+    password: "password123",
+    role: "student"
+  })
+})
+.then(res => res.json())
+.then(data => console.log(data));
 
 
+
+    const result = await response.json();
+    alert(result.message);
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Server error. Check console.");
+  }
+});
+.catch(err => {
+  alert('Server error: ' + err.message);
+});
+
+        .then(res => res.json())
+        .then(data => {
+            if (data.message === 'User registered successfully!') {
+                window.location.href = 'success.html';
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(err => alert('Server error: ' + err.message));
+    }
 </script>
 
 </body>
