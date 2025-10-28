@@ -63,63 +63,45 @@
           <option value="tutor">Tutor</option>
         </select>
 
-    <input type="text" id="firstName" name="firstName" placeholder="First Name" required 
-           style="flex: 1; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required 
-           style="flex: 1; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-  </div>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+          </div>
+          <div class="col-md-6">
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+          </div>
+        </div>
+		  <input type="password" id="password" name="password" placeholder="Password" required>
+<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
+<p class="error-message" id="passwordError">Passwords do not match! Please re-enter.</p>
 
-  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-    <input type="password" id="password" name="password" placeholder="Password" required 
-           style="flex: 1; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required 
-           style="flex: 1; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-  </div>
 
-  <input type="email" id="email" name="email" placeholder="Enter your email" required
-         style="width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-    <select id="countryCode" name="countryCode" required 
-            style="width: 30%; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-      <option value="">Code</option>
-      <option value="+91">🇮🇳 +91</option>
-      <option value="+1">🇺🇸 +1</option>
-      <option value="+44">🇬🇧 +44</option>
-      <option value="+61">🇦🇺 +61</option>
-      <option value="+971">🇦🇪 +971</option>
-    </select>
-    <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required
-           style="flex: 1; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-  </div>
+    
+  <select id="countryCode" name="countryCode" required style="width: 30%; padding: 12px 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
+    <option value="">Code</option>
+    <option value="+91">🇮🇳 +91</option>
+    <option value="+1">🇺🇸 +1</option>
+    <option value="+44">🇬🇧 +44</option>
+    <option value="+61">🇦🇺 +61</option>
+    <option value="+971">🇦🇪 +971</option>
+  </select>
+  <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required style="width: 70%; padding: 12px 15px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
+</div>
 
-  <div class="captcha-box" style="margin-bottom: 15px;">
-    <div class="captcha" id="captchaText" style="padding: 10px; background: #eee; text-align: center; font-weight: bold; border-radius: 5px; margin-bottom: 5px;"></div>
-    <input type="text" id="captchaInput" placeholder="Enter Captcha" required
-           style="width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;">
-    <p id="captchaError" style="color: red; display: none; font-size: 14px;">Captcha does not match!</p>
-  </div>
 
-  <button type="button" class="site-btn" 
-          style="width: 100%; padding: 15px; font-size: 16px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;"
-          onclick="
-            if(document.getElementById('signupForm').checkValidity()){
-              const c=document.getElementById('captchaText').textContent.trim().toUpperCase();
-              const i=document.getElementById('captchaInput').value.trim().toUpperCase();
-              if(c===i){
-                window.location.href='success.html';
-              } else {
-                document.getElementById('captchaError').style.display='block';
-                generateCaptcha();
-              }
-            } else {
-              document.getElementById('signupForm').reportValidity();
-            }
-          ">
-    Register
-  </button>
-</form>
 
+<div class="captcha-box">
+  <div class="captcha" id="captchaText"></div>
+  <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+</div>
+>
+
+<button type="button" class="site-btn" 
+onclick="if(document.getElementById('signupForm').checkValidity()){const c=document.getElementById('captchaText').textContent.trim().toUpperCase();const i=document.getElementById('captchaInput').value.trim().toUpperCase();if(c===i){window.location.href='success.html';}else{document.getElementById('captchaError').style.display='block';generateCaptcha();}}else{document.getElementById('signupForm').reportValidity();}">
+  Register
+</button>
 
 
 <script>
