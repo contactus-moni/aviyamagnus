@@ -192,6 +192,25 @@
 
     // Initialize captcha
     window.onload = generateCaptcha;
+    function submitForm() {
+    const form = document.getElementById('signupForm');
+    const formData = new FormData(form);
+
+    fetch('https://aviyamagnus.rf.gd/register.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'success') {
+            window.location.href = 'success.html';
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(err => console.error('Error:', err));
+}
+</script>
 </script>
 
 </body>
