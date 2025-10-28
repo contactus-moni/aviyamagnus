@@ -1,235 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Aviya Magnus Education Template" />
-  <meta name="keywords" content="Aviya Magnus, education, creative, html" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviya Magnus - Education Template</title>
+	<title>Aviya Magnus - Education Template</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Aviya Magnus Education Template">
+	<meta name="keywords" content="Aviya Magnus, education, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->   
+	<link href="img/favicon.ico" rel="shortcut icon"/>
 
-  <!-- Favicon -->
-  <link href="img/favicon.ico" rel="shortcut icon" />
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo+Mono&display=swap" rel="stylesheet" />
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="css/owl.carousel.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/font-awesome.min.css" />
-  <link rel="stylesheet" href="css/owl.carousel.css" />
-  <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    /* Hero section with Times New Roman */
-    .hero-section {
-      font-family: "Times New Roman", serif;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #fafafa;
-    }
-
-    /* Error messages hidden by default */
-    .error-message {
-      color: red;
-      font-size: 0.9em;
-      display: none;
-      margin-top: 5px;
-    }
-
-    /* Footer Arabic typewriter font */
-    footer.footer-section {
-      font-family: 'Cairo Mono', monospace;
-      direction: rtl;
-      background: #222;
-      color: white;
-      padding: 40px 20px 20px;
-      text-align: center;
-    }
-
-    footer.footer-section a {
-      color: #ccc;
-      text-decoration: none;
-    }
-    footer.footer-section a:hover {
-      text-decoration: underline;
-    }
-
-    /* Style adjustments for form inputs and buttons */
-    .signup-form select,
-    .signup-form input[type="text"],
-    .signup-form input[type="email"],
-    .signup-form input[type="password"],
-    .signup-form input[type="tel"] {
-      width: 100%;
-      padding: 10px 12px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      font-size: 16px;
-    }
-
-    .signup-form .row {
-      display: flex;
-      gap: 15px;
-    }
-
-    .signup-form .row > div {
-      flex: 1;
-    }
-
-    .signup-form .mobile-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .signup-form .mobile-row select {
-      width: 100px;
-    }
-
-    .signup-form button.register-btn {
-      width: 100%;
-      background-color: #007bff;
-      color: white;
-      padding: 12px;
-      font-size: 18px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 15px;
-      transition: background-color 0.3s ease;
-    }
-    .signup-form button.register-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .captcha-box {
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-      gap: 15px;
-    }
-
-    .captcha {
-      font-weight: bold;
-      font-size: 22px;
-      background: #e0e0e0;
-      padding: 10px 20px;
-      letter-spacing: 4px;
-      user-select: none;
-      border-radius: 4px;
-      font-family: monospace;
-    }
-  </style>
-
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
 </head>
 <body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 
-  <!-- Page Preloader -->
-  <div id="preloder">
-    <div class="loader"></div>
-  </div>
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="site-logo">
+						<img src="img/logo.png" alt="">
+					</div>
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9">
+					<nav class="main-menu">
+						<ul>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->
 
-  <!-- Header section -->
-  <header class="header-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-3">
-          <div class="site-logo">
-            <img src="img/logo.png" alt="Aviya Magnus Logo" />
+
+	<!-- Hero section -->
+<section class="hero-section set-bg" data-setbg="img/bg.jpg">
+<div class="container">
+      <h2 id="signup-title">Join Aviya Magnus</h2>
+      <p>Start your learning journey — Create your free account today.</p>
+
+      <form id="signupForm" class="signup-form" novalidate>
+        <select name="role" id="role" required>
+          <option value="">Select Role</option>
+          <option value="student">Student</option>
+          <option value="parent">Parent</option>
+          <option value="tutor">Tutor</option>
+        </select>
+
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
           </div>
-          <div class="nav-switch">
-            <i class="fa fa-bars"></i>
+          <div class="col-md-6">
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 d-flex align-items-center justify-content-end">
-          <a href="login-options.html" class="site-btn header-btn">Login</a>
-          <nav class="main-menu ml-3">
-            <ul>
-              <li><a href="/index.html">Home</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- Header section end -->
+		  <input type="password" id="password" name="password" placeholder="Password" required>
+<input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required>
 
-  <!-- Hero section -->
-  <form id="signupForm" class="signup-form hero-section" novalidate>
-    <select name="role" id="role" required>
-      <option value="">Select Role</option>
-      <option value="student">Student</option>
-      <option value="parent">Parent</option>
-      <option value="tutor">Tutor</option>
-    </select>
-    <div class="row">
-      <div>
-        <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
-        <div class="error-message" id="firstNameError">Please enter your first name.</div>
-      </div>
-      <div>
-        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
-        <div class="error-message" id="lastNameError">Please enter your last name.</div>
-      </div>
-    </div>
-    <div class="row">
-      <div>
-        <input type="password" id="password" name="password" placeholder="Password" required />
-        <div class="error-message" id="passwordError">Please enter a password.</div>
-      </div>
-      <div>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter Password" required />
-        <div class="error-message" id="confirmPasswordError">Passwords do not match.</div>
-      </div>
-    </div>
-    <input type="email" id="email" name="email" placeholder="Enter your email" required />
-    <div class="error-message" id="emailError">Please enter a valid email.</div>
 
-    <div class="mobile-row">
-      <select id="countryCode" name="countryCode" required>
-        <option value="">Code</option>
-        <option value="+91">🇮🇳 +91</option>
-        <option value="+1">🇺🇸 +1</option>
-        <option value="+44">🇬🇧 +44</option>
-        <option value="+61">🇦🇺 +61</option>
-        <option value="+971">🇦🇪 +971</option>
-      </select>
-      <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required />
-    </div>
-    <div class="error-message" id="mobileError">Please enter a valid mobile number (10-15 digits).</div>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-    <div class="captcha-box">
-      <div class="captcha" id="captchaText"></div>
-      <input type="text" id="captchaInput" placeholder="Enter Captcha" required />
-    </div>
-    <div class="error-message" id="captchaError">Captcha does not match. Please try again.</div>
+        <div style="display: flex; gap: 10px;">
+  <select id="countryCode" name="countryCode" required style="width: 30%; padding: 12px 10px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
+    <option value="">Code</option>
+    <option value="+91">🇮🇳 +91</option>
+    <option value="+1">🇺🇸 +1</option>
+    <option value="+44">🇬🇧 +44</option>
+    <option value="+61">🇦🇺 +61</option>
+    <option value="+971">🇦🇪 +971</option>
+  </select>
+  <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" pattern="[0-9]{10,15}" required style="width: 70%; padding: 12px 15px; border-radius: 5px; border: none; background: rgba(255,255,255,0.9); color: #000; font-size: 16px;">
+</div>
 
-    <button type="submit" class="register-btn">Register</button>
-  </form>
 
-  <!-- Role-based content sections (hidden by default) -->
-  <div id="studentContent" style="display:none;">
-    <h2>Welcome, Student!</h2>
-    <p>This content is only visible to students.</p>
-  </div>
-  <div id="tutorContent" style="display:none;">
-    <h2>Welcome, Tutor!</h2>
-    <p>This content is only visible to tutors.</p>
-  </div>
-  <div id="parentContent" style="display:none;">
-    <h2>Welcome, Parent!</h2>
-    <p>This content is only visible to parents.</p>
-  </div>
+
+<div class="captcha-box">
+  <div class="captcha" id="captchaText"></div>
+  <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+</div>
+>
+
+<button type="button" class="site-btn" 
+onclick="if(document.getElementById('signupForm').checkValidity()){const c=document.getElementById('captchaText').textContent.trim().toUpperCase();const i=document.getElementById('captchaInput').value.trim().toUpperCase();if(c===i){window.location.href='success.html';}else{document.getElementById('captchaError').style.display='block';generateCaptcha();}}else{document.getElementById('signupForm').reportValidity();}">
+  Register
+</button>
+
+
+<script>
+  function validateAndRedirect(event) {
+    event.preventDefault(); // prevent default behavior if button inside a form
+
+    // Get all required field values
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const captchaText = document.getElementById("captchaText").textContent.trim();
+    const captchaInput = document.getElementById("captchaInput").value.trim();
+    const error = document.getElementById("captchaError");
+
+    // Validate required fields
+    if (!role || !firstName || !lastName || !email || !mobile) {
+      alert("Please fill in all required fields before continuing.");
+      return false;
+    }
+
+    // Validate 10-digit mobile number
+    const mobilePattern = /^[0-9]{10}$/;
+    if (!mobilePattern.test(mobile)) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return false;
+    }
+
+    // Validate captcha
+    if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
+      error.style.display = "block";
+      generateCaptcha(); // Refresh captcha
+      return false;
+    } else {
+      error.style.display = "none";
+    }
+
+  function redirectToSignup(event) {
+    event.preventDefault(); // stop default form behavior
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    if (!name || !email) {
+      alert("Please enter both your name and email before continuing.");
+      return false;
+    }
+
+    // redirect with parameters
+    window.location.href = `https://contactus.aviyamagnus.com/success.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+  }
+</script>
+</script>
+	</section>
+	<!-- Hero section end-->
 
   <!-- footer section -->
 	<footer class="footer-section spad pb-0">
@@ -301,16 +228,81 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<!-- footer section end -->
 
 
-	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/mixitup.min.js"></script>
-	<script src="js/circle-progress.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/main.js"></script>
+ <!-- JS Files -->
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/main.js"></script>
 
+  <!-- Custom JS -->
+<script>
+  // Generate captcha
+  function generateCaptcha() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let captcha = '';
+    for (let i = 0; i < 5; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById('captchaText').textContent = captcha;
+  }
+
+  // Validate all fields + captcha, then redirect
+  function validateAndRedirect() {
+    const form = document.getElementById('signupForm');
+
+    // Check HTML5 required fields
+    if (!form.checkValidity()) {
+      form.reportValidity(); // Show native browser validation
+      return;
+    }
+
+    // Captcha validation
+    const captchaText = document.getElementById('captchaText').textContent.trim();
+    const captchaInput = document.getElementById('captchaInput').value.trim();
+    const error = document.getElementById('captchaError');
+
+    if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
+      error.style.display = 'block';
+      generateCaptcha();
+      return;
+    } else {
+      error.style.display = 'none';
+    }
+
+    // Redirect to success.html
+    // Submit data to backend
+fetch('http://localhost:5000/register', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    role: document.getElementById('role').value,
+    firstName: document.getElementById('firstName').value,
+    lastName: document.getElementById('lastName').value,
+    email: document.getElementById('email').value,
+    countryCode: document.getElementById('countryCode').value,
+    mobile: document.getElementById('mobile').value,
+    password: document.getElementById('password').value
+  })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.message === 'User registered successfully!') {
+    window.location.href = 'success.html';
+  } else {
+    alert('Error: ' + data.message);
+  }
+})
+.catch(err => {
+  alert('Server error: ' + err.message);
+});
+
+  }
+
+  // Initialize captcha on page load
+  window.onload = generateCaptcha;
+
+
+</script>
+
+</body>
 </html>
-
-
-
-
