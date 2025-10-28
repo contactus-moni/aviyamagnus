@@ -11,7 +11,7 @@
 	<link href="img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+	@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800&display=swap');
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
@@ -93,24 +93,28 @@
 		}
 
 .site-btn {
-  display: inline-block;
+  display: block;
+  margin: 20px auto; /* centers the button */
+  width: 83.3333%; /* similar to col-lg-10 offset-lg-1 layout */
   border: none;
-  background: #b30000; /* Dark red */
+  background: #b30000; /* Dark red (brand-like tone) */
   color: #fff;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  padding: 15px;
+  padding: 15px 25px;
   border-radius: 5px;
-  width: 100%;
+  box-shadow: 0 4px 10px rgba(179, 0, 0, 0.3);
   transition: all 0.3s ease;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 
 .site-btn:hover {
   background: #800000; /* Even darker red for hover */
-  color: #fff;
-}
+  box-shadow: 0 6px 15px rgba(128, 0, 0, 0.4);
+  transform: translateY(-2px);
 
 	</style>
 </head>
