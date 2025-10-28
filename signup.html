@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+on<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -130,7 +130,7 @@
         </div>
         <div class="captcha-error" id="captchaError">Captcha does not match!</div>
 
-        <button type="button" class="site-btn" onclick="validateAndSubmit()">Register</button>
+        <button type="submit">Register</button>
     </form>
 </div>
 
@@ -186,8 +186,7 @@
             captchaError.style.display = 'none';
         }
 
-        // All validations passed, redirect to success
-        window.location.href = 'success.html';
+  
     }
 
     // Initialize captcha
@@ -202,8 +201,7 @@
     })
     .then(res => res.json())
     .then(data => {
-        if (data.status === 'success') {
-            window.location.href = 'success.html';
+
         } else {
             alert(data.message);
         }
