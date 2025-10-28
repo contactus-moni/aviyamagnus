@@ -144,88 +144,9 @@
     </form>
 </section>
 
-
-<script>
-  function validateAndRedirect(event) {
-    event.preventDefault(); // prevent default behavior if button inside a form
-
-    // Get all required field values
-    const firstName = document.getElementById("firstName").value.trim();
-    const lastName = document.getElementById("lastName").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const role = document.getElementById("role").value.trim();
-    const captchaText = document.getElementById("captchaText").textContent.trim();
-    const captchaInput = document.getElementById("captchaInput").value.trim();
-    const error = document.getElementById("captchaError");
-
-    // Validate required fields
-    if (!role || !firstName || !lastName || !email || !mobile) {
-      alert("Please fill in all required fields before continuing.");
-      return false;
-    }
-
-    // Validate 10-digit mobile number
-    const mobilePattern = /^[0-9]{10}$/;
-    if (!mobilePattern.test(mobile)) {
-      alert("Please enter a valid 10-digit mobile number.");
-      return false;
-    }
-
-    // Validate captcha
-    if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
-      error.style.display = "block";
-      generateCaptcha(); // Refresh captcha
-      return false;
-    } else {
-      error.style.display = "none";
-    }
-
-  function redirectToSignup(event) {
-    event.preventDefault(); // stop default form behavior
-
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-
-    if (!name || !email) {
-      alert("Please enter both your name and email before continuing.");
-      return false;
-    }
-
-    // redirect with parameters
-    window.location.href = `https://contactus.aviyamagnus.com/success.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-  }
-</script>
-</script>
-	</section>
-
-
 <!-- JS Files -->
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script>
-
-    // Form validation & submission
-    function validateAndRedirect() {
-        const form = document.getElementById('signupForm');
-        const firstName = document.getElementById('firstName').value.trim();
-        const lastName = document.getElementById('lastName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
-        const confirmPassword = document.getElementById('confirmPassword').value.trim();
-        const mobile = document.getElementById('mobile').value.trim();
-        const captchaText = document.getElementById('captchaText').textContent.trim();
-        const captchaInput = document.getElementById('captchaInput').value.trim();
-
-        // Password match check
-        if (password !== confirmPassword) {
-            document.getElementById('passwordError').style.display = 'block';
-            return;
-        } else {
-            document.getElementById('passwordError').style.display = 'none';
-        }
-
-     // Generate random captcha
+  // ------------------- CAPTCHA -------------------
   function generateCaptcha() {
     const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let captcha = '';
@@ -235,80 +156,93 @@
     document.getElementById('captchaText').textContent = captcha;
   }
 
-  // Validate captcha input
-  function validateCaptcha() {
-    const userInput = document.getElementById('captchaInput').value.trim().toUpperCase();
-    const captcha = document.getElementById('captchaText').textContent.trim().toUpperCase();
-    const error = document.getElementById('captchaError');
+  // ------------------- VALIDATION & SUBMIT -------------------
+  async function validateAndRedirect(event) {
+    event.preventDefault(); // Stop default form behavior
 
-    if (userInput === captcha) {
-      error.style.display = 'none';
-      alert('Captcha correct! You can proceed.');
-      // You can trigger form submission here
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const countryCode = document.getElementById("countryCode").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const captchaText = document.getElementById("captchaText").textContent.trim().toUpperCase();
+    const captchaInput = document.getElementById("captchaInput").value.trim().toUpperCase();
+
+    const passwordError = document.getElementById("passwordError");
+    const captchaError = document.getElementById("captchaError");
+
+    // ---------- Validation Checks ----------
+    if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword || !captchaInput) {
+      alert("⚠️ Please fill in all required fields before continuing.");
+      return;
+    }
+
+    // Email format validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert("⚠️ Please enter a valid email address.");
+      return;
+    }
+
+    // Mobile number validation
+    const mobilePattern = /^[0-9]{10,15}$/;
+    if (!mobilePattern.test(mobile)) {
+      alert("⚠️ Please enter a valid mobile number (10–15 digits).");
+      return;
+    }
+
+    // Password match validation
+    if (password !== confirmPassword) {
+      passwordError.style.display = "block";
+      return;
     } else {
-      error.style.display = 'block';
-      generateCaptcha(); // Refresh captcha
-      document.getElementById('captchaInput').value = ''; // Clear input
+      passwordError.style.display = "none";
+    }
+
+    // Captcha validation
+    if (captchaInput !== captchaText) {
+      captchaError.style.display = "block";
+      generateCaptcha();
+      document.getElementById("captchaInput").value = "";
+      return;
+    } else {
+      captchaError.style.display = "none";
+    }
+
+    // ---------- Send Data to Backend ----------
+    const data = {
+      firstName,
+      lastName,
+      email,
+      countryCode,
+      mobile,
+      password,
+      role
+    };
+
+    try {
+      const response = await fetch("https://aviyamagnus.rf.gd/register.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      if (result.message && result.message.includes("successfully")) {
+        alert("✅ Registration successful!");
+        window.location.href = "success.html";
+      } else {
+        alert("⚠️ " + result.message);
+      }
+    } catch (error) {
+      alert("🚫 Server error: " + error.message);
     }
   }
 
-  // Initialize captcha on page load
+  // Initialize captcha on load
   window.onload = generateCaptcha;
-        // All validations passed — send data to backend
-const form = document.getElementById("registerForm");
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const data = {
-    firstName: document.getElementById("firstName").value,
-    lastName: document.getElementById("lastName").value,
-    email: document.getElementById("email").value,
-    mobile: document.getElementById("mobile").value,
-    countryCode: document.getElementById("countryCode").value,
-    password: document.getElementById("password").value,
-    role: document.getElementById("role").value
-  };
-
-fetch("https://aviyamagnus.rf.gd/register.php", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    firstName: "John",
-    lastName: "Doe",
-    email: "john@example.com",
-    mobile: "9876543210",
-    password: "password123",
-    role: "student"
-  })
-})
-.then(res => res.json())
-.then(data => console.log(data));
-
-
-
-    const result = await response.json();
-    alert(result.message);
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Server error. Check console.");
-  }
-});
-.catch(err => {
-  alert('Server error: ' + err.message);
-});
-
-        .then(res => res.json())
-        .then(data => {
-            if (data.message === 'User registered successfully!') {
-                window.location.href = 'success.html';
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch(err => alert('Server error: ' + err.message));
-    }
 </script>
 
-</body>
-</html>
