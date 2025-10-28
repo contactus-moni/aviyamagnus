@@ -102,7 +102,7 @@
 <body>
 
 <section class="hero-section">
-    <form id="signupForm" class="signup-form" novalidate>
+    <form id="signupForm" novalidate>
         <h2 style="text-align:center;">Join Aviya Magnus</h2>
         <p style="text-align:center;">Start your learning journey — Create your free account today.</p>
 
@@ -148,7 +148,7 @@
         </div>
 
         <button type="button" class="site-btn" onclick="validateAndRedirect()">Register</button>
-    </form>
+</form>
 </section>
 
 <!-- JS Files -->
@@ -223,6 +223,60 @@
       alert("🚫 Server error: Failed to connect to backend.");
     }
   }
+
+  // Generate Captcha
+  function generateCaptcha() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let captcha = '';
+    for (let i = 0; i < 6; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById('captchaText').textContent = captcha;
+  }
+
+  window.onload = generateCaptcha;
+
+  // Validate form fields and redirect
+  function validateAndRedirect() {
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mobile = document.getElementById('mobile').value.trim();
+    const role = document.getElementById('role').value.trim();
+    const captchaText = document.getElementById('captchaText').textContent.trim().toUpperCase();
+    const captchaInput = document.getElementById('captchaInput').value.trim().toUpperCase();
+    const captchaError = document.getElementById('captchaError');
+
+    // Check required fields
+    if (!firstName || !lastName || !email || !mobile || !role || !captchaInput) {
+      alert("Please fill in all required fields!");
+      return;
+    }
+
+    // Validate email
+    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if (!emailPattern.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Validate 10-digit mobile number
+    const mobilePattern = /^[0-9]{10}$/;
+    if (!mobilePattern.test(mobile)) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+
+    // Validate captcha
+    if (captchaInput !== captchaText) {
+      captchaError.style.display = "block";
+      generateCaptcha(); // Refresh captcha
+      return;
+    } else {
+      captchaError.style.display = "none";
+    }
+
+    // All validations passed → redirect to success page
+    window.location.href = `success.html?firstName=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email)}`;
+  }
 </script>
-
-
