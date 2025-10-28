@@ -1,117 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Aviya Magnus - Education Template</title>
-	<meta charset="UTF-8">
-	<meta name="description" content="Aviya Magnus Education Template">
-	<meta name="keywords" content="Aviya Magnus, education, creative, html">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- Favicon -->   
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Aviya Magnus Education Template" />
+  <meta name="keywords" content="Aviya Magnus, education, creative, html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviya Magnus - Education Template</title>
 
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet">
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="shortcut icon" />
 
-	<!-- Stylesheets -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo+Mono&display=swap" rel="stylesheet" />
 
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/owl.carousel.css" />
+  <link rel="stylesheet" href="css/style.css" />
 
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-	<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Role-Based Content</title>
   <style>
-    /* Some basic CSS to hide content */
-    #studentContent, #tutorContent, #parentContent {
+    /* Hero section with Times New Roman */
+    .hero-section {
+      font-family: "Times New Roman", serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    /* Error messages hidden by default */
+    .error-message {
+      color: red;
+      font-size: 0.9em;
       display: none;
+      margin-top: 5px;
+    }
+
+    /* Footer Arabic typewriter font */
+    footer.footer-section {
+      font-family: 'Cairo Mono', monospace;
+      direction: rtl;
+      background: #222;
+      color: white;
+      padding: 40px 20px 20px;
+      text-align: center;
+    }
+
+    footer.footer-section a {
+      color: #ccc;
+      text-decoration: none;
+    }
+    footer.footer-section a:hover {
+      text-decoration: underline;
+    }
+
+    /* Style adjustments for form inputs and buttons */
+    .signup-form select,
+    .signup-form input[type="text"],
+    .signup-form input[type="email"],
+    .signup-form input[type="password"],
+    .signup-form input[type="tel"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .signup-form .row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .signup-form .row > div {
+      flex: 1;
+    }
+
+    .signup-form .mobile-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .signup-form .mobile-row select {
+      width: 100px;
+    }
+
+    .signup-form button.register-btn {
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+    .signup-form button.register-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .captcha-box {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      gap: 15px;
+    }
+
+    .captcha {
+      font-weight: bold;
+      font-size: 22px;
+      background: #e0e0e0;
+      padding: 10px 20px;
+      letter-spacing: 4px;
+      user-select: none;
+      border-radius: 4px;
+      font-family: monospace;
     }
   </style>
+
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 <body>
-  <!-- Content specific to students -->
-  <div id="studentContent">
-    <h2>Welcome, Student!</h2>
-    <p>This content is only visible to students.</p>
+
+  <!-- Page Preloader -->
+  <div id="preloder">
+    <div class="loader"></div>
   </div>
 
-  <!-- Content specific to tutors -->
-  <div id="tutorContent">
-    <h2>Welcome, Tutor!</h2>
-    <p>This content is only visible to tutors.</p>
-  </div>
+  <!-- Header section -->
+  <header class="header-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3">
+          <div class="site-logo">
+            <img src="img/logo.png" alt="Aviya Magnus Logo" />
+          </div>
+          <div class="nav-switch">
+            <i class="fa fa-bars"></i>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9 d-flex align-items-center justify-content-end">
+          <a href="login-options.html" class="site-btn header-btn">Login</a>
+          <nav class="main-menu ml-3">
+            <ul>
+              <li><a href="/index.html">Home</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header section end -->
 
-  <!-- Content specific to parents -->
-  <div id="parentContent">
-    <h2>Welcome, Parent!</h2>
-    <p>This content is only visible to parents.</p>
-  </div>
-
-  <!-- JavaScript for handling the role-based content -->
-  <script>
-    window.onload = () => {
-      const userRole = localStorage.postItem('userRole');
-      
-      if (userRole === 'student') {
-        // Display student-specific content
-        document.postElementById('studentContent').style.display = 'block';
-        document.postElementById('tutorContent').style.display = 'none';
-        document.postElementById('parentContent').style.display = 'none';
-      } else if (userRole === 'tutor') {
-        // Display tutor-specific content
-        document.postElementById('studentContent').style.display = 'none';
-        document.postElementById('tutorContent').style.display = 'block';
-        document.postElementById('parentContent').style.display = 'none';
-      } else if (userRole === 'parent') {
-        // Display parent-specific content
-        document.postElementById('studentContent').style.display = 'none';
-        document.postElementById('tutorContent').style.display = 'none';
-        document.postElementById('parentContent').style.display = 'block';
-      }
-    };
-  </script>
-
-</head>
-<body>
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
-	<!-- Header section -->
-	<header class="header-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-3">
-					<div class="site-logo">
-						<img src="img/logo.png" alt="">
-					</div>
-					<div class="nav-switch">
-						<i class="fa fa-bars"></i>
-					</div>
-				</div>
-				<div class="col-lg-9 col-md-9">
-					<a href="login-options.html"" class="site-btn header-btn">Login</a>
-					<nav class="main-menu">
-						<ul>
-            <li><a href="/index.html">Home</a></li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!-- Header section end -->
-
-
-	<!-- Hero section -->
-	<form id="signupForm" class="signup-form" novalidate>
+  <!-- Hero section -->
+  <form id="signupForm" class="signup-form hero-section" novalidate>
     <select name="role" id="role" required>
       <option value="">Select Role</option>
       <option value="student">Student</option>
@@ -163,123 +217,19 @@
     <button type="submit" class="register-btn">Register</button>
   </form>
 
-  <script>
-    function generateCaptcha() {
-      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-      let captcha = '';
-      for (let i = 0; i < 5; i++) {
-        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      document.getElementById('captchaText').textContent = captcha;
-    }
-    generateCaptcha();
-
-    const form = document.getElementById('signupForm');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      // Clear all error messages
-      document.querySelectorAll('.error-message').forEach(el => (el.style.display = 'none'));
-
-      let valid = true;
-
-      // Check role
-      if (!form.role.value) {
-        alert('Please select your role.');
-        valid = false;
-      }
-
-      // Check first name
-      if (!form.firstName.value.trim()) {
-        document.getElementById('firstNameError').style.display = 'block';
-        valid = false;
-      }
-
-      // Check last name
-      if (!form.lastName.value.trim()) {
-        document.getElementById('lastNameError').style.display = 'block';
-        valid = false;
-      }
-
-      // Check password presence
-      if (!form.password.value) {
-        document.getElementById('passwordError').textContent = 'Please enter a password.';
-        document.getElementById('passwordError').style.display = 'block';
-        valid = false;
-      }
-
-      // Check confirm password presence and matching
-      if (!form.confirmPassword.value) {
-        document.getElementById('confirmPasswordError').textContent = 'Please confirm your password.';
-        document.getElementById('confirmPasswordError').style.display = 'block';
-        valid = false;
-      } else if (form.password.value !== form.confirmPassword.value) {
-        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
-        document.getElementById('confirmPasswordError').style.display = 'block';
-        valid = false;
-      }
-
-      // Email validation using simple regex
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailPattern.test(form.email.value)) {
-        document.getElementById('emailError').style.display = 'block';
-        valid = false;
-      }
-
-      // Mobile number pattern validation
-      const mobilePattern = /^[0-9]{10,15}$/;
-      if (!form.countryCode.value) {
-        alert('Please select your country code.');
-        valid = false;
-      }
-      if (!mobilePattern.test(form.mobile.value)) {
-        document.getElementById('mobileError').style.display = 'block';
-        valid = false;
-      }
-
-      // Captcha check
-      const captchaText = document.getElementById('captchaText').textContent.trim().toUpperCase();
-      const captchaInput = form.captchaInput.value.trim().toUpperCase();
-      if (captchaText !== captchaInput) {
-        document.getElementById('captchaError').style.display = 'block';
-        generateCaptcha(); // regenerate captcha on failure
-        valid = false;
-      }
-
-      if (!valid) return;
-
-      // Prepare form data to send
-      const formData = {
-        role: form.role.value,
-        firstName: form.firstName.value.trim(),
-        lastName: form.lastName.value.trim(),
-        email: form.email.value.trim(),
-        countryCode: form.countryCode.value,
-        mobile: form.mobile.value.trim(),
-        password: form.password.value,
-      };
-
-      // Submit form data via fetch
-      fetch('https://aviyamagnus.rf.gd/register.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message === 'User registered successfully!') {
-            window.location.href = 'success.html';
-          } else {
-            alert('Error: ' + data.message);
-          }
-        })
-        .catch((err) => alert('Server error: ' + err.message));
-    });
-  </script>
-</body>
-</html>
-<!-- Hero section end -->
+  <!-- Role-based content sections (hidden by default) -->
+  <div id="studentContent" style="display:none;">
+    <h2>Welcome, Student!</h2>
+    <p>This content is only visible to students.</p>
+  </div>
+  <div id="tutorContent" style="display:none;">
+    <h2>Welcome, Tutor!</h2>
+    <p>This content is only visible to tutors.</p>
+  </div>
+  <div id="parentContent" style="display:none;">
+    <h2>Welcome, Parent!</h2>
+    <p>This content is only visible to parents.</p>
+  </div>
 
   <!-- footer section -->
 	<footer class="footer-section spad pb-0">
