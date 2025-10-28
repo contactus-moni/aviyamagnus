@@ -1,213 +1,25 @@
-on<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - Aviya Magnus</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .signup-container {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .signup-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .signup-container input, .signup-container select {
-            width: 100%;
-            padding: 12px 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        .phone-container {
-            display: flex;
-            gap: 10px;
-        }
-        .phone-container select {
-            width: 30%;
-        }
-        .phone-container input {
-            width: 70%;
-        }
-        .captcha-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        .captcha-box .captcha {
-            background: #e0e0e0;
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 5px;
-            user-select: none;
-        }
-        .captcha-error {
-            color: red;
-            display: none;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-        .site-btn {
-            width: 100%;
-            padding: 12px;
-            background: #007bff;
-            border: none;
-            color: #fff;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .site-btn:hover {
-            background: #0056b3;
-        }
-
-    select#role {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-        background: #fff;
-        box-sizing: border-box;
-    }
-
-
-    </style>
+    <title>Sign Up - Aviya Magnus</title>
 </head>
 <body>
-
-<div class="signup-container">
-    <h2>Create Account</h2>
-   <form id="signupForm" method="POST" action="https://aviyamagnus.rf.gd/register.php">
-  
-  <input type="text" name="firstName" placeholder="First Name" required>
-  <input type="text" name="lastName" placeholder="Last Name" required>
-  <input type="email" name="email" placeholder="Email" required>
-
-  <div style="display: flex; gap: 10px;">
-    <select name="countryCode" required style="width: 30%;">
-      <option value="">Code</option>
-      <option value="+91">🇮🇳 +91</option>
-      <option value="+1">🇺🇸 +1</option>
-      <option value="+44">🇬🇧 +44</option>
-    </select>
-    <input type="tel" name="mobile" placeholder="Mobile Number" required style="width: 70%;">
-  </div>
-
-  <input type="password" name="password" placeholder="Password" required>
-  <input type="password" name="confirmPassword" placeholder="Re-enter Password" required>
-
-  <select name="role" required>
-    <option value="">Select Role</option>
-    <option value="student">Student</option>
-    <option value="parent">Parent</option>
-    <option value="tutor">Tutor</option>
-  </select>
-
-  <button type="submit">Register</button>
-</form>
-
-<script>
-    // Generate captcha
-    function generateCaptcha() {
-        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-        let captcha = '';
-        for (let i = 0; i < 5; i++) {
-            captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        document.getElementById('captchaText').textContent = captcha;
-    }
-
-    // Validate form
-    function validateAndSubmit() {
-        const firstName = document.getElementById('firstName').value.trim();
-        const lastName = document.getElementById('lastName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
-        const confirmPassword = document.getElementById('confirmPassword').value.trim();
-        const mobile = document.getElementById('mobile').value.trim();
-        const countryCode = document.getElementById('countryCode').value;
-        const captchaText = document.getElementById('captchaText').textContent.trim();
-        const captchaInput = document.getElementById('captchaInput').value.trim();
-        const captchaError = document.getElementById('captchaError');
-
-        // Required fields
-        if (!firstName || !lastName || !email || !password || !confirmPassword || !mobile || !countryCode || !captchaInput) {
-            alert('Please fill all fields!');
-            return;
-        }
-
-        // Password match
-        if (password !== confirmPassword) {
-            alert('Passwords do not match!');
-            return;
-        }
-
-        // Mobile number pattern
-        const mobilePattern = /^[0-9]{10,15}$/;
-        if (!mobilePattern.test(mobile)) {
-            alert('Please enter a valid mobile number.');
-            return;
-        }
-
-        // Captcha match
-        if (captchaInput.toUpperCase() !== captchaText.toUpperCase()) {
-            captchaError.style.display = 'block';
-            generateCaptcha();
-            return;
-        } else {
-            captchaError.style.display = 'none';
-        }
-
-  
-    }
-
-    // Initialize captcha
-    window.onload = generateCaptcha;
-    function submitForm() {
-    const form = document.getElementById('signupForm');
-    const formData = new FormData(form);
-
-fetch("https://aviyamagnus.rf.gd/register.php", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded"
-  },
-  body: new URLSearchParams({
-    firstName: "John",
-    lastName: "Doe",
-    email: "john@example.com",
-    mobile: "1234567890",
-    countryCode: "+91",
-    password: "123456",
-    confirmPassword: "123456",
-    role: "student"
-  })
-})
-.then(res => res.json())
-.then(console.log)
-.catch(console.error);
-
-</script>
-</script>
-
+    <h2>Sign Up</h2>
+    <form method="POST" action="register.php">
+        <input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="mobile" placeholder="Mobile" required>
+        <input type="text" name="countryCode" placeholder="Country Code (+91)" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+        <select name="role" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="parent">Parent</option>
+            <option value="tutor">Tutor</option>
+        </select>
+        <button type="submit">Register</button>
+    </form>
 </body>
 </html>
