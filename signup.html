@@ -105,26 +105,10 @@
     <div class="captcha-box">
       <div class="captcha" id="captchaText">ABCD</div>
       <input type="text" id="captchaInput" placeholder="Enter Captcha" required>
-      <p id="captchaError">Captcha does not match!</p>
     </div>
 
-    <button type="button" class="site-btn" 
-      onclick="
-        if(document.getElementById('signupForm').checkValidity()){
-          const c = document.getElementById('captchaText').textContent.trim().toUpperCase();
-          const i = document.getElementById('captchaInput').value.trim().toUpperCase();
-          if(c === i){
-            window.location.href='success.html';
-          } else {
-            document.getElementById('captchaError').style.display='block';
-            generateCaptcha();
-          }
-        } else {
-          document.getElementById('signupForm').reportValidity();
-        }
-      ">
-      Register
-    </button>
+<button type="button" class="site-btn" onclick="if(document.getElementById('signupForm').checkValidity()){const c=document.getElementById('captchaText').textContent.trim().toUpperCase();const i=document.getElementById('captchaInput').value.trim().toUpperCase();if(c===i){window.location.href='success.html';}else{document.getElementById('captchaError').style.display='block';generateCaptcha();} } else { document.getElementById('signupForm').reportValidity(); }">Register</button>
+
   </form>
 </div>
 
