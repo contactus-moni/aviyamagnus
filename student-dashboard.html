@@ -1,316 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviya Magnus - Student Dashboard</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
-  
-      <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="css/owl.carousel.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Aviya Magnus</title>
   <style>
+    /* ===== Base Styles ===== */
     body {
       margin: 0;
-      font-family: "Times new roman", Times-serif;
+      font-family: "Times New Roman", serif;
       background-color: #0d0d0d;
       color: #fff;
       display: flex;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    /* Sidebar */
+    /* ===== Sidebar ===== */
     .sidebar {
-      width: 230px;
+      width: 220px;
       background: #000;
       color: white;
-      height: 100vh;
       display: flex;
       flex-direction: column;
       position: fixed;
       left: 0;
       top: 0;
-      box-shadow: 2px 0 6px rgba(0,0,0,0.3);
+      bottom: 0;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #ff4b5c #1a1a1a;
     }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background-color: #ff4b5c;
+      border-radius: 10px;
+    }
+
     .sidebar h2 {
       text-align: center;
-      padding: 20px;
+      padding: 18px 0;
       margin: 0;
-      background: #111;
+      background: #1a1a1a;
       font-size: 1.2rem;
-      border-bottom: 1px solid #222;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #333;
     }
+
+    /* ===== Navigation Links ===== */
     .nav {
       flex: 1;
-      overflow-y: auto;
+      padding-top: 5px;
     }
+
     .nav a {
       display: block;
-      padding: 14px 20px;
-      color: #eee;
+      padding: 10px 16px;
+      margin: 4px 8px;
+      color: #ccc;
       text-decoration: none;
-      border-left: 4px solid transparent;
-      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
     }
+
     .nav a.active, .nav a:hover {
       background: #ff4b5c;
-      border-left-color: #fff;
-      color: #fff;
+      color: white;
     }
 
-    /* Content Area */
+    /* ===== Content Area ===== */
     .content {
-      margin-left: 230px;
-      padding: 25px;
+      margin-left: 220px;
+      padding: 30px;
       flex: 1;
-    }
-    h1 { margin-top: 0; }
-    .tab.hidden { display: none; }
-
-    /* Cards */
-    .card {
-      background: #fff;
-      color: #111;
-      padding: 15px 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(255,255,255,0.1);
-      margin-bottom: 20px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #ff4b5c #1a1a1a;
     }
 
-    /* Buttons */
-    button, .btn {
+    .content::-webkit-scrollbar {
+      width: 8px;
+    }
+    .content::-webkit-scrollbar-thumb {
+      background-color: #ff4b5c;
+      border-radius: 10px;
+    }
+
+    /* ===== Tabs ===== */
+    .tab.hidden {
+      display: none;
+    }
+
+    /* ===== Headings ===== */
+    h1 {
+      font-family: "French Script MT", cursive;
+      font-size: 3.2rem;
+      color: #ff4b5c;
+      margin-top: 0;
+    }
+
+    h2, h3 {
+      color: #fff;
+      margin-top: 0;
+    }
+
+    /* ===== Buttons ===== */
+    button {
       background: #ff4b5c;
       color: #fff;
       border: none;
       border-radius: 5px;
       padding: 8px 14px;
       cursor: pointer;
-      transition: background 0.3s;
+      font-family: "Times New Roman", serif;
+      transition: 0.3s;
     }
-    button:hover, .btn:hover {
+    button:hover {
       background: #e03f4f;
     }
 
-    input, textarea, select {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-family: inherit;
+    /* ===== Info Cards ===== */
+    .item {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 5px rgba(255, 75, 92, 0.2);
     }
 
-    .muted { color: gray; }
-    .small { font-size: 0.85em; }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #ff4b5c;
-      border-radius: 4px;
+    .muted {
+      color: #aaa;
     }
   </style>
 </head>
 <body>
   <div class="sidebar">
     <h2>🎓 Student</h2>
-    <div class="nav" id="menu">
-      <a href="#" class="active" data-tab="overview">Overview</a>
-      <a href="#" data-tab="profile">Profile</a>
-      <a href="#" data-tab="courses">Courses</a>
-      <a href="#" data-tab="documents">Documents / Notes</a>
-      <a href="#" data-tab="meetings">Calls / Meetings</a>
-      <a href="#" data-tab="messages">Messages</a>
-      <a href="#" data-tab="payments">Payments</a>
-      <a href="#" data-tab="certs">Certificates</a>
-      <a href="#" data-tab="chat">Chat</a>
-      <a href="#" data-tab="settings">Settings</a>
+    <div class="nav">
+      <a href="#" class="active" onclick="showTab('overview')">Overview</a>
+      <a href="#" onclick="showTab('profile')">Profile</a>
+      <a href="#" onclick="showTab('courses')">Courses</a>
+      <a href="#" onclick="showTab('documents')">Documents / Notes</a>
+      <a href="#" onclick="showTab('meetings')">Calls / Meetings</a>
+      <a href="#" onclick="showTab('messages')">Messages</a>
+      <a href="#" onclick="showTab('payments')">Payments</a>
+      <a href="#" onclick="showTab('certificates')">Certificates</a>
+      <a href="#" onclick="showTab('chat')">Chat</a>
+      <a href="#" onclick="showTab('settings')">Settings</a>
     </div>
   </div>
 
   <div class="content">
-    <h1 id="pageTitle">Overview</h1>
-    <p class="muted" id="pageSub">Quick snapshot for Student</p>
-
-    <!-- Tabs -->
-    <div id="overviewTab" class="tab">
-      <div class="item"><strong>Welcome to your Student Dashboard</strong></div>
+    <!-- Overview Tab -->
+    <div id="overview" class="tab">
+      <h1>Overview</h1>
+      <p class="muted">Quick snapshot for Student</p>
+      <h3>Welcome to your Student Dashboard</h3>
       <p>Access all your learning tools and communication from the left menu.</p>
-      <div class="item"><button id="newMeetingBtn">Schedule Meeting</button></div>
+      <button>Schedule Meeting</button>
     </div>
 
-    <div id="profileTab" class="tab hidden">
-      <h3>Edit Profile</h3>
-      <input type="text" id="fullname" placeholder="Full name" />
-      <input type="email" id="email" placeholder="Email" />
-      <textarea id="bio" placeholder="Short bio"></textarea>
-      <button onclick="saveProfile()">Save</button>
-      <button onclick="resetProfile()">Reset</button>
-      <p id="profileShort" class="muted"></p>
+    <!-- Profile Tab -->
+    <div id="profile" class="tab hidden">
+      <h1>Profile</h1>
+      <div class="item">
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>Email:</strong> john@example.com</p>
+        <p><strong>Course Enrolled:</strong> Mathematics</p>
+      </div>
     </div>
 
-    <div id="coursesTab" class="tab hidden">
-      <h3>Courses</h3>
-      <table id="coursesTable" border="1" width="100%">
-        <thead>
-          <tr><th>Title</th><th>Category</th><th>Progress</th><th>Action</th></tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-      <button onclick="addCourse()">Add Course</button>
-      <pre id="courseDetails"></pre>
+    <!-- Courses Tab -->
+    <div id="courses" class="tab hidden">
+      <h1>Courses</h1>
+      <div class="item"><strong>Mathematics</strong> - Advanced Algebra</div>
+      <div class="item"><strong>Science</strong> - Physics Basics</div>
     </div>
 
-    <div id="documentsTab" class="tab hidden">
-      <h3>Documents / Notes</h3>
-      <input type="file" id="docFile" />
-      <button onclick="uploadDoc()">Upload</button>
-      <div id="docsList"></div>
-      <textarea id="noteText" placeholder="Write a note..."></textarea>
-      <button onclick="saveNote()">Save Note</button>
-      <button onclick="clearNotes()">Clear Notes</button>
+    <!-- Documents / Notes Tab -->
+    <div id="documents" class="tab hidden">
+      <h1>Documents & Notes</h1>
+      <div class="item"><strong>Algebra Notes.pdf</strong> — Uploaded 2 days ago</div>
     </div>
 
-    <div id="meetingsTab" class="tab hidden">
-      <h3>Meetings</h3>
-      <input type="text" id="meetTitle" placeholder="Meeting Title" />
-      <input type="datetime-local" id="meetTime" />
-      <input type="number" id="meetDur" placeholder="Duration (min)" />
-      <input type="text" id="meetParts" placeholder="Participants" />
-      <button onclick="scheduleMeeting()">Schedule</button>
-      <div id="meetingsList"></div>
-      <div id="localVideoWrap"></div>
-      <button onclick="startInstantCall()">Start Instant Call</button>
+    <!-- Meetings Tab -->
+    <div id="meetings" class="tab hidden">
+      <h1>Calls & Meetings</h1>
+      <p>Schedule and join meetings with tutors.</p>
+      <button>Join Meeting</button>
     </div>
 
-    <div id="messagesTab" class="tab hidden">
-      <h3>Announcements / Inbox</h3>
-      <input type="text" id="annTitle" placeholder="Announcement title" />
-      <textarea id="annBody" placeholder="Message"></textarea>
-      <button onclick="postAnnouncement()">Post</button>
-      <div id="announcements"></div>
-      <hr>
-      <h4>Inbox</h4>
-      <div id="inboxList"></div>
+    <!-- Messages Tab -->
+    <div id="messages" class="tab hidden">
+      <h1>Messages</h1>
+      <div class="item">No new messages.</div>
     </div>
 
-    <div id="paymentsTab" class="tab hidden">
-      <h3>Payments</h3>
-      <input type="number" id="payAmt" placeholder="Amount" />
-      <button onclick="makePayment()">Pay</button>
-      <pre id="billingArea"></pre>
+    <!-- Payments Tab -->
+    <div id="payments" class="tab hidden">
+      <h1>Payments</h1>
+      <div class="item">Pending Invoice - ₹1500</div>
     </div>
 
-    <div id="certsTab" class="tab hidden">
-      <h3>Certificates</h3>
-      <button onclick="issueCert()">Issue Certificate</button>
-      <div id="certsList"></div>
+    <!-- Certificates Tab -->
+    <div id="certificates" class="tab hidden">
+      <h1>Certificates</h1>
+      <div class="item">Math Course Completion.pdf</div>
     </div>
 
-    <div id="chatTab" class="tab hidden">
-      <h3>Chat</h3>
-      <input type="text" id="chatWith" placeholder="Chat with..." />
-      <textarea id="chatMsg" placeholder="Type your message"></textarea>
-      <button onclick="sendChat()">Send</button>
-      <h4>Conversations</h4>
-      <div id="convos"></div>
-      <h4>Chat Window</h4>
-      <div id="chatWindow" style="background:white;padding:10px;border-radius:6px;max-height:200px;overflow-y:auto"></div>
+    <!-- Chat Tab -->
+    <div id="chat" class="tab hidden">
+      <h1>Chat</h1>
+      <div class="item">Start 1-on-1 Chat with Tutor.</div>
     </div>
 
-    <div id="settingsTab" class="tab hidden">
-      <h3>Settings</h3>
-      <button onclick="saveSettings()">Save Settings</button>
+    <!-- Settings Tab -->
+    <div id="settings" class="tab hidden">
+      <h1>Settings</h1>
+      <div class="item">Profile Settings, Password Update, Preferences.</div>
     </div>
   </div>
 
-<script>
-// === Inserted Fixed JavaScript (from GPT fix) ===
-const stateKey = 'tutor_demo_state_v1_student';
-let appState = JSON.parse(localStorage.getItem(stateKey) || '{}');
-const ROLE = 'student';
-const ROLE_LABEL = 'Student';
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById('pageSub').innerText = 'Quick snapshot for ' + ROLE_LABEL;
-  initDemo(); renderCourses(); renderMeetings(); renderAnnouncements(); renderInbox();
-  renderBilling(); renderCerts(); renderConvos();
-  document.getElementById('fullname').value = appState.profile?.name || '';
-  document.getElementById('email').value = appState.profile?.email || '';
-  document.getElementById('bio').value = appState.profile?.bio || '';
-  openTab('overview');
-  document.getElementById('newMeetingBtn').addEventListener('click', () => openTab('meetings'));
-});
-function saveState(){ localStorage.setItem(stateKey, JSON.stringify(appState)); }
-function initDemo(){
-  if(!appState.init){
-    appState.profile = {name:'Demo Student',email:'student@example.com',bio:'Student account demo'};
-    appState.courses = [{title:'Mathematics Basics',category:'Math',progress:'40%'}];
-    appState.meetings = []; appState.docs=[]; appState.notes=[]; appState.announcements=[];
-    appState.chats={}; appState.payments=[]; appState.certs=[]; appState.init=true; saveState();
-  }
-}
-document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',e=>{
-  e.preventDefault(); openTab(a.getAttribute('data-tab'));
-}));
-function openTab(tab){
-  document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active',a.dataset.tab===tab));
-  document.querySelectorAll('.tab').forEach(t=>t.classList.add('hidden'));
-  const el=document.getElementById(tab+'Tab'); if(el) el.classList.remove('hidden');
-  document.getElementById('pageTitle').innerText = tab.charAt(0).toUpperCase()+tab.slice(1);
-}
-// Profile
-function saveProfile(){
-  appState.profile={name:fullname.value,email:email.value,bio:bio.value}; saveState();
-  alert('Profile saved'); profileShort.innerText=bio.value;
-}
-function resetProfile(){ fullname.value='';email.value='';bio.value=''; }
-// Courses
-function renderCourses(){
-  const tb=document.querySelector('#coursesTable tbody'); tb.innerHTML='';
-  (appState.courses||[]).forEach((c,i)=>{const tr=document.createElement('tr');
-    tr.innerHTML=`<td>${c.title}</td><td>${c.category}</td><td>${c.progress}</td>
-    <td><button onclick="removeCourse(${i})">Remove</button></td>`; tb.appendChild(tr);
-  });
-}
-function addCourse(){const t=prompt('Course title'); if(!t)return; appState.courses.push({title:t,category:'General',progress:'0%'}); saveState(); renderCourses();}
-function removeCourse(i){appState.courses.splice(i,1);saveState();renderCourses();}
-// Docs
-function uploadDoc(){const f=docFile.files[0]; if(!f){alert('Select a file');return;}
-  appState.docs.push({name:f.name,size:f.size,date:new Date().toISOString()}); saveState(); renderDocs();}
-function renderDocs(){const el=docsList; el.innerHTML=''; (appState.docs||[]).forEach(d=>{
-  const div=document.createElement('div'); div.className='item';
-  div.innerHTML=`<div><strong>${d.name}</strong><div class="muted small">${(d.size/1024).toFixed(1)} KB</div></div>`; el.appendChild(div);
-});}
-// Meetings
-function scheduleMeeting(){const title=meetTitle.value,time=meetTime.value; if(!title||!time){alert('Title & time required');return;}
-  appState.meetings.push({title,time,id:Date.now()}); saveState(); renderMeetings();}
-function renderMeetings(){const el=meetingsList; el.innerHTML=''; (appState.meetings||[]).forEach(m=>{
-  const item=document.createElement('div'); item.className='item';
-  item.innerHTML=`<div><strong>${m.title}</strong></div><div><button onclick="joinMeeting('${m.id}')">Join</button></div>`; el.appendChild(item);
-});}
-function joinMeeting(id){alert('Joining meeting '+id);}
-async function startInstantCall(){try{const s=await navigator.mediaDevices.getUserMedia({video:true,audio:true});const w=localVideoWrap;w.innerHTML='';const v=document.createElement('video');v.autoplay=true;v.muted=true;v.srcObject=s;v.style.width='100%';w.appendChild(v);}catch(e){alert('Camera access denied');}}
-// Announcements
-function postAnnouncement(){const t=annTitle.value,b=annBody.value;if(!t||!b)return;appState.announcements.unshift({title:t,body:b});saveState();renderAnnouncements();}
-function renderAnnouncements(){const el=announcements;el.innerHTML='';(appState.announcements||[]).forEach(a=>{const d=document.createElement('div');d.className='item';d.innerHTML=`<div><strong>${a.title}</strong><div class='muted small'>${a.body}</div></div>`;el.appendChild(d);});}
-function renderInbox(){const el=inboxList;el.innerHTML='';(appState.announcements||[]).forEach(a=>{const d=document.createElement('div');d.className='item';d.innerHTML=`<div>${a.title}</div>`;el.appendChild(d);});}
-// Payments
-function makePayment(){const amt=payAmt.value;if(!amt)return;appState.payments.push({amount:amt,date:new Date().toISOString()});saveState();renderBilling();}
-function renderBilling(){billingArea.innerText=(appState.payments||[]).map(p=>`${p.amount} @ ${new Date(p.date).toLocaleString()}`).join('\n');}
-// Certs
-function issueCert(){const who=prompt('Issue to:');if(!who)return;appState.certs.push({name:who,issued:new Date().toISOString()});saveState();renderCerts();}
-function renderCerts(){const el=certsList;el.innerHTML='';(appState.certs||[]).forEach(c=>{const d=document.createElement('div');d.className='item';d.innerHTML=`<div>${c.name}</div>`;el.appendChild(d);});}
-// Chat
-function sendChat(){const to=chatWith.value,msg=chatMsg.value;if(!to||!msg)return;const k=[ROLE,to].sort().join('__');appState.chats[k]=appState.chats[k]||[];appState.chats[k].push({from:ROLE,msg,ts:Date.now()});saveState();renderConvos();chatMsg.value='';}
-function renderConvos(){const el=convos;el.innerHTML='';Object.keys(appState.chats||{}).forEach(k=>{const d=document.createElement('div');d.className='item';d.innerHTML=`<div>${k}</div>`;el.appendChild(d);});}
-function saveSettings(){alert('Settings saved');}
-</script>
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll(".tab").forEach(tab => tab.classList.add("hidden"));
+      document.getElementById(tabId).classList.remove("hidden");
+      document.querySelectorAll(".nav a").forEach(link => link.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+  </script>
 </body>
 </html>
