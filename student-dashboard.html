@@ -1,125 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Dashboard</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
-<!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css"/>
-<link rel="stylesheet" href="css/font-awesome.min.css"/>
-<link rel="stylesheet" href="css/style.css"/>
-<style>
-    body { font-family: 'Raleway', sans-serif; background-color: #f4f4f4; }
-    .dashboard-header { background: #2c3e50; color: #fff; padding: 20px 0; text-align: center; }
-    .dashboard-header h2 { margin: 0; }
-    .dashboard-nav { background: #34495e; padding: 10px 0; }
-    .dashboard-nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
-    .dashboard-nav ul li { margin: 0 15px; }
-    .dashboard-nav ul li a { color: #fff; text-decoration: none; font-weight: 600; }
-    .dashboard-nav ul li a:hover { color: #f39c12; }
-    .dashboard-content { padding: 30px; }
-    .card { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
-    .site-btn { background: #f39c12; color: #fff; border: none; padding: 8px 20px; border-radius: 3px; text-decoration: none; }
-    .site-btn:hover { background: #e67e22; }
-    .chat-box { max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
-    .chat-message { margin-bottom: 10px; }
-    .chat-message span { font-weight: bold; }
-</style>
+  <title>Student Dashboard - Aviya Magnus</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Aviya Magnus Student Dashboard">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="shortcut icon"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="css/owl.carousel.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <style>
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: #f5f6fa;
+    }
+
+    /* Dashboard Banner */
+    .dashboard-banner {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: #fff;
+      padding: 60px 0;
+      text-align: center;
+    }
+    .dashboard-banner h2 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .dashboard-banner p {
+      color: #ecf0f1;
+      font-size: 15px;
+    }
+
+    /* Dashboard Navigation */
+    .dashboard-nav {
+      background: #f39c12;
+      padding: 15px 0;
+    }
+    .dashboard-nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+    .dashboard-nav ul li {
+      margin: 0 15px;
+    }
+    .dashboard-nav ul li a {
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    .dashboard-nav ul li a:hover {
+      color: #2c3e50;
+    }
+
+    /* Dashboard Content */
+    .dashboard-content {
+      padding: 60px 0;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+      padding: 25px;
+      margin-bottom: 30px;
+      transition: 0.3s;
+    }
+    .card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+    .card h4 {
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .chat-box {
+      max-height: 250px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 5px;
+      background: #fafafa;
+      margin-bottom: 15px;
+    }
+    .chat-message {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .chat-message span {
+      color: #f39c12;
+      font-weight: 600;
+    }
+
+    .site-btn {
+      background: #f39c12;
+      color: #fff !important;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .site-btn:hover {
+      background: #e67e22;
+    }
+
+    .form-control {
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      box-shadow: none;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-nav ul {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="dashboard-header">
+  <!-- Header section (same as index) -->
+  <header class="header-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-3">
+          <div class="site-logo">
+            <img src="img/logo.png" alt="">
+          </div>
+          <div class="nav-switch">
+            <i class="fa fa-bars"></i>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-9">
+          <a href="login-options.html" class="site-btn header-btn">Logout</a>
+          <nav class="main-menu">
+            <ul>
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/about.html">About</a></li>
+              <li><a href="/courses.html">Courses</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header section end -->
+
+  <!-- Dashboard Banner -->
+  <section class="dashboard-banner">
     <h2>Welcome, Student John Doe!</h2>
     <p>Email: john@example.com | Role: Student</p>
-</header>
+  </section>
 
-<!-- Navigation -->
-<nav class="dashboard-nav">
+  <!-- Dashboard Navigation -->
+  <nav class="dashboard-nav">
     <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Courses</a></li>
-        <li><a href="#">Messages</a></li>
-        <li><a href="#">Schedule</a></li>
-        <li><a href="#">Documents</a></li>
-        <li><a href="#">Profile</a></li>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Courses</a></li>
+      <li><a href="#">Messages</a></li>
+      <li><a href="#">Schedule</a></li>
+      <li><a href="#">Documents</a></li>
+      <li><a href="#">Profile</a></li>
     </ul>
-</nav>
+  </nav>
 
-<!-- Dashboard Content -->
-<div class="container dashboard-content">
-
+  <!-- Dashboard Content -->
+  <div class="container dashboard-content">
     <!-- Notifications -->
     <div class="card">
-        <h4>Notifications / Announcements</h4>
-        <ul>
-            <li>Welcome to your Student Dashboard!</li>
-        </ul>
+      <h4>Notifications / Announcements</h4>
+      <ul>
+        <li>Welcome to your Student Dashboard!</li>
+      </ul>
     </div>
 
     <!-- Messaging -->
     <div class="card">
-        <h4>Messaging</h4>
-        <div class="chat-box" id="chatBox"></div>
-        <input type="text" id="chatRecipient" placeholder="Recipient (email)" class="form-control mb-2">
-        <input type="text" id="chatMessage" placeholder="Type your message" class="form-control mb-2">
-        <button class="site-btn" onclick="sendMessage()">Send</button>
+      <h4>Messaging</h4>
+      <div class="chat-box" id="chatBox"></div>
+      <input type="text" id="chatRecipient" placeholder="Recipient (email)" class="form-control">
+      <input type="text" id="chatMessage" placeholder="Type your message" class="form-control">
+      <button class="site-btn" onclick="sendMessage()">Send Message</button>
     </div>
 
     <!-- Schedule Meeting -->
     <div class="card">
-        <h4>Schedule Meeting / Direct Call</h4>
-        <input type="datetime-local" id="meetingTime" class="form-control mb-2">
-        <input type="text" id="meetingWith" placeholder="Participant email" class="form-control mb-2">
-        <button class="site-btn" onclick="scheduleMeeting()">Schedule Meeting</button>
+      <h4>Schedule Meeting / Direct Call</h4>
+      <input type="datetime-local" id="meetingTime" class="form-control">
+      <input type="text" id="meetingWith" placeholder="Participant email" class="form-control">
+      <button class="site-btn" onclick="scheduleMeeting()">Schedule Meeting</button>
     </div>
 
     <!-- Documents -->
     <div class="card">
-        <h4>Documents</h4>
-        <input type="file" id="docUpload" class="form-control mb-2">
-        <button class="site-btn" onclick="uploadDocument()">Upload</button>
-        <ul id="docList">
-            <li>No documents uploaded yet.</li>
-        </ul>
+      <h4>Documents</h4>
+      <input type="file" id="docUpload" class="form-control">
+      <button class="site-btn" onclick="uploadDocument()">Upload</button>
+      <ul id="docList">
+        <li>No documents uploaded yet.</li>
+      </ul>
     </div>
+  </div>
 
-</div>
+  <!-- Footer -->
+  <footer class="footer-section spad pb-0">
+    <div class="footer-top">
+      <div class="footer-warp">
+        <div class="row">
+          <div class="widget-item">
+            <h4>Contact Info</h4>
+            <ul class="contact-list">
+              <li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
+              <li>+918248802124</li>
+              <li>contactus@aviyamagnus.com</li>
+            </ul>
+          </div>
+          <div class="widget-item">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/about.html">About</a></li>
+              <li><a href="/courses.html">Courses</a></li>
+              <li><a href="/contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="widget-item">
+            <h4>Newsletter</h4>
+            <form class="footer-newslatter">
+              <input type="email" placeholder="E-mail">
+              <button class="site-btn">Subscribe</button>
+              <p>*We don’t spam</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-warp">
+        <div class="copyright">
+          Copyright &copy;
+          <script>document.write(new Date().getFullYear());</script> 
+          Aviya Magnus | All Rights Reserved
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<script>
-function sendMessage() {
-    const recipient = document.getElementById('chatRecipient').value.trim();
-    const message = document.getElementById('chatMessage').value.trim();
-    if(!recipient || !message) return alert("Fill recipient and message");
-    const chatBox = document.getElementById('chatBox');
-    const div = document.createElement('div');
-    div.className = "chat-message";
-    div.innerHTML = `<span>You to ${recipient}:</span> ${message}`;
-    chatBox.appendChild(div);
-    document.getElementById('chatMessage').value = '';
-}
+  <!-- JS -->
+  <script>
+    function sendMessage() {
+      const recipient = document.getElementById('chatRecipient').value.trim();
+      const message = document.getElementById('chatMessage').value.trim();
+      if (!recipient || !message) return alert("Please fill out both fields.");
+      const chatBox = document.getElementById('chatBox');
+      const div = document.createElement('div');
+      div.className = "chat-message";
+      div.innerHTML = `<span>You to ${recipient}:</span> ${message}`;
+      chatBox.appendChild(div);
+      document.getElementById('chatMessage').value = '';
+    }
 
-function scheduleMeeting() {
-    const time = document.getElementById('meetingTime').value;
-    const withWhom = document.getElementById('meetingWith').value.trim();
-    if(!time || !withWhom) return alert("Fill all fields");
-    alert(`Meeting scheduled with ${withWhom} at ${time}`);
-}
+    function scheduleMeeting() {
+      const time = document.getElementById('meetingTime').value;
+      const withWhom = document.getElementById('meetingWith').value.trim();
+      if (!time || !withWhom) return alert("Please fill out all fields.");
+      alert(`Meeting scheduled with ${withWhom} at ${time}`);
+    }
 
-function uploadDocument() {
-    const fileInput = document.getElementById('docUpload');
-    if(fileInput.files.length === 0) return alert("Select a file to upload");
-    const file = fileInput.files[0];
-    const list = document.getElementById('docList');
-    if(list.innerHTML.includes("No documents")) list.innerHTML = "";
-    const li = document.createElement('li');
-    li.innerText = file.name;
-    list.appendChild(li);
-    fileInput.value = '';
-}
-</script>
+    function uploadDocument() {
+      const fileInput = document.getElementById('docUpload');
+      if (fileInput.files.length === 0) return alert("Select a file to upload.");
+      const file = fileInput.files[0];
+      const list = document.getElementById('docList');
+      if (list.innerHTML.includes("No documents")) list.innerHTML = "";
+      const li = document.createElement('li');
+      li.innerText = file.name;
+      list.appendChild(li);
+      fileInput.value = '';
+    }
+  </script>
 
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
