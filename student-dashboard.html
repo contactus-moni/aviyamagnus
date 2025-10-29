@@ -1,304 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Student Dashboard - Aviya Magnus</title>
-  <meta charset="UTF-8">
-  <meta name="description" content="Aviya Magnus Student Dashboard">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Favicon -->
-  <link href="img/favicon.ico" rel="shortcut icon"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | Aviya Magnus</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="css/font-awesome.min.css"/>
-  <link rel="stylesheet" href="css/owl.carousel.css"/>
-  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    body {
-      font-family: 'Raleway', sans-serif;
-      background-color: #f5f6fa;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Dashboard Banner */
-    .dashboard-banner {
-      background: linear-gradient(135deg, #2c3e50, #34495e);
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f6f9;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 250px;
+      background-color: #1a237e;
       color: #fff;
-      padding: 60px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sidebar .brand {
       text-align: center;
+      padding: 25px 10px;
+      font-size: 20px;
+      font-weight: 600;
+      background-color: #0d1548;
+      letter-spacing: 1px;
     }
-    .dashboard-banner h2 {
-      font-weight: 700;
-      margin-bottom: 10px;
+
+    .sidebar ul {
+      list-style: none;
+      margin-top: 20px;
     }
-    .dashboard-banner p {
-      color: #ecf0f1;
+
+    .sidebar ul li {
+      width: 100%;
+    }
+
+    .sidebar ul li a {
+      display: flex;
+      align-items: center;
+      padding: 15px 25px;
+      color: #cfd8dc;
+      text-decoration: none;
+      transition: all 0.3s ease;
       font-size: 15px;
     }
 
-    /* Dashboard Navigation */
-    .dashboard-nav {
-      background: #f39c12;
-      padding: 15px 0;
+    .sidebar ul li a i {
+      margin-right: 15px;
+      font-size: 18px;
     }
-    .dashboard-nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      flex-wrap: wrap;
-    }
-    .dashboard-nav ul li {
-      margin: 0 15px;
-    }
-    .dashboard-nav ul li a {
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+      background-color: #3949ab;
       color: #fff;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-decoration: none;
     }
-    .dashboard-nav ul li a:hover {
-      color: #2c3e50;
+
+    .sidebar .user {
+      padding: 20px;
+      background-color: #0d1548;
+      text-align: center;
+    }
+
+    .sidebar .user img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    .sidebar .user h4 {
+      font-size: 16px;
+      color: #fff;
+    }
+
+    /* Main Section */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .topbar {
+      height: 60px;
+      background-color: #3949ab;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+    }
+
+    .topbar h2 {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .topbar .logout-btn {
+      background-color: #fbc02d;
+      color: #000;
+      padding: 6px 14px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
     }
 
     /* Dashboard Content */
-    .dashboard-content {
-      padding: 60px 0;
+    .dashboard {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
     }
 
     .card {
-      background: #fff;
-      border-radius: 6px;
-      box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
       padding: 25px;
-      margin-bottom: 30px;
       transition: 0.3s;
     }
+
     .card:hover {
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
-    .card h4 {
-      color: #2c3e50;
-      font-weight: 700;
-      margin-bottom: 15px;
+      transform: translateY(-3px);
     }
 
-    .chat-box {
-      max-height: 250px;
-      overflow-y: auto;
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 5px;
-      background: #fafafa;
-      margin-bottom: 15px;
-    }
-    .chat-message {
+    .card h4 {
       margin-bottom: 10px;
+      color: #1a237e;
+    }
+
+    .chart-box {
+      height: 200px;
+      background-color: #e8eaf6;
+      border-radius: 10px;
+    }
+
+    .performance-bar {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+
+    .performance-bar div {
+      width: 25%;
+      height: 12px;
+      border-radius: 10px;
+      background: #c5cae9;
+      position: relative;
+    }
+
+    .performance-bar div::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-radius: 10px;
+      background: #3949ab;
+      width: var(--progress, 60%);
+    }
+
+    .message-list {
+      max-height: 150px;
+      overflow-y: auto;
       font-size: 14px;
     }
-    .chat-message span {
-      color: #f39c12;
-      font-weight: 600;
+
+    .message {
+      border-bottom: 1px solid #eee;
+      padding: 8px 0;
     }
 
-    .site-btn {
-      background: #f39c12;
-      color: #fff !important;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 4px;
+    .message span {
+      color: #3949ab;
       font-weight: 600;
-      transition: 0.3s;
-    }
-    .site-btn:hover {
-      background: #e67e22;
-    }
-
-    .form-control {
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      box-shadow: none;
-      margin-bottom: 10px;
     }
 
     @media (max-width: 768px) {
-      .dashboard-nav ul {
-        flex-wrap: wrap;
+      .sidebar {
+        width: 70px;
+      }
+      .sidebar ul li a span {
+        display: none;
+      }
+      .sidebar .user {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header section (same as index) -->
-  <header class="header-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-3">
-          <div class="site-logo">
-            <img src="img/logo.png" alt="">
-          </div>
-          <div class="nav-switch">
-            <i class="fa fa-bars"></i>
-          </div>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">AVIYA MAGNUS</div>
+      <ul>
+        <li><a href="student-dashboard.html" class="active"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="student-courses.html"><i class="fa fa-book"></i> <span>Courses</span></a></li>
+        <li><a href="student-messages.html"><i class="fa fa-comments"></i> <span>Messages</span></a></li>
+        <li><a href="student-schedule.html"><i class="fa fa-calendar"></i> <span>Schedule</span></a></li>
+        <li><a href="student-documents.html"><i class="fa fa-file"></i> <span>Documents</span></a></li>
+        <li><a href="student-performance.html"><i class="fa fa-chart-line"></i> <span>Performance</span></a></li>
+        <li><a href="student-profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+      </ul>
+    </div>
+    <div class="user">
+      <img src="img/student-avatar.jpg" alt="User">
+      <h4>John Doe</h4>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <section class="main-content">
+    <div class="topbar">
+      <h2>Welcome back, John Doe!</h2>
+      <a href="login-options.html" class="logout-btn">Logout</a>
+    </div>
+
+    <div class="dashboard">
+      <div class="card">
+        <h4>Performance Overview</h4>
+        <div class="chart-box">
+          <!-- You can integrate Chart.js here -->
         </div>
-        <div class="col-lg-9 col-md-9">
-          <a href="login-options.html" class="site-btn header-btn">Logout</a>
-          <nav class="main-menu">
-            <ul>
-              <li><a href="/index.html">Home</a></li>
-              <li><a href="/about.html">About</a></li>
-              <li><a href="/courses.html">Courses</a></li>
-              <li><a href="/contact.html">Contact</a></li>
-            </ul>
-          </nav>
+        <div class="performance-bar">
+          <div style="--progress: 90%;"></div>
+          <div style="--progress: 70%;"></div>
+          <div style="--progress: 85%;"></div>
+          <div style="--progress: 60%;"></div>
         </div>
       </div>
-    </div>
-  </header>
-  <!-- Header section end -->
 
-  <!-- Dashboard Banner -->
-  <section class="dashboard-banner">
-    <h2>Welcome, Student John Doe!</h2>
-    <p>Email: john@example.com | Role: Student</p>
+      <div class="card">
+        <h4>Recent Messages</h4>
+        <div class="message-list">
+          <div class="message"><span>Tutor Smith:</span> Don’t forget your assignment due Friday!</div>
+          <div class="message"><span>Admin:</span> Class schedule updated for next week.</div>
+          <div class="message"><span>Peer Mentor:</span> Join the study group today at 6 PM.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Upcoming Schedule</h4>
+        <ul>
+          <li>📘 Math Class – 10:00 AM</li>
+          <li>💻 Coding Lab – 1:00 PM</li>
+          <li>🧠 Study Group – 6:00 PM</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>Uploaded Documents</h4>
+        <ul id="docList">
+          <li>Assignment1.pdf</li>
+          <li>LectureNotes.docx</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <!-- Dashboard Navigation -->
-  <nav class="dashboard-nav">
-    <ul>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Courses</a></li>
-      <li><a href="#">Messages</a></li>
-      <li><a href="#">Schedule</a></li>
-      <li><a href="#">Documents</a></li>
-      <li><a href="#">Profile</a></li>
-    </ul>
-  </nav>
-
-  <!-- Dashboard Content -->
-  <div class="container dashboard-content">
-    <!-- Notifications -->
-    <div class="card">
-      <h4>Notifications / Announcements</h4>
-      <ul>
-        <li>Welcome to your Student Dashboard!</li>
-      </ul>
-    </div>
-
-    <!-- Messaging -->
-    <div class="card">
-      <h4>Messaging</h4>
-      <div class="chat-box" id="chatBox"></div>
-      <input type="text" id="chatRecipient" placeholder="Recipient (email)" class="form-control">
-      <input type="text" id="chatMessage" placeholder="Type your message" class="form-control">
-      <button class="site-btn" onclick="sendMessage()">Send Message</button>
-    </div>
-
-    <!-- Schedule Meeting -->
-    <div class="card">
-      <h4>Schedule Meeting / Direct Call</h4>
-      <input type="datetime-local" id="meetingTime" class="form-control">
-      <input type="text" id="meetingWith" placeholder="Participant email" class="form-control">
-      <button class="site-btn" onclick="scheduleMeeting()">Schedule Meeting</button>
-    </div>
-
-    <!-- Documents -->
-    <div class="card">
-      <h4>Documents</h4>
-      <input type="file" id="docUpload" class="form-control">
-      <button class="site-btn" onclick="uploadDocument()">Upload</button>
-      <ul id="docList">
-        <li>No documents uploaded yet.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer-section spad pb-0">
-    <div class="footer-top">
-      <div class="footer-warp">
-        <div class="row">
-          <div class="widget-item">
-            <h4>Contact Info</h4>
-            <ul class="contact-list">
-              <li>1/101, Kavarai Street, Latteri<br>Vellore 632202</li>
-              <li>+918248802124</li>
-              <li>contactus@aviyamagnus.com</li>
-            </ul>
-          </div>
-          <div class="widget-item">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="/index.html">Home</a></li>
-              <li><a href="/about.html">About</a></li>
-              <li><a href="/courses.html">Courses</a></li>
-              <li><a href="/contact.html">Contact</a></li>
-            </ul>
-          </div>
-          <div class="widget-item">
-            <h4>Newsletter</h4>
-            <form class="footer-newslatter">
-              <input type="email" placeholder="E-mail">
-              <button class="site-btn">Subscribe</button>
-              <p>*We don’t spam</p>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-warp">
-        <div class="copyright">
-          Copyright &copy;
-          <script>document.write(new Date().getFullYear());</script> 
-          Aviya Magnus | All Rights Reserved
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- JS -->
-  <script>
-    function sendMessage() {
-      const recipient = document.getElementById('chatRecipient').value.trim();
-      const message = document.getElementById('chatMessage').value.trim();
-      if (!recipient || !message) return alert("Please fill out both fields.");
-      const chatBox = document.getElementById('chatBox');
-      const div = document.createElement('div');
-      div.className = "chat-message";
-      div.innerHTML = `<span>You to ${recipient}:</span> ${message}`;
-      chatBox.appendChild(div);
-      document.getElementById('chatMessage').value = '';
-    }
-
-    function scheduleMeeting() {
-      const time = document.getElementById('meetingTime').value;
-      const withWhom = document.getElementById('meetingWith').value.trim();
-      if (!time || !withWhom) return alert("Please fill out all fields.");
-      alert(`Meeting scheduled with ${withWhom} at ${time}`);
-    }
-
-    function uploadDocument() {
-      const fileInput = document.getElementById('docUpload');
-      if (fileInput.files.length === 0) return alert("Select a file to upload.");
-      const file = fileInput.files[0];
-      const list = document.getElementById('docList');
-      if (list.innerHTML.includes("No documents")) list.innerHTML = "";
-      const li = document.createElement('li');
-      li.innerText = file.name;
-      list.appendChild(li);
-      fileInput.value = '';
-    }
-  </script>
-
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>
