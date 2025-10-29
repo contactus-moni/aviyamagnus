@@ -490,6 +490,18 @@ document.getElementById('bio').value = appState.profile?.bio || '';
 setRole(ROLE);
 openTab('overview');
 document.getElementById('newMeetingBtn').addEventListener('click', ()=>openTab('meetings'));
+  
+  function openTab(tab) {
+  document.querySelectorAll('.nav a').forEach(a =>
+    a.classList.toggle('active', a.getAttribute('data-tab')===tab)
+  );
+  document.querySelectorAll('.tab').forEach(t => t.classList.add('hidden'));
+  const el = document.getElementById(tab + 'Tab');
+  if(el) el.classList.remove('hidden');
+  document.getElementById('pageTitle').innerText =
+    (tab.charAt(0).toUpperCase()+tab.slice(1)).replace(/_/g,' ');
+}
+
 </script>
 </body>
 </html>
