@@ -83,7 +83,7 @@
               <label for="student-password" class="form-label">Password</label>
               <input type="password" id="student-password" name="password" class="form-control" required>
             </div>
-            <button type="submit" class="site-btn">Login as Student</button>
+            <button type="button" class="site-btn" onclick="loginAsStudent()">Login as Student</button>
           </form>
 
           <div class="text-center">
@@ -171,5 +171,12 @@
   <script src="js/circle-progress.min.js"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
+	<script>
+	        function loginAsStudent() {
+            // Set role in localStorage (used by dashboard)
+            localStorage.setItem('userRole', 'student');
+            window.location.href = 'student-dashboard.html'; // redirect to student dashboard
+        }
+	</script>
 </body>
 </html>
