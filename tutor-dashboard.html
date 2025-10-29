@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutor Dashboard</title>
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/font-awesome.min.css"/>
+<link rel="stylesheet" href="css/style.css"/>
+<style>
+/* same CSS as before */
+body { font-family: 'Raleway', sans-serif; background-color: #f4f4f4; }
+.dashboard-header { background: #2c3e50; color: #fff; padding: 20px 0; text-align: center; }
+.dashboard-header h2 { margin: 0; }
+.dashboard-nav { background: #34495e; padding: 10px 0; }
+.dashboard-nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; }
+.dashboard-nav ul li { margin: 0 15px; }
+.dashboard-nav ul li a { color: #fff; text-decoration: none; font-weight: 600; }
+.dashboard-nav ul li a:hover { color: #f39c12; }
+.dashboard-content { padding: 30px; }
+.card { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.1); }
+.site-btn { background: #f39c12; color: #fff; border: none; padding: 8px 20px; border-radius: 3px; text-decoration: none; }
+.site-btn:hover { background: #e67e22; }
+.chat-box { max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
+.chat-message { margin-bottom: 10px; }
+.chat-message span { font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header class="dashboard-header">
+    <h2>Welcome, Tutor John Doe!</h2>
+    <p>Email: john@example.com | Role: Tutor</p>
+</header>
+
+<nav class="dashboard-nav">
+    <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">My Students</a></li>
+        <li><a href="#">Messages</a></li>
+        <li><a href="#">Schedule</a></li>
+        <li><a href="#">Documents</a></li>
+        <li><a href="#">Profile</a></li>
+    </ul>
+</nav>
+
+<div class="container dashboard-content">
+
+    <div class="card">
+        <h4>Notifications / Announcements</h4>
+        <ul>
+            <li>Welcome to your Tutor Dashboard!</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h4>Messaging</h4>
+        <div class="chat-box" id="chatBox"></div>
+        <input type="text" id="chatRecipient" placeholder="Recipient (email)" class="form-control mb-2">
+        <input type="text" id="chatMessage" placeholder="Type your message" class="form-control mb-2">
+        <button class="site-btn" onclick="sendMessage()">Send</button>
+    </div>
+
+    <div class="card">
+        <h4>Schedule Meeting / Direct Call</h4>
+        <input type="datetime-local" id="meetingTime" class="form-control mb-2">
+        <input type="text" id="meetingWith" placeholder="Participant email" class="form-control mb-2">
+        <button class="site-btn" onclick="scheduleMeeting()">Schedule Meeting</button>
+    </div>
+
+    <div class="card">
+        <h4>Documents</h4>
+        <input type="file" id="docUpload" class="form-control mb-2">
+        <button class="site-btn" onclick="uploadDocument()">Upload</button>
+        <ul id="docList">
+            <li>No documents uploaded yet.</li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+function sendMessage() {
+    const recipient = document.getElementById('chatRecipient').value.trim();
+    const message = document.getElementById('chatMessage').value.trim();
+    if(!recipient || !message) return alert("Fill recipient and message");
+    const chatBox = document.getElementById('chatBox');
+    const div = document.createElement('div');
+    div.className = "chat-message";
+    div.innerHTML = `<span>You to ${recipient}:</span> ${message}`;
+    chatBox.appendChild(div);
+    document.getElementById('chatMessage').value = '';
+}
+
+function scheduleMeeting() {
+    const time = document.getElementById('meetingTime').value;
+    const withWhom = document.getElementById('meetingWith').value.trim();
+    if(!time || !withWhom) return alert("Fill all fields");
+    alert(`Meeting scheduled with ${withWhom} at ${time}`);
+}
+
+function uploadDocument() {
+    const fileInput = document.getElementById('docUpload');
+    if(fileInput.files.length === 0) return alert("Select a file to upload");
+    const file = fileInput.files[0];
+    const list = document.getElementById('docList');
+    if(list.innerHTML.includes("No documents")) list.innerHTML = "";
+    const li = document.createElement('li');
+    li.innerText = file.name;
+    list.appendChild(li);
+    fileInput.value = '';
+}
+</script>
+
+</body>
+</html>
