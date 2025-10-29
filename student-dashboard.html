@@ -1,302 +1,495 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviya Magnus | Student Portal</title>
-
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f6fb;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 260px;
-      background: linear-gradient(180deg, #2c3e50, #2980b9);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .brand {
-      padding: 25px 10px;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-align: center;
-      background: rgba(255,255,255,0.1);
-    }
-
-    .sidebar ul {
-      list-style: none;
-      margin-top: 30px;
-    }
-
-    .sidebar ul li a {
-      display: flex;
-      align-items: center;
-      padding: 15px 25px;
-      color: #ecf0f1;
-      font-size: 15px;
-      text-decoration: none;
-      transition: 0.3s;
-      border-left: 4px solid transparent;
-      cursor: pointer;
-    }
-
-    .sidebar ul li a i {
-      margin-right: 15px;
-      font-size: 18px;
-    }
-
-    .sidebar ul li a:hover,
-    .sidebar ul li a.active {
-      background: rgba(255,255,255,0.1);
-      border-left: 4px solid #f1c40f;
-      color: #fff;
-    }
-
-    .sidebar .user {
-      text-align: center;
-      padding: 25px;
-      background: rgba(0,0,0,0.1);
-    }
-
-    .sidebar .user img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      border: 3px solid #f1c40f;
-      margin-bottom: 10px;
-    }
-
-    .sidebar .user h4 {
-      font-size: 16px;
-      color: #fff;
-      font-weight: 500;
-    }
-
-    /* Main Content */
-    .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-
-    /* Header */
-    .top-banner {
-      background: url('https://images.unsplash.com/photo-1584697964154-ef7a1b60a2eb?auto=format&fit=crop&w=1950&q=80') center/cover;
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      color: #fff;
-      background-color: rgba(0,0,0,0.4);
-      background-blend-mode: multiply;
-    }
-
-    .top-banner h2 { font-size: 24px; font-weight: 600; }
-    .logout-btn {
-      background-color: #f1c40f;
-      color: #000;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    /* Dashboard Container */
-    .content-section {
-      padding: 40px;
-      display: none;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    .active-section { display: block; }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      padding: 25px;
-      margin-bottom: 25px;
-    }
-
-    .card h4 { color: #2c3e50; margin-bottom: 15px; font-weight: 600; }
-
-    .chart-box {
-      height: 200px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-    }
-
-    .progress-bar {
-      height: 12px; border-radius: 10px; background: #ecf0f1; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%; background: linear-gradient(90deg, #27ae60, #2ecc71); width: var(--progress, 75%);
-    }
-
-    .message { padding: 8px 0; border-bottom: 1px solid #eee; font-size: 14px; }
-    .message span { font-weight: 600; color: #2980b9; }
-
-    ul { list-style: none; }
-    li { padding: 6px 0; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-      .sidebar { width: 70px; }
-      .sidebar ul li a span { display: none; }
-      .sidebar .user { display: none; }
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Student Dashboard - Tutoring Platform</title>
+<style>
+  :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#4f46e5;--glass:rgba(255,255,255,0.03)}
+  html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+  body{background:linear-gradient(180deg,#071029 0%, #081327 100%);color:#e6eef8;display:flex;min-height:100vh}
+  .app{display:flex;flex:1;gap:20px;padding:24px}
+  /* left nav */
+  .nav{width:260px;background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(3,6,23,0.6);position:relative}
+  .brand{font-weight:700;font-size:18px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .brand .logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:inline-block}
+  .user{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+  .avatar{width:44px;height:44px;border-radius:8px;background:var(--glass);display:inline-block;border:1px solid rgba(255,255,255,0.03)}
+  .nav a{display:flex;gap:10px;align-items:center;padding:10px;border-radius:8px;color:var(--muted);text-decoration:none;margin:6px 0}
+  .nav a.active{background:linear-gradient(90deg,rgba(79,70,229,0.12),rgba(6,182,212,0.06));color:#eaf0ff;border-left:3px solid var(--accent);padding-left:8px}
+  .nav small{display:block;color:var(--muted);margin-top:6px;font-size:12px}
+  .content{flex:1;background:transparent;display:flex;flex-direction:column;gap:16px}
+  .top{display:flex;justify-content:space-between;align-items:center}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  table{width:100%;border-collapse:collapse}
+  table th,table td{padding:8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:14px;color:#dbeafe}
+  .muted{color:var(--muted);font-size:13px}
+  .controls{display:flex;gap:8px;align-items:center}
+  button{background:var(--accent);border:0;padding:8px 12px;border-radius:8px;color:white;cursor:pointer}
+  input,select,textarea{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;width:100%}
+  .right-panel{display:grid;grid-template-rows:auto 1fr;gap:12px;width:360px}
+  .small{font-size:13px}
+  .badge{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:999px;font-weight:600;font-size:13px}
+  .list{display:flex;flex-direction:column;gap:8px}
+  .list .item{padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);display:flex;justify-content:space-between;align-items:center}
+  .hidden{display:none}
+  footer{color:var(--muted);font-size:13px;padding:8px;text-align:center}
+  /* responsive */
+  @media (max-width:900px){.nav{display:none}.app{padding:12px}.right-panel{display:none}}
+</style>
 </head>
 <body>
-
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div>
-      <div class="brand">AVIYA MAGNUS</div>
-      <ul id="navLinks">
-        <li><a class="active" data-section="dashboard"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a data-section="courses"><i class="fa fa-book"></i> <span>Courses</span></a></li>
-        <li><a data-section="performance"><i class="fa fa-chart-line"></i> <span>Performance</span></a></li>
-        <li><a data-section="schedule"><i class="fa fa-calendar"></i> <span>Schedule</span></a></li>
-        <li><a data-section="documents"><i class="fa fa-file"></i> <span>Documents</span></a></li>
-        <li><a data-section="messages"><i class="fa fa-comments"></i> <span>Messages</span></a></li>
-        <li><a data-section="profile"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-      </ul>
-    </div>
+<div class="app">
+  <nav class="nav card" role="navigation">
+    <div class="brand"><span class="logo"></span> TutorSpace</div>
     <div class="user">
-      <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="User">
-      <h4>John Doe</h4>
-      <p>Student</p>
-    </div>
-  </aside>
-
-  <!-- Main -->
-  <section class="main-content">
-    <div class="top-banner">
-      <h2>Welcome Back, John Doe 🎓</h2>
-      <a href="#" class="logout-btn">Logout</a>
-    </div>
-
-    <!-- Dashboard -->
-    <div id="dashboard" class="content-section active-section">
-      <div class="card">
-        <h4>Performance Overview</h4>
-        <div class="chart-box"></div>
-        <p style="margin-top:15px;font-size:14px;">Your overall course performance</p>
-        <div class="progress-bar"><div class="progress-fill" style="--progress: 80%;"></div></div>
-      </div>
-
-      <div class="card">
-        <h4>Recent Announcements</h4>
-        <div class="message"><span>📢 Admin:</span> Midterm exams from Nov 15th!</div>
-        <div class="message"><span>🧑‍🏫 Tutor:</span> Extra session for Physics tomorrow.</div>
+      <div class="avatar"></div>
+      <div>
+        <div style="font-weight:700">Demo Student</div>
+        <div class="muted small">Student</div>
       </div>
     </div>
-
-    <!-- Courses -->
-    <div id="courses" class="content-section">
-      <div class="card">
-        <h4>Enrolled Courses</h4>
-        <ul>
-          <li>📘 Mathematics - Advanced Algebra</li>
-          <li>🧪 Physics - Mechanics & Motion</li>
-          <li>💻 Computer Science - Python Programming</li>
-          <li>📚 English Literature - Classics Review</li>
-        </ul>
-      </div>
+    <div id="menu">
+      <a href="#" data-tab="overview" class="active">Overview</a>
+      <a href="#" data-tab="profile">Profile</a>
+      <a href="#" data-tab="courses">Courses</a>
+      <a href="#" data-tab="details">Details</a>
+      <a href="#" data-tab="documents">Documents / Notes</a>
+      <a href="#" data-tab="meetings">Calls / Meetings</a>
+      <a href="#" data-tab="messages">Messages / Announcements</a>
+      <a href="#" data-tab="payments">Payments</a>
+      <a href="#" data-tab="certs">Certificates</a>
+      <a href="#" data-tab="chat">One-to-One Chat</a>
+      <a href="#" data-tab="settings">Settings</a>
     </div>
+  </nav>
 
-    <!-- Performance -->
-    <div id="performance" class="content-section">
-      <div class="card">
-        <h4>Performance Summary</h4>
-        <p>Course grades and attendance will appear here dynamically.</p>
-        <div class="progress-bar"><div class="progress-fill" style="--progress: 90%;"></div></div>
+  <main class="content">
+    <div class="top">
+      <div class="card" style="flex:1;display:flex;justify-content:space-between;align-items:center;padding:12px;">
+        <div>
+          <div style="font-size:20px;font-weight:700" id="pageTitle">Overview</div>
+          <div class="muted small" id="pageSub">Quick snapshot for Student</div>
+        </div>
+        <div class="controls">
+          <div class="muted small">Signed in as <span class="badge" id="signedRole">Student</span></div>
+          <button id="newMeetingBtn">Schedule Meeting</button>
+        </div>
       </div>
-    </div>
-
-    <!-- Schedule -->
-    <div id="schedule" class="content-section">
-      <div class="card">
-        <h4>Today's Schedule</h4>
-        <ul>
-          <li>09:00 AM - Mathematics</li>
-          <li>11:00 AM - Physics Lab</li>
-          <li>02:00 PM - English Literature</li>
-          <li>04:00 PM - Coding Club</li>
-        </ul>
+      <div class="right-panel">
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>Notifications</strong><div class="muted small">Latest announcements</div></div>
+            <div class="badge" id="notifCount">3</div>
+          </div>
+          <div class="list" id="announcements" style="margin-top:10px">
+          </div>
+        </div>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>Quick actions</strong><div class="muted small">Common tasks</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+            <button onclick="openTab('documents')">Upload Document</button>
+            <button onclick="openTab('chat')">Open Chat</button>
+            <button onclick="openTab('meetings')">Start Instant Call</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Documents -->
-    <div id="documents" class="content-section">
-      <div class="card">
-        <h4>Your Documents</h4>
-        <ul>
-          <li>📄 Assignment 3.pdf</li>
-          <li>📘 Lecture Notes - Chemistry.docx</li>
-        </ul>
+    <section id="mainArea" class="card" style="min-height:420px;padding:16px">
+      <!-- dynamic content -->
+      <div id="overviewTab" class="tab">
+        <div style="display:flex;gap:12px;align-items:stretch">
+          <div style="flex:1">
+            <h3>Summary</h3>
+            <p class="muted">Short summary card with most essential info.</p>
+            <div class="grid">
+              <div class="card small">
+                <div><strong id="stat1">Active Courses</strong></div>
+                <div class="muted small">Number of courses you're enrolled/teaching</div>
+              </div>
+              <div class="card small">
+                <div><strong id="stat2">Upcoming Meetings</strong></div>
+                <div class="muted small">Next scheduled sessions</div>
+              </div>
+              <div class="card small">
+                <div><strong id="stat3">Unread Messages</strong></div>
+                <div class="muted small">Conversations awaiting reply</div>
+              </div>
+            </div>
+
+            <h3 style="margin-top:12px">Recent Activity</h3>
+            <div id="activityList" class="list"></div>
+          </div>
+          <aside style="width:360px">
+            <div class="card">
+              <strong>Profile Snapshot</strong>
+              <div class="muted small" id="profileShort">Name, email and short bio</div>
+            </div>
+            <div class="card" style="margin-top:10px">
+              <strong>Next Session</strong>
+              <div class="muted small" id="nextSession">No sessions scheduled</div>
+              <div style="margin-top:8px"><button onclick="startInstantCall()">Start Call</button></div>
+            </div>
+          </aside>
+        </div>
       </div>
-    </div>
 
-    <!-- Messages -->
-    <div id="messages" class="content-section">
-      <div class="card">
-        <h4>Messages</h4>
-        <div class="message"><span>👩‍🏫 Tutor Sarah:</span> Excellent improvement!</div>
-        <div class="message"><span>👨‍🎓 Alex:</span> Can you share the notes?</div>
+      <!-- Profile Tab -->
+      <div id="profileTab" class="tab hidden">
+        <h3>Profile</h3>
+        <div class="grid">
+          <div class="card">
+            <label>Full name</label><input id="fullname" placeholder="Enter full name" />
+            <label style="margin-top:8px">Email</label><input id="email" />
+            <label style="margin-top:8px">Bio</label><textarea id="bio"></textarea>
+            <div style="margin-top:8px;display:flex;gap:8px"><button onclick="saveProfile()">Save</button><button onclick="resetProfile()">Reset</button></div>
+          </div>
+          <div class="card">
+            <strong>Role-based fields</strong>
+            <div class="muted small" id="roleFields">Extra fields for role</div>
+            <div style="margin-top:8px" id="extraRoleArea"></div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Profile -->
-    <div id="profile" class="content-section">
-      <div class="card">
-        <h4>Profile Details</h4>
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> johndoe@studentportal.com</p>
-        <p><strong>Course:</strong> B.Sc. Computer Science</p>
+      <!-- Courses Tab -->
+      <div id="coursesTab" class="tab hidden">
+        <h3>Courses</h3>
+        <div style="display:flex;gap:12px">
+          <div style="flex:2">
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong>Your Courses</strong>
+                <button onclick="addCourse()">Add Course</button>
+              </div>
+              <table id="coursesTable">
+                <thead><tr><th>Title</th><th>Category</th><th>Progress</th><th>Actions</th></tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="card" style="margin-top:10px">
+              <strong>Course Details</strong>
+              <div id="courseDetails" class="muted small">Select a course to see details</div>
+            </div>
+          </div>
+          <div style="width:320px">
+            <div class="card">
+              <strong>Recommended</strong>
+              <div class="muted small">Suggested resources & next steps</div>
+              <ul id="recommendedList"></ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Script for Navigation -->
-  <script>
-    const navLinks = document.querySelectorAll('#navLinks a');
-    const sections = document.querySelectorAll('.content-section');
+      <!-- Details Tab -->
+      <div id="detailsTab" class="tab hidden">
+        <h3>Details</h3>
+        <div class="grid">
+          <div class="card">
+            <strong>Student/Parent Details</strong>
+            <div id="detailsArea" class="muted small">Personal details and contact info</div>
+          </div>
+          <div class="card">
+            <strong>Academic Progress</strong>
+            <div id="progressArea" class="muted small">Grades, assessments and feedback</div>
+          </div>
+        </div>
+      </div>
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        // Remove active state
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
+      <!-- Documents Tab -->
+      <div id="documentsTab" class="tab hidden">
+        <h3>Documents & Notes</h3>
+        <div style="display:flex;gap:12px">
+          <div style="flex:1">
+            <div class="card">
+              <input id="docFile" type="file" /><div style="margin-top:8px"><button onclick="uploadDoc()">Upload</button></div>
+            </div>
+            <div class="card" style="margin-top:10px">
+              <strong>Uploaded Documents</strong>
+              <div id="docsList" class="list"></div>
+            </div>
+          </div>
+          <div style="width:320px">
+            <div class="card">
+              <strong>Notes</strong>
+              <textarea id="noteText" placeholder="Write a quick note"></textarea>
+              <div style="margin-top:8px;display:flex;gap:8px"><button onclick="saveNote()">Save Note</button><button onclick="clearNotes()">Clear</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        // Hide all sections
-        sections.forEach(sec => sec.classList.remove('active-section'));
-        document.getElementById(link.dataset.section).classList.add('active-section');
-      });
-    });
-  </script>
+      <!-- Meetings Tab -->
+      <div id="meetingsTab" class="tab hidden">
+        <h3>Calls & Meetings</h3>
+        <div style="display:flex;gap:12px">
+          <div style="flex:1">
+            <div class="card">
+              <strong>Schedule a Meeting</strong>
+              <label>Title</label><input id="meetTitle" />
+              <label>Date & time</label><input id="meetTime" type="datetime-local" />
+              <label>Duration (mins)</label><input id="meetDur" type="number" value="30" />
+              <label>Participants (comma emails)</label><input id="meetParts" />
+              <div style="margin-top:8px"><button onclick="scheduleMeeting()">Save Meeting</button></div>
+            </div>
+            <div class="card" style="margin-top:10px">
+              <strong>Upcoming Meetings</strong>
+              <div id="meetingsList" class="list"></div>
+            </div>
+          </div>
+          <div style="width:320px">
+            <div class="card">
+              <strong>Instant Call</strong>
+              <div class="muted small">Use the button below to request camera/mic (demo)</div>
+              <div style="margin-top:8px"><button onclick="startInstantCall()">Start Instant Call</button></div>
+              <div id="localVideoWrap" style="margin-top:8px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Tab -->
+      <div id="messagesTab" class="tab hidden">
+        <h3>Messages & Announcements</h3>
+        <div style="display:flex;gap:12px">
+          <div style="flex:1">
+            <div class="card">
+              <strong>Send Announcement</strong>
+              <label>Title</label><input id="annTitle" /><label>Message</label><textarea id="annBody"></textarea>
+              <div style="margin-top:8px"><button onclick="postAnnouncement()">Post</button></div>
+            </div>
+            <div class="card" style="margin-top:10px">
+              <strong>Inbox</strong>
+              <div id="inboxList" class="list"></div>
+            </div>
+          </div>
+          <div style="width:320px">
+            <div class="card">
+              <strong>Filters</strong>
+              <select id="filterByRole" onchange="filterInbox()">
+                <option value="">All</option><option value="student">Student</option><option value="parent">Parent</option><option value="tutor">Tutor</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payments Tab -->
+      <div id="paymentsTab" class="tab hidden">
+        <h3>Payments</h3>
+        <div class="grid">
+          <div class="card">
+            <strong>Billing Overview</strong>
+            <div id="billingArea" class="muted small">Invoices, payment status and history</div>
+          </div>
+          <div class="card">
+            <strong>Make a Payment</strong>
+            <label>Amount</label><input id="payAmt" type="number" /><label>Notes</label><input id="payNote" />
+            <div style="margin-top:8px"><button onclick="makePayment()">Pay Now (Demo)</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates Tab -->
+      <div id="certsTab" class="tab hidden">
+        <h3>Certificates</h3>
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div><strong>Certificate Distribution</strong><div class="muted small">Issue and revoke certificates</div></div>
+            <button onclick="issueCert()">Issue Certificate</button>
+          </div>
+          <div style="margin-top:10px" id="certsList" class="list"></div>
+        </div>
+      </div>
+
+      <!-- Chat Tab -->
+      <div id="chatTab" class="tab hidden">
+        <h3>One-to-One Chat (Demo)</h3>
+        <div style="display:flex;gap:12px">
+          <div style="flex:1">
+            <div class="card">
+              <label>With (email)</label><input id="chatWith" placeholder="other@example.com" />
+              <div style="height:300px;overflow:auto;border-radius:8px;padding:8px;margin-top:8px;background:rgba(0,0,0,0.2)" id="chatWindow"></div>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <input id="chatMsg" placeholder="Type message" /><button onclick="sendChat()">Send</button>
+              </div>
+            </div>
+          </div>
+          <div style="width:320px">
+            <div class="card">
+              <strong>Active Conversations</strong>
+              <div id="convos" class="list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="settingsTab" class="tab hidden">
+        <h3>Settings</h3>
+        <div class="card">
+          <label>Timezone</label><input id="tz" value="Asia/Kolkata" />
+          <label>Language</label><select id="lang"><option>English</option><option>हिन्दी</option></select>
+          <div style="margin-top:8px"><button onclick="saveSettings()">Save</button></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="muted small">Tutoring platform demo • Student view</footer>
+  </main>
+</div>
+
+<script>
+// Simple in-memory storage (localStorage-backed)
+const stateKey = 'tutor_demo_state_v1_student';
+let appState = JSON.parse(localStorage.getItem(stateKey) || '{}');
+
+const ROLE = 'student'; // injected
+const ROLE_LABEL = 'Student';
+document.getElementById('signedRole').innerText = ROLE_LABEL;
+document.getElementById('pageSub').innerText = 'Quick snapshot for ' + ROLE_LABEL;
+document.getElementById('profileShort').innerText = appState.profile?.bio || 'No bio set';
+
+// init demo data
+function initDemo(){
+  if(!appState.init){
+    appState.profile = appState.profile || {name: 'Demo Student', email: 'student@example.com', bio: 'Student account demo'};
+    appState.courses = appState.courses || [{title:'Mathematics - Basics',category:'Math',progress:'40%'},{title:'English Conversation',category:'Language',progress:'80%'}];
+    appState.meetings = appState.meetings || [];
+    appState.docs = appState.docs || [];
+    appState.notes = appState.notes || [];
+    appState.announcements = appState.announcements || [{title:'Welcome',body:'Platform live demo',role:''}];
+    appState.chats = appState.chats || {};
+    appState.payments = appState.payments || [];
+    appState.certs = appState.certs || [];
+    appState.init = true;
+    saveState();
+  }
+}
+function saveState(){ localStorage.setItem(stateKey, JSON.stringify(appState)); }
+
+// Menu wiring
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click', e=>{e.preventDefault(); openTab(a.getAttribute('data-tab'));}));
+function openTab(tab){
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.toggle('active', a.getAttribute('data-tab')===tab));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.add('hidden'));
+  const el = document.getElementById(tab + 'Tab') || document.getElementById(tab+'Tab');
+  if(el) el.classList.remove('hidden');
+  document.getElementById('pageTitle').innerText = (tab.charAt(0).toUpperCase()+tab.slice(1)).replace(/_/g,' ');
+}
+
+// Role-based access control (hide/show some nav items)
+function setRole(r){
+  const roles = {student:['overview','profile','courses','details','documents','meetings','messages','payments','certs','chat','settings'],
+                 parent:['overview','profile','courses','details','documents','meetings','messages','certs','chat','settings'],
+                 tutor:['overview','profile','courses','details','documents','meetings','messages','payments','certs','chat','settings']};
+  const allowed = roles[r] || [];
+  document.querySelectorAll('#menu a').forEach(a=>{
+    a.style.display = allowed.includes(a.getAttribute('data-tab')) ? 'flex' : 'none';
+  });
+  document.getElementById('signedRole').innerText = r.charAt(0).toUpperCase()+r.slice(1);
+}
+
+// Profile functions
+function saveProfile(){
+  appState.profile = {name:document.getElementById('fullname').value,email:document.getElementById('email').value,bio:document.getElementById('bio').value};
+  saveState(); alert('Profile saved');
+  document.getElementById('profileShort').innerText = appState.profile.bio || '';
+}
+function resetProfile(){document.getElementById('fullname').value='';document.getElementById('email').value='';document.getElementById('bio').value='';}
+
+// Courses functions
+function renderCourses(){
+  const tbody = document.querySelector('#coursesTable tbody'); tbody.innerHTML='';
+  (appState.courses||[]).forEach((c,i)=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${c.title}</td><td>${c.category}</td><td>${c.progress}</td><td><button onclick="viewCourse(${i})">View</button> <button onclick="removeCourse(${i})">Remove</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+function addCourse(){
+  const title = prompt('Course title'); if(!title) return;
+  appState.courses.push({title,category:'General',progress:'0%'}); saveState(); renderCourses(); alert('Course added');
+}
+function viewCourse(i){ document.getElementById('courseDetails').innerText = JSON.stringify(appState.courses[i],null,2); openTab('courses'); }
+
+function removeCourse(i){ if(confirm('Remove course?')){ appState.courses.splice(i,1); saveState(); renderCourses(); } }
+
+# (continues)
+
+// Documents and notes
+function uploadDoc(){
+  const f = document.getElementById('docFile').files[0]; if(!f){alert('Select a file');return;}
+  appState.docs.push({name:f.name,size:f.size,date:new Date().toISOString()}); saveState(); renderDocs();
+}
+function renderDocs(){ const el=document.getElementById('docsList'); el.innerHTML=''; (appState.docs||[]).forEach(d=>{ const div=document.createElement('div'); div.className='item'; div.innerHTML=`<div><strong>${d.name}</strong><div class="muted small">${(d.size/1024).toFixed(1)} KB • ${new Date(d.date).toLocaleString()}</div></div><div><button onclick="downloadDoc(\'${d.name}\')">Download</button></div>`; el.appendChild(div); }); }
+function downloadDoc(name){ alert('Demo: file download not available in this sandbox. File listed: '+name); }
+
+function saveNote(){ const t=document.getElementById('noteText').value; if(!t) return; appState.notes.push({text:t,date:new Date().toISOString()}); saveState(); renderNotes(); document.getElementById('noteText').value=''; }
+function renderNotes(){ /* placeholder */ }
+
+function clearNotes(){ if(confirm('Clear all notes?')){ appState.notes=[]; saveState(); } }
+
+// Meetings
+function scheduleMeeting(){
+  const title=document.getElementById('meetTitle').value; const time=document.getElementById('meetTime').value; const dur=document.getElementById('meetDur').value; const parts=document.getElementById('meetParts').value;
+  if(!title || !time){ alert('Please provide title and time'); return; }
+  appState.meetings.push({title,time,dur,parts,id:Date.now()}); saveState(); renderMeetings(); alert('Meeting scheduled');
+}
+function renderMeetings(){ const el=document.getElementById('meetingsList'); el.innerHTML=''; (appState.meetings||[]).forEach(m=>{ const item=document.createElement('div'); item.className='item'; item.innerHTML=`<div><strong>${m.title}</strong><div class="muted small">${new Date(m.time).toLocaleString()} • ${m.dur} mins</div></div><div><button onclick="joinMeeting('${m.id}')">Join</button></div>`; el.appendChild(item); }); }
+function joinMeeting(id){ alert('Demo: joining meeting '+id); }
+
+// Instant call (demo only)
+let localStream=null;
+async function startInstantCall(){
+  try{
+    localStream = await navigator.mediaDevices.getUserMedia({video:true,audio:true});
+    const wrap = document.getElementById('localVideoWrap'); wrap.innerHTML=''; const v=document.createElement('video'); v.autoplay=true; v.muted=true; v.playsInline=true; v.srcObject = localStream; v.style.width='100%'; wrap.appendChild(v);
+  }catch(e){ alert('Camera/Mic access denied or unavailable.'); }
+}
+
+// Messages & announcements
+function postAnnouncement(){
+  const t=document.getElementById('annTitle').value, b=document.getElementById('annBody').value;
+  if(!t||!b){alert('Title and body required');return;}
+  appState.announcements.unshift({title:t,body:b,role:ROLE}); saveState(); renderAnnouncements(); document.getElementById('annTitle').value='';document.getElementById('annBody').value='';
+}
+function renderAnnouncements(){ const el=document.getElementById('announcements'); el.innerHTML=''; (appState.announcements||[]).slice(0,10).forEach(a=>{ const d=document.createElement('div'); d.className='item'; d.innerHTML=`<div><strong>${a.title}</strong><div class="muted small">${a.body}</div></div>`; el.appendChild(d); }); document.getElementById('notifCount').innerText = (appState.announcements||[]).length; }
+function filterInbox(){ renderInbox(); }
+function renderInbox(){ const el=document.getElementById('inboxList'); el.innerHTML=''; (appState.announcements||[]).forEach(a=>{ const d=document.createElement('div'); d.className='item'; d.innerHTML=`<div><strong>${a.title}</strong><div class="muted small">${a.body}</div></div><div><button onclick="viewAnnouncement('${a.title.replace(/'/g,'\\'')}')">Open</button></div>`; el.appendChild(d); }); }
+function viewAnnouncement(title){ alert('Open announcement: '+title); }
+
+// Payments
+function makePayment(){ const amt=document.getElementById('payAmt').value; if(!amt){alert('Enter amount');return;} appState.payments.push({amount:amt,date:new Date().toISOString(),id:Date.now()}); saveState(); alert('Payment recorded (demo)'); renderBilling(); }
+function renderBilling(){ document.getElementById('billingArea').innerText = (appState.payments||[]).map(p=>`${p.amount} — ${new Date(p.date).toLocaleString()}`).join('\\n') || 'No payments yet'; }
+
+// Certificates
+function issueCert(){ const who = prompt('Issue to (name)'); if(!who) return; appState.certs.push({name:who,issued:new Date().toISOString(),id:Date.now()}); saveState(); renderCerts(); alert('Certificate issued (demo)'); }
+function renderCerts(){ const el=document.getElementById('certsList'); el.innerHTML=''; (appState.certs||[]).forEach(c=>{ const d=document.createElement('div'); d.className='item'; d.innerHTML=`<div><strong>${c.name}</strong><div class="muted small">Issued ${new Date(c.issued).toLocaleString()}</div></div><div><button onclick="downloadCert('${c.id}')">Download</button></div>`; el.appendChild(d); }); }
+function downloadCert(id){ alert('Demo: certificate download for id '+id); }
+
+// Chat (local demo)
+function sendChat(){ const to=document.getElementById('chatWith').value; const msg=document.getElementById('chatMsg').value; if(!to||!msg){alert('Enter recipient and message');return;} const convKey = [ROLE,to].sort().join('__'); appState.chats[convKey]=appState.chats[convKey]||[]; appState.chats[convKey].push({from:ROLE,msg,ts:Date.now()}); saveState(); renderConvos(); renderChat(convKey); document.getElementById('chatMsg').value=''; }
+function renderConvos(){ const el=document.getElementById('convos'); el.innerHTML=''; Object.keys(appState.chats||{}).forEach(k=>{ const d=document.createElement('div'); d.className='item'; d.innerHTML=`<div>${k.replace('__',' ↔ ')}</div><div><button onclick="openConv('${k}')">Open</button></div>`; el.appendChild(d); }); }
+function openConv(k){ document.getElementById('chatWith').value = k.split('__').find(x=>x!==ROLE); renderChat(k); }
+function renderChat(k){ const win=document.getElementById('chatWindow'); win.innerHTML=''; (appState.chats[k]||[]).forEach(m=>{ const div=document.createElement('div'); div.innerHTML=`<div style="margin:6px 0"><strong>${m.from}</strong> <span class="muted small">${new Date(m.ts).toLocaleTimeString()}</span><div>${m.msg}</div></div>`; win.appendChild(div); }); }
+
+// Settings
+function saveSettings(){ alert('Settings saved (demo)'); }
+
+// UI boot
+initDemo(); renderCourses(); renderMeetings(); renderAnnouncements(); renderInbox(); renderBilling(); renderCerts(); renderConvos();
+document.getElementById('fullname').value = appState.profile?.name || '';
+document.getElementById('email').value = appState.profile?.email || '';
+document.getElementById('bio').value = appState.profile?.bio || '';
+setRole(ROLE);
+openTab('overview');
+document.getElementById('newMeetingBtn').addEventListener('click', ()=>openTab('meetings'));
+</script>
 </body>
 </html>
