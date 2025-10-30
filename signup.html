@@ -133,23 +133,64 @@
         </div>
         <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
 
+<!-- ✅ CAPTCHA SECTION -->
 <div class="captcha-section" style="margin-top:15px;">
-  <label for="captchaInput" style="display:block; color:#333; margin-bottom:5px;">Enter Captcha</label>
+  <label for="captchaInput" style="display:block; color:#333; margin-bottom:5px;">Captcha Verification</label>
 
   <div style="display:flex; align-items:center; gap:10px;">
-    <canvas id="captchaCanvas" width="150" height="50"
-      style="background:#f8f8f8; border:1px solid #ddd; border-radius:5px;">
-    </canvas>
+    <!-- Captcha Text Box -->
+    <div id="captchaBox"
+      style="flex:1; background:#fff; border:1px solid #ccc; border-radius:5px;
+             padding:10px; font-weight:bold; font-size:20px; text-align:center;
+             color:#000; letter-spacing:4px; user-select:none;">
+      <!-- Captcha will appear here -->
+    </div>
+
+    <!-- Refresh Button -->
     <button type="button" onclick="generateCaptcha()"
-      style="background:#fff; border:1px solid #ccc; border-radius:5px; padding:8px 12px; cursor:pointer; color:#333;">
+      style="background:#fff; border:1px solid #ccc; border-radius:5px;
+             padding:8px 12px; cursor:pointer; color:#333;">
       ↻ Refresh
     </button>
   </div>
 
+  <!-- Captcha Input -->
   <input type="text" id="captchaInput" placeholder="Enter Captcha"
-    style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; background:#f8f8f8; color:#333;">
+    style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd;
+           border-radius:5px; background:#f8f8f8; color:#333;">
+
   <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
 </div>
+
+<script>
+  let generatedCaptcha = "";
+
+  function generateCaptcha() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let captcha = "";
+    for (let i = 0; i < 6; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    generatedCaptcha = captcha;
+    document.getElementById("captchaBox").textContent = captcha;
+  }
+
+  function validateCaptcha() {
+    const input = document.getElementById("captchaInput").value.trim().toUpperCase();
+    if (input !== generatedCaptcha) {
+      document.getElementById("captchaError").style.display = "block";
+      generateCaptcha();
+      return false;
+    } else {
+      document.getElementById("captchaError").style.display = "none";
+      return true;
+    }
+  }
+
+  // ✅ Generate captcha when the page loads
+  window.addEventListener("load", generateCaptcha);
+</script>
+
 
         <button type="submit" class="site-btn" onclick="validateAndRedirect(event)">Register</button>
     </form>
