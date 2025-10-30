@@ -141,16 +141,23 @@
   <div class="sidebar">
     <h2>🎓 Student</h2>
     <div class="nav">
-      <a href="#" class="active" onclick="showTab('overview')">Overview</a>
-      <a href="#" onclick="showTab('profile')">Profile</a>
-      <a href="#" onclick="showTab('courses')">Courses</a>
-      <a href="#" onclick="showTab('documents')">Documents / Notes</a>
-      <a href="#" onclick="showTab('meetings')">Calls / Meetings</a>
-      <a href="#" onclick="showTab('messages')">Messages</a>
-      <a href="#" onclick="showTab('payments')">Payments</a>
-      <a href="#" onclick="showTab('certificates')">Certificates</a>
-      <a href="#" onclick="showTab('chat')">Chat</a>
-      <a href="#" onclick="showTab('settings')">Settings</a>
+<a href="#" class="active" onclick="showSection('dashboard')">Dashboard</a>
+    <a href="#" onclick="showSection('profile')">Profile</a>
+    <a href="#" onclick="showSection('courseReg')">Course Registration</a>
+    <a href="#" onclick="showSection('myCourses')">My Courses</a>
+    <a href="#" onclick="showSection('documents')">Documents / Notes</a>
+    <a href="#" onclick="showSection('videos')">Video Lessons</a>
+    <a href="#" onclick="showSection('assignments')">Assignments / Tests</a>
+    <a href="#" onclick="showSection('meetings')">Meetings / Calendar</a>
+    <a href="#" onclick="showSection('chat')">Chat / Messages</a>
+    <a href="#" onclick="showSection('performance')">Performance Tracker</a>
+    <a href="#" onclick="showSection('payments')">Payments</a>
+    <a href="#" onclick="showSection('certificates')">Certificates</a>
+    <a href="#" onclick="showSection('support')">Help / Support</a>
+    <a href="#" onclick="showSection('settings')">Settings</a>
+    <a href="#" onclick="showSection('certificates')">Leaderboard / Achievements</a>
+    <a href="#" onclick="showSection('support')">Community Forum</a>
+    <a href="#" onclick="showSection('settings')">Feedback / Suggestion Box</a>
     </div>
   </div>
 
@@ -164,74 +171,168 @@
       <button>Schedule Meeting</button>
     </div>
 
-    <!-- Profile Tab -->
-    <div id="profile" class="tab hidden">
+    <!-- Profile -->
+    <div id="profile" class="section">
       <h1>Profile</h1>
-      <div class="item">
+      <div class="card">
         <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> john@example.com</p>
-        <p><strong>Course Enrolled:</strong> Mathematics</p>
+        <p><strong>Email:</strong> johndoe@example.com</p>
+        <p><strong>Course Level:</strong> Intermediate</p>
+        <button class="btn">Edit Profile</button>
       </div>
     </div>
 
-    <!-- Courses Tab -->
-    <div id="courses" class="tab hidden">
-      <h1>Courses</h1>
-      <div class="item"><strong>Mathematics</strong> - Advanced Algebra</div>
-      <div class="item"><strong>Science</strong> - Physics Basics</div>
+    <!-- Course Registration -->
+    <div id="courseReg" class="section">
+      <h1>Course Registration</h1>
+      <div class="card">
+        <p>Explore available courses and enroll below.</p>
+        <button class="btn">Register New Course</button>
+      </div>
     </div>
 
-    <!-- Documents / Notes Tab -->
-    <div id="documents" class="tab hidden">
-      <h1>Documents & Notes</h1>
-      <div class="item"><strong>Algebra Notes.pdf</strong> — Uploaded 2 days ago</div>
+    <!-- My Courses -->
+    <div id="myCourses" class="section">
+      <h1>My Courses</h1>
+      <div class="card">
+        <p>View all enrolled and completed courses.</p>
+        <ul>
+          <li>Python Fundamentals</li>
+          <li>Advanced Excel for Finance</li>
+        </ul>
+      </div>
     </div>
 
-    <!-- Meetings Tab -->
-    <div id="meetings" class="tab hidden">
-      <h1>Calls & Meetings</h1>
-      <p>Schedule and join meetings with tutors.</p>
-      <button>Join Meeting</button>
+    <!-- Documents -->
+    <div id="documents" class="section">
+      <h1>Documents / Notes</h1>
+      <div class="card">
+        <p>Download study materials or upload your assignments.</p>
+        <button class="btn">Upload Document</button>
+        <button class="btn">Download Notes</button>
+      </div>
     </div>
 
-    <!-- Messages Tab -->
-    <div id="messages" class="tab hidden">
-      <h1>Messages</h1>
-      <div class="item">No new messages.</div>
+    <!-- Video Lessons -->
+    <div id="videos" class="section">
+      <h1>Video Lessons</h1>
+      <div class="card">
+        <p>Access your class recordings and video materials.</p>
+        <button class="btn">Watch Recording</button>
+      </div>
     </div>
 
-    <!-- Payments Tab -->
-    <div id="payments" class="tab hidden">
+    <!-- Assignments -->
+    <div id="assignments" class="section">
+      <h1>Assignments / Tests</h1>
+      <div class="card">
+        <p>Submit your tasks and view grades.</p>
+        <button class="btn">Upload Assignment</button>
+      </div>
+    </div>
+
+    <!-- Meetings -->
+    <div id="meetings" class="section">
+      <h1>Meetings / Calendar</h1>
+      <div class="card">
+        <p>Check your upcoming meetings or schedule one.</p>
+        <button class="btn">Schedule Meeting</button>
+        <button class="btn">Join Meeting</button>
+      </div>
+    </div>
+
+    <!-- Chat -->
+    <div id="chat" class="section">
+      <h1>Chat / Messages</h1>
+      <div class="card">
+        <p>Chat live with your tutor or classmates.</p>
+        <button class="btn">Start Chat</button>
+      </div>
+    </div>
+
+    <!-- Performance -->
+    <div id="performance" class="section">
+      <h1>Performance Tracker</h1>
+      <div class="card">
+        <p>Analyze your academic performance and growth.</p>
+        <button class="btn">View Progress Graph</button>
+      </div>
+    </div>
+
+    <!-- Payments -->
+    <div id="payments" class="section">
       <h1>Payments</h1>
-      <div class="item">Pending Invoice - ₹1500</div>
+      <div class="card">
+        <p>Manage and view all your course payments.</p>
+        <button class="btn">Make Payment</button>
+      </div>
     </div>
 
-    <!-- Certificates Tab -->
-    <div id="certificates" class="tab hidden">
+    <!-- Certificates -->
+    <div id="certificates" class="section">
       <h1>Certificates</h1>
-      <div class="item">Math Course Completion.pdf</div>
+      <div class="card">
+        <p>View and download your earned certificates.</p>
+        <button class="btn">Download Certificate</button>
+      </div>
     </div>
 
-    <!-- Chat Tab -->
-    <div id="chat" class="tab hidden">
-      <h1>Chat</h1>
-      <div class="item">Start 1-on-1 Chat with Tutor.</div>
-    </div>
-
-    <!-- Settings Tab -->
-    <div id="settings" class="tab hidden">
-      <h1>Settings</h1>
-      <div class="item">Profile Settings, Password Update, Preferences.</div>
-    </div>
+    <!-- Support -->
+    <div id="support" class="section">
+      <h1>Help / Support</h1>
+      <div class="card">
+        <p>Need help? Contact our support team.</p>
+        <button class="btn">Raise Ticket</button>
+        <!-- Leaderboard / Achievements -->
+<div id="leaderboard" class="section">
+  <h1>Leaderboard / Achievements</h1>
+  <div class="card">
+    <p>View your rank, badges, and achievements compared to other learners.</p>
+    <ul>
+      <li><strong>Your Rank:</strong> #4 out of 150 students</li>
+      <li><strong>Badges Earned:</strong> Fast Learner, Top Scorer, Consistent Performer</li>
+    </ul>
+    <button class="btn">View Full Leaderboard</button>
   </div>
+</div>
+
+<!-- Community Forum -->
+<div id="community" class="section">
+  <h1>Community Forum</h1>
+  <div class="card">
+    <p>Join discussions, ask questions, and share your knowledge with fellow students.</p>
+    <button class="btn">Join Discussion</button>
+    <button class="btn">Start New Topic</button>
+  </div>
+</div>
+
+<!-- Feedback / Suggestion Box -->
+<div id="feedback" class="section">
+  <h1>Feedback / Suggestion Box</h1>
+  <div class="card">
+    <p>We value your input! Please share your feedback or suggestions below.</p>
+    <textarea id="feedbackText" rows="4" style="width:100%; padding:10px; border-radius:5px; border:none; margin-top:10px;"></textarea>
+    <button class="btn" onclick="submitFeedback()">Submit Feedback</button>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div id="settings" class="section">
+      <h1>Settings</h1>
+      <div class="card">
+        <p>Manage your account preferences and notifications.</p>
+        <button class="btn">Change Password</button>
+      </div>
+    </div>
 
   <script>
-    function showTab(tabId) {
-      document.querySelectorAll(".tab").forEach(tab => tab.classList.add("hidden"));
-      document.getElementById(tabId).classList.remove("hidden");
-      document.querySelectorAll(".nav a").forEach(link => link.classList.remove("active"));
-      event.target.classList.add("active");
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.sidebar a').forEach(link => link.classList.remove('active'));
+      event.target.classList.add('active');
     }
   </script>
+
 </body>
 </html>
