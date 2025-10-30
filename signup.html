@@ -168,17 +168,25 @@
     const password = document.getElementById("password").value.trim();
     const confirmPassword = document.getElementById("confirmPassword").value.trim();
     const role = document.getElementById("role").value.trim();
-    const captchaText = document.getElementById("captchaText").textContent.trim().toUpperCase();
-    const captchaInput = document.getElementById("captchaInput").value.trim().toUpperCase();
+<div class="captcha-section" style="margin-top:15px;">
+  <label for="captchaInput" style="display:block; color:#fff;">Enter Captcha:</label>
 
-    const passwordError = document.getElementById("passwordError");
-    const captchaError = document.getElementById("captchaError");
+  <div style="display:flex; align-items:center; gap:10px; margin-top:5px;">
+    <div id="captchaText" 
+         style="background:#1a1a1a; color:#ff4b5c; font-weight:bold; letter-spacing:3px; 
+                padding:10px 20px; border-radius:6px; user-select:none; font-size:18px;">
+    </div>
+    <button type="button" onclick="generateCaptcha()" 
+            style="background:#ff4b5c; color:#fff; border:none; border-radius:5px; 
+                   padding:6px 10px; cursor:pointer;">🔄 Refresh</button>
+  </div>
 
-    // ---------- Validation Checks ----------
-    if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword || !captchaInput) {
-      alert("⚠️ Please fill in all required fields before continuing.");
-      return;
-    }
+  <input type="text" id="captchaInput" placeholder="Enter captcha text"
+         style="margin-top:10px; padding:8px; width:100%; border:none; border-radius:5px; 
+                background:#1a1a1a; color:#fff; outline:none;">
+  <small id="captchaError" style="color:#ff4b5c; display:none;">Invalid captcha. Please try again.</small>
+</div>
+
 
     // Email format validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -240,5 +248,16 @@
 
   // Initialize captcha on load
   window.onload = generateCaptcha;
+      function generateCaptcha() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let captcha = "";
+  for (let i = 0; i < 6; i++) {
+    captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  document.getElementById("captchaText").textContent = captcha;
+}
+
+// Run once on page load
+window.onload = generateCaptcha;
     
 </script>
