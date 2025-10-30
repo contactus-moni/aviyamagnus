@@ -170,7 +170,7 @@
 
     // Send to backend via proxy
     try {
-      const res = await fetch("/api-proxy.php", {
+      const res = await fetch("/register.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
