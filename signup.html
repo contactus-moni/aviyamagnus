@@ -1,215 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body { background-color: #1a1a1a; color: #fff; font-family: 'times new roman', Times new roman; }
-    .active-tab { background-color: #ff4b5c; color: white !important; border-radius: 9999px 0 0 9999px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="description" content="Aviya Magnus Education Template">
+    <meta name="keywords" content="Aviya Magnus, education, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviya Magnus - Signup</title>
+
+    <!-- Favicon -->   
+    <link href="img/favicon.ico" rel="shortcut icon"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/owl.carousel.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <style>
+        .signup-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+        }
+
+        .signup-form input,
+        .signup-form select,
+        .signup-form button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .col-md-6 {
+            flex: 1;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+            font-size: 14px;
+        }
+
+        .captcha-box {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        #captchaText {
+            font-weight: bold;
+            font-size: 22px;
+            letter-spacing: 5px;
+            background: #eee;
+            padding: 10px;
+            text-align: center;
+            user-select: none;
+            margin-bottom: 5px;
+        }
+
+    .site-btn {
+        background: #ff4b5c; 
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .site-btn:hover {
+        background: #e03f4f;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('img/bg.jpg') no-repeat center center/cover;
+        }
+    </style>
 </head>
-<body class="flex min-h-screen">
+<body>
 
-  <!-- Sidebar -->
-  <aside class="w-64 bg-[#121212] p-6 flex flex-col space-y-2">
-    <h2 class="text-xl font-bold mb-4 text-[#ff4b5c]">🎓 Student Dashboard</h2>
+<section class="hero-section">
+ <form id="signupForm" class="signup-form" novalidate>
+        <h2 style="text-align:center;">Join Aviya Magnus</h2>
+        <p style="text-align:center;">Start your learning journey — Create your free account today.</p>
 
-    <a href="#" data-tab="dashboard" class="tab-link active-tab block px-6 py-3">🏠 Dashboard</a>
-    <a href="#" data-tab="profile" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">👤 Profile</a>
-    <a href="#" data-tab="registration" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">✔️ Course Registration</a>
-    <a href="#" data-tab="courses" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📘 My Courses</a>
-    <a href="#" data-tab="documents" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📂 Documents / Notes</a>
-    <a href="#" data-tab="video" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🖥️ Video Lessons</a>
-    <a href="#" data-tab="assignments" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🗞️ Assignments / Tests</a>
-    <a href="#" data-tab="meetings" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📅 Meetings / Calendar</a>
-    <a href="#" data-tab="chats" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">💬 Chat / Messages</a>
-    <a href="#" data-tab="performance" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">✅ Performance Tracker</a>
-    <a href="#" data-tab="payment" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">💸 Payments</a>
-    <a href="#" data-tab="certificates" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🎓 Certificates</a>
-    <a href="#" data-tab="support" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📞 Help / Support</a>
-    <a href="#" data-tab="settings" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">⚙️ Settings</a>
-    <a href="#" data-tab="leadership" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🏆 Leaderboard / Achievements</a>
-    <a href="#" data-tab="community" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🌐 Community Forum</a>
-    <a href="#" data-tab="feedback" class="tab-link block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📝 Feedback / Suggestion Box</a>
-  </aside>
+        <select name="role" id="role" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="parent">Parent</option>
+            <option value="tutor">Tutor</option>
+        </select>
 
-<!-- Dashboard Section -->
-<section id="dashboard" class="tab-content block">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Dashboard Overview</h1>
-  <p class="text-gray-300 mb-4">Welcome, Monika 👋 Here’s your overall learning summary and quick access to current courses.</p>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-[#1f1f1f] p-4 rounded-xl">
-      <h3 class="text-lg font-semibold text-[#ff4b5c]">Courses Enrolled</h3>
-      <p class="text-3xl font-bold">6</p>
-    </div>
-    <div class="bg-[#1f1f1f] p-4 rounded-xl">
-      <h3 class="text-lg font-semibold text-[#ff4b5c]">Completed</h3>
-      <p class="text-3xl font-bold">4</p>
-    </div>
-    <div class="bg-[#1f1f1f] p-4 rounded-xl">
-      <h3 class="text-lg font-semibold text-[#ff4b5c]">Pending Assignments</h3>
-      <p class="text-3xl font-bold">2</p>
-    </div>
-  </div>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+            </div>
+        </div>
+
+        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+        <p class="error-message" id="passwordError">Passwords do not match!</p>
+
+        <div style="display: flex; gap: 10px;">
+            <select id="countryCode" name="countryCode" required style="width:30%;">
+                <option value="">Code</option>
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+61">🇦🇺 +61</option>
+                <option value="+971">🇦🇪 +971</option>
+            </select>
+            <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required style="width:70%;">
+        </div>
+        <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
+
+<div class="captcha-box">
+  <div id="captchaText"></div>
+  <button type="button" class="refresh-btn" onclick="generateCaptcha()">↻ Refresh</button>
+</div>
+<input type="text" id="captchaInput" placeholder="Enter Captcha" required>
+<p class="error-message" id="captchaError">Captcha incorrect! Try again.</p>
+
+        <button type="submit" class="site-btn" onclick="validateAndRedirect(event)">Register</button>
+    </form>
 </section>
 
-<!-- Profile -->
-<section id="profile" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Profile</h1>
-  <p class="text-gray-300 mb-4">Manage your personal information and update your account details.</p>
-  <div class="bg-[#1f1f1f] p-6 rounded-xl">
-    <p><strong>Name:</strong> Monika</p>
-    <p><strong>Email:</strong> monika@example.com</p>
-    <p><strong>Student ID:</strong> #ST10245</p>
-  </div>
-</section>
+<!-- JS Files -->
+<script>
+  // ------------------- CAPTCHA -------------------
+  function generateCaptcha() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let captcha = '';
+    for (let i = 0; i < 6; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    document.getElementById('captchaText').textContent = captcha;
+  }
 
-<!-- Course Registration -->
-<section id="registration" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Course Registration</h1>
-  <p class="text-gray-300 mb-4">Explore and register for new available courses.</p>
-  <div class="bg-[#1f1f1f] p-6 rounded-xl">
-    <p>📚 Course Registration portal will be integrated with the backend soon.</p>
-  </div>
-</section>
+  // ------------------- VALIDATION & SUBMIT -------------------
+  async function validateAndRedirect(event) {
+    event.preventDefault(); // Stop default form behavior
 
-<!-- My Courses -->
-<section id="courses" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">My Courses</h1>
-  <p class="text-gray-300 mb-4">View all your enrolled courses below.</p>
-  <ul class="space-y-3">
-    <li class="bg-[#1f1f1f] p-4 rounded-xl">🎵 Music Theory Basics</li>
-    <li class="bg-[#1f1f1f] p-4 rounded-xl">🎧 Sound Production 101</li>
-    <li class="bg-[#1f1f1f] p-4 rounded-xl">🎤 Vocal Training Advanced</li>
-  </ul>
-</section>
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const countryCode = document.getElementById("countryCode").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+    const role = document.getElementById("role").value.trim();
+    const captchaText = document.getElementById("captchaText").textContent.trim().toUpperCase();
+    const captchaInput = document.getElementById("captchaInput").value.trim().toUpperCase();
 
-<!-- Documents / Notes -->
-<section id="documents" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Documents / Notes</h1>
-  <p class="text-gray-300 mb-4">Access your class materials and uploaded files.</p>
-  <div class="bg-[#1f1f1f] p-6 rounded-xl">
-    <ul class="space-y-2">
-      <li>📄 Music Notes - Week 1.pdf</li>
-      <li>📘 Audio Mixing Guide.pdf</li>
-    </ul>
-  </div>
-</section>
+    const passwordError = document.getElementById("passwordError");
+    const captchaError = document.getElementById("captchaError");
 
-<!-- Video Lessons -->
-<section id="video" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Video Lessons</h1>
-  <p class="text-gray-300 mb-4">Watch your uploaded and live session recordings here.</p>
-</section>
+    // ---------- Validation Checks ----------
+    if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword || !captchaInput) {
+      alert("⚠️ Please fill in all required fields before continuing.");
+      return;
+    }
 
-<!-- Assignments / Tests -->
-<section id="assignments" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Assignments / Tests</h1>
-  <p class="text-gray-300 mb-4">Submit assignments and view test results.</p>
-</section>
+    // Email format validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      alert("⚠️ Please enter a valid email address.");
+      return;
+    }
 
-<!-- Meetings / Calendar -->
-<section id="meetings" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Meetings / Calendar</h1>
-  <p class="text-gray-300 mb-4">Upcoming classes and meetings will appear here.</p>
-</section>
+    // Mobile number validation
+    const mobilePattern = /^[0-9]{10,15}$/;
+    if (!mobilePattern.test(mobile)) {
+      alert("⚠️ Please enter a valid mobile number (10–15 digits).");
+      return;
+    }
 
-<!-- Chat / Messages -->
-<section id="chats" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Chat / Messages</h1>
-  <p class="text-gray-300 mb-4">Message your instructors and classmates directly.</p>
-</section>
+    // Password match validation
+    if (password !== confirmPassword) {
+      passwordError.style.display = "block";
+      return;
+    } else {
+      passwordError.style.display = "none";
+    }
 
-<!-- Performance Tracker -->
-<section id="performance" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Performance Tracker</h1>
-  <p class="text-gray-300 mb-4">Analyze your progress and course completion rates.</p>
-</section>
+    // Captcha validation
+    if (captchaInput !== captchaText) {
+      captchaError.style.display = "block";
+      generateCaptcha();
+      document.getElementById("captchaInput").value = "";
+      return;
+    } else {
+      captchaError.style.display = "none";
+    }
 
-<!-- Payments -->
-<section id="payment" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Payments</h1>
-  <p class="text-gray-300 mb-4">View your payment history and invoices.</p>
-</section>
+    // ---------- Send Data to Backend ----------
+    const data = {
+      firstName,
+      lastName,
+      email,
+      countryCode,
+      mobile,
+      password,
+      role
+    };
 
-<!-- Certificates -->
-<section id="certificates" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Certificates</h1>
-  <p class="text-gray-300 mb-4">Download your course completion certificates here.</p>
-</section>
-
-<!-- Help / Support -->
-<section id="support" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Help / Support</h1>
-  <p class="text-gray-300 mb-4">Need help? Contact support or view FAQs.</p>
-</section>
-
-<!-- Settings -->
-<section id="settings" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Settings</h1>
-  <p class="text-gray-300 mb-4">Update your password, theme, and preferences here.</p>
-</section>
-
-<!-- Leaderboard / Achievements -->
-<section id="leadership" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Leaderboard / Achievements</h1>
-  <p class="text-gray-300 mb-4">See your rank and badges among your peers.</p>
-</section>
-
-<!-- Community Forum -->
-<section id="community" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Community Forum</h1>
-  <p class="text-gray-300 mb-4">Engage with other students in community discussions.</p>
-</section>
-
-<!-- Feedback / Suggestion Box -->
-<section id="feedback" class="tab-content hidden">
-  <h1 class="text-3xl font-bold mb-4 text-[#ff4b5c]">Feedback / Suggestion Box</h1>
-  <p class="text-gray-300 mb-4">Share your thoughts and suggestions to improve the platform.</p>
-</section>
-
-
-  <!-- Right Profile Panel -->
-  <aside class="w-80 bg-[#121212] p-6 border-l border-gray-800">
-    <h2 class="text-lg font-semibold text-[#ff4b5c] mb-2">Good Morning, Monika 👋</h2>
-    <p class="text-gray-400 mb-6">Here’s your quick overview</p>
-
-    <div class="bg-[#1f1f1f] p-4 rounded-xl mb-4">
-      <h3 class="text-white text-lg font-semibold mb-2">Progress</h3>
-      <div class="h-2 bg-gray-700 rounded-full">
-        <div class="h-2 bg-[#ff4b5c] rounded-full w-[70%]"></div>
-      </div>
-      <p class="text-gray-400 text-sm mt-1">70% completed</p>
-    </div>
-
-    <div class="bg-[#1f1f1f] p-4 rounded-xl">
-      <h3 class="text-white text-lg font-semibold mb-2">Your Mentors</h3>
-      <ul class="space-y-2 text-gray-300">
-        <li>👩‍🏫 Priya Sharma</li>
-        <li>👨‍🏫 Ramesh Kumar</li>
-        <li>👩‍🏫 Sneha Patel</li>
-      </ul>
-    </div>
-  </aside>
-
-  <script>
-    // Sidebar tab switching
-    const tabs = document.querySelectorAll('.tab-link');
-    const contents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        tabs.forEach(t => t.classList.remove('active-tab'));
-        tab.classList.add('active-tab');
-
-        contents.forEach(c => c.classList.add('hidden'));
-        document.getElementById(tab.getAttribute('data-tab')).classList.remove('hidden');
+    try {
+      const response = await fetch("https://aviyamagnus.rf.gd/register.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
       });
-    });
-  </script>
-</body>
-</html>
+
+      const result = await response.json();
+      if (result.message && result.message.includes("successfully")) {
+        alert("✅ Registration successful!");
+        window.location.href = "success.html";
+      } else {
+        alert("⚠️ " + result.message);
+      }
+    } catch (error) {
+      alert("🚫 Server error: " + error.message);
+    }
+  }
+
+  // Initialize captcha on load
+  window.onload = generateCaptcha;
+</script>
