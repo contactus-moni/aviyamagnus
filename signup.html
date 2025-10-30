@@ -162,9 +162,15 @@
   <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
 </div>
 
+ <button type="submit" class="site-btn" onclick="validateAndRedirect(event)">Register</button>
+    </form>
+</section>
+
+<!-- JS Files -->
 <script>
   let generatedCaptcha = "";
 
+  // ------------------- CAPTCHA -------------------
   function generateCaptcha() {
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     let captcha = "";
@@ -187,17 +193,8 @@
     }
   }
 
-  // ✅ Generate captcha when the page loads
+  // Generate captcha when page loads
   window.addEventListener("load", generateCaptcha);
-</script>
-
-
-        <button type="submit" class="site-btn" onclick="validateAndRedirect(event)">Register</button>
-    </form>
-</section>
-
-<!-- JS Files -->
-<script>
 
   // ------------------- VALIDATION & SUBMIT -------------------
   async function validateAndRedirect(event) {
@@ -211,8 +208,14 @@
     const password = document.getElementById("password").value.trim();
     const confirmPassword = document.getElementById("confirmPassword").value.trim();
     const role = document.getElementById("role").value.trim();
-<div class="captcha-section" style="margin-top:15px;">
-  <label for="captchaInput" style="display:block; color:#fff;">Enter Captcha:</label>
+
+    const passwordError = document.getElementById("passwordError");
+
+    // Basic empty field validation
+    if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword) {
+      alert("⚠️ Please fill in all required fields before continuing.");
+      return;
+    }
 
     // Email format validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -237,63 +240,33 @@
     }
 
     // Captcha validation
-    if (captchaInput !== captchaText) {
-      captchaError.style.display = "block";
-      generateCaptcha();
-      document.getElementById("captchaInput").value = "";
+    if (!validateCaptcha()) {
+      alert("⚠️ Invalid captcha. Please try again.");
       return;
-    } else {
-      captchaError.style.display = "none";
     }
 
- fetch("https://aviyamagnus.rf.gd/register.php", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: document.getElementById("name").value,
-    email: document.getElementById("email").value,
-    password: document.getElementById("password").value,
-    phone: document.getElementById("phone").value
-  })
-})
-.then(res => res.json())
-.then(data => {
-  if (data.status === "success") {
-    // Optional: alert message
-    alert("Signup successful! Redirecting...");
-    // Redirect to success page
-    window.location.href = "success.html";
-  } else {
-    alert(data.message || "Signup failed. Please try again.");
+    // ------------------- BACKEND CONNECTION -------------------
+    fetch("https://aviyamagnus.rf.gd/register.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        role,
+        firstName,
+        lastName,
+        email,
+        mobile,
+        password
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        alert("✅ Signup successful! Redirecting...");
+        window.location.href = "success.html";
+      } else {
+        alert(data.message || "Signup failed. Please try again.");
+      }
+    })
+    .catch(err => alert("Error: " + err));
   }
-})
-.catch(err => alert("Error: " + err));
-
- function generateCaptcha() {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    let captcha = '';
-    for (let i = 0; i < 6; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-
-    generatedCaptcha = captcha;
-    document.getElementById('captchaText').textContent = captcha;
-  }
-
-  function validateCaptcha() {
-    const input = document.getElementById("captchaInput").value.trim().toUpperCase();
-    if (input !== generatedCaptcha) {
-      document.getElementById("captchaError").style.display = "block";
-      generateCaptcha();
-      return false;
-    } else {
-      document.getElementById("captchaError").style.display = "none";
-      return true;
-    }
-  }
-
-  window.onload = generateCaptcha;
-    
 </script>
