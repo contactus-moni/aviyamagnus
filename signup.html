@@ -162,7 +162,7 @@
   <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
 </div>
 
- <button type="button" class="btn-submit" onclick="validateAndRedirect()">Register</button>
+ <button type="submit" class="site-btn" onclick="validateAndRedirect(event)">Register</button>
     </form>
 </section>
 
@@ -246,27 +246,27 @@
     }
 
     // ------------------- BACKEND CONNECTION -------------------
-    fetch("https://aviyamagnus.rf.gd/register.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        role,
-        firstName,
-        lastName,
-        email,
-        mobile,
-        password
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === "success") {
-        alert("✅ Signup successful! Redirecting...");
-        window.location.href = "success.html";
-      } else {
-        alert(data.message || "Signup failed. Please try again.");
-      }
-    })
-    .catch(err => alert("Error: " + err));
+fetch("https://aviyamagnus.rf.gd/register.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+    phone: document.getElementById("phone").value
+  })
+})
+.then(res => res.json())
+.then(data => {
+  if (data.status === "success") {
+    // Optional: alert message
+    alert("Signup successful! Redirecting...");
+    // Redirect to success page
+    window.location.href = "success.html";
+  } else {
+    alert(data.message || "Signup failed. Please try again.");
   }
+})
 </script>
