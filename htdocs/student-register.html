@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+</head>
+<body>
+
+    <h2>Student Registration</h2>
+
+    <!-- Registration Form for Student -->
+    <form id="registerForm">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        // Add an event listener to the form to handle submission
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the form from submitting the traditional way
+
+            // Get the email and password values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Send the registration data to the backend using fetch
+            fetch('http://localhost:5000/api/register/student', {
+                method: 'POST',  // HTTP method (POST for registration)
+                headers: { 'Content-Type': 'application/json' },  // Content type (JSON)
+                body: JSON.stringify({ email, password })  // Send the email and password as JSON
+            })
+            .then(response => response.json())  // Parse the JSON response from the backend
+            .then(data => alert(data.message))  // Alert the success/failure message from the backend
+            .catch(error => console.error('Error:', error));  // Catch any errors and log them
+        });
+        // POST Route for Student Registration
+app.post('/api/register/student', (req, res) => {
+    const { email, password } = req.body;
+    if (users.student[email]) {
+        return res.status(400).json({ success: false, message: 'Student already registered' });
+    }
+    users.student[email] = { email, password };
+    res.status(201).json({ success: true, message: 'Student registered successfully' });
+});
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Test</title>
+</head>
+<body>
+  <h2>OTP Test Page</h2>
+
+  <input type="email" id="email" placeholder="Enter your email">
+  <button id="sendOtpBtn">Send OTP</button>
+
+  <pre id="output" style="background:#f5f5f5; padding:10px; margin-top:10px;"></pre>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ JS loaded, ready to send OTP.");
+
+    const btn = document.getElementById("sendOtpBtn");
+    const out = document.getElementById("output");
+
+    btn.addEventListener("click", async () => {
+      const email = document.getElementById("email").value.trim();
+      if (!email) {
+        alert("Please enter your email address first.");
+        return;
+      }
+
+      out.textContent = "Sending request to backend...";
+
+      try {
+        const res = await fetch("https://aviyamagnus.rf.gd/sendotp.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+
+        const text = await res.text();
+        out.textContent = "Server response: " + text;
+        console.log("Response:", text);
+      } catch (err) {
+        out.textContent = "Fetch error: " + err;
+        console.error(err);
+      }
+    });
+  });
+  </script>
+</body>
+</html>
