@@ -170,11 +170,27 @@
 
     // Send to backend via proxy
     try {
-      const res = await fetch("/register.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
+fetch("https://aviyamagnus.rf.gd/register.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+    phone: document.getElementById("phone").value
+  })
+})
+.then(res => res.json())
+.then(data => {
+  console.log(data);
+  if (data.status === "success") {
+    window.location.href = "success.html";
+  } else {
+    alert(data.message);
+  }
+})
+.catch(err => console.error("Error:", err));
+
 
       console.log("Fetch request sent");
 
