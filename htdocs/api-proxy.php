@@ -1,56 +1,47 @@
 <?php
-// api-proxy.php
+// Allow CORS for all origins
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Content-Type: application/json; charset=UTF-8");
 
+// Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-  http_response_code(200);
-  exit;
+    http_response_code(200);
+    exit;
 }
 
+// Check if POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  echo json_encode(["status" => "error", "message" => "Only POST allowed"]);
-  exit;
-
+    http_response_code(405);
+    echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+    exit;
 }
 
 // Read JSON input
-$input = json_decode(file_get_contents("php://input"), true);
-if (!$input) {
-  echo json_encode(["status" => "error", "message" => "Invalid JSON"]);
-  exit;
+$input = file_get_contents("php://input");
+$data = json_decode($input, true);
+
+if (!$data) {
+    echo json_encode(["status" => "error", "message" => "No data received"]);
+    exit;
 }
 
-// Prepare to forward to your real backend
-$backend_url = "https://aviyamagnus.rf.gd/register.php"; // 🔹 replace this with your real PHP backend URL
+// ✅ Forward data to your backend PHP (signup handler)
+$url = "https://aviyamagnus.rf.gd/signup.php";
 
-$ch = curl_init($backend_url);
+$ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($input));
 
 $response = curl_exec($ch);
-$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-if (curl_errno($ch)) {
-  echo json_encode(["status" => "error", "message" => curl_error($ch)]);
-  curl_close($ch);
-  exit;
-}
+$error = curl_error($ch);
 curl_close($ch);
 
-// Ensure valid JSON before sending to browser
-if ($http_code >= 200 && $http_code < 300) {
-  $decoded = json_decode($response, true);
-  if (is_array($decoded)) {
-    echo json_encode($decoded);
-  } else {
-    echo json_encode(["status" => "error", "message" => "Invalid response from backend"]);
-  }
+if ($error) {
+    echo json_encode(["status" => "error", "message" => "CURL Error: " . $error]);
 } else {
-  echo json_encode(["status" => "error", "message" => "Backend returned $http_code"]);
+    echo $response;
 }
 ?>
