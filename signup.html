@@ -157,15 +157,6 @@
 
 <!-- JS Files -->
 <script>
-  // ------------------- CAPTCHA -------------------
-  function generateCaptcha() {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-    let captcha = '';
-    for (let i = 0; i < 6; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    document.getElementById('captchaText').textContent = captcha;
-  }
 
   // ------------------- VALIDATION & SUBMIT -------------------
   async function validateAndRedirect(event) {
@@ -239,54 +230,29 @@
 })
 .catch(err => alert("Error: " + err));
 
-let generatedCaptcha = "";
+ function generateCaptcha() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let captcha = '';
+    for (let i = 0; i < 6; i++) {
+      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
 
-function generateCaptcha() {
-  const canvas = document.getElementById("captchaCanvas");
-  const ctx = canvas.getContext("2d");
-
-  // Clear & fill background
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#f9f9f9";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // Generate random text
-  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  generatedCaptcha = "";
-  for (let i = 0; i < 6; i++) {
-    generatedCaptcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    generatedCaptcha = captcha;
+    document.getElementById('captchaText').textContent = captcha;
   }
 
-  // ✅ Draw captcha text (visible!)
-  ctx.font = "bold 26px Arial";
-  ctx.fillStyle = "#000"; // <---- Pure black for visibility
-  ctx.textBaseline = "middle";
-  ctx.fillText(generatedCaptcha, 20, 25);
-
-  // Add noise lines
-  for (let i = 0; i < 3; i++) {
-    ctx.strokeStyle = "#ccc";
-    ctx.beginPath();
-    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-    ctx.stroke();
+  function validateCaptcha() {
+    const input = document.getElementById("captchaInput").value.trim().toUpperCase();
+    if (input !== generatedCaptcha) {
+      document.getElementById("captchaError").style.display = "block";
+      generateCaptcha();
+      return false;
+    } else {
+      document.getElementById("captchaError").style.display = "none";
+      return true;
+    }
   }
-}
 
-function validateCaptcha() {
-  const input = document.getElementById("captchaInput").value.trim().toUpperCase();
-  if (input !== generatedCaptcha) {
-    document.getElementById("captchaError").style.display = "block";
-    generateCaptcha(); // Refresh automatically
-    return false;
-  } else {
-    document.getElementById("captchaError").style.display = "none";
-    return true;
-  }
-}
-
-// Generate captcha on load
-window.onload = generateCaptcha;
-
+  window.onload = generateCaptcha;
     
 </script>
