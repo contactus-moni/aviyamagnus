@@ -141,133 +141,207 @@
 <!-- Sidebar -->
   <div class="sidebar">
     <h2>Student Portal</h2>
-    <a href="#" onclick="loadSection('overview', this)">🏠 Dashboard Overview</a>
-    <a href="#" onclick="loadSection('profile', this)">👤 My Profile</a>
-    <a href="#" onclick="loadSection('courses', this)">📘 My Courses</a>
-    <a href="#" onclick="loadSection('documents', this)">📂 Documents / Notes</a>
-    <a href="#" onclick="loadSection('meetings', this)">📅 Meetings / Calendar</a>
-    <a href="#" onclick="loadSection('chat', this)">💬 Chat / Calls</a>
-    <a href="#" onclick="loadSection('certificates', this)">🎓 Certificates</a>
-    <a href="#" onclick="loadSection('leaderboard', this)">🏆 Leaderboard</a>
-    <a href="#" onclick="loadSection('community', this)">🌐 Community Forum</a>
-    <a href="#" onclick="loadSection('feedback', this)">📝 Feedback Box</a>
-    <a href="#" onclick="loadSection('settings', this)">⚙️ Settings</a>
+   <a href="#" class="active" onclick="showSection('dashboard')">🏠Dashboard</a>
+    <a href="#" onclick="showSection('profile')">👤Profile</a>
+    <a href="#" onclick="showSection('courseReg')">✔️Course Registration</a>
+    <a href="#" onclick="showSection('myCourses')">📘My Courses</a>
+    <a href="#" onclick="showSection('documents')">📂Documents / Notes</a>
+    <a href="#" onclick="showSection('videos')">🖥️Video Lessons</a>
+    <a href="#" onclick="showSection('assignments')">🗞️Assignments / Tests</a>
+    <a href="#" onclick="showSection('meetings')">📅Meetings / Calendar</a>
+    <a href="#" onclick="showSection('chat')">💬Chat / Messages</a>
+    <a href="#" onclick="showSection('performance')">✅Performance Tracker</a>
+    <a href="#" onclick="showSection('payments')">💸Payments</a>
+    <a href="#" onclick="showSection('certificates')">🎓Certificates</a>
+    <a href="#" onclick="showSection('support')">📞Help / Support</a>
+    <a href="#" onclick="showSection('settings')">⚙️Settings</a>
+    <a href="#" onclick="showSection('leaderboard')">🏆Leaderboard / Achievements</a>
+    <a href="#" onclick="showSection('community')">🌐Community Forum</a>
+    <a href="#" onclick="showSection('feedback')">📝Feedback / Suggestion Box</a>
   </div>
 
-  <!-- Main Content -->
-  <div class="content" id="mainContent">
-    <div id="overview" class="section active">
-      <div class="card">
-        <h2>Welcome to Your Dashboard</h2>
-        <p>Track your progress, join meetings, access your materials, and connect with your tutors — all in one place!</p>
-      </div>
-      <div class="card">
-        <h3>Quick Overview</h3>
-        <p><strong>Current Course:</strong> Advanced English Program</p>
-        <p><strong>Progress:</strong> 45% Complete</p>
-        <p><strong>Next Meeting:</strong> Nov 2, 2025 at 6:00 PM</p>
-      </div>
-    </div>
-
-    <div id="profile" class="section">
-      <div class="card">
-        <h2>My Profile</h2>
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> john.doe@example.com</p>
-        <p><strong>Enrolled Since:</strong> June 2025</p>
-        <button>Edit Profile</button>
-      </div>
-    </div>
-
-    <div id="courses" class="section">
-      <div class="card">
-        <h2>My Courses</h2>
-        <p>Here you can access all your active and completed courses.</p>
-        <button>View Course Materials</button>
-      </div>
-    </div>
-
-    <div id="documents" class="section">
-      <div class="card">
-        <h2>Documents & Notes</h2>
-        <input type="file" id="fileUpload">
-        <button>Upload Document</button>
-        <p>📥 <a href="#" style="color:#ff4b5c;">Download Last Uploaded Notes</a></p>
-      </div>
-    </div>
-
-    <div id="meetings" class="section">
-      <div class="card">
-        <h2>Meetings & Calendar</h2>
-        <p>Check your upcoming classes and join with one click.</p>
-        <button>Join Meeting</button>
-        <button>Schedule New Meeting</button>
-      </div>
-    </div>
-
-    <div id="chat" class="section">
-      <div class="card">
-        <h2>Chat & Calls</h2>
-        <p>Start a live chat or call with your tutor.</p>
-        <button>Start Chat</button>
-        <button>Make Call</button>
-      </div>
-    </div>
-
-    <div id="certificates" class="section">
-      <div class="card">
-        <h2>Certificates</h2>
-        <p>Download your course completion certificates here.</p>
-        <button>View Certificates</button>
-      </div>
-    </div>
-
-    <div id="leaderboard" class="section">
-      <div class="card">
-        <h2>Leaderboard / Achievements</h2>
-        <p>See your rank and recent milestones!</p>
-      </div>
-    </div>
-
-    <div id="community" class="section">
-      <div class="card">
-        <h2>Community Forum</h2>
-        <p>Join discussions and collaborate with other students.</p>
-        <button>Go to Forum</button>
-      </div>
-    </div>
-
-    <div id="feedback" class="section">
-      <div class="card">
-        <h2>Feedback / Suggestion Box</h2>
-        <textarea id="feedbackText" placeholder="Share your thoughts..." rows="5" style="width:100%; border-radius:6px; padding:10px;"></textarea>
-        <button onclick="submitFeedback()">Submit Feedback</button>
-      </div>
-    </div>
-
-    <div id="settings" class="section">
-      <div class="card">
-        <h2>Account Settings</h2>
-        <p>Change password, notification preferences, or theme.</p>
-        <button>Update Settings</button>
-      </div>
-    </div>
+<div id="dashboard" class="section active">
+  <h1>Dashboard Overview</h1>
+  <div class="card">
+    <p>Welcome back, <strong>Student!</strong> Here’s a quick summary of your activity.</p>
+    <ul>
+      <li>📘 Current Course: Advanced English Communication</li>
+      <li>✅ Progress: 45% completed</li>
+      <li>📅 Next Class: Nov 2, 2025 at 6:00 PM</li>
+    </ul>
   </div>
+</div>
+<div id="profile" class="section">
+  <h1>My Profile</h1>
+  <div class="card">
+    <p>Manage your personal details, contact info, and learning preferences.</p>
+    <form>
+      <label>Full Name:</label><br>
+      <input type="text" value="John Doe"><br><br>
+      <label>Email:</label><br>
+      <input type="email" value="john@example.com"><br><br>
+      <label>Phone:</label><br>
+      <input type="text" value="+91 9876543210"><br><br>
+      <button class="btn">Update Profile</button>
+    </form>
+  </div>
+</div>
+<div id="courseReg" class="section">
+  <h1>Course Registration</h1>
+  <div class="card">
+    <p>Select and enroll in new courses below.</p>
+    <select>
+      <option>Select a Course</option>
+      <option>Mathematics - Grade 10</option>
+      <option>Science - Grade 12</option>
+      <option>Business Studies - MBA</option>
+    </select>
+    <button class="btn">Register Course</button>
+  </div>
+</div>
+<div id="myCourses" class="section">
+  <h1>My Courses</h1>
+  <div class="card">
+    <p>View your ongoing and completed courses.</p>
+    <ul>
+      <li>English Communication - 45% completed</li>
+      <li>Data Analytics - 100% completed (Certified)</li>
+    </ul>
+    <button class="btn">View Course Materials</button>
+  </div>
+</div>
+<div id="documents" class="section">
+  <h1>Documents / Notes</h1>
+  <div class="card">
+    <p>Upload, view, and download class materials.</p>
+    <input type="file">
+    <button class="btn">Upload Document</button>
+    <hr>
+    <ul>
+      <li><a href="#">English_Notes.pdf</a></li>
+      <li><a href="#">Science_Assignment.docx</a></li>
+    </ul>
+  </div>
+</div>
+<div id="videos" class="section">
+  <h1>Video Lessons</h1>
+  <div class="card">
+    <p>Watch your recorded sessions and video tutorials.</p>
+    <video width="100%" controls>
+      <source src="lesson1.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+<div id="assignments" class="section">
+  <h1>Assignments / Tests</h1>
+  <div class="card">
+    <p>Submit your assignments and take online tests here.</p>
+    <button class="btn">Upload Assignment</button>
+    <button class="btn">Take Test</button>
+  </div>
+</div>
+<div id="meetings" class="section">
+  <h1>Meetings / Calendar</h1>
+  <div class="card">
+    <p>Schedule or join online meetings with your tutors.</p>
+    <button class="btn">Join Live Class</button>
+    <button class="btn">View Calendar</button>
+  </div>
+</div>
+<div id="chat" class="section">
+  <h1>Chat / Messages</h1>
+  <div class="card">
+    <p>Chat with your tutors and classmates in real-time.</p>
+    <textarea rows="3" placeholder="Type your message..."></textarea><br>
+    <button class="btn">Send Message</button>
+  </div>
+</div>
+<div id="performance" class="section">
+  <h1>Performance Tracker</h1>
+  <div class="card">
+    <p>Monitor your progress, grades, and performance stats.</p>
+    <ul>
+      <li>Attendance: 92%</li>
+      <li>Average Score: 88%</li>
+      <li>Participation: Excellent</li>
+    </ul>
+  </div>
+</div>
+<div id="payments" class="section">
+  <h1>Payments</h1>
+  <div class="card">
+    <p>Manage your course payments and invoices.</p>
+    <table>
+      <tr><th>Course</th><th>Status</th><th>Amount</th></tr>
+      <tr><td>Data Analytics</td><td>Paid</td><td>₹15,000</td></tr>
+      <tr><td>English Communication</td><td>Pending</td><td>₹10,000</td></tr>
+    </table>
+    <button class="btn">Pay Now</button>
+  </div>
+</div>
+<div id="certificates" class="section">
+  <h1>Certificates</h1>
+  <div class="card">
+    <p>Download your earned certificates after course completion.</p>
+    <button class="btn">Download Certificate</button>
+  </div>
+</div>
+<div id="support" class="section">
+  <h1>Help / Support</h1>
+  <div class="card">
+    <p>Need assistance? Contact support or book a callback.</p>
+    <button class="btn">Chat with Support</button>
+    <button class="btn">Request a Call</button>
+  </div>
+</div>
+<div id="settings" class="section">
+  <h1>Settings</h1>
+  <div class="card">
+    <p>Change your password, preferences, or notification settings.</p>
+    <button class="btn">Update Password</button>
+  </div>
+</div>
+<div id="leaderboard" class="section">
+  <h1>Leaderboard / Achievements</h1>
+  <div class="card">
+    <p>View your rank, badges, and achievements compared to other learners.</p>
+    <ul>
+      <li><strong>Your Rank:</strong> #4 out of 150 students</li>
+      <li><strong>Badges Earned:</strong> Fast Learner, Top Scorer, Consistent Performer</li>
+    </ul>
+    <button class="btn">View Full Leaderboard</button>
+  </div>
+</div>
+<div id="community" class="section">
+  <h1>Community Forum</h1>
+  <div class="card">
+    <p>Join discussions, ask questions, and share your knowledge with other students.</p>
+    <button class="btn">Join Discussion</button>
+    <button class="btn">Start New Topic</button>
+  </div>
+</div>
+<div id="feedback" class="section">
+  <h1>Feedback / Suggestion Box</h1>
+  <div class="card">
+    <p>We value your input! Please share your feedback below.</p>
+    <textarea id="feedbackText" rows="4" style="width:100%; padding:10px; border-radius:5px; border:none; margin-top:10px;"></textarea>
+    <button class="btn" onclick="submitFeedback()">Submit Feedback</button>
+  </div>
+</div>
 
-  <script>
-    function loadSection(id, el) {
-      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      el.classList.add('active');
-    }
+<script>
+function showSection(sectionId) {
+  document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+  document.getElementById(sectionId).style.display = 'block';
+}
 
-    function submitFeedback() {
-      const text = document.getElementById('feedbackText').value.trim();
-      if (!text) return alert("Please enter feedback before submitting!");
-      alert("✅ Thank you for your valuable feedback!");
-      document.getElementById('feedbackText').value = '';
-    }
-  </script>
+function submitFeedback() {
+  const text = document.getElementById('feedbackText').value.trim();
+  if (!text) return alert('Please write feedback first.');
+  alert('✅ Thank you for your feedback!');
+  document.getElementById('feedbackText').value = '';
+}
+</script>
+
 </body>
 </html>
