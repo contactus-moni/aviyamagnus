@@ -69,20 +69,6 @@
       background: url('img/bg.jpg') no-repeat center center/cover;
     }
 
-    #captchaBox {
-      flex: 1;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
-      font-weight: bold;
-      font-size: 20px;
-      text-align: center;
-      color: #000;
-      letter-spacing: 4px;
-      user-select: none;
-    }
-
     .small-error {
       color: #e03f4f;
       display: none;
@@ -133,44 +119,13 @@
     </div>
     <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
 
-    <!-- CAPTCHA -->
-    <div class="captcha-section" style="margin-top:15px;">
-      <label for="captchaInput" style="display:block; color:#333; margin-bottom:5px;">Captcha Verification</label>
-
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div id="captchaBox" aria-hidden="true"></div>
-        <button type="button" id="refreshCaptchaBtn" onclick="generateCaptcha()"
-          style="background:#fff; border:1px solid #ccc; border-radius:5px; padding:8px 12px; cursor:pointer; color:#333;">
-          ↻ Refresh
-        </button>
-      </div>
-
-      <input type="text" id="captchaInput" placeholder="Enter Captcha"
-        style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; background:#f8f8f8; color:#333;">
-      <small id="captchaError" class="small-error">Invalid captcha. Please try again.</small>
-    </div>
 
     <button type="button" id="registerBtn" class="site-btn">Register</button>
   </form>
 </section>
 
 <script>
-  // ---------- Captcha ----------
-  let generatedCaptcha = "";
-
-  function generateCaptcha() {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    let captcha = "";
-    for (let i = 0; i < 6; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    generatedCaptcha = captcha;
-    const box = document.getElementById("captchaBox");
-    if (box) box.textContent = captcha;
-  }
-
-  // Run once on load
-  window.addEventListener("load", generateCaptcha);
+ 
 
   // ---------- Helper: show/hide error ----------
   function showElem(id) {
@@ -194,12 +149,12 @@
     const mobile = (document.getElementById("mobile").value || "").trim();
     const password = (document.getElementById("password").value || "").trim();
     const confirmPassword = (document.getElementById("confirmPassword").value || "").trim();
-    const captchaInput = (document.getElementById("captchaInput").value || "").trim().toUpperCase();
+ 
 
     // Hide previous errors
     hideElem("passwordError");
     hideElem("mobileError");
-    hideElem("captchaError");
+  
 
     // 1) Required check
     if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword || !captchaInput) {
@@ -224,13 +179,6 @@
     // 4) password match
     if (password !== confirmPassword) {
       showElem("passwordError");
-      return;
-    }
-
-    // 5) captcha
-    if (captchaInput !== generatedCaptcha) {
-      showElem("captchaError");
-      generateCaptcha();
       return;
     }
 
@@ -276,19 +224,7 @@ fetch("https://aviyamagnus.rf.gd/register.php", {
   console.error("Network error:", err);
   alert("Something went wrong. Please try again later.");
 });
-      // refresh captcha and re-enable
-        generateCaptcha();
-        btn.disabled = false;
-        btn.textContent = originalText;
-      }
-    } catch (err) {
-      console.error("Network error:", err);
-      alert("⚠️ Error connecting to server. Please try again later.");
-      generateCaptcha();
-      btn.disabled = false;
-      btn.textContent = originalText;
-    }
-  });
+
 </script>
 </body>
 </html>
