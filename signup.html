@@ -82,6 +82,14 @@
       letter-spacing: 4px;
       user-select: none;
     }
+
+    .small-error {
+      color: #e03f4f;
+      display: none;
+      font-size: 13px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -125,34 +133,31 @@
     </div>
     <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
 
-    <!-- ✅ CAPTCHA SECTION -->
+    <!-- CAPTCHA -->
     <div class="captcha-section" style="margin-top:15px;">
       <label for="captchaInput" style="display:block; color:#333; margin-bottom:5px;">Captcha Verification</label>
 
       <div style="display:flex; align-items:center; gap:10px;">
-        <div id="captchaBox"></div>
-        <button type="button" onclick="generateCaptcha()"
-          style="background:#fff; border:1px solid #ccc; border-radius:5px;
-                 padding:8px 12px; cursor:pointer; color:#333;">
+        <div id="captchaBox" aria-hidden="true"></div>
+        <button type="button" id="refreshCaptchaBtn" onclick="generateCaptcha()"
+          style="background:#fff; border:1px solid #ccc; border-radius:5px; padding:8px 12px; cursor:pointer; color:#333;">
           ↻ Refresh
         </button>
       </div>
 
       <input type="text" id="captchaInput" placeholder="Enter Captcha"
-        style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd;
-               border-radius:5px; background:#f8f8f8; color:#333;">
-      <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
+        style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; background:#f8f8f8; color:#333;">
+      <small id="captchaError" class="small-error">Invalid captcha. Please try again.</small>
     </div>
 
-    <button type="button" class="site-btn" onclick="validateAndRegister()">Register</button>
+    <button type="button" id="registerBtn" class="site-btn">Register</button>
   </form>
 </section>
 
-<!-- ✅ MAIN SCRIPT -->
 <script>
+  // ---------- Captcha ----------
   let generatedCaptcha = "";
 
-  // --- Generate Captcha ---
   function generateCaptcha() {
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     let captcha = "";
@@ -160,79 +165,132 @@
       captcha += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     generatedCaptcha = captcha;
-    document.getElementById("captchaBox").textContent = captcha;
+    const box = document.getElementById("captchaBox");
+    if (box) box.textContent = captcha;
   }
 
+  // Run once on load
   window.addEventListener("load", generateCaptcha);
 
-  // --- Validate and Register ---
-  function validateAndRegister() {
-    const role = document.getElementById("role").value.trim();
-    const firstName = document.getElementById("firstName").value.trim();
-    const lastName = document.getElementById("lastName").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const countryCode = document.getElementById("countryCode").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const confirmPassword = document.getElementById("confirmPassword").value.trim();
-    const captchaInput = document.getElementById("captchaInput").value.trim().toUpperCase();
+  // ---------- Helper: show/hide error ----------
+  function showElem(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "block";
+  }
+  function hideElem(id) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  }
 
-    const passwordError = document.getElementById("passwordError");
-    const captchaError = document.getElementById("captchaError");
+  // ---------- Register flow ----------
+  document.getElementById("registerBtn").addEventListener("click", async function () {
+    const btn = this;
+    // Collect fields
+    const role = (document.getElementById("role").value || "").trim();
+    const firstName = (document.getElementById("firstName").value || "").trim();
+    const lastName = (document.getElementById("lastName").value || "").trim();
+    const email = (document.getElementById("email").value || "").trim();
+    const countryCode = (document.getElementById("countryCode").value || "").trim();
+    const mobile = (document.getElementById("mobile").value || "").trim();
+    const password = (document.getElementById("password").value || "").trim();
+    const confirmPassword = (document.getElementById("confirmPassword").value || "").trim();
+    const captchaInput = (document.getElementById("captchaInput").value || "").trim().toUpperCase();
 
+    // Hide previous errors
+    hideElem("passwordError");
+    hideElem("mobileError");
+    hideElem("captchaError");
+
+    // 1) Required check
     if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword || !captchaInput) {
       alert("⚠️ Please fill in all required fields before continuing.");
       return;
     }
 
+    // 2) email format
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       alert("⚠️ Please enter a valid email address.");
       return;
     }
 
-    const mobilePattern = /^[0-9]{10,15}$/;
+    // 3) mobile validation (digits)
+    const mobilePattern = /^[0-9]{7,15}$/; // allow country code separately
     if (!mobilePattern.test(mobile)) {
-      alert("⚠️ Please enter a valid mobile number (10–15 digits).");
+      showElem("mobileError");
       return;
     }
 
+    // 4) password match
     if (password !== confirmPassword) {
-      passwordError.style.display = "block";
+      showElem("passwordError");
       return;
-    } else {
-      passwordError.style.display = "none";
     }
 
+    // 5) captcha
     if (captchaInput !== generatedCaptcha) {
-      captchaError.style.display = "block";
+      showElem("captchaError");
       generateCaptcha();
       return;
-    } else {
-      captchaError.style.display = "none";
     }
 
-    // ✅ Send Data to Backend
-    fetch("https://aviyamagnus.rf.gd/register.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        role, firstName, lastName, email, countryCode, mobile, password
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-      if (data.status === "success") {
-        alert("✅ Signup successful!");
+    // 6) disable button & send to backend
+    btn.disabled = true;
+    const originalText = btn.textContent;
+    btn.textContent = "Please wait...";
+
+    try {
+      const payload = {
+        role,
+        firstName,
+        lastName,
+        email,
+        countryCode,
+        mobile,
+        password
+      };
+
+      console.log("Sending signup payload:", payload);
+
+      const res = await fetch("https://aviyamagnus.rf.gd/register.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        cache: "no-store"
+      });
+
+      // try parse JSON, fall back to text
+      let data;
+      const text = await res.text();
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch (e) {
+        console.warn("Response not JSON:", text);
+        data = { status: "error", message: text || "Server error" };
+      }
+
+      console.log("Server response:", data);
+
+      if (data && data.status === "success") {
+        alert(data.message || "✅ Signup successful! Redirecting...");
+        // redirect
         window.location.href = "success.html";
       } else {
-        alert(data.message || "Signup failed. Please try again.");
+        const msg = (data && data.message) ? data.message : "Signup failed. Please try again.";
+        alert(msg);
+        // refresh captcha and re-enable
+        generateCaptcha();
+        btn.disabled = false;
+        btn.textContent = originalText;
       }
-    })
-    .catch(err => {
-      alert("⚠️ Error connecting to the server: " + err);
-    });
-  }
+    } catch (err) {
+      console.error("Network error:", err);
+      alert("⚠️ Error connecting to server. Please try again later.");
+      generateCaptcha();
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  });
 </script>
 </body>
 </html>
