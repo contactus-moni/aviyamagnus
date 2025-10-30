@@ -252,33 +252,31 @@
 
       console.log("Sending signup payload:", payload);
 
-      const res = await fetch("https://aviyamagnus.rf.gd/register.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        cache: "no-store"
-      });
+fetch("https://aviyamagnus.rf.gd/register.php", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    name: name,
+    email: email,
+    phone: phone,
+    password: password
+  })
+})
 
-      // try parse JSON, fall back to text
-      let data;
-      const text = await res.text();
-      try {
-        data = text ? JSON.parse(text) : {};
-      } catch (e) {
-        console.warn("Response not JSON:", text);
-        data = { status: "error", message: text || "Server error" };
-      }
-
-      console.log("Server response:", data);
-
-      if (data && data.status === "success") {
-        alert(data.message || "✅ Signup successful! Redirecting...");
-        // redirect
-        window.location.href = "success.html";
-      } else {
-        const msg = (data && data.message) ? data.message : "Signup failed. Please try again.";
-        alert(msg);
-        // refresh captcha and re-enable
+.then(res => res.json())
+.then(data => {
+  console.log(data);
+  if (data.status === "success") {
+    window.location.href = "success.html";
+  } else {
+    alert(data.message);
+  }
+})
+.catch(err => {
+  console.error("Network error:", err);
+  alert("Something went wrong. Please try again later.");
+});
+      // refresh captcha and re-enable
         generateCaptcha();
         btn.disabled = false;
         btn.textContent = originalText;
