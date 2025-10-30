@@ -162,7 +162,7 @@
   <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
 </div>
 
- <button type="button" class="btn-submit" onclick="validateAndRegister()">Register</button>
+ <button type="submit" id="signupBtn" class="site-btn">Register/button>
     </form>
 </section>
 
@@ -257,16 +257,8 @@ fetch("https://aviyamagnus.rf.gd/register.php", {
     .then((data) => {
       console.log("Server response:", data);
 
-      if (data.status === "success") {
-        alert("✅ Registration successful!");
-        window.location.href = "success.html";
-      } else {
-        alert(data.message || "❌ Registration failed. Please try again.");
-      }
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-      alert("⚠️ Unable to connect to server. Please try again later.");
+    window.location.href = `https://contactus.aviyamagnus.com/success.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+  }
     });
 }
 </script>
