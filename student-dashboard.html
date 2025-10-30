@@ -4,337 +4,164 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Dashboard - Aviya Magnus</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ===== Base Styles ===== */
     body {
-      margin: 0;
-      font-family: "Times New Roman", serif;
-      background-color: #0d0d0d;
+      background-color: #1a1a1a;
       color: #fff;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
     }
-
-    /* ===== Sidebar ===== */
-    .sidebar {
-      width: 220px;
-      background: #000;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #ff4b5c #1a1a1a;
-    }
-
-    .sidebar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .sidebar::-webkit-scrollbar-thumb {
-      background-color: #ff4b5c;
-      border-radius: 10px;
-    }
-
-    .sidebar h2 {
-      text-align: center;
-      padding: 18px 0;
-      margin: 0;
-      background: #1a1a1a;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #333;
-    }
-
-    /* ===== Navigation Links ===== */
-    .nav {
-      flex: 1;
-      padding-top: 5px;
-    }
-
-    .nav a {
-      display: block;
-      padding: 10px 16px;
-      margin: 4px 8px;
-      color: #ccc;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-    }
-
-    .nav a.active, .nav a:hover {
-      background: #ff4b5c;
-      color: white;
-    }
-
-    /* ===== Content Area ===== */
-    .content {
-      margin-left: 220px;
-      padding: 30px;
-      flex: 1;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #ff4b5c #1a1a1a;
-    }
-
-    .content::-webkit-scrollbar {
-      width: 8px;
-    }
-    .content::-webkit-scrollbar-thumb {
-      background-color: #ff4b5c;
-      border-radius: 10px;
-    }
-
-    /* ===== Tabs ===== */
-    .tab.hidden {
-      display: none;
-    }
-
-    /* ===== Headings ===== */
-    h1 {
-      font-family: "Magneto", cursive;
-      font-size: 3.2rem;
-      color: #ff4b5c;
-      margin-top: 0;
-    }
-
-    h2, h3 {
-      color: #fff;
-      margin-top: 0;
-    }
-
-    /* ===== Buttons ===== */
-    button {
-      background: #ff4b5c;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      padding: 8px 14px;
-      cursor: pointer;
-      font-family: "Times New Roman", serif;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #e03f4f;
-    }
-
-    /* ===== Info Cards ===== */
-    .item {
-      background: #1a1a1a;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      box-shadow: 0 0 5px rgba(255, 75, 92, 0.2);
-    }
-
-    .muted {
-      color: #aaa;
-    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background-color: #ff4b5c; border-radius: 8px; }
+    .accent { color: #ff4b5c; }
+    .accent-bg { background-color: #ff4b5c; }
   </style>
 </head>
-<body>
-<!-- Sidebar -->
-  <div class="sidebar">
-    <h2>Student Portal</h2>
-      <a href="#" class="active" data-tab="overview">Overview</a>
-      <a href="#" data-tab="profile">Profile</a>
-      <a href="#" data-tab="courses">Courses</a>
-      <a href="#" data-tab="documents">Documents / Notes</a>
-      <a href="#" data-tab="meetings">Calls / Meetings</a>
-      <a href="#" data-tab="messages">Messages</a>
-      <a href="#" data-tab="payments">Payments</a>
-      <a href="#" data-tab="certs">Certificates</a>
-      <a href="#" data-tab="chat">Chat</a>
-      <a href="#" data-tab="settings">Settings</a>
-  </div>
+<body class="flex min-h-screen overflow-hidden">
 
-<div id="dashboard" class="section active">
-  <h1>Dashboard Overview</h1>
-  <div class="card">
-    <p>Welcome back, <strong>Student!</strong> Here’s a quick summary of your activity.</p>
-    <ul>
-      <li>📘 Current Course: Advanced English Communication</li>
-      <li>✅ Progress: 45% completed</li>
-      <li>📅 Next Class: Nov 2, 2025 at 6:00 PM</li>
-    </ul>
-  </div>
-</div>
-<div id="profile" class="section">
-  <h1>My Profile</h1>
-  <div class="card">
-    <p>Manage your personal details, contact info, and learning preferences.</p>
-    <form>
-      <label>Full Name:</label><br>
-      <input type="text" value="John Doe"><br><br>
-      <label>Email:</label><br>
-      <input type="email" value="john@example.com"><br><br>
-      <label>Phone:</label><br>
-      <input type="text" value="+91 9876543210"><br><br>
-      <button class="btn">Update Profile</button>
-    </form>
-  </div>
-</div>
-<div id="courseReg" class="section">
-  <h1>Course Registration</h1>
-  <div class="card">
-    <p>Select and enroll in new courses below.</p>
-    <select>
-      <option>Select a Course</option>
-      <option>Mathematics - Grade 10</option>
-      <option>Science - Grade 12</option>
-      <option>Business Studies - MBA</option>
-    </select>
-    <button class="btn">Register Course</button>
-  </div>
-</div>
-<div id="myCourses" class="section">
-  <h1>My Courses</h1>
-  <div class="card">
-    <p>View your ongoing and completed courses.</p>
-    <ul>
-      <li>English Communication - 45% completed</li>
-      <li>Data Analytics - 100% completed (Certified)</li>
-    </ul>
-    <button class="btn">View Course Materials</button>
-  </div>
-</div>
-<div id="documents" class="section">
-  <h1>Documents / Notes</h1>
-  <div class="card">
-    <p>Upload, view, and download class materials.</p>
-    <input type="file">
-    <button class="btn">Upload Document</button>
-    <hr>
-    <ul>
-      <li><a href="#">English_Notes.pdf</a></li>
-      <li><a href="#">Science_Assignment.docx</a></li>
-    </ul>
-  </div>
-</div>
-<div id="videos" class="section">
-  <h1>Video Lessons</h1>
-  <div class="card">
-    <p>Watch your recorded sessions and video tutorials.</p>
-    <video width="100%" controls>
-      <source src="lesson1.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-<div id="assignments" class="section">
-  <h1>Assignments / Tests</h1>
-  <div class="card">
-    <p>Submit your assignments and take online tests here.</p>
-    <button class="btn">Upload Assignment</button>
-    <button class="btn">Take Test</button>
-  </div>
-</div>
-<div id="meetings" class="section">
-  <h1>Meetings / Calendar</h1>
-  <div class="card">
-    <p>Schedule or join online meetings with your tutors.</p>
-    <button class="btn">Join Live Class</button>
-    <button class="btn">View Calendar</button>
-  </div>
-</div>
-<div id="chat" class="section">
-  <h1>Chat / Messages</h1>
-  <div class="card">
-    <p>Chat with your tutors and classmates in real-time.</p>
-    <textarea rows="3" placeholder="Type your message..."></textarea><br>
-    <button class="btn">Send Message</button>
-  </div>
-</div>
-<div id="performance" class="section">
-  <h1>Performance Tracker</h1>
-  <div class="card">
-    <p>Monitor your progress, grades, and performance stats.</p>
-    <ul>
-      <li>Attendance: 92%</li>
-      <li>Average Score: 88%</li>
-      <li>Participation: Excellent</li>
-    </ul>
-  </div>
-</div>
-<div id="payments" class="section">
-  <h1>Payments</h1>
-  <div class="card">
-    <p>Manage your course payments and invoices.</p>
-    <table>
-      <tr><th>Course</th><th>Status</th><th>Amount</th></tr>
-      <tr><td>Data Analytics</td><td>Paid</td><td>₹15,000</td></tr>
-      <tr><td>English Communication</td><td>Pending</td><td>₹10,000</td></tr>
-    </table>
-    <button class="btn">Pay Now</button>
-  </div>
-</div>
-<div id="certificates" class="section">
-  <h1>Certificates</h1>
-  <div class="card">
-    <p>Download your earned certificates after course completion.</p>
-    <button class="btn">Download Certificate</button>
-  </div>
-</div>
-<div id="support" class="section">
-  <h1>Help / Support</h1>
-  <div class="card">
-    <p>Need assistance? Contact support or book a callback.</p>
-    <button class="btn">Chat with Support</button>
-    <button class="btn">Request a Call</button>
-  </div>
-</div>
-<div id="settings" class="section">
-  <h1>Settings</h1>
-  <div class="card">
-    <p>Change your password, preferences, or notification settings.</p>
-    <button class="btn">Update Password</button>
-  </div>
-</div>
-<div id="leaderboard" class="section">
-  <h1>Leaderboard / Achievements</h1>
-  <div class="card">
-    <p>View your rank, badges, and achievements compared to other learners.</p>
-    <ul>
-      <li><strong>Your Rank:</strong> #4 out of 150 students</li>
-      <li><strong>Badges Earned:</strong> Fast Learner, Top Scorer, Consistent Performer</li>
-    </ul>
-    <button class="btn">View Full Leaderboard</button>
-  </div>
-</div>
-<div id="community" class="section">
-  <h1>Community Forum</h1>
-  <div class="card">
-    <p>Join discussions, ask questions, and share your knowledge with other students.</p>
-    <button class="btn">Join Discussion</button>
-    <button class="btn">Start New Topic</button>
-  </div>
-</div>
-<div id="feedback" class="section">
-  <h1>Feedback / Suggestion Box</h1>
-  <div class="card">
-    <p>We value your input! Please share your feedback below.</p>
-    <textarea id="feedbackText" rows="4" style="width:100%; padding:10px; border-radius:5px; border:none; margin-top:10px;"></textarea>
-    <button class="btn" onclick="submitFeedback()">Submit Feedback</button>
-  </div>
-</div>
+  <!-- ===== Sidebar ===== -->
+  <aside class="w-64 bg-black border-r border-gray-800 flex flex-col fixed top-0 left-0 h-full overflow-y-auto">
+    <div class="text-center py-6 border-b border-gray-800">
+      <h1 class="text-2xl font-bold accent">Aviya Magnus</h1>
+  <h2 class="text-xl font-bold mb-4 text-[#ff4b5c]">🎓 Student Dashboard</h2>
 
-<script>
-function showSection(sectionId) {
-  document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
-  document.getElementById(sectionId).style.display = 'block';
-}
+  <a href="#" data-tab="dashboard" class="block px-6 py-3 bg-[#ff4b5c] text-white rounded-l-full font-medium">🏠 Dashboard</a>
+  <a href="#" data-tab="profile" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">👤 Profile</a>
+  <a href="#" data-tab="registration" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">✔️ Course Registration</a>
+  <a href="#" data-tab="courses" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📘 My Courses</a>
+  <a href="#" data-tab="documents" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📂 Documents / Notes</a>
+  <a href="#" data-tab="video" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🖥️ Video Lessons</a>
+  <a href="#" data-tab="assignments" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🗞️ Assignments / Tests</a>
+  <a href="#" data-tab="meetings" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📅 Meetings / Calendar</a>
+  <a href="#" data-tab="chats" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">💬 Chat / Messages</a>
+  <a href="#" data-tab="performance" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">✅ Performance Tracker</a>
+  <a href="#" data-tab="payment" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">💸 Payments</a>
+  <a href="#" data-tab="certificates" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🎓 Certificates</a>
+  <a href="#" data-tab="support" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📞 Help / Support</a>
+  <a href="#" data-tab="settings" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">⚙️ Settings</a>
+  <a href="#" data-tab="leadership" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🏆 Leaderboard / Achievements</a>
+  <a href="#" data-tab="community" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">🌐 Community Forum</a>
+  <a href="#" data-tab="feedback" class="block px-6 py-3 text-gray-400 hover:text-white hover:bg-[#1a1a1a]">📝 Feedback / Suggestion Box</a>
+</aside>
 
-function submitFeedback() {
-  const text = document.getElementById('feedbackText').value.trim();
-  if (!text) return alert('Please write feedback first.');
-  alert('✅ Thank you for your feedback!');
-  document.getElementById('feedbackText').value = '';
-}
-</script>
 
+  <!-- ===== Main Content ===== -->
+  <main class="flex-1 ml-64 mr-80 p-8 overflow-y-auto">
+
+    <!-- Topbar -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold accent">Dashboard Overview</h1>
+      <div class="relative">
+        <input type="text" placeholder="Search here..." class="bg-[#0d0d0d] text-white pl-10 pr-4 py-2 rounded-full w-64 focus:outline-none border border-gray-700">
+        <span class="absolute left-3 top-2.5 text-gray-400">🔍</span>
+      </div>
+    </div>
+
+    <!-- Dashboard Overview -->
+    <section class="space-y-6">
+      <div class="bg-[#0d0d0d] p-6 rounded-xl shadow-md border border-gray-800">
+        <p class="text-gray-300">Welcome back, <strong class="accent">Student!</strong> Here’s a quick summary of your activity.</p>
+        <ul class="list-disc list-inside mt-3 text-gray-400">
+          <li>📘 Current Course: Advanced English Communication</li>
+          <li>✅ Progress: 45% completed</li>
+          <li>📅 Next Class: Nov 2, 2025 at 6:00 PM</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-[#0d0d0d] p-5 rounded-xl border border-gray-800">
+          <h2 class="text-lg font-semibold accent mb-2">My Courses</h2>
+          <p class="text-gray-400">View your ongoing and completed courses.</p>
+          <ul class="mt-2 text-gray-300">
+            <li>English Communication - 45% completed</li>
+            <li>Data Analytics - 100% completed (Certified)</li>
+          </ul>
+          <button class="mt-3 accent-bg px-3 py-2 rounded-md text-white">View Course Materials</button>
+        </div>
+
+        <div class="bg-[#0d0d0d] p-5 rounded-xl border border-gray-800">
+          <h2 class="text-lg font-semibold accent mb-2">Meetings / Calendar</h2>
+          <p class="text-gray-400">Schedule or join online meetings with your tutors.</p>
+          <button class="mt-3 accent-bg px-3 py-2 rounded-md text-white mr-2">Join Live Class</button>
+          <button class="mt-3 bg-gray-800 px-3 py-2 rounded-md text-white">View Calendar</button>
+        </div>
+
+        <div class="bg-[#0d0d0d] p-5 rounded-xl border border-gray-800">
+          <h2 class="text-lg font-semibold accent mb-2">Payments</h2>
+          <p class="text-gray-400">Manage your course payments and invoices.</p>
+          <table class="w-full text-sm mt-2 text-gray-300 border-collapse">
+            <tr><th class="text-left pb-1">Course</th><th>Status</th><th>Amount</th></tr>
+            <tr><td>Data Analytics</td><td class="text-green-500">Paid</td><td>₹15,000</td></tr>
+            <tr><td>English Comm.</td><td class="text-yellow-500">Pending</td><td>₹10,000</td></tr>
+          </table>
+          <button class="mt-3 accent-bg px-3 py-2 rounded-md text-white">Pay Now</button>
+        </div>
+      </div>
+
+      <div class="bg-[#0d0d0d] p-6 rounded-xl border border-gray-800">
+        <h2 class="text-lg font-semibold accent mb-2">Feedback / Suggestion Box</h2>
+        <p class="text-gray-400">We value your input! Please share your feedback below.</p>
+        <textarea id="feedbackText" rows="4" class="w-full mt-3 p-3 rounded-md bg-gray-900 text-gray-200 border-none focus:outline-none" placeholder="Type your feedback..."></textarea>
+        <button onclick="submitFeedback()" class="mt-3 accent-bg px-4 py-2 rounded-md text-white">Submit Feedback</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Right Sidebar ===== -->
+  <aside class="w-80 bg-[#0d0d0d] border-l border-gray-800 p-6 fixed right-0 top-0 h-full overflow-y-auto">
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold">Good Morning, <span class="accent">Monika</span> 👋</h2>
+      <p class="text-gray-400 text-sm">Here’s your quick progress summary.</p>
+    </div>
+
+    <!-- Small Performance Chart (mock) -->
+    <div class="bg-black p-4 rounded-xl mb-8 border border-gray-800">
+      <h3 class="font-medium mb-2 accent">Performance Tracker</h3>
+      <div class="space-y-3">
+        <div>
+          <div class="flex justify-between text-gray-400 text-sm"><span>Attendance</span><span>92%</span></div>
+          <div class="w-full h-2 bg-gray-800 rounded"><div class="h-2 accent-bg rounded w-[92%]"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-gray-400 text-sm"><span>Average Score</span><span>88%</span></div>
+          <div class="w-full h-2 bg-gray-800 rounded"><div class="h-2 bg-green-500 rounded w-[88%]"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between text-gray-400 text-sm"><span>Participation</span><span>Excellent</span></div>
+          <div class="w-full h-2 bg-gray-800 rounded"><div class="h-2 bg-yellow-400 rounded w-[95%]"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mentor Section -->
+    <div class="bg-black p-4 rounded-xl border border-gray-800">
+      <h3 class="font-medium accent mb-3">Your Mentors</h3>
+      <div class="space-y-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">👩‍🏫</div>
+          <div>
+            <p class="font-medium text-gray-200">Dr. Meena</p>
+            <p class="text-xs text-gray-400">English Tutor</p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center">👨‍🏫</div>
+          <div>
+            <p class="font-medium text-gray-200">Mr. Arjun</p>
+            <p class="text-xs text-gray-400">Finance Coach</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <script>
+    function submitFeedback() {
+      const text = document.getElementById('feedbackText').value.trim();
+      if (!text) return alert('Please write feedback first.');
+      alert('✅ Thank you for your feedback, Monika!');
+      document.getElementById('feedbackText').value = '';
+    }
+  </script>
 </body>
 </html>
