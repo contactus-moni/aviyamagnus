@@ -125,106 +125,79 @@
 </section>
 
 <script>
- 
+document.getElementById("signupForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  // ---------- Helper: show/hide error ----------
-  function showElem(id) {
-    const el = document.getElementById(id);
-    if (el) el.style.display = "block";
-  }
-  function hideElem(id) {
-    const el = document.getElementById(id);
-    if (el) el.style.display = "none";
-  }
+    // Get form values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const captchaInput = document.getElementById("captchaInput").value.trim();
+    const captchaText = document.getElementById("captchaText").textContent.trim();
 
-  // ---------- Register flow ----------
-  document.getElementById("registerBtn").addEventListener("click", async function () {
-    const btn = this;
-    // Collect fields
-    const role = (document.getElementById("role").value || "").trim();
-    const firstName = (document.getElementById("firstName").value || "").trim();
-    const lastName = (document.getElementById("lastName").value || "").trim();
-    const email = (document.getElementById("email").value || "").trim();
-    const countryCode = (document.getElementById("countryCode").value || "").trim();
-    const mobile = (document.getElementById("mobile").value || "").trim();
-    const password = (document.getElementById("password").value || "").trim();
-    const confirmPassword = (document.getElementById("confirmPassword").value || "").trim();
- 
-
-    // Hide previous errors
-    hideElem("passwordError");
-    hideElem("mobileError");
-  
-
-    // 1) Required check
-    if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword || !captchaInput) {
-      alert("⚠️ Please fill in all required fields before continuing.");
-      return;
+    // Simple validation
+    if (!name || !email || !password || !phone) {
+        alert("Please fill all the fields.");
+        return;
     }
 
-    // 2) email format
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-      alert("⚠️ Please enter a valid email address.");
-      return;
+    // Captcha check
+    if (captchaInput !== captchaText) {
+        alert("Captcha does not match. Please try again.");
+        generateCaptcha(); // regenerate captcha
+        return;
     }
 
-    // 3) mobile validation (digits)
-    const mobilePattern = /^[0-9]{7,15}$/; // allow country code separately
-    if (!mobilePattern.test(mobile)) {
-      showElem("mobileError");
-      return;
-    }
+    // Prepare payload
+    const payload = { name, email, password, phone };
 
-    // 4) password match
-    if (password !== confirmPassword) {
-      showElem("passwordError");
-      return;
-    }
-
-    // 6) disable button & send to backend
-    btn.disabled = true;
-    const originalText = btn.textContent;
-    btn.textContent = "Please wait...";
+    console.log("Sending signup payload:", payload);
 
     try {
-      const payload = {
-        role,
-        firstName,
-        lastName,
-        email,
-        countryCode,
-        mobile,
-        password
-      };
+        const response = await fetch("https://aviyamagnus.rf.gd/register.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
 
-      console.log("Sending signup payload:", payload);
+        const result = await response.json();
+        console.log("Server response:", result);
 
-fetch("https://aviyamagnus.rf.gd/register.php", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    name: name,
-    email: email,
-    phone: phone,
-    password: password
-  })
-})
-
-.then(res => res.json())
-.then(data => {
-  console.log(data);
-  if (data.status === "success") {
-    window.location.href = "success.html";
-  } else {
-    alert(data.message);
-  }
-})
-.catch(err => {
-  console.error("Network error:", err);
-  alert("Something went wrong. Please try again later.");
+        if (result.status === "success") {
+            // Redirect to success page
+            window.location.href = "success.html";
+        } else {
+            alert(result.message || "Registration failed.");
+        }
+    } catch (error) {
+        console.error("Network or JSON error:", error);
+        alert("Unable to connect to server. Please try again later.");
+    }
 });
 
+// Captcha Generator
+function generateCaptcha() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let captcha = "";
+    for (let i = 0; i < 6; i++) {
+        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    const captchaBox = document.getElementById("captchaText");
+    if (captchaBox) {
+        captchaBox.textContent = captcha;
+        captchaBox.style.color = "black";
+        captchaBox.style.fontWeight = "bold";
+        captchaBox.style.letterSpacing = "3px";
+        captchaBox.style.background = "#fff";
+        captchaBox.style.padding = "5px 10px";
+        captchaBox.style.borderRadius = "6px";
+        captchaBox.style.display = "inline-block";
+    }
+}
+
+// Generate captcha on page load
+window.onload = generateCaptcha;
 </script>
-</body>
-</html>
