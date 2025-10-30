@@ -134,24 +134,22 @@
         <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
 
 <div class="captcha-section" style="margin-top:15px;">
-  <label for="captchaInput" style="display:block; color:#fff;">Enter Captcha:</label>
+  <label for="captchaInput" style="display:block; color:#333; margin-bottom:5px;">Enter Captcha</label>
 
-  <div style="display:flex; align-items:center; gap:10px; margin-top:5px;">
+  <div style="display:flex; align-items:center; gap:10px;">
     <canvas id="captchaCanvas" width="150" height="50"
-    
+      style="background:#f8f8f8; border:1px solid #ddd; border-radius:5px;">
     </canvas>
     <button type="button" onclick="generateCaptcha()"
-
-      🔄 Refresh
+      style="background:#fff; border:1px solid #ccc; border-radius:5px; padding:8px 12px; cursor:pointer; color:#333;">
+      ↻ Refresh
     </button>
   </div>
 
-  <input type="text" id="captchaInput" placeholder="Enter captcha text"
-    style="margin-top:10px; padding:8px; width:100%; border:none; border-radius:5px; 
-           background:#1a1a1a; color:#fff; outline:none;">
-  <small id="captchaError" display:none;">Invalid captcha. Please try again.</small>
+  <input type="text" id="captchaInput" placeholder="Enter Captcha"
+    style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd; border-radius:5px; background:#f8f8f8; color:#333;">
+  <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
 </div>
-
 
         <button type="submit" class="site-btn" onclick="validateAndRedirect(event)">Register</button>
     </form>
