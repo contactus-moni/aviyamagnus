@@ -182,23 +182,6 @@
 <div class="captcha-section" style="margin-top:15px;">
   <label for="captchaInput" style="display:block; color:#fff;">Enter Captcha:</label>
 
-  <div style="display:flex; align-items:center; gap:10px; margin-top:5px;">
-    <div id="captchaText" 
-         style="background:#1a1a1a; color:#ff4b5c; font-weight:bold; letter-spacing:3px; 
-                padding:10px 20px; border-radius:6px; user-select:none; font-size:18px;">
-    </div>
-    <button type="button" onclick="generateCaptcha()" 
-            style="background:#ff4b5c; color:#fff; border:none; border-radius:5px; 
-                   padding:6px 10px; cursor:pointer;">🔄 Refresh</button>
-  </div>
-
-  <input type="text" id="captchaInput" placeholder="Enter captcha text"
-         style="margin-top:10px; padding:8px; width:100%; border:none; border-radius:5px; 
-                background:#1a1a1a; color:#fff; outline:none;">
-  <small id="captchaError" style="color:#ff4b5c; display:none;">Invalid captcha. Please try again.</small>
-</div>
-
-
     // Email format validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
@@ -256,15 +239,15 @@
 })
 .catch(err => alert("Error: " + err));
 
-<script>
 let generatedCaptcha = "";
 
 function generateCaptcha() {
   const canvas = document.getElementById("captchaCanvas");
   const ctx = canvas.getContext("2d");
 
-  // Clear previous captcha
-  ctx.fillStyle = "#1a1a1a";
+  // Clear & fill background
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#f9f9f9";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // Generate random text
@@ -274,28 +257,27 @@ function generateCaptcha() {
     generatedCaptcha += chars.charAt(Math.floor(Math.random() * chars.length));
   }
 
-  // Draw captcha text
-  ctx.font = "28px Arial Black";
-  ctx.fillStyle = "#ff4b5c";
+  // ✅ Draw captcha text (visible!)
+  ctx.font = "bold 26px Arial";
+  ctx.fillStyle = "#000"; // <---- Pure black for visibility
   ctx.textBaseline = "middle";
   ctx.fillText(generatedCaptcha, 20, 25);
 
-  // Add random noise lines
-  for (let i = 0; i < 4; i++) {
-    ctx.strokeStyle = "#444";
+  // Add noise lines
+  for (let i = 0; i < 3; i++) {
+    ctx.strokeStyle = "#ccc";
     ctx.beginPath();
-    ctx.moveTo(Math.random() * 150, Math.random() * 50);
-    ctx.lineTo(Math.random() * 150, Math.random() * 50);
+    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
     ctx.stroke();
   }
 }
 
-// Validate captcha on submit
 function validateCaptcha() {
   const input = document.getElementById("captchaInput").value.trim().toUpperCase();
   if (input !== generatedCaptcha) {
     document.getElementById("captchaError").style.display = "block";
-    generateCaptcha(); // refresh automatically
+    generateCaptcha(); // Refresh automatically
     return false;
   } else {
     document.getElementById("captchaError").style.display = "none";
@@ -303,9 +285,8 @@ function validateCaptcha() {
   }
 }
 
-// Run when page loads
+// Generate captcha on load
 window.onload = generateCaptcha;
-</script>
 
     
 </script>
