@@ -125,76 +125,35 @@
 </section>
 
 <script>
-document.getElementById("signupForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
+  document.getElementById("signupForm").addEventListener("submit", async function(e) {
+    e.preventDefault(); // Prevents reloading the page
 
-    // Get form values
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const captchaInput = document.getElementById("captchaInput").value.trim();
-    const captchaText = document.getElementById("captchaText").textContent.trim();
+    // Collect form data
+    const payload = {
+      name: document.getElementById("firstName").value + " " + document.getElementById("lastName").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+      phone: document.getElementById("mobile").value
+    };
 
-    // Simple validation
-    if (!name || !email || !password || !phone) {
-        alert("Please fill all the fields.");
-        return;
-    }
-
-    // Captcha check
-    if (captchaInput !== captchaText) {
-        alert("Captcha does not match. Please try again.");
-        generateCaptcha(); // regenerate captcha
-        return;
-    }
-
-    // Prepare payload
-    const payload = { name, email, password, phone };
-
-    console.log("Sending signup payload:", payload);
-
+    // Send request via proxy
     try {
-fetch("/api-proxy.php", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload)
-})
-        const result = await response.json();
-        console.log("Server response:", result);
+      const res = await fetch("/api-proxy.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
 
-        if (result.status === "success") {
-            // Redirect to success page
-            window.location.href = "success.html";
-        } else {
-            alert(result.message || "Registration failed.");
-        }
-    } catch (error) {
-        console.error("Network or JSON error:", error);
-        alert("Unable to connect to server. Please try again later.");
-    }
-});
+      const data = await res.json();
 
-// Captcha Generator
-function generateCaptcha() {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    let captcha = "";
-    for (let i = 0; i < 6; i++) {
-        captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+      if (data.status === "success") {
+        alert("Signup successful!");
+        window.location.href = "success.html";
+      } else {
+        alert("Signup failed: " + data.message);
+      }
+    } catch (err) {
+      alert("Network error: " + err);
     }
-    const captchaBox = document.getElementById("captchaText");
-    if (captchaBox) {
-        captchaBox.textContent = captcha;
-        captchaBox.style.color = "black";
-        captchaBox.style.fontWeight = "bold";
-        captchaBox.style.letterSpacing = "3px";
-        captchaBox.style.background = "#fff";
-        captchaBox.style.padding = "5px 10px";
-        captchaBox.style.borderRadius = "6px";
-        captchaBox.style.display = "inline-block";
-    }
-}
-
-// Generate captcha on page load
-window.onload = generateCaptcha;
+  });
 </script>
