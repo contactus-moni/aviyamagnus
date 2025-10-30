@@ -1,176 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Aviya Magnus Education Template">
-    <meta name="keywords" content="Aviya Magnus, education, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aviya Magnus - Signup</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Aviya Magnus Education Template">
+  <meta name="keywords" content="Aviya Magnus, education, creative, html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviya Magnus - Signup</title>
 
-    <!-- Favicon -->   
-    <link href="img/favicon.ico" rel="shortcut icon"/>
+  <link href="img/favicon.ico" rel="shortcut icon"/>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="css/owl.carousel.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800" rel="stylesheet">
+  <style>
+    .signup-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+    }
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="css/owl.carousel.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    .signup-form input,
+    .signup-form select,
+    .signup-form button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
-    <style>
-        .signup-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-        }
+    .row {
+      display: flex;
+      gap: 15px;
+    }
 
-        .signup-form input,
-        .signup-form select,
-        .signup-form button {
-            width: 100%;
-            margin-bottom: 15px;
-            padding: 12px 15px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+    .row .col-md-6 {
+      flex: 1;
+    }
 
-        .row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .row .col-md-6 {
-            flex: 1;
-        }
-
-        .error-message {
-            color: red;
-            display: none;
-            font-size: 14px;
-        }
-
-        .captcha-box {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-        }
-
-        #captchaText {
-            font-weight: bold;
-            font-size: 22px;
-            letter-spacing: 5px;
-            background: #eee;
-            padding: 10px;
-            text-align: center;
-            user-select: none;
-            margin-bottom: 5px;
-        }
+    .error-message {
+      color: red;
+      display: none;
+      font-size: 14px;
+    }
 
     .site-btn {
-        background: #ff4b5c; 
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        transition: background 0.3s;
+      background: #ff4b5c;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
     }
 
     .site-btn:hover {
-        background: #e03f4f;
-        }
+      background: #e03f4f;
+    }
 
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: url('img/bg.jpg') no-repeat center center/cover;
-        }
-    </style>
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('img/bg.jpg') no-repeat center center/cover;
+    }
+
+    #captchaBox {
+      flex: 1;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 20px;
+      text-align: center;
+      color: #000;
+      letter-spacing: 4px;
+      user-select: none;
+    }
+  </style>
 </head>
 <body>
 
 <section class="hero-section">
- <form id="signupForm" class="signup-form" novalidate>
-        <h2 style="text-align:center;">Join Aviya Magnus</h2>
-        <p style="text-align:center;">Start your learning journey — Create your free account today.</p>
+  <form id="signupForm" class="signup-form" novalidate>
+    <h2 style="text-align:center;">Join Aviya Magnus</h2>
+    <p style="text-align:center;">Start your learning journey — Create your free account today.</p>
 
-        <select name="role" id="role" required>
-            <option value="">Select Role</option>
-            <option value="student">Student</option>
-            <option value="parent">Parent</option>
-            <option value="tutor">Tutor</option>
-        </select>
+    <select name="role" id="role" required>
+      <option value="">Select Role</option>
+      <option value="student">Student</option>
+      <option value="parent">Parent</option>
+      <option value="tutor">Tutor</option>
+    </select>
 
-        <div class="row">
-            <div class="col-md-6">
-                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
-            </div>
-            <div class="col-md-6">
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
-            </div>
-        </div>
-
-        <input type="email" id="email" name="email" placeholder="Email" required>
-        <input type="password" id="password" name="password" placeholder="Password" required>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
-        <p class="error-message" id="passwordError">Passwords do not match!</p>
-
-        <div style="display: flex; gap: 10px;">
-            <select id="countryCode" name="countryCode" required style="width:30%;">
-                <option value="">Code</option>
-                <option value="+91">🇮🇳 +91</option>
-                <option value="+1">🇺🇸 +1</option>
-                <option value="+44">🇬🇧 +44</option>
-                <option value="+61">🇦🇺 +61</option>
-                <option value="+971">🇦🇪 +971</option>
-            </select>
-            <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required style="width:70%;">
-        </div>
-        <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
-
-<!-- ✅ CAPTCHA SECTION -->
-<div class="captcha-section" style="margin-top:15px;">
-  <label for="captchaInput" style="display:block; color:#333; margin-bottom:5px;">Captcha Verification</label>
-
-  <div style="display:flex; align-items:center; gap:10px;">
-    <!-- Captcha Text Box -->
-    <div id="captchaBox"
-      style="flex:1; background:#fff; border:1px solid #ccc; border-radius:5px;
-             padding:10px; font-weight:bold; font-size:20px; text-align:center;
-             color:#000; letter-spacing:4px; user-select:none;">
-      <!-- Captcha will appear here -->
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+      </div>
+      <div class="col-md-6">
+        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+      </div>
     </div>
 
-    <!-- Refresh Button -->
-    <button type="button" onclick="generateCaptcha()"
-      style="background:#fff; border:1px solid #ccc; border-radius:5px;
-             padding:8px 12px; cursor:pointer; color:#333;">
-      ↻ Refresh
-    </button>
-  </div>
+    <input type="email" id="email" name="email" placeholder="Email" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+    <p class="error-message" id="passwordError">Passwords do not match!</p>
 
-  <!-- Captcha Input -->
-  <input type="text" id="captchaInput" placeholder="Enter Captcha"
-    style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd;
-           border-radius:5px; background:#f8f8f8; color:#333;">
+    <div style="display: flex; gap: 10px;">
+      <select id="countryCode" name="countryCode" required style="width:30%;">
+        <option value="">Code</option>
+        <option value="+91">🇮🇳 +91</option>
+        <option value="+1">🇺🇸 +1</option>
+        <option value="+44">🇬🇧 +44</option>
+        <option value="+61">🇦🇺 +61</option>
+        <option value="+971">🇦🇪 +971</option>
+      </select>
+      <input type="tel" id="mobile" name="mobile" placeholder="Mobile Number" required style="width:70%;">
+    </div>
+    <p class="error-message" id="mobileError">Please enter a valid mobile number.</p>
 
-  <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
-</div>
+    <!-- ✅ CAPTCHA SECTION -->
+    <div class="captcha-section" style="margin-top:15px;">
+      <label for="captchaInput" style="display:block; color:#333; margin-bottom:5px;">Captcha Verification</label>
 
- <button type="submit" id="signupBtn" class="site-btn">Register/button>
-    </form>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <div id="captchaBox"></div>
+        <button type="button" onclick="generateCaptcha()"
+          style="background:#fff; border:1px solid #ccc; border-radius:5px;
+                 padding:8px 12px; cursor:pointer; color:#333;">
+          ↻ Refresh
+        </button>
+      </div>
+
+      <input type="text" id="captchaInput" placeholder="Enter Captcha"
+        style="margin-top:10px; width:100%; padding:10px; border:1px solid #ddd;
+               border-radius:5px; background:#f8f8f8; color:#333;">
+      <small id="captchaError" style="color:#e03f4f; display:none;">Invalid captcha. Please try again.</small>
+    </div>
+
+    <button type="button" class="site-btn" onclick="validateAndRegister()">Register</button>
+  </form>
 </section>
 
-<!-- JS Files -->
+<!-- ✅ MAIN SCRIPT -->
 <script>
   let generatedCaptcha = "";
 
-  // ------------------- CAPTCHA -------------------
+  // --- Generate Captcha ---
   function generateCaptcha() {
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     let captcha = "";
@@ -181,25 +163,11 @@
     document.getElementById("captchaBox").textContent = captcha;
   }
 
-  function validateCaptcha() {
-    const input = document.getElementById("captchaInput").value.trim().toUpperCase();
-    if (input !== generatedCaptcha) {
-      document.getElementById("captchaError").style.display = "block";
-      generateCaptcha();
-      return false;
-    } else {
-      document.getElementById("captchaError").style.display = "none";
-      return true;
-    }
-  }
-
-  // Generate captcha when page loads
   window.addEventListener("load", generateCaptcha);
 
-  // ------------------- VALIDATION & SUBMIT -------------------
-  async function validateAndRedirect(event) {
-    event.preventDefault(); // Stop default form behavior
-
+  // --- Validate and Register ---
+  function validateAndRegister() {
+    const role = document.getElementById("role").value.trim();
     const firstName = document.getElementById("firstName").value.trim();
     const lastName = document.getElementById("lastName").value.trim();
     const email = document.getElementById("email").value.trim();
@@ -207,31 +175,28 @@
     const mobile = document.getElementById("mobile").value.trim();
     const password = document.getElementById("password").value.trim();
     const confirmPassword = document.getElementById("confirmPassword").value.trim();
-    const role = document.getElementById("role").value.trim();
+    const captchaInput = document.getElementById("captchaInput").value.trim().toUpperCase();
 
     const passwordError = document.getElementById("passwordError");
+    const captchaError = document.getElementById("captchaError");
 
-    // Basic empty field validation
-    if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword) {
+    if (!role || !firstName || !lastName || !email || !countryCode || !mobile || !password || !confirmPassword || !captchaInput) {
       alert("⚠️ Please fill in all required fields before continuing.");
       return;
     }
 
-    // Email format validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       alert("⚠️ Please enter a valid email address.");
       return;
     }
 
-    // Mobile number validation
     const mobilePattern = /^[0-9]{10,15}$/;
     if (!mobilePattern.test(mobile)) {
       alert("⚠️ Please enter a valid mobile number (10–15 digits).");
       return;
     }
 
-    // Password match validation
     if (password !== confirmPassword) {
       passwordError.style.display = "block";
       return;
@@ -239,26 +204,35 @@
       passwordError.style.display = "none";
     }
 
-    // Captcha validation
-    if (!validateCaptcha()) {
-      alert("⚠️ Invalid captcha. Please try again.");
+    if (captchaInput !== generatedCaptcha) {
+      captchaError.style.display = "block";
+      generateCaptcha();
       return;
+    } else {
+      captchaError.style.display = "none";
     }
 
-    // ------------------- BACKEND CONNECTION -------------------
-fetch("https://aviyamagnus.rf.gd/register.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(signupData)
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Server response:", data);
-
-    window.location.href = `https://contactus.aviyamagnus.com/success.html?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
-  }
+    // ✅ Send Data to Backend
+    fetch("https://aviyamagnus.rf.gd/register.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        role, firstName, lastName, email, countryCode, mobile, password
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === "success") {
+        alert("✅ Signup successful!");
+        window.location.href = "success.html";
+      } else {
+        alert(data.message || "Signup failed. Please try again.");
+      }
+    })
+    .catch(err => {
+      alert("⚠️ Error connecting to the server: " + err);
     });
-}
+  }
 </script>
+</body>
+</html>
