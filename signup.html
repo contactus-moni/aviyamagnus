@@ -212,13 +212,19 @@
       document.getElementById("captchaError").style.display = "none";
     }
 
-fetch("https://aviyamagnus-com.onrender.com/register", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ name, email, message }),
+fetch('https://aviyamagnus-com.onrender.com/register', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    username: 'JohnDoe',
+    password: '12345',
+  }),
 })
-  .then(res => res.json())
-  .then(data => console.log(data));
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.error(err));
 
 
       const data = await res.json();
