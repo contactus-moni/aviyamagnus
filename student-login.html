@@ -170,44 +170,43 @@
   <script src="js/circle-progress.min.js"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
-	<script>
 <script>
 function loginAsStudent() {
+    // Get values from input fields
     const email = document.getElementById('student-email').value.trim();
     const password = document.getElementById('student-password').value.trim();
-    const role = 'student'; // fixed role for this form
+    const role = 'student'; // fixed for student login
 
+    // Basic validation
     if (!email || !password) {
         alert("Please enter both email and password.");
         return;
     }
 
+    // Send POST request to backend login endpoint
     fetch("https://aviyamagnus-com.onrender.com/login", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, role })
     })
-    .then(async (response) => {
+    .then(async response => {
         const data = await response.json();
+
         if (response.ok && data.status === "success") {
-            // login successful, store user info if needed
+            // Login successful
             localStorage.setItem('userRole', data.user.role);
             localStorage.setItem('userName', data.user.first_name);
-            // redirect to student dashboard
-            window.location.href = "student-dashboard.html";
+            window.location.href = "student-dashboard.html"; // redirect to student dashboard
         } else {
-            // login failed
+            // Invalid email/password or not registered
             alert(data.error || "Invalid email, password, or role.");
         }
     })
-    .catch((err) => {
+    .catch(err => {
         console.error("Network error:", err);
         alert("⚠️ Network error. Please try again later.");
     });
 }
 </script>
-t>
 </body>
 </html>
