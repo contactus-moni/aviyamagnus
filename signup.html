@@ -214,11 +214,9 @@
     }
 
     // --- Send data to backend ---
- fetch("https://aviyamagnus-com.onrender.com/register", {
+fetch("https://aviyamagnus-com.onrender.com/register", {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
+  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     name: name,
     email: email,
@@ -226,11 +224,9 @@
   })
 })
 .then(res => res.json())
-.then(data => {
-  console.log(data);
-})
+.then(data => console.log(data))
 .catch(err => console.error(err));
-
+    
       const result = await response.json();
       console.log("Response:", result);
 
