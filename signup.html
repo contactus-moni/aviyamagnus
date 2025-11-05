@@ -176,7 +176,7 @@
     const countryCode = document.getElementById("countryCode").value.trim();
     const mobile = document.getElementById("mobile").value.trim();
     const captchaInput = document.getElementById("captchaInput").value.trim();
-
+    const role = document.getElementById("role").value.trim();
     const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/i;
     const mobilePattern = /^[0-9]{8,15}$/;
 
@@ -225,10 +225,10 @@
           last_name: lastName,
           email: email,
           password: password,
-          confirm_password: confirmPassword,
-          phone_number: countryCode + mobile,
-          captcha: captchaInput
-          role: role
+         confirm_password: confirmPassword,
+         phone_number: mobile,
+         captcha: captchaInput,
+         role: role  
         })
       });
 
