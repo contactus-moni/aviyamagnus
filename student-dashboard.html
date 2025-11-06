@@ -208,12 +208,6 @@
       });
     });
 
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Please login first!");
-      window.location.href = "login.html";
-    }
-
     fetch("https://aviyamagnus-com.onrender.com/dashboard", {
       headers: { Authorization: `Bearer ${token}` },
     })
