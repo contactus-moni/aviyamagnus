@@ -1,28 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Course Enrollment - Aviya Magnus</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { font-family: "Bodoni MT", serif; background: #f5f5f5; }
-    .container { max-width: 700px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
-    h1 { font-family: "Elephant", serif; font-size: 2rem; margin-bottom: 20px; }
-    label { display: block; margin-bottom: 6px; font-weight: bold; }
-    input, select, textarea { width: 100%; padding: 10px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px; font-family: "Times New Roman", serif; }
-    button { background: #ff4b5c; color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-    button:hover { background: #e63c4e; }
+    /* ===== Base Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body[data-theme="light"] {
+      font-family: "Bodoni MT", serif;
+      background: linear-gradient(180deg, #ffffff, #f5f5f5);
+      color: #000;
+    }
+
+    body[data-theme="dark"] {
+      font-family: "Bodoni MT", serif;
+      background: linear-gradient(180deg, #121212, #1e1e1e);
+      color: #f1f1f1;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background: inherit;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-family: "Elephant", serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      font-family: "Times New Roman", serif;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: "Times New Roman", serif;
+      background: #fff;
+      color: #000;
+    }
+
+    body[data-theme="dark"] input,
+    body[data-theme="dark"] select,
+    body[data-theme="dark"] textarea {
+      background: #1e1e1e;
+      color: #f1f1f1;
+      border: 1px solid #333;
+    }
+
+    button {
+      background: #ff4b5c;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: "Times New Roman", serif;
+    }
+
+    button:hover {
+      background: #e63c4e;
+    }
+
+    .course-info {
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    body[data-theme="dark"] .course-info {
+      border-color: #444;
+      background: rgba(255, 255, 255, 0.05);
+    }
   </style>
 </head>
-<body>
+<body data-theme="light">
 
 <div class="container">
   <h1>Course Enrollment Form</h1>
 
-  <!-- Show course title dynamically -->
-  <p id="courseTitle" class="text-lg mb-4 font-bold"></p>
-  <p id="courseDescription" class="text-gray-700 mb-6"></p>
+  <!-- Course Details -->
+  <div class="course-info">
+    <p id="courseTitle" class="text-xl font-bold mb-2"></p>
+    <p id="courseDescription" class="text-gray-700 mb-2"></p>
+    <p><strong>Registration Fee:</strong> ₹<span id="registrationFeeDisplay">0</span></p>
+  </div>
+
+   <h2>Course Enrollment Form</h2>
+
+  <label for="course-select">Select a course:</label>
+  <select id="course-select">
+    <option value="">--Choose a course--</option>
+    <option value="hr">Human Resource</option>
+    <option value="marketing">Marketing</option>
+    <option value="sales">Sales</option>
+    <option value="banking">Banking</option>
+    <option value="finance">Finance</option>
 
   <!-- Enrollment Form -->
   <form id="enrollForm">
@@ -38,9 +134,6 @@
     <label for="address">Address</label>
     <textarea id="address" rows="3"></textarea>
 
-    <label for="registrationFee">Registration Fee</label>
-    <input type="text" id="registrationFee" readonly>
-
     <label for="paymentMethod">Payment Method</label>
     <select id="paymentMethod" required>
       <option value="">Select Payment Method</option>
@@ -53,21 +146,25 @@
 </div>
 
 <script>
-  // Get course ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const courseId = urlParams.get('course_id');
+  // ===== Theme Handling (optional) =====
+  const savedTheme = localStorage.getItem("theme") || "light";
+  document.body.setAttribute("data-theme", savedTheme);
 
-  // Fetch course details (replace with your backend API)
-  fetch(`https://your-backend.com/api/courses/${courseId}`)
+  // ===== Get course ID from URL =====
+  const urlParams = new URLSearchParams(window.location.search);
+  const courseId = urlParams.get('course_id') || "1"; // default course if missing
+
+  // ===== Fetch course details =====
+  fetch(`https://aviyamagnus-com.onrender.com/${courseId}`)
     .then(res => res.json())
     .then(course => {
       document.getElementById('courseTitle').textContent = course.title;
       document.getElementById('courseDescription').textContent = course.description;
-      document.getElementById('registrationFee').value = course.fee;
+      document.getElementById('registrationFeeDisplay').textContent = course.fee || "0";
     })
     .catch(err => console.error('Error fetching course:', err));
 
-  // Handle form submission
+  // ===== Handle form submission =====
   document.getElementById('enrollForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -77,11 +174,9 @@
       email: document.getElementById('email').value,
       mobile: document.getElementById('mobile').value,
       address: document.getElementById('address').value,
-      registration_fee: document.getElementById('registrationFee').value,
       payment_method: document.getElementById('paymentMethod').value
     };
 
-    // Submit enrollment to backend
     fetch('https://your-backend.com/api/enrollments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -90,8 +185,50 @@
     .then(res => res.json())
     .then(data => {
       alert('✅ You have successfully enrolled in this course!');
-      // Redirect to a "Thank You / Dashboard" page
-      window.location.href = "student-dashboard.html";
+      window.location.href = "student-dashboard.html"; // optional redirect
+    })
+    .catch(err => console.error('Enrollment failed:', err));
+  });
+    // ===== Theme Handling (optional) =====
+  const savedTheme = localStorage.getItem("theme") || "light";
+  document.body.setAttribute("data-theme", savedTheme);
+
+  // ===== Get course ID from URL =====
+  const urlParams = new URLSearchParams(window.location.search);
+  const courseId = urlParams.get('course_id') || "1"; // default course if missing
+
+  // ===== Fetch course details =====
+  fetch(`https://your-backend.com/api/courses/${courseId}`)
+    .then(res => res.json())
+    .then(course => {
+      document.getElementById('courseTitle').textContent = course.title;
+      document.getElementById('courseDescription').textContent = course.description;
+      document.getElementById('registrationFeeDisplay').textContent = course.fee || "0";
+    })
+    .catch(err => console.error('Error fetching course:', err));
+
+  // ===== Handle form submission =====
+  document.getElementById('enrollForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const enrollmentData = {
+      course_id: courseId,
+      full_name: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      mobile: document.getElementById('mobile').value,
+      address: document.getElementById('address').value,
+      payment_method: document.getElementById('paymentMethod').value
+    };
+
+    fetch('https://your-backend.com/api/enrollments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(enrollmentData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert('✅ You have successfully enrolled in this course!');
+      window.location.href = "student-dashboard.html"; // optional redirect
     })
     .catch(err => console.error('Enrollment failed:', err));
   });
