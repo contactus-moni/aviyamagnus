@@ -5,213 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Dashboard - Aviya Magnus</title>
   <script src="https://cdn.tailwindcss.com"></script>
-<style>
-/* === Reset scaling and base layout === */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-  background-color: #f8f9fa;
-  color: #222;
-}
+  <style>
+    /* ===== Base Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
 
-/* === Navbar === */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #2c2f33;
-  padding: 8px 20px;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
+    body {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-.navbar .logo {
-  color: #fff;
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 20px;
-  letter-spacing: 0.5px;
-}
+    aside, nav, main {
+      transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+    }
 
-.navbar .nav-links {
-  display: flex;
-  gap: 20px;
-}
+    /* ===== Layout ===== */
+    aside {
+      width: 220px;
+      padding: 20px;
+      border-right: 1px solid;
+    }
 
-.navbar .nav-links a {
-  text-decoration: none;
-  color: #ddd;
-  transition: color 0.3s ease;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
+    nav {
+      width: 220px;
+      padding: 20px;
+      border-left: 1px solid;
+    }
 
-.navbar .nav-links a:hover {
-  color: #fff;
-}
+    main {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
 
-/* === Dashboard Container === */
-.dashboard-container {
-  display: flex;
-  flex-direction: row;
-  width: 98%;
-  margin: 10px auto;
-  padding: 10px;
-  gap: 15px;
-}
+    /* ===== Default Light Theme ===== */
+    body[data-theme="light"] {
+      color: #000;
+    }
 
-/* === Sidebar === */
-.sidebar {
-  width: 220px;
-  background-color: #343a40;
-  padding: 10px;
-  border-radius: 8px;
-  color: white;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
+    body[data-theme="light"] aside,
+    body[data-theme="light"] nav {
+      background: linear-gradient(180deg, #f3f3f3, #e4e4e4);
+      border-color: #ccc;
+      box-shadow: inset 0 0 10px #d6d6d6;
+    }
 
-.sidebar h2 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-align: center;
-}
+    body[data-theme="light"] main {
+      background: linear-gradient(180deg, #ffffff, #f5f5f5);
+    }
 
-.sidebar a {
-  display: block;
-  text-decoration: none;
-  color: #ccc;
-  padding: 6px 8px;
-  margin: 4px 0;
-  border-radius: 4px;
-  transition: background 0.3s;
-}
+    /* ===== Dark Theme ===== */
+    body[data-theme="dark"] {
+      color: #f1f1f1;
+    }
 
-.sidebar a:hover {
-  background-color: #495057;
-  color: #fff;
-}
+    body[data-theme="dark"] aside,
+    body[data-theme="dark"] nav {
+      background: linear-gradient(180deg, #1a1a1a, #2a2a2a);
+      border-color: #333;
+      box-shadow: inset 0 0 10px #111;
+    }
 
-/* === Main Content === */
-.main-content {
-  flex: 1;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 15px 20px;
-  font-family: "Bodoni MT", "Bodoni Moda", serif;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #222;
-}
+    body[data-theme="dark"] main {
+      background: linear-gradient(180deg, #121212, #1e1e1e);
+    }
 
-.main-content h1 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
+    /* ===== Header / Controls ===== */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
 
-.main-content h2 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 20px;
-  margin-top: 10px;
-}
+    .theme-toggle {
+      padding: 8px 14px;
+      border: 1px solid #888;
+      border-radius: 8px;
+      cursor: pointer;
+      background: transparent;
+      color: inherit;
+    }
 
-/* === Right Side Panel === */
-.right-pane {
-  width: 240px;
-  background-color: #f1f3f5;
-  border-radius: 8px;
-  padding: 12px;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-  color: #222;
-}
+    .theme-toggle:hover {
+      opacity: 0.8;
+    }
 
-.right-pane h3 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 18px;
-  margin-bottom: 8px;
-}
+    /* ===== Dummy Content ===== */
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
 
-/* === Buttons and Forms === */
-button, input, select, textarea, label {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
-
-button {
-  background-color: #2c2f33;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #40444b;
-}
-
-/* === Settings Panel (inside right pane) === */
-.settings-panel {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.settings-panel label {
-  display: block;
-  margin-bottom: 6px;
-}
-
-.theme-options {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.theme-options input[type="radio"] {
-  margin-right: 4px;
-}
-
-/* === Footer (optional) === */
-.footer {
-  text-align: center;
-  padding: 8px;
-  font-size: 13px;
-  color: #555;
-  font-family: "Times New Roman", Times, serif;
-}
-  /* ===== Light & Dark Theme Gradient Backgrounds ===== */
-
-/* Default Dark Theme */
-body[data-theme="dark"] aside {
-  background: linear-gradient(180deg, #1a1a1a, #2a2a2a);
-  border-color: #333;
-}
-
-/* Light Theme */
-body[data-theme="light"] aside {
-  background: linear-gradient(180deg, #f3f3f3, #e4e4e4);
-  border-color: #ccc;
-}
-
-/* Optional – make the main content background softer too */
-body[data-theme="dark"] main {
-  background: linear-gradient(180deg, #121212, #1e1e1e);
-}
-
-body[data-theme="light"] main {
-  background: linear-gradient(180deg, #ffffff, #f5f5f5);
-}
-
-</style>
-
+    p {
+      line-height: 1.6;
+    }
+  </style>
 </head>
-<body class="flex min-h-screen overflow-hidden">
+
+<body data-theme="light">
 
   <!-- ===== Sidebar ===== -->
   <aside class="w-64 bg-black border-r border-gray-800 flex flex-col fixed top-0 left-0 h-full overflow-y-auto">
@@ -246,11 +144,48 @@ body[data-theme="light"] main {
     <p>Welcome to your student dashboard! Select an option from the left menu.</p>
   </main>
 
-  <!-- ===== Right Sidebar ===== -->
-  <aside class="w-80 bg-[#0d0d0d] border-l border-gray-800 p-6 fixed right-0 top-0 h-full overflow-y-auto">
-    <h2 class="text-xl font-semibold mb-2">Good Morning, <span class="accent">Monika</span> 👋</h2>
-    <p class="text-gray-400 text-sm mb-4">Here’s your quick progress summary.</p>
-  </aside>
+<!-- ===== Right Sidebar (Student Profile Pane) ===== -->
+<aside id="student-profile-pane" class="w-80 border-l border-gray-800 p-6 fixed right-0 top-0 h-full overflow-y-auto transition-all duration-300">
+  <div class="mb-8 text-center">
+    <img id="studentPhoto" src="img/default-avatar.png" alt="Student Photo"
+      class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#ff4b5c] object-cover">
+    <h2 id="studentName" class="text-xl font-semibold accent">Student Name</h2>
+    <p id="studentEmail" class="text-gray-400 text-sm">student@email.com</p>
+  </div>
+
+  <!-- Student Information -->
+  <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-6 border border-gray-700">
+    <h3 class="font-semibold accent mb-2">📋 Profile Information</h3>
+    <ul class="text-gray-300 text-sm space-y-1">
+      <li><strong>Mobile:</strong> <span id="studentMobile">+91 00000 00000</span></li>
+      <li><strong>Address:</strong> <span id="studentAddress">Not provided</span></li>
+      <li><strong>Training Duration:</strong> <span id="trainingMonths">0 months</span></li>
+      <li><strong>Payment Status:</strong> <span id="paymentStatus" class="text-yellow-400">Pending</span></li>
+    </ul>
+  </div>
+
+  <!-- Quick Stats -->
+  <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-6 border border-gray-700">
+    <h3 class="font-semibold accent mb-2">📊 Progress Overview</h3>
+    <ul class="text-gray-300 text-sm space-y-1">
+      <li><strong>Current Course:</strong> <span id="currentCourse">N/A</span></li>
+      <li><strong>Progress:</strong> <span id="courseProgress">0%</span></li>
+      <li><strong>Next Class:</strong> <span id="nextClass">No schedule</span></li>
+    </ul>
+  </div>
+
+  <!-- Mentor Information -->
+  <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-8 border border-gray-700">
+    <h3 class="font-semibold accent mb-3">👨‍🏫 Assigned Mentor</h3>
+    <p id="mentorName" class="text-gray-300">To be assigned</p>
+    <p id="mentorEmail" class="text-gray-400 text-sm">---</p>
+  </div>
+
+  <button onclick="logoutStudent()" class="w-full accent-bg px-4 py-2 rounded-md text-white font-semibold hover:bg-[#e63c4e]">
+    🚪 Logout
+  </button>
+</aside>
+
 
   <script>
     const tabs = document.querySelectorAll('aside a[data-tab]');
@@ -323,6 +258,49 @@ body[data-theme="light"] main {
         }
       });
     });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const email = localStorage.getItem("studentEmail");
+    if (!email) {
+      alert("Please log in first.");
+      window.location.href = "student-login.html";
+      return;
+    }
+
+    // Fetch student data from backend
+    fetch(`https://aviyamagnus-com.onrender.com/student?email=${encodeURIComponent(email)}`)
+      .then(response => response.json())
+      .then(data => {
+        if (!data || data.error) {
+          console.error("Student not found:", data.error);
+          return;
+        }
+
+        // Update profile details
+        document.getElementById("studentName").textContent = `${data.first_name || ""} ${data.last_name || ""}`.trim() || "Student";
+        document.getElementById("studentEmail").textContent = data.email || "N/A";
+        document.getElementById("studentMobile").textContent = data.mobile || "N/A";
+        document.getElementById("studentAddress").textContent = data.address || "N/A";
+        document.getElementById("trainingMonths").textContent = `${data.training_months || 0} months`;
+        document.getElementById("paymentStatus").textContent = data.payment_status || "Pending";
+        document.getElementById("paymentStatus").classList.add(
+          data.payment_status === "Paid" ? "text-green-400" : "text-yellow-400"
+        );
+        document.getElementById("currentCourse").textContent = data.current_course || "N/A";
+        document.getElementById("courseProgress").textContent = `${data.progress || 0}%`;
+        document.getElementById("nextClass").textContent = data.next_class || "Not scheduled";
+        document.getElementById("mentorName").textContent = data.mentor_name || "To be assigned";
+        document.getElementById("mentorEmail").textContent = data.mentor_email || "---";
+        if (data.photo_url) document.getElementById("studentPhoto").src = data.photo_url;
+      })
+      .catch(err => console.error("Error fetching student data:", err));
+  });
+
+  // Logout function
+  function logoutStudent() {
+    localStorage.clear();
+    window.location.href = "student-login.html";
+  }
   </script>
 </body>
 </html>
