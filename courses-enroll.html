@@ -57,22 +57,13 @@
   const urlParams = new URLSearchParams(window.location.search);
   const courseId = urlParams.get('course_id');
 
-  const token = localStorage.getItem('token');
-  if (!token) {
-    alert("Please login first!");
-    window.location.href = "login.html";
-  }
-
-  // Fetch course details
+  // Fetch course details (replace with your backend API)
   fetch(`https://your-backend.com/api/courses/${courseId}`)
     .then(res => res.json())
     .then(course => {
       document.getElementById('courseTitle').textContent = course.title;
       document.getElementById('courseDescription').textContent = course.description;
-      document.getElementById('registrationFee').value = course.fee; // Auto-fill fee
-      document.getElementById('fullName').value = course.student_name || ""; // Optional: pre-fill from profile
-      document.getElementById('email').value = course.student_email || "";
-      document.getElementById('mobile').value = course.student_mobile || "";
+      document.getElementById('registrationFee').value = course.fee;
     })
     .catch(err => console.error('Error fetching course:', err));
 
@@ -90,18 +81,17 @@
       payment_method: document.getElementById('paymentMethod').value
     };
 
+    // Submit enrollment to backend
     fetch('https://your-backend.com/api/enrollments', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(enrollmentData)
     })
     .then(res => res.json())
     .then(data => {
       alert('✅ You have successfully enrolled in this course!');
-      window.location.href = "student-dashboard.html"; // Redirect to dashboard
+      // Redirect to a "Thank You / Dashboard" page
+      window.location.href = "student-dashboard.html";
     })
     .catch(err => console.error('Enrollment failed:', err));
   });
