@@ -3,48 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enroll Course - Aviya Magnus</title>
+  <title>Course Enrollment - Aviya Magnus</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: "Bodoni MT", serif; background: #f5f5f5; }
     .container { max-width: 700px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
     h1 { font-family: "Elephant", serif; font-size: 2rem; margin-bottom: 20px; }
-    button { background: #ff4b5c; color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: bold; }
+    label { display: block; margin-bottom: 6px; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 10px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 8px; font-family: "Times New Roman", serif; }
+    button { background: #ff4b5c; color: #fff; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; }
     button:hover { background: #e63c4e; }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>Course Enrollment</h1>
-  <p id="courseTitle" class="text-lg mb-4"></p>
+  <h1>Course Enrollment Form</h1>
+
+  <!-- Show course title dynamically -->
+  <p id="courseTitle" class="text-lg mb-4 font-bold"></p>
   <p id="courseDescription" class="text-gray-700 mb-6"></p>
-  <button id="enrollBtn">Enroll in this Course</button>
+
+  <!-- Enrollment Form -->
+  <form id="enrollForm">
+    <label for="fullName">Full Name</label>
+    <input type="text" id="fullName" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" required>
+
+    <label for="mobile">Mobile Number</label>
+    <input type="text" id="mobile" required>
+
+    <label for="address">Address</label>
+    <textarea id="address" rows="3"></textarea>
+
+    <label for="registrationFee">Registration Fee</label>
+    <input type="text" id="registrationFee" readonly>
+
+    <label for="paymentMethod">Payment Method</label>
+    <select id="paymentMethod" required>
+      <option value="">Select Payment Method</option>
+      <option value="online">Online Payment</option>
+      <option value="offline">Offline Payment</option>
+    </select>
+
+    <button type="submit">Submit Enrollment</button>
+  </form>
 </div>
 
 <script>
-  // Simulate course selection from previous page
+  // Get course ID from URL
   const urlParams = new URLSearchParams(window.location.search);
   const courseId = urlParams.get('course_id');
 
-  // Fetch course details from API (replace URL with your backend)
+  const token = localStorage.getItem('token');
+  if (!token) {
+    alert("Please login first!");
+    window.location.href = "login.html";
+  }
+
+  // Fetch course details
   fetch(`https://your-backend.com/api/courses/${courseId}`)
     .then(res => res.json())
     .then(course => {
       document.getElementById('courseTitle').textContent = course.title;
       document.getElementById('courseDescription').textContent = course.description;
+      document.getElementById('registrationFee').value = course.fee; // Auto-fill fee
+      document.getElementById('fullName').value = course.student_name || ""; // Optional: pre-fill from profile
+      document.getElementById('email').value = course.student_email || "";
+      document.getElementById('mobile').value = course.student_mobile || "";
     })
     .catch(err => console.error('Error fetching course:', err));
 
-  // Enroll button click
-  document.getElementById('enrollBtn').addEventListener('click', () => {
-    const token = localStorage.getItem('token'); // Student must be logged in
+  // Handle form submission
+  document.getElementById('enrollForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-    if (!token) {
-      alert("Please login first to enroll!");
-      window.location.href = "login.html";
-      return;
-    }
+    const enrollmentData = {
+      course_id: courseId,
+      full_name: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      mobile: document.getElementById('mobile').value,
+      address: document.getElementById('address').value,
+      registration_fee: document.getElementById('registrationFee').value,
+      payment_method: document.getElementById('paymentMethod').value
+    };
 
     fetch('https://your-backend.com/api/enrollments', {
       method: 'POST',
@@ -52,13 +96,12 @@
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({ course_id: courseId })
+      body: JSON.stringify(enrollmentData)
     })
     .then(res => res.json())
     .then(data => {
       alert('✅ You have successfully enrolled in this course!');
-      // Redirect to student dashboard
-      window.location.href = "student-dashboard.html";
+      window.location.href = "student-dashboard.html"; // Redirect to dashboard
     })
     .catch(err => console.error('Enrollment failed:', err));
   });
