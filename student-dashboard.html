@@ -203,28 +203,6 @@
   const tabs = document.querySelectorAll('aside a[data-tab]');
   const mainContent = document.getElementById('mainContent');
 
-  // Handle theme switching
-  function setTheme(theme) {
-    document.body.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }
-
-  // Apply saved theme on load
-  document.addEventListener("DOMContentLoaded", function () {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.getElementById("theme-select").value = savedTheme;
-  });
-
-  // Theme select event
-  document.getElementById("theme-select").addEventListener("change", function () {
-    setTheme(this.value);
-  });
-
-  // Toggle visibility of the settings panel when clicking nav “Settings”
-  document.querySelector(".nav-settings").addEventListener("click", function () {
-    document.getElementById("theme-settings").classList.toggle("hidden");
-  });
   // Tab switching logic
   tabs.forEach(tab => {
     tab.addEventListener('click', e => {
@@ -281,6 +259,28 @@
     alert("You have been logged out.");
     window.location.href = "student-login.html";
   }
+  // Handle theme switching
+  function setTheme(theme) {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }
+
+  // Apply saved theme on load
+  document.addEventListener("DOMContentLoaded", function () {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.getElementById("theme-select").value = savedTheme;
+  });
+
+  // Theme select event
+  document.getElementById("theme-select").addEventListener("change", function () {
+    setTheme(this.value);
+  });
+
+  // Toggle visibility of the settings panel when clicking nav “Settings”
+  document.querySelector(".nav-settings").addEventListener("click", function () {
+    document.getElementById("theme-settings").classList.toggle("hidden");
+  });
 </script>
 </body> 
 </html>
