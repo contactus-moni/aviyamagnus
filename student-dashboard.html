@@ -254,11 +254,15 @@
       setTheme(savedTheme);
     });
 
-    // Fetch student data
-    const token = localStorage.getItem("token");
-    fetch("https://aviyamagnus-com.onrender.com/dashboard", {
-      headers: token ? { Authorization: `Bearer ${token}` } : {}
-    })
+fetch("https://aviyamagnus-com.onrender.com/dashboard")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("Student data:", data);
+    // Handle the data here, e.g., update your frontend
+  })
+  .catch((error) => {
+    console.error("Error fetching student data:", error);
+  });
     .then(res => res.ok ? res.json() : {})
     .then(data => {
       document.getElementById("studentName").textContent = `${data.first_name || "Student"} ${data.last_name || ""}`.trim();
