@@ -184,20 +184,34 @@ function loginAsStudent() {
     }
 
     // Send POST request to backend login endpoint
-fetch("https://aviyamagnus-com.onrender.com/login", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ email, password }),
-})
-  .then((res) => res.json())
-  .then((data) => {
-    if (data.token) {
-      localStorage.setItem("token", data.token); // ✅ Save token
-      window.location.href = "student-dashboard.html"; // Redirect to dashboard
-    } else {
-      alert("Login failed!");
-    }
-  });
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const response = await fetch("https://aviyamagnus-com.onrender.com/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (!response.ok) {
+          alert("Invalid credentials!");
+          return;
+        }
+
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+
+        // ✅ Redirect to student dashboard page
+        window.location.href = "student-dashboard.html";
+      } catch (error) {
+        console.error("Login error:", error);
+        alert("Something went wrong. Please try again later.");
+      }
+    });
 
 </script>
 </body>
