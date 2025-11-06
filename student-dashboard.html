@@ -188,59 +188,66 @@
     </button>
   </aside>
 
-  <script>
-    const tabs = document.querySelectorAll('aside a[data-tab]');
-    const mainContent = document.getElementById('mainContent');
+<script>
+  const tabs = document.querySelectorAll('aside a[data-tab]');
+  const mainContent = document.getElementById('mainContent');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', e => {
-        e.preventDefault();
-        const selectedTab = tab.dataset.tab;
+  // Tab switching logic
+  tabs.forEach(tab => {
+    tab.addEventListener('click', e => {
+      e.preventDefault();
+      const selectedTab = tab.dataset.tab;
 
-        tabs.forEach(t => t.classList.remove('bg-[#ff4b5c]', 'text-white'));
-        tab.classList.add('bg-[#ff4b5c]', 'text-white');
+      tabs.forEach(t => t.classList.remove('bg-[#ff4b5c]', 'text-white'));
+      tab.classList.add('bg-[#ff4b5c]', 'text-white');
 
-        // Load respective content
-        mainContent.innerHTML = `
-          <h1 class="text-3xl font-bold accent mb-4">${tab.textContent}</h1>
-          <p>Welcome to the <strong>${tab.textContent}</strong> section. Your content will appear here.</p>
-        `;
-      });
+      mainContent.innerHTML = `
+        <h1 class="text-3xl font-bold accent mb-4">${tab.textContent}</h1>
+        <p>Welcome to the <strong>${tab.textContent}</strong> section. Your content will appear here.</p>
+      `;
     });
+  });
 
-    fetch("https://aviyamagnus-com.onrender.com/dashboard", {
-      headers: { Authorization: `Bearer ${token}` },
+  // Try fetching student data (no redirect on error)
+  const token = localStorage.getItem("token");
+
+  fetch("https://aviyamagnus-com.onrender.com/dashboard", {
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  })
+    .then(res => {
+      // If unauthorized or any error, skip redirect
+      if (!res.ok) {
+        console.warn("⚠️ Could not fetch student data (maybe not logged in). Showing defaults.");
+        return {};
+      }
+      return res.json();
     })
-      .then((res) => {
-        if (res.status === 401) {
-          alert("Please login first!");
-          window.location.href = "student-login.html";
-        }
-        return res.json();
-      })
-      .then((data) => {
-        document.getElementById("studentName").textContent = `${data.first_name || ""} ${data.last_name || ""}`.trim() || "Student";
-        document.getElementById("studentEmail").textContent = data.email || "N/A";
-        document.getElementById("studentMobile").textContent = data.mobile || "N/A";
-        document.getElementById("studentAddress").textContent = data.address || "N/A";
-        document.getElementById("trainingMonths").textContent = `${data.training_months || 0} months`;
-        document.getElementById("paymentStatus").textContent = data.payment_status || "Pending";
-        document.getElementById("paymentStatus").classList.add(
-          data.payment_status === "Paid" ? "text-green-400" : "text-yellow-400"
-        );
-        document.getElementById("currentCourse").textContent = data.current_course || "N/A";
-        document.getElementById("courseProgress").textContent = `${data.progress || 0}%`;
-        document.getElementById("nextClass").textContent = data.next_class || "Not scheduled";
-        document.getElementById("mentorName").textContent = data.mentor_name || "To be assigned";
-        document.getElementById("mentorEmail").textContent = data.mentor_email || "---";
-        if (data.photo_url) document.getElementById("studentPhoto").src = data.photo_url;
-      })
-      .catch(err => console.error("Error fetching student data:", err));
+    .then(data => {
+      // Fill in dashboard with data or fallback defaults
+      document.getElementById("studentName").textContent = `${data.first_name || "Student"} ${data.last_name || ""}`.trim();
+      document.getElementById("studentEmail").textContent = data.email || "student@email.com";
+      document.getElementById("studentMobile").textContent = data.mobile || "+91 00000 00000";
+      document.getElementById("studentAddress").textContent = data.address || "Not provided";
+      document.getElementById("trainingMonths").textContent = `${data.training_months || 0} months`;
+      document.getElementById("paymentStatus").textContent = data.payment_status || "Pending";
+      document.getElementById("paymentStatus").classList.add(
+        data.payment_status === "Paid" ? "text-green-400" : "text-yellow-400"
+      );
+      document.getElementById("currentCourse").textContent = data.current_course || "N/A";
+      document.getElementById("courseProgress").textContent = `${data.progress || 0}%`;
+      document.getElementById("nextClass").textContent = data.next_class || "Not scheduled";
+      document.getElementById("mentorName").textContent = data.mentor_name || "To be assigned";
+      document.getElementById("mentorEmail").textContent = data.mentor_email || "---";
+      if (data.photo_url) document.getElementById("studentPhoto").src = data.photo_url;
+    })
+    .catch(err => console.error("Error fetching student data:", err));
 
-    function logoutStudent() {
-      localStorage.clear();
-      window.location.href = "student-login.html";
-    }
-  </script>
-</body>
+  // Simple logout (still clears token)
+  function logoutStudent() {
+    localStorage.clear();
+    alert("You have been logged out.");
+    window.location.href = "student-login.html";
+  }
+</script>
+</body> 
 </html>
