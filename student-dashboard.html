@@ -112,6 +112,20 @@
       font-family: "Times New Roman", serif; /* ✅ Right pane font */
     }
 
+    /* ===== Theme Selector ===== */
+    .theme-select-box {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      width: 300px;
+    }
+
+    body[data-theme="dark"] .theme-select-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #444;
+    }
   </style>
 </head>
 
@@ -148,17 +162,6 @@
     <h1 class="text-3xl font-bold accent mb-4">Dashboard Overview</h1>
     <p>Welcome to your student dashboard! Select an option from the left menu.</p>
   </main>
-
-  <!-- Theme Settings Panel -->
-<div id="theme-settings" class="theme-settings hidden">
-  <h4>Theme Settings ⚙️</h4>
-  <label for="theme-select">Choose Theme:</label>
-  <select id="theme-select">
-    <option value="light">🌞 Light</option>
-    <option value="dark">🌙 Dark</option>
-  </select>
-</div>
-
 
   <!-- ===== Right Sidebar (Student Profile Pane) ===== -->
   <aside id="student-profile-pane" class="w-80 border-l border-gray-800 p-6 fixed right-0 top-0 h-full overflow-y-auto transition-all duration-300">
@@ -199,42 +202,65 @@
     </button>
   </aside>
 
-<script>
-  const tabs = document.querySelectorAll('aside a[data-tab]');
-  const mainContent = document.getElementById('mainContent');
+  <script>
+    const tabs = document.querySelectorAll('aside a[data-tab]');
+    const mainContent = document.getElementById('mainContent');
 
-  // Tab switching logic
-  tabs.forEach(tab => {
-    tab.addEventListener('click', e => {
-      e.preventDefault();
-      const selectedTab = tab.dataset.tab;
+    // Tab switching logic
+    tabs.forEach(tab => {
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        const selectedTab = tab.dataset.tab;
 
-      tabs.forEach(t => t.classList.remove('bg-[#ff4b5c]', 'text-white'));
-      tab.classList.add('bg-[#ff4b5c]', 'text-white');
+        tabs.forEach(t => t.classList.remove('bg-[#ff4b5c]', 'text-white'));
+        tab.classList.add('bg-[#ff4b5c]', 'text-white');
 
-      mainContent.innerHTML = `
-        <h1 class="text-3xl font-bold accent mb-4">${tab.textContent}</h1>
-        <p>Welcome to the <strong>${tab.textContent}</strong> section. Your content will appear here.</p>
-      `;
+        // Show theme selector only on Settings tab
+        if (selectedTab === "settings") {
+          mainContent.innerHTML = `
+            <h1 class="text-3xl font-bold accent mb-4">⚙️ Settings</h1>
+            <div class="theme-select-box">
+              <label for="theme-select" class="block mb-2 font-semibold">Choose Theme:</label>
+              <select id="theme-select" class="p-2 border rounded-md w-full text-black">
+                <option value="light">🌞 Light</option>
+                <option value="dark">🌙 Dark</option>
+              </select>
+            </div>
+          `;
+
+          const themeSelect = document.getElementById("theme-select");
+          themeSelect.value = localStorage.getItem("theme") || "light";
+          themeSelect.addEventListener("change", function() {
+            setTheme(this.value);
+          });
+        } else {
+          mainContent.innerHTML = `
+            <h1 class="text-3xl font-bold accent mb-4">${tab.textContent}</h1>
+            <p>Welcome to the <strong>${tab.textContent}</strong> section. Your content will appear here.</p>
+          `;
+        }
+      });
     });
-  });
 
-  // Try fetching student data (no redirect on error)
-  const token = localStorage.getItem("token");
+    // Handle theme switching
+    function setTheme(theme) {
+      document.body.setAttribute("data-theme", theme);
+      localStorage.setItem("theme", theme);
+    }
 
-  fetch("https://aviyamagnus-com.onrender.com/dashboard", {
-    headers: token ? { Authorization: `Bearer ${token}` } : {}
-  })
-    .then(res => {
-      // If unauthorized or any error, skip redirect
-      if (!res.ok) {
-        console.warn("⚠️ Could not fetch student data (maybe not logged in). Showing defaults.");
-        return {};
-      }
-      return res.json();
+    // Apply saved theme on load
+    document.addEventListener("DOMContentLoaded", function () {
+      const savedTheme = localStorage.getItem("theme") || "light";
+      setTheme(savedTheme);
+    });
+
+    // Fetch student data
+    const token = localStorage.getItem("token");
+    fetch("https://aviyamagnus-com.onrender.com/dashboard", {
+      headers: token ? { Authorization: `Bearer ${token}` } : {}
     })
+    .then(res => res.ok ? res.json() : {})
     .then(data => {
-      // Fill in dashboard with data or fallback defaults
       document.getElementById("studentName").textContent = `${data.first_name || "Student"} ${data.last_name || ""}`.trim();
       document.getElementById("studentEmail").textContent = data.email || "student@email.com";
       document.getElementById("studentMobile").textContent = data.mobile || "+91 00000 00000";
@@ -253,34 +279,12 @@
     })
     .catch(err => console.error("Error fetching student data:", err));
 
-  // Simple logout (still clears token)
-  function logoutStudent() {
-    localStorage.clear();
-    alert("You have been logged out.");
-    window.location.href = "student-login.html";
-  }
-  // Handle theme switching
-  function setTheme(theme) {
-    document.body.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }
-
-  // Apply saved theme on load
-  document.addEventListener("DOMContentLoaded", function () {
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    document.getElementById("theme-select").value = savedTheme;
-  });
-
-  // Theme select event
-  document.getElementById("theme-select").addEventListener("change", function () {
-    setTheme(this.value);
-  });
-
-  // Toggle visibility of the settings panel when clicking nav “Settings”
-  document.querySelector(".nav-settings").addEventListener("click", function () {
-    document.getElementById("theme-settings").classList.toggle("hidden");
-  });
-</script>
-</body> 
+    // Logout
+    function logoutStudent() {
+      localStorage.clear();
+      alert("You have been logged out.");
+      window.location.href = "student-login.html";
+    }
+  </script>
+</body>
 </html>
