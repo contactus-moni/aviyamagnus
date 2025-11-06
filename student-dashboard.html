@@ -11,7 +11,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
       transition: background 0.3s ease, color 0.3s ease;
     }
 
@@ -42,6 +41,7 @@
       flex: 1;
       padding: 40px;
       overflow-y: auto;
+      font-family: "Bodoni MT", serif; /* ✅ Main content font */
     }
 
     /* ===== Default Light Theme ===== */
@@ -97,15 +97,21 @@
       opacity: 0.8;
     }
 
-    /* ===== Dummy Content ===== */
-    h1 {
-      font-size: 1.8rem;
-      margin-bottom: 20px;
+    /* ===== Typography ===== */
+    h1, h2, h3 {
+      font-family: "Elephant", serif; /* ✅ Headings font */
     }
 
-    p {
-      line-height: 1.6;
+    /* ===== Sidebar Fonts ===== */
+    aside a, aside h1, aside h2 {
+      font-family: "Times New Roman", serif; /* ✅ Left navigation font */
     }
+
+    /* ===== Right Pane Fonts ===== */
+    #student-profile-pane {
+      font-family: "Times New Roman", serif; /* ✅ Right pane font */
+    }
+
   </style>
 </head>
 
@@ -139,148 +145,86 @@
 
   <!-- ===== Main Content ===== -->
   <main id="mainContent" class="flex-1 ml-64 mr-80 p-8 overflow-y-auto">
-    <!-- Default dashboard content -->
     <h1 class="text-3xl font-bold accent mb-4">Dashboard Overview</h1>
     <p>Welcome to your student dashboard! Select an option from the left menu.</p>
   </main>
 
-<!-- ===== Right Sidebar (Student Profile Pane) ===== -->
-<aside id="student-profile-pane" class="w-80 border-l border-gray-800 p-6 fixed right-0 top-0 h-full overflow-y-auto transition-all duration-300">
-  <div class="mb-8 text-center">
-    <img id="studentPhoto" src="img/default-avatar.png" alt="Student Photo"
-      class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#ff4b5c] object-cover">
-    <h2 id="studentName" class="text-xl font-semibold accent">Student Name</h2>
-    <p id="studentEmail" class="text-gray-400 text-sm">student@email.com</p>
-  </div>
+  <!-- ===== Right Sidebar (Student Profile Pane) ===== -->
+  <aside id="student-profile-pane" class="w-80 border-l border-gray-800 p-6 fixed right-0 top-0 h-full overflow-y-auto transition-all duration-300">
+    <div class="mb-8 text-center">
+      <img id="studentPhoto" src="img/default-avatar.png" alt="Student Photo"
+        class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-[#ff4b5c] object-cover">
+      <h2 id="studentName" class="text-xl font-semibold accent">Student Name</h2>
+      <p id="studentEmail" class="text-gray-400 text-sm">student@email.com</p>
+    </div>
 
-  <!-- Student Information -->
-  <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-6 border border-gray-700">
-    <h3 class="font-semibold accent mb-2">📋 Profile Information</h3>
-    <ul class="text-gray-300 text-sm space-y-1">
-      <li><strong>Mobile:</strong> <span id="studentMobile">+91 00000 00000</span></li>
-      <li><strong>Address:</strong> <span id="studentAddress">Not provided</span></li>
-      <li><strong>Training Duration:</strong> <span id="trainingMonths">0 months</span></li>
-      <li><strong>Payment Status:</strong> <span id="paymentStatus" class="text-yellow-400">Pending</span></li>
-    </ul>
-  </div>
+    <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-6 border border-gray-700">
+      <h3 class="font-semibold accent mb-2">📋 Profile Information</h3>
+      <ul class="text-gray-300 text-sm space-y-1">
+        <li><strong>Mobile:</strong> <span id="studentMobile">+91 00000 00000</span></li>
+        <li><strong>Address:</strong> <span id="studentAddress">Not provided</span></li>
+        <li><strong>Training Duration:</strong> <span id="trainingMonths">0 months</span></li>
+        <li><strong>Payment Status:</strong> <span id="paymentStatus" class="text-yellow-400">Pending</span></li>
+      </ul>
+    </div>
 
-  <!-- Quick Stats -->
-  <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-6 border border-gray-700">
-    <h3 class="font-semibold accent mb-2">📊 Progress Overview</h3>
-    <ul class="text-gray-300 text-sm space-y-1">
-      <li><strong>Current Course:</strong> <span id="currentCourse">N/A</span></li>
-      <li><strong>Progress:</strong> <span id="courseProgress">0%</span></li>
-      <li><strong>Next Class:</strong> <span id="nextClass">No schedule</span></li>
-    </ul>
-  </div>
+    <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-6 border border-gray-700">
+      <h3 class="font-semibold accent mb-2">📊 Progress Overview</h3>
+      <ul class="text-gray-300 text-sm space-y-1">
+        <li><strong>Current Course:</strong> <span id="currentCourse">N/A</span></li>
+        <li><strong>Progress:</strong> <span id="courseProgress">0%</span></li>
+        <li><strong>Next Class:</strong> <span id="nextClass">No schedule</span></li>
+      </ul>
+    </div>
 
-  <!-- Mentor Information -->
-  <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-8 border border-gray-700">
-    <h3 class="font-semibold accent mb-3">👨‍🏫 Assigned Mentor</h3>
-    <p id="mentorName" class="text-gray-300">To be assigned</p>
-    <p id="mentorEmail" class="text-gray-400 text-sm">---</p>
-  </div>
+    <div class="bg-black bg-opacity-30 p-4 rounded-xl mb-8 border border-gray-700">
+      <h3 class="font-semibold accent mb-3">👨‍🏫 Assigned Mentor</h3>
+      <p id="mentorName" class="text-gray-300">To be assigned</p>
+      <p id="mentorEmail" class="text-gray-400 text-sm">---</p>
+    </div>
 
-  <button onclick="logoutStudent()" class="w-full accent-bg px-4 py-2 rounded-md text-white font-semibold hover:bg-[#e63c4e]">
-    🚪 Logout
-  </button>
-</aside>
-
+    <button onclick="logoutStudent()" class="w-full accent-bg px-4 py-2 rounded-md text-white font-semibold hover:bg-[#e63c4e]">
+      🚪 Logout
+    </button>
+  </aside>
 
   <script>
     const tabs = document.querySelectorAll('aside a[data-tab]');
     const mainContent = document.getElementById('mainContent');
-
-    // Theme persistence
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-theme');
-    }
 
     tabs.forEach(tab => {
       tab.addEventListener('click', e => {
         e.preventDefault();
         const selectedTab = tab.dataset.tab;
 
-        // Highlight current tab
         tabs.forEach(t => t.classList.remove('bg-[#ff4b5c]', 'text-white'));
         tab.classList.add('bg-[#ff4b5c]', 'text-white');
 
-        // Load content
-        if (selectedTab === 'settings') {
-          mainContent.innerHTML = `
-            <h1 class="text-3xl font-bold accent mb-6">⚙️ Settings</h1>
-            <div class="bg-[#0d0d0d] p-6 rounded-xl border border-gray-800">
-              <h2 class="text-xl font-semibold mb-4 accent">Theme Preferences</h2>
-              
-              <div class="space-y-3 mb-4">
-                <label class="block">
-                  <input type="radio" name="theme" value="dark" ${!document.body.classList.contains('light-theme') ? 'checked' : ''}> Dark Theme
-                </label>
-                <label class="block">
-                  <input type="radio" name="theme" value="light" ${document.body.classList.contains('light-theme') ? 'checked' : ''}> Light Theme
-                </label>
-              </div>
-
-              <div id="themePreview" class="p-4 rounded-lg border border-gray-700 mb-4">
-                <p class="text-gray-300">Preview area for theme...</p>
-              </div>
-
-              <button id="saveThemeBtn" class="accent-bg px-4 py-2 rounded-md text-white">💾 Save Theme</button>
-            </div>
-          `;
-
-          // Live theme preview
-          const themeRadios = document.querySelectorAll('input[name="theme"]');
-          const preview = document.getElementById('themePreview');
-          themeRadios.forEach(radio => {
-            radio.addEventListener('change', () => {
-              preview.style.backgroundColor = radio.value === 'light' ? '#f9f9f9' : '#0d0d0d';
-              preview.style.color = radio.value === 'light' ? '#000' : '#fff';
-            });
-          });
-
-          // Save theme button
-          document.getElementById('saveThemeBtn').addEventListener('click', () => {
-            const selected = document.querySelector('input[name="theme"]:checked').value;
-            if (selected === 'light') {
-              document.body.classList.add('light-theme');
-              localStorage.setItem('theme', 'light');
-            } else {
-              document.body.classList.remove('light-theme');
-              localStorage.setItem('theme', 'dark');
-            }
-            alert('✅ Theme saved successfully!');
-          });
-        } 
-        else {
-          mainContent.innerHTML = `<h1 class="text-3xl font-bold accent mb-4">${tab.textContent}</h1><p>Content for ${tab.textContent} will be displayed here.</p>`;
-        }
+        // Load respective content
+        mainContent.innerHTML = `
+          <h1 class="text-3xl font-bold accent mb-4">${tab.textContent}</h1>
+          <p>Welcome to the <strong>${tab.textContent}</strong> section. Your content will appear here.</p>
+        `;
       });
     });
 
-const token = localStorage.getItem("token");
-
-if (!token) {
-  alert("Please login first!");
-  window.location.href = "login.html";
-}
-
-// Use token for secure requests
-fetch("https://aviyamagnus-com.onrender.com/dashboard", {
-  headers: { Authorization: `Bearer ${token}` },
-})
-  .then((res) => {
-    if (res.status === 401) {
+    const token = localStorage.getItem("token");
+    if (!token) {
       alert("Please login first!");
-      window.location.href = "student-login.html";
+      window.location.href = "login.html";
     }
-    return res.json();
-  })
-  .then((data) => console.log(data));
 
-
-        // Update profile details
+    fetch("https://aviyamagnus-com.onrender.com/dashboard", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          alert("Please login first!");
+          window.location.href = "student-login.html";
+        }
+        return res.json();
+      })
+      .then((data) => {
         document.getElementById("studentName").textContent = `${data.first_name || ""} ${data.last_name || ""}`.trim() || "Student";
         document.getElementById("studentEmail").textContent = data.email || "N/A";
         document.getElementById("studentMobile").textContent = data.mobile || "N/A";
@@ -298,13 +242,11 @@ fetch("https://aviyamagnus-com.onrender.com/dashboard", {
         if (data.photo_url) document.getElementById("studentPhoto").src = data.photo_url;
       })
       .catch(err => console.error("Error fetching student data:", err));
-  });
 
-  // Logout function
-  function logoutStudent() {
-    localStorage.clear();
-    window.location.href = "student-login.html";
-  }
+    function logoutStudent() {
+      localStorage.clear();
+      window.location.href = "student-login.html";
+    }
   </script>
 </body>
 </html>
