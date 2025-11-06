@@ -6,187 +6,89 @@
   <title>Student Dashboard - Aviya Magnus</title>
   <script src="https://cdn.tailwindcss.com"></script>
 <style>
-/* === Reset scaling and base layout === */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-  background-color: #f8f9fa;
-  color: #222;
-}
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.5s, color 0.5s;
+  }
 
-/* === Navbar === */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #2c2f33;
-  padding: 8px 20px;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
+  /* Default (Dark theme) */
+  body.dark-theme {
+    background: #1a1a1a;
+    color: #ffffff;
+  }
 
-.navbar .logo {
-  color: #fff;
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 20px;
-  letter-spacing: 0.5px;
-}
+  body.light-theme {
+    background: #f5f7fa;
+    color: #222222;
+  }
 
-.navbar .nav-links {
-  display: flex;
-  gap: 20px;
-}
+  /* Sidebar and right pane gradient backgrounds */
+  aside.left-pane {
+    background: linear-gradient(180deg, #121212, #1e1e1e);
+    border-right: 1px solid #333;
+    transition: background 0.5s;
+  }
+  aside.right-pane {
+    background: linear-gradient(180deg, #1c1c1c, #252525);
+    border-left: 1px solid #333;
+    transition: background 0.5s;
+  }
 
-.navbar .nav-links a {
-  text-decoration: none;
-  color: #ddd;
-  transition: color 0.3s ease;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
+  /* Light theme gradients */
+  body.light-theme aside.left-pane {
+    background: linear-gradient(180deg, #fafafa, #eaeaea);
+    border-right: 1px solid #d4d4d4;
+  }
+  body.light-theme aside.right-pane {
+    background: linear-gradient(180deg, #f2f2f2, #dddddd);
+    border-left: 1px solid #d4d4d4;
+  }
 
-.navbar .nav-links a:hover {
-  color: #fff;
-}
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-thumb {
+    background-color: #ff4b5c;
+    border-radius: 8px;
+  }
 
-/* === Dashboard Container === */
-.dashboard-container {
-  display: flex;
-  flex-direction: row;
-  width: 98%;
-  margin: 10px auto;
-  padding: 10px;
-  gap: 15px;
-}
+  /* Accent color */
+  .accent { color: #ff4b5c; }
+  .accent-bg { background-color: #ff4b5c; }
 
-/* === Sidebar === */
-.sidebar {
-  width: 220px;
-  background-color: #343a40;
-  padding: 10px;
-  border-radius: 8px;
-  color: white;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
+  /* Font styles */
+  aside, .right-pane { font-family: "Times New Roman", serif; }
+  h1, h2, h3 { font-family: "Elephant", serif; }
+  main { font-family: "Bodoni MT", serif; }
 
-.sidebar h2 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.sidebar a {
-  display: block;
-  text-decoration: none;
-  color: #ccc;
-  padding: 6px 8px;
-  margin: 4px 0;
-  border-radius: 4px;
-  transition: background 0.3s;
-}
-
-.sidebar a:hover {
-  background-color: #495057;
-  color: #fff;
-}
-
-/* === Main Content === */
-.main-content {
-  flex: 1;
-  background-color: #ffffff;
-  border-radius: 10px;
-  padding: 15px 20px;
-  font-family: "Bodoni MT", "Bodoni Moda", serif;
-  font-size: 15px;
-  line-height: 1.5;
-  color: #222;
-}
-
-.main-content h1 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.main-content h2 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 20px;
-  margin-top: 10px;
-}
-
-/* === Right Side Panel === */
-.right-pane {
-  width: 240px;
-  background-color: #f1f3f5;
-  border-radius: 8px;
-  padding: 12px;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-  color: #222;
-}
-
-.right-pane h3 {
-  font-family: "Elephant", "Times New Roman", serif;
-  font-size: 18px;
-  margin-bottom: 8px;
-}
-
-/* === Buttons and Forms === */
-button, input, select, textarea, label {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-}
-
-button {
-  background-color: #2c2f33;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #40444b;
-}
-
-/* === Settings Panel (inside right pane) === */
-.settings-panel {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.settings-panel label {
-  display: block;
-  margin-bottom: 6px;
-}
-
-.theme-options {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.theme-options input[type="radio"] {
-  margin-right: 4px;
-}
-
-/* === Footer (optional) === */
-.footer {
-  text-align: center;
-  padding: 8px;
-  font-size: 13px;
-  color: #555;
-  font-family: "Times New Roman", Times, serif;
-}
+  /* Settings panel styles */
+  .settings-panel {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  .theme-options label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  .theme-options input[type="radio"] {
+    margin-right: 6px;
+  }
+  .settings-panel button {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #ff4b5c;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+  }
+  .settings-panel button:hover {
+    opacity: 0.9;
+  }
 </style>
-
 </head>
 <body class="flex min-h-screen overflow-hidden">
 
@@ -229,77 +131,31 @@ button:hover {
     <p class="text-gray-400 text-sm mb-4">Here’s your quick progress summary.</p>
   </aside>
 
-  <script>
-    const tabs = document.querySelectorAll('aside a[data-tab]');
-    const mainContent = document.getElementById('mainContent');
+<script>
+  // Apply saved theme on load
+  window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('dashboardTheme') || 'dark';
+    document.body.classList.add(savedTheme + '-theme');
+    document.querySelector(`input[value="${savedTheme}"]`).checked = true;
+  });
 
-    // Theme persistence
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-theme');
-    }
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', e => {
-        e.preventDefault();
-        const selectedTab = tab.dataset.tab;
-
-        // Highlight current tab
-        tabs.forEach(t => t.classList.remove('bg-[#ff4b5c]', 'text-white'));
-        tab.classList.add('bg-[#ff4b5c]', 'text-white');
-
-        // Load content
-        if (selectedTab === 'settings') {
-          mainContent.innerHTML = `
-            <h1 class="text-3xl font-bold accent mb-6">⚙️ Settings</h1>
-            <div class="bg-[#0d0d0d] p-6 rounded-xl border border-gray-800">
-              <h2 class="text-xl font-semibold mb-4 accent">Theme Preferences</h2>
-              
-              <div class="space-y-3 mb-4">
-                <label class="block">
-                  <input type="radio" name="theme" value="dark" ${!document.body.classList.contains('light-theme') ? 'checked' : ''}> Dark Theme
-                </label>
-                <label class="block">
-                  <input type="radio" name="theme" value="light" ${document.body.classList.contains('light-theme') ? 'checked' : ''}> Light Theme
-                </label>
-              </div>
-
-              <div id="themePreview" class="p-4 rounded-lg border border-gray-700 mb-4">
-                <p class="text-gray-300">Preview area for theme...</p>
-              </div>
-
-              <button id="saveThemeBtn" class="accent-bg px-4 py-2 rounded-md text-white">💾 Save Theme</button>
-            </div>
-          `;
-
-          // Live theme preview
-          const themeRadios = document.querySelectorAll('input[name="theme"]');
-          const preview = document.getElementById('themePreview');
-          themeRadios.forEach(radio => {
-            radio.addEventListener('change', () => {
-              preview.style.backgroundColor = radio.value === 'light' ? '#f9f9f9' : '#0d0d0d';
-              preview.style.color = radio.value === 'light' ? '#000' : '#fff';
-            });
-          });
-
-          // Save theme button
-          document.getElementById('saveThemeBtn').addEventListener('click', () => {
-            const selected = document.querySelector('input[name="theme"]:checked').value;
-            if (selected === 'light') {
-              document.body.classList.add('light-theme');
-              localStorage.setItem('theme', 'light');
-            } else {
-              document.body.classList.remove('light-theme');
-              localStorage.setItem('theme', 'dark');
-            }
-            alert('✅ Theme saved successfully!');
-          });
-        } 
-        else {
-          mainContent.innerHTML = `<h1 class="text-3xl font-bold accent mb-4">${tab.textContent}</h1><p>Content for ${tab.textContent} will be displayed here.</p>`;
-        }
-      });
+  // Preview theme instantly
+  document.querySelectorAll('input[name="theme"]').forEach(input => {
+    input.addEventListener('change', () => {
+      document.body.classList.remove('light-theme', 'dark-theme');
+      document.body.classList.add(input.value + '-theme');
     });
-  </script>
+  });
+
+  // Save and apply theme
+  function applyTheme() {
+    const selectedTheme = document.querySelector('input[name="theme"]:checked').value;
+    localStorage.setItem('dashboardTheme', selectedTheme);
+    document.body.classList.remove('light-theme', 'dark-theme');
+    document.body.classList.add(selectedTheme + '-theme');
+    alert('✅ Theme saved successfully!');
+  }
+</script>
+
 </body>
 </html>
