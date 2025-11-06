@@ -74,17 +74,17 @@
           <div class="section-title">
             <h2>Student Login</h2>
           </div>
-<form class="mb-5" onsubmit="return false;">
-  <div class="mb-3">
-    <label for="student-email" class="form-label">Email</label>
-    <input type="email" id="student-email" name="email" class="form-control" required>
-  </div>
-  <div class="mb-3">
-    <label for="student-password" class="form-label">Password</label>
-    <input type="password" id="student-password" name="password" class="form-control" required>
-  </div>
-  <button type="button" class="site-btn" onclick="loginAsStudent()">Login as Student</button>
-</form>
+          <form action="student-dashboard.html" method="POST" class="mb-5">
+            <div class="mb-3">
+              <label for="student-email" class="form-label">Email</label>
+              <input type="email" id="student-email" name="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="student-password" class="form-label">Password</label>
+              <input type="password" id="student-password" name="password" class="form-control" required>
+            </div>
+            <button type="button" class="site-btn" onclick="loginAsStudent()">Login as Student</button>
+          </form>
           <div class="text-center">
             <a href="login-options.html">Back to Login Options</a>
           </div>
@@ -196,7 +196,7 @@ function loginAsStudent() {
             // Login successful
             localStorage.setItem('userRole', data.user.role);
             localStorage.setItem('userName', data.user.first_name);
-            window.location.href = "student-dashboard.html"; // redirect to student dashboard
+            window.location.href = "student-dashboard.html"; //
         } else {
             // Invalid email/password or not registered
             alert(data.error || "Invalid email, password, or role.");
@@ -208,5 +208,6 @@ function loginAsStudent() {
     });
 }
 </script>
+    </script>
 </body>
 </html>
