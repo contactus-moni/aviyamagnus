@@ -149,6 +149,17 @@
     <p>Welcome to your student dashboard! Select an option from the left menu.</p>
   </main>
 
+  <!-- Theme Settings Panel -->
+<div id="theme-settings" class="theme-settings hidden">
+  <h4>Theme Settings ⚙️</h4>
+  <label for="theme-select">Choose Theme:</label>
+  <select id="theme-select">
+    <option value="light">🌞 Light</option>
+    <option value="dark">🌙 Dark</option>
+  </select>
+</div>
+
+
   <!-- ===== Right Sidebar (Student Profile Pane) ===== -->
   <aside id="student-profile-pane" class="w-80 border-l border-gray-800 p-6 fixed right-0 top-0 h-full overflow-y-auto transition-all duration-300">
     <div class="mb-8 text-center">
@@ -192,6 +203,28 @@
   const tabs = document.querySelectorAll('aside a[data-tab]');
   const mainContent = document.getElementById('mainContent');
 
+  // Handle theme switching
+  function setTheme(theme) {
+    document.body.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }
+
+  // Apply saved theme on load
+  document.addEventListener("DOMContentLoaded", function () {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.getElementById("theme-select").value = savedTheme;
+  });
+
+  // Theme select event
+  document.getElementById("theme-select").addEventListener("change", function () {
+    setTheme(this.value);
+  });
+
+  // Toggle visibility of the settings panel when clicking nav “Settings”
+  document.querySelector(".nav-settings").addEventListener("click", function () {
+    document.getElementById("theme-settings").classList.toggle("hidden");
+  });
   // Tab switching logic
   tabs.forEach(tab => {
     tab.addEventListener('click', e => {
