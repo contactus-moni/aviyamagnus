@@ -36,6 +36,7 @@
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
       border: 1px solid rgba(0,0,0,0.1);
     }
+    
 
     h1 {
       font-family: "Elephant", serif;
@@ -95,6 +96,57 @@
       border-color: #444;
       background: rgba(255, 255, 255, 0.05);
     }
+    .courses-enroll-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+    }
+
+    .ccourses-form input,
+    .signup-form select,
+    .signup-form button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 12px 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .row .col-md-6 {
+      flex: 1;
+    }
+
+    .error-message {
+      color: red;
+      display: none;
+      font-size: 14px;
+    }
+
+    .site-btn {
+      background: #ff4b5c;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .site-btn:hover {
+      background: #e03f4f;
+    }
+
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   </style>
 </head>
 <body data-theme="light">
@@ -105,20 +157,28 @@
   <!-- Course Details -->
   <div class="course-info">
     <p id="courseTitle" class="text-xl font-bold mb-2"></p>
-    <p id="courseDescription" class="text-gray-700 mb-2"></p>
-    <p><strong>Registration Fee:</strong> ₹<span id="registrationFeeDisplay">0</span></p>
+    <p><strong>Registration Fee:</strong> ₹<span id="registrationFeeDisplay">2500</span></p>
   </div>
-
-   <h2>Course Enrollment Form</h2>
 
   <label for="course-select">Select a course:</label>
   <select id="course-select">
     <option value="">--Choose a course--</option>
     <option value="hr">Human Resource</option>
-    <option value="marketing">Marketing</option>
-    <option value="sales">Sales</option>
-    <option value="banking">Banking</option>
-    <option value="finance">Finance</option>
+    <option value="marketing">Marketing& Sales</option>
+    <option value="sales">Banking & Finane</option>
+    <option value="banking">Accounts & Finance</option>
+    <option value="finance">Social Media Marketing</option>
+    <option value="photography">Photography & Videography</option>
+    <option value="management">Supply Chain management</option>
+    <option value="leadership">Leadership & Team Management</option>
+    <option value="trade">Trade & Commerce</option>
+    <option value="business">Business Analytics</option>
+    <option value="entrepreneurship">Entrepreneurship Development</option>
+    <option value="event">Event Management</option>
+    <option value="teaching">Education & Teaching</option>
+    <option value="others">Others</option>
+    
+    
 
   <!-- Enrollment Form -->
   <form id="enrollForm">
@@ -141,7 +201,7 @@
       <option value="offline">Offline Payment</option>
     </select>
 
-    <button type="submit">Submit Enrollment</button>
+    <button type="submit" class="site-btn">Register</button>
   </form>
 </div>
 
