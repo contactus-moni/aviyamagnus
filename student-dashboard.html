@@ -259,22 +259,26 @@
       });
     });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const email = localStorage.getItem("studentEmail");
-    if (!email) {
-      alert("Please log in first.");
-      window.location.href = "student-login.html";
-      return;
-    }
+const token = localStorage.getItem("token");
 
-    // Fetch student data from backend
-    fetch(`https://aviyamagnus-com.onrender.com/student?email=${encodeURIComponent(email)}`)
-      .then(response => response.json())
-      .then(data => {
-        if (!data || data.error) {
-          console.error("Student not found:", data.error);
-          return;
-        }
+if (!token) {
+  alert("Please login first!");
+  window.location.href = "login.html";
+}
+
+// Use token for secure requests
+fetch("https://aviyamagnus-com.onrender.com/dashboard", {
+  headers: { Authorization: `Bearer ${token}` },
+})
+  .then((res) => {
+    if (res.status === 401) {
+      alert("Please login first!");
+      window.location.href = "student-login.html";
+    }
+    return res.json();
+  })
+  .then((data) => console.log(data));
+
 
         // Update profile details
         document.getElementById("studentName").textContent = `${data.first_name || ""} ${data.last_name || ""}`.trim() || "Student";
