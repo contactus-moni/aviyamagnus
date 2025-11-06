@@ -185,6 +185,29 @@ button:hover {
   color: #555;
   font-family: "Times New Roman", Times, serif;
 }
+  /* ===== Light & Dark Theme Gradient Backgrounds ===== */
+
+/* Default Dark Theme */
+body[data-theme="dark"] aside {
+  background: linear-gradient(180deg, #1a1a1a, #2a2a2a);
+  border-color: #333;
+}
+
+/* Light Theme */
+body[data-theme="light"] aside {
+  background: linear-gradient(180deg, #f3f3f3, #e4e4e4);
+  border-color: #ccc;
+}
+
+/* Optional – make the main content background softer too */
+body[data-theme="dark"] main {
+  background: linear-gradient(180deg, #121212, #1e1e1e);
+}
+
+body[data-theme="light"] main {
+  background: linear-gradient(180deg, #ffffff, #f5f5f5);
+}
+
 </style>
 
 </head>
