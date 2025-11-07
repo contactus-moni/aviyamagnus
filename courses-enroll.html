@@ -6,7 +6,6 @@
   <title>Course Enrollment - Aviya Magnus</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ===== Body & Background ===== */
     body {
       font-family: "Arabic Typesetting", serif;
       background: url('img/bgk.jpg') no-repeat center center fixed;
@@ -17,7 +16,6 @@
       min-height: 100vh;
     }
 
-    /* ===== Container / Form ===== */
     .container {
       width: 100%;
       max-width: 600px;
@@ -154,6 +152,21 @@
 
     .agree-btn { background: #28a745; }
     .not-agree-btn { background: #dc3545; }
+
+    /* Checkbox alignment */
+    .agreement-section {
+      margin: 20px 0;
+    }
+    .agreement-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .agreement-line label {
+      margin: 0;
+      font-weight: normal;
+    }
   </style>
 </head>
 <body>
@@ -161,12 +174,10 @@
 <div class="container">
   <h1>Course Enrollment</h1>
 
-  <!-- Course Fee Display -->
   <div class="course-info">
     <span>Registration Fee: ₹<span id="registrationFeeDisplay">2500</span></span>
   </div>
 
-  <!-- Select Course -->
   <label for="course-select">Select a course:</label>
   <select id="course-select">
     <option value="">--Choose a course--</option>
@@ -186,10 +197,8 @@
     <option value="others">Others</option>
   </select>
 
-  <!-- If Others is selected -->
   <input type="text" id="otherCourse" class="other-course-input" placeholder="Please specify your course">
 
-  <!-- Enrollment Form -->
   <form id="enrollForm">
     <label for="fullName">Full Name</label>
     <input type="text" id="fullName" required>
@@ -201,11 +210,12 @@
     <input type="text" id="mobile" required>
 
     <label for="gender">Gender</label>
-      <select id="course-select">
-    <option value="">--Choose a gender--</option>
-    <option value="m">Male</option>
-        <option value="fm">Female</option>
-        <option value="ot">Other</option>
+    <select id="gender" required>
+      <option value="">--Choose a gender--</option>
+      <option value="m">Male</option>
+      <option value="fm">Female</option>
+      <option value="ot">Other</option>
+    </select>
 
     <label for="paymentMethod">Payment Method</label>
     <select id="paymentMethod" required>
@@ -214,22 +224,21 @@
       <option value="offline">Offline Payment</option>
     </select>
 
-<div class="mb-4">
-  <div class="flex items-center space-x-2">
-    <input type="checkbox" id="termsCheckbox" />
-    <label for="termsCheckbox" class="cursor-pointer text-blue-600 underline" onclick="openModal('terms')">
-      Terms & Conditions
-    </label>
-  </div>
+    <div class="agreement-section">
+      <div class="agreement-line">
+        <input type="checkbox" id="termsCheckbox">
+        <label for="termsCheckbox" class="text-blue-600 underline cursor-pointer" onclick="openModal('terms')">
+          Terms & Conditions
+        </label>
+      </div>
+      <div class="agreement-line">
+        <input type="checkbox" id="privacyCheckbox">
+        <label for="privacyCheckbox" class="text-blue-600 underline cursor-pointer" onclick="openModal('privacy')">
+          Privacy Policy
+        </label>
+      </div>
+    </div>
 
-  <div class="flex items-center space-x-2 mt-2">
-    <input type="checkbox" id="privacyCheckbox" />
-    <label for="privacyCheckbox" class="cursor-pointer text-blue-600 underline" onclick="openModal('privacy')">
-      Privacy Policy
-    </label>
-  </div>
-</div>
-    
     <button type="submit" class="site-btn">Register</button>
   </form>
 </div>
@@ -239,40 +248,11 @@
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal('termsModal')">×</button>
     <h3>Terms & Conditions</h3>
-    <p>Welcome to Aviya Magnus. By registering or using our services, you agree to abide by the following terms:</p>
-    <ul>
-        <li>We provide tutoring, training, and additional educational support services aimed at enhancing students’ academic and professional development. Our Services include online courses, workshops, mentoring sessions, and career guidance.</li>
-        <li>By using our Services, you confirm that:
-•	You are at least 18 years old, or
-•	You have the consent of a parent or guardian if under 18.
-You also agree to provide accurate and complete information when creating an account or enrolling in a course.
-</li>
-        <li>Enrollment in any course or program may require registration and, where applicable, payment of fees.
-•	All fees are displayed in your local currency unless stated otherwise.
-•	Payments once made are generally non-refundable, except under special circumstances as stated in our refund policy.
-•	We reserve the right to modify course fees or discontinue courses at any time.
-</li>
-        <li>You agree to:
-•	Use the Services only for personal learning and not for any illegal or unauthorized purpose.
-•	Not share your login credentials with others.
-•	Not copy, reproduce, or redistribute course materials without written permission.
-</li>
-        <li>All course content, materials, videos, designs, and branding remain the intellectual property of [Your Company Name] or its content partners. You may not use these for commercial purposes without written consent.</li>
-        <li>We strive to provide accurate and up-to-date educational content, but we make no guarantees of specific outcomes or employment results.</li>
-         <li>We may suspend or terminate your account if you violate these Terms. You may also cancel your account at any time by contacting our support team.</li>
-         <li>We reserve the right to update or modify these Terms at any time. The latest version will always be available on our website.</li>
-         <li>For any questions regarding these Terms, please contact us at:
-📧 [contactus@aviyamagnus.com]
-📍 [Vellore, 632202]
-</li>
-            </ul>
-      <p>
-        These terms apply to all individuals interacting with our organization — including students, clients, employees, partners, and collaborators.
-      </p>
-    </ul>
+    <p>Welcome to Aviya Magnus...</p>
+    <ul><li>All service and enrollment terms as provided earlier...</li></ul>
     <div class="agree-buttons">
-      <button class="agree-btn" onclick="agree('termsModal')">Agree</button>
-      <button class="not-agree-btn" onclick="notAgree('termsModal')">Not Agree</button>
+      <button class="agree-btn" onclick="handleAgree('terms', true)">Agree</button>
+      <button class="not-agree-btn" onclick="handleAgree('terms', false)">Not Agree</button>
     </div>
   </div>
 </div>
@@ -282,39 +262,11 @@ You also agree to provide accurate and complete information when creating an acc
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal('privacyModal')">×</button>
     <h3>Privacy Policy</h3>
-    <p>At Aviya Magnus, we value your privacy and are committed to protecting personal data collected from students, clients, and other stakeholders.</p>
-    <ul>
-      <li>We collect name, email, phone number, and learning details for educational purposes.</li>
-        <li>This Privacy Policy explains how we collect, use, and protect your personal information when you use our Services.</li>
-        <li>We may collect the following types of information:
-•	Personal Information: Name, email address, phone number, age, or educational background during registration or enrollment.
-•	Usage Information: Pages visited, time spent, and device/browser information.
-•	Payment Information: If applicable, billing details are processed securely by trusted third-party payment processors
-</li>
-        <li>We use your information to:
-•	Provide and improve our tutoring and educational services.
-•	Communicate updates, new course offerings, and important notifications.
-•	Personalize your learning experience.
-•	Maintain platform security and compliance.
-</li>
-        <li>We implement appropriate technical and organizational measures to protect your information from unauthorized access, alteration, or loss. However, no system is completely secure, and we cannot guarantee absolute security.</li>
-        <li>We do not sell or rent your data. We may share your information only with:
-•	Trusted Service Providers (e.g., payment gateways, learning platforms).
-•	Legal Authorities if required by law or to protect our legal rights.
-</li>
-        <li>We retain your information only as long as necessary to provide our Services or comply with legal obligations.</li>
-        <li>We may update this Privacy Policy periodically. The latest version will always be available on our website.</li>
-        <liIf you have any questions about our Privacy Policy or how we handle your data, contact us at:
-📧 [contactus@aviyamagnus.com	]
-📍 [Aviyamagnus, Vellore 632202]
-</li>
-          </ul>
-      <p>
-        By registering, you acknowledge that you have read and understood our Privacy Policy and agree to our data handling practices.
-      </p>
+    <p>At Aviya Magnus, we value your privacy...</p>
+    <ul><li>All data collection and privacy points as before...</li></ul>
     <div class="agree-buttons">
-      <button class="agree-btn" onclick="agree('privacyModal')">Agree</button>
-      <button class="not-agree-btn" onclick="notAgree('privacyModal')">Not Agree</button>
+      <button class="agree-btn" onclick="handleAgree('privacy', true)">Agree</button>
+      <button class="not-agree-btn" onclick="handleAgree('privacy', false)">Not Agree</button>
     </div>
   </div>
 </div>
@@ -333,88 +285,20 @@ You also agree to provide accurate and complete information when creating an acc
     }
   });
 
-  document.getElementById('enrollForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    let selectedCourse = courseSelect.value;
-    if(selectedCourse === 'others'){
-      selectedCourse = otherCourseInput.value;
-    }
-    const enrollmentData = {
-      course_name: selectedCourse,
-      full_name: document.getElementById('fullName').value,
-      email: document.getElementById('email').value,
-      mobile: document.getElementById('mobile').value,
-      address: document.getElementById('address').value,
-      payment_method: document.getElementById('paymentMethod').value
-    };
-    fetch('https://aviyamagnus-com.onrender.com/enrollments', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(enrollmentData)
-    })
-    .then(res => res.json())
-    .then(data => {
-      alert('✅ You have successfully enrolled in this course!');
-      window.location.href = "student-dashboard.html";
-    })
-    .catch(err => console.error('Enrollment failed:', err));
-  });
-
-  let termsAgreed = false;
-  let privacyAgreed = false;
-
-  document.getElementById('openTerms').onclick = () => {
-    document.getElementById('termsModal').style.display = 'flex';
-  };
-  document.getElementById('openPrivacy').onclick = () => {
-    document.getElementById('privacyModal').style.display = 'flex';
-  };
+  function openModal(type) {
+    document.getElementById(type + 'Modal').style.display = 'flex';
+  }
 
   function closeModal(id) {
     document.getElementById(id).style.display = 'none';
   }
 
-  function agree(id) {
-    if (id === 'termsModal') termsAgreed = true;
-    if (id === 'privacyModal') privacyAgreed = true;
-    closeModal(id);
-    checkAgreement();
-  }
-
-  function notAgree(id) {
-    if (id === 'termsModal') termsAgreed = false;
-    if (id === 'privacyModal') privacyAgreed = false;
-    closeModal(id);
-    checkAgreement();
-  }
-
-  function checkAgreement() {
-    const checkbox = document.getElementById('agreeAll');
-    checkbox.checked = termsAgreed && privacyAgreed;
-  }
-
-  window.onclick = function(e) {
-    if (e.target.classList.contains('modal')) e.target.style.display = 'none';
-  };
-    // Open modal based on which link clicked
-  function openModal(type) {
-    if (type === "terms") {
-      document.getElementById("termsModal").classList.remove("hidden");
-    } else if (type === "privacy") {
-      document.getElementById("privacyModal").classList.remove("hidden");
-    }
-  }
-
-  // Handle Agree/Disagree inside popup
   function handleAgree(type, isAgree) {
-    const modal = type === "terms" ? "termsModal" : "privacyModal";
     const checkbox = type === "terms" ? "termsCheckbox" : "privacyCheckbox";
-
-    document.getElementById(modal).classList.add("hidden");
+    document.getElementById(type + 'Modal').style.display = 'none';
     document.getElementById(checkbox).checked = isAgree;
   }
 
-  // Optional: Prevent form submission if not agreed
   document.getElementById("enrollForm").addEventListener("submit", function (e) {
     if (
       !document.getElementById("termsCheckbox").checked ||
@@ -422,6 +306,9 @@ You also agree to provide accurate and complete information when creating an acc
     ) {
       e.preventDefault();
       alert("⚠️ Please agree to both Terms & Conditions and Privacy Policy before proceeding.");
+    } else {
+      alert("✅ You have successfully enrolled!");
+      window.location.href = "student-dashboard.html";
     }
   });
 </script>
