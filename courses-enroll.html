@@ -140,10 +140,17 @@
       <option value="online">Online Payment</option>
       <option value="offline">Offline Payment</option>
     </select>
+    
+      <div class="container">
+    <h2 id="course-title">Loading course...</h2>
+    <div id="course-description"></div>
+  </div>
 
     <button type="submit" class="site-btn">Register</button>
   </form>
 </div>
+
+  
 
 <script>
   // ===== Show "Others" input if selected =====
@@ -190,6 +197,40 @@
     })
     .catch(err => console.error('Enrollment failed:', err));
   });
+
+      // Get the course name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseName = urlParams.get("course");
+
+    const titleEl = document.getElementById("course-title");
+    const descEl = document.getElementById("course-description");
+
+    // Course details (you can expand this easily)
+    const courseDetails = {
+      "Human Resource": "Learn about recruitment, training, employee engagement, and performance management.",
+      "Marketing and Sales": "Master marketing strategies, branding, customer engagement, and sales growth techniques.",
+      "Finance and Accounting": "Explore budgeting, investment analysis, and financial management fundamentals.",
+      "Banking and Finance": "Understand financial services, banking operations, and risk management.",
+      "Supply Chain Management": "Study logistics, inventory, and operations optimization.",
+      "Operations Management": "Focus on improving productivity, quality, and process efficiency.",
+      "Entrepreneurship and Startups": "Learn how to launch, manage, and grow successful startups.",
+      "Business Analytics": "Analyze data to make smart business decisions using analytics tools.",
+      "Leadership and Team Management": "Develop leadership skills, motivation techniques, and team-building strategies.",
+      "Event Management": "Plan and execute events with creativity, budgeting, and coordination skills.",
+      "Corporate Law and Intellectual Property Rights": "Learn about company laws, IP protection, and corporate governance.",
+      "Labor Law and Industrial Relations": "Understand employee rights, labor laws, and industrial negotiations.",
+      "Contract Management": "Study the principles of drafting, managing, and enforcing business contracts.",
+      "Education and Teaching": "Gain insights into effective teaching, curriculum design, and educational psychology.",
+      "Communication and Soft Skills": "Improve your professional communication, confidence, and interpersonal skills."
+    };
+
+    if (courseName && courseDetails[courseName]) {
+      titleEl.textContent = courseName;
+      descEl.textContent = courseDetails[courseName];
+    } else {
+      titleEl.textContent = "Course not found";
+      descEl.textContent = "Please go back and select a valid course.";
+    }
 </script>
 
 </body>
