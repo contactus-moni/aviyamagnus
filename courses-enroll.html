@@ -360,11 +360,12 @@ You also agree to provide accurate and complete information when creating an acc
   try {
     // ✅ Step 2: Collect form data
     const enrollmentData = {
-      full_name: document.getElementById("fullName").value,
-      email: document.getElementById("email").value,
-      mobile: document.getElementById("mobile").value,
-      course_name: document.getElementById("course-select").value,
-      payment_method: document.getElementById("paymentMethod").value,
+    full_name: document.getElementById("full_name").value,
+    email: document.getElementById("email").value,
+    mobile: document.getElementById("mobile").value,
+    address: document.getElementById("address").value,
+    course_id: document.getElementById("course_id").value,
+    payment_method: document.getElementById("payment_method").value
     };
 
     // ✅ Step 3: Send to backend
