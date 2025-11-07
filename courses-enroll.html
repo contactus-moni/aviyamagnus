@@ -135,38 +135,31 @@
       color: #000;
     }
 
-    .agree-buttons {
-      margin-top: 20px;
-      text-align: right;
-    }
+.agreement-section {
+  margin-top: 16px;
+}
 
-    .agree-buttons button {
-      padding: 8px 16px;
-      margin-left: 10px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      color: #fff;
-      font-weight: bold;
-    }
+.agreement-line {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between checkbox and label */
+  margin-bottom: 10px;
+}
 
-    .agree-btn { background: #28a745; }
-    .not-agree-btn { background: #dc3545; }
+.agreement-line input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #ff4b5c; /* optional: makes checkbox match your theme */
+}
 
-    /* Checkbox alignment */
-    .agreement-section {
-      margin: 20px 0;
-    }
-    .agreement-line {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .agreement-line label {
-      margin: 0;
-      font-weight: normal;
-    }
+.agreement-line label {
+  font-family: "Times New Roman", serif;
+  font-size: 16px;
+  color: #1e40af;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
@@ -248,8 +241,35 @@
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal('termsModal')">×</button>
     <h3>Terms & Conditions</h3>
-    <p>Welcome to Aviya Magnus...</p>
-    <ul><li>All service and enrollment terms as provided earlier...</li></ul>
+        <li>We provide tutoring, training, and additional educational support services aimed at enhancing students’ academic and professional development. Our Services include online courses, workshops, mentoring sessions, and career guidance.</li>
+        <li>By using our Services, you confirm that:
+•	You are at least 18 years old, or
+•	You have the consent of a parent or guardian if under 18.
+You also agree to provide accurate and complete information when creating an account or enrolling in a course.
+</li>
+        <li>Enrollment in any course or program may require registration and, where applicable, payment of fees.
+•	All fees are displayed in your local currency unless stated otherwise.
+•	Payments once made are generally non-refundable, except under special circumstances as stated in our refund policy.
+•	We reserve the right to modify course fees or discontinue courses at any time.
+</li>
+        <li>You agree to:
+•	Use the Services only for personal learning and not for any illegal or unauthorized purpose.
+•	Not share your login credentials with others.
+•	Not copy, reproduce, or redistribute course materials without written permission.
+</li>
+        <li>All course content, materials, videos, designs, and branding remain the intellectual property of [Your Company Name] or its content partners. You may not use these for commercial purposes without written consent.</li>
+        <li>We strive to provide accurate and up-to-date educational content, but we make no guarantees of specific outcomes or employment results.</li>
+         <li>We may suspend or terminate your account if you violate these Terms. You may also cancel your account at any time by contacting our support team.</li>
+         <li>We reserve the right to update or modify these Terms at any time. The latest version will always be available on our website.</li>
+         <li>For any questions regarding these Terms, please contact us at:
+📧 [contactus@aviyamagnus.com]
+📍 [Vellore, 632202]
+</li>
+      </ul>
+      <p>
+        These terms apply to all individuals interacting with our organization — including students, clients, employees, partners, and collaborators.
+      </p>
+    </div>
     <div class="agree-buttons">
       <button class="agree-btn" onclick="handleAgree('terms', true)">Agree</button>
       <button class="not-agree-btn" onclick="handleAgree('terms', false)">Not Agree</button>
@@ -262,8 +282,34 @@
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal('privacyModal')">×</button>
     <h3>Privacy Policy</h3>
-    <p>At Aviya Magnus, we value your privacy...</p>
-    <ul><li>All data collection and privacy points as before...</li></ul>
+        <li>This Privacy Policy explains how we collect, use, and protect your personal information when you use our Services.</li>
+        <li>We may collect the following types of information:
+•	Personal Information: Name, email address, phone number, age, or educational background during registration or enrollment.
+•	Usage Information: Pages visited, time spent, and device/browser information.
+•	Payment Information: If applicable, billing details are processed securely by trusted third-party payment processors
+</li>
+        <li>We use your information to:
+•	Provide and improve our tutoring and educational services.
+•	Communicate updates, new course offerings, and important notifications.
+•	Personalize your learning experience.
+•	Maintain platform security and compliance.
+</li>
+        <li>We implement appropriate technical and organizational measures to protect your information from unauthorized access, alteration, or loss. However, no system is completely secure, and we cannot guarantee absolute security.</li>
+        <li>We do not sell or rent your data. We may share your information only with:
+•	Trusted Service Providers (e.g., payment gateways, learning platforms).
+•	Legal Authorities if required by law or to protect our legal rights.
+</li>
+        <li>We retain your information only as long as necessary to provide our Services or comply with legal obligations.</li>
+        <li>We may update this Privacy Policy periodically. The latest version will always be available on our website.</li>
+        <liIf you have any questions about our Privacy Policy or how we handle your data, contact us at:
+📧 [contactus@aviyamagnus.com	]
+📍 [Aviyamagnus, Vellore 632202]
+</li>
+      </ul>
+      <p>
+        By registering, you acknowledge that you have read and understood our Privacy Policy and agree to our data handling practices.
+      </p>
+    </div>
     <div class="agree-buttons">
       <button class="agree-btn" onclick="handleAgree('privacy', true)">Agree</button>
       <button class="not-agree-btn" onclick="handleAgree('privacy', false)">Not Agree</button>
