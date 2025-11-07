@@ -214,18 +214,21 @@
       <option value="offline">Offline Payment</option>
     </select>
 
-    <!-- Terms & Privacy Buttons -->
-    <div style="margin-top: 10px;">
-      <button type="button" id="openTerms" style="background:#007bff;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Terms & Conditions</button>
-      <button type="button" id="openPrivacy" style="background:#17a2b8;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Privacy Policy</button>
-    </div>
+<div class="mb-4">
+  <div class="flex items-center space-x-2">
+    <input type="checkbox" id="termsCheckbox" />
+    <label for="termsCheckbox" class="cursor-pointer text-blue-600 underline" onclick="openModal('terms')">
+      Terms & Conditions
+    </label>
+  </div>
 
-    <div style="margin-top:10px;">
-      <label>
-        <input type="checkbox" id="agreeAll" required /> 
-        I agree to both Terms & Conditions and Privacy Policy.
-      </label>
-    </div>
+  <div class="flex items-center space-x-2 mt-2">
+    <input type="checkbox" id="privacyCheckbox" />
+    <label for="privacyCheckbox" class="cursor-pointer text-blue-600 underline" onclick="openModal('privacy')">
+      Privacy Policy
+    </label>
+  </div>
+</div>
     
     <button type="submit" class="site-btn">Register</button>
   </form>
@@ -393,6 +396,34 @@ You also agree to provide accurate and complete information when creating an acc
   window.onclick = function(e) {
     if (e.target.classList.contains('modal')) e.target.style.display = 'none';
   };
+    // Open modal based on which link clicked
+  function openModal(type) {
+    if (type === "terms") {
+      document.getElementById("termsModal").classList.remove("hidden");
+    } else if (type === "privacy") {
+      document.getElementById("privacyModal").classList.remove("hidden");
+    }
+  }
+
+  // Handle Agree/Disagree inside popup
+  function handleAgree(type, isAgree) {
+    const modal = type === "terms" ? "termsModal" : "privacyModal";
+    const checkbox = type === "terms" ? "termsCheckbox" : "privacyCheckbox";
+
+    document.getElementById(modal).classList.add("hidden");
+    document.getElementById(checkbox).checked = isAgree;
+  }
+
+  // Optional: Prevent form submission if not agreed
+  document.getElementById("enrollForm").addEventListener("submit", function (e) {
+    if (
+      !document.getElementById("termsCheckbox").checked ||
+      !document.getElementById("privacyCheckbox").checked
+    ) {
+      e.preventDefault();
+      alert("⚠️ Please agree to both Terms & Conditions and Privacy Policy before proceeding.");
+    }
+  });
 </script>
 
 </body>
