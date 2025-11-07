@@ -141,29 +141,29 @@
       <option value="offline">Offline Payment</option>
     </select>
     
-      <div class="container">
-    <h2 id="course-title">Loading course...</h2>
-    <div id="course-description"></div>
-  </div>
     
-      <div class="terms-container">
-      <label>
-        <input type="checkbox" id="agreeTerms" required />
-        I agree to the
-        <a id="termsLink">Terms & Conditions</a> and
-        <a id="privacyLink">Privacy Policy</a>.
-      </label>
-    </div>
+    <!-- Add these two buttons anywhere below your form fields -->
+<div style="margin-top: 10px;">
+  <button type="button" id="openTerms" style="background:#007bff;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Terms & Conditions</button>
+  <button type="button" id="openPrivacy" style="background:#17a2b8;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Privacy Policy</button>
+</div>
 
+<div style="margin-top:10px;">
+  <label>
+    <input type="checkbox" id="agreeAll" required /> 
+    I agree to both Terms & Conditions and Privacy Policy.
+  </label>
+</div>
+    
     <button type="submit" class="site-btn">Register</button>
   </form>
 </div>
 
   <!-- Terms Modal -->
-  <div id="termsModal" class="modal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('termsModal')">Close</button>
-      <h3>Terms & Conditions</h3>
+<div id="termsModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('termsModal')">×</button>
+    <h3>Terms & Conditions</h3>
       <p>
         Welcome to Aviya Magnus. By registering or using our services, you agree to abide by the following terms:
       </p>
@@ -200,10 +200,10 @@ You also agree to provide accurate and complete information when creating an acc
   </div>
 
   <!-- Privacy Policy Modal -->
-  <div id="privacyModal" class="modal">
-    <div class="modal-content">
-      <button class="close-btn" onclick="closeModal('privacyModal')">Close</button>
-      <h3>Privacy Policy</h3>
+<div id="privacyModal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeModal('privacyModal')">×</button>
+    <h3>Privacy Policy</h3>
       <p>
         At Aviya Magnus, we value your privacy and are committed to protecting personal data collected from students, clients, and other stakeholders.
       </p>
@@ -320,34 +320,50 @@ You also agree to provide accurate and complete information when creating an acc
       descEl.textContent = "Please go back and select a valid course.";
     }
 
-     // Modal open handlers
-    document.getElementById('termsLink').onclick = function() {
-      document.getElementById('termsModal').style.display = 'flex';
-    }
-    document.getElementById('privacyLink').onclick = function() {
-      document.getElementById('privacyModal').style.display = 'flex';
-    }
+let termsAgreed = false;
+let privacyAgreed = false;
 
-    // Close modal function
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
-    }
+// Open modals
+document.getElementById('openTerms').onclick = () => {
+  document.getElementById('termsModal').style.display = 'flex';
+};
+document.getElementById('openPrivacy').onclick = () => {
+  document.getElementById('privacyModal').style.display = 'flex';
+};
 
-    // Prevent submission if unchecked
-    document.getElementById("registrationForm").addEventListener("submit", function(event) {
-      const checkbox = document.getElementById("agreeTerms");
-      if (!checkbox.checked) {
-        alert("Please agree to the Terms & Conditions and Privacy Policy before registering.");
-        event.preventDefault();
-      }
-    });
+// Close modal
+function closeModal(id) {
+  document.getElementById(id).style.display = 'none';
+}
 
-    // Close modal on outside click
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        event.target.style.display = 'none';
-      }
-    }
+// Agree/Not Agree handling
+function agree(id) {
+  if (id === 'termsModal') termsAgreed = true;
+  if (id === 'privacyModal') privacyAgreed = true;
+  closeModal(id);
+  checkAgreement();
+}
+
+function notAgree(id) {
+  if (id === 'termsModal') termsAgreed = false;
+  if (id === 'privacyModal') privacyAgreed = false;
+  closeModal(id);
+  checkAgreement();
+}
+
+function checkAgreement() {
+  const checkbox = document.getElementById('agreeAll');
+  if (termsAgreed && privacyAgreed) {
+    checkbox.checked = true;
+  } else {
+    checkbox.checked = false;
+  }
+}
+
+// Close when clicking outside
+window.onclick = function(e) {
+  if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+};
 </script>
 
 </body>
