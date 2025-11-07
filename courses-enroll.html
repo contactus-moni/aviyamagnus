@@ -345,18 +345,50 @@ You also agree to provide accurate and complete information when creating an acc
     document.getElementById(checkbox).checked = isAgree;
   }
 
-  document.getElementById("enrollForm").addEventListener("submit", function (e) {
-    if (
-      !document.getElementById("termsCheckbox").checked ||
-      !document.getElementById("privacyCheckbox").checked
-    ) {
-      e.preventDefault();
-      alert("⚠️ Please agree to both Terms & Conditions and Privacy Policy before proceeding.");
+  document.getElementById("enrollForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  // ✅ Step 1: Validate checkboxes
+  if (
+    !document.getElementById("termsCheckbox").checked ||
+    !document.getElementById("privacyCheckbox").checked
+  ) {
+    alert("⚠️ Please agree to both Terms & Conditions and Privacy Policy before proceeding.");
+    return;
+  }
+
+  try {
+    // ✅ Step 2: Collect form data
+    const enrollmentData = {
+      full_name: document.getElementById("fullName").value,
+      email: document.getElementById("email").value,
+      mobile: document.getElementById("mobile").value,
+      course_name: document.getElementById("course-select").value,
+      payment_method: document.getElementById("paymentMethod").value,
+    };
+
+    // ✅ Step 3: Send to backend
+    const response = await fetch("https://your-backend-url.com/api/enroll", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(enrollmentData),
+    });
+
+    const result = await response.json();
+
+    // ✅ Step 4: Handle backend response
+    if (result.message === "User registered successfully") {
+      window.location.href = "success.html"; // Redirect to success page
     } else {
-      alert("✅ You have successfully enrolled!");
-      window.location.href = "student-dashboard.html";
+      alert(`⚠️ ${result.error || "Something went wrong. Please try again."}`);
     }
-  });
+
+  } catch (error) {
+    console.error("Error:", error);
+    alert("⚠️ Network or server error. Please try again later.");
+  }
+});
+
 </script>
 
 </body>
