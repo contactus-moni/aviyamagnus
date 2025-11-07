@@ -85,6 +85,75 @@
       display: none;
       margin-bottom: 16px;
     }
+
+    /* ===== Modal Styles ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal-content h3 {
+      font-size: 1.5rem;
+      color: #ff4b5c;
+      margin-bottom: 15px;
+      font-family: "Times New Roman", serif;
+    }
+
+    .modal-content p, .modal-content li {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #333;
+      font-family: "Times New Roman", serif;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #000;
+    }
+
+    .agree-buttons {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .agree-buttons button {
+      padding: 8px 16px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .agree-btn { background: #28a745; }
+    .not-agree-btn { background: #dc3545; }
   </style>
 </head>
 <body>
@@ -131,8 +200,12 @@
     <label for="mobile">Mobile Number</label>
     <input type="text" id="mobile" required>
 
-    <label for="address">Address</label>
-    <textarea id="address" rows="3"></textarea>
+    <label for="gender">Gender</label>
+      <select id="course-select">
+    <option value="">--Choose a gender--</option>
+    <option value="m">Male</option>
+        <option value="fm">Female</option>
+        <option value="ot">Other</option>
 
     <label for="paymentMethod">Payment Method</label>
     <select id="paymentMethod" required>
@@ -140,34 +213,31 @@
       <option value="online">Online Payment</option>
       <option value="offline">Offline Payment</option>
     </select>
-    
-    
-    <!-- Add these two buttons anywhere below your form fields -->
-<div style="margin-top: 10px;">
-  <button type="button" id="openTerms" style="background:#007bff;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Terms & Conditions</button>
-  <button type="button" id="openPrivacy" style="background:#17a2b8;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Privacy Policy</button>
-</div>
 
-<div style="margin-top:10px;">
-  <label>
-    <input type="checkbox" id="agreeAll" required /> 
-    I agree to both Terms & Conditions and Privacy Policy.
-  </label>
-</div>
+    <!-- Terms & Privacy Buttons -->
+    <div style="margin-top: 10px;">
+      <button type="button" id="openTerms" style="background:#007bff;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Terms & Conditions</button>
+      <button type="button" id="openPrivacy" style="background:#17a2b8;color:#fff;padding:8px 14px;border:none;border-radius:6px;cursor:pointer;">View Privacy Policy</button>
+    </div>
+
+    <div style="margin-top:10px;">
+      <label>
+        <input type="checkbox" id="agreeAll" required /> 
+        I agree to both Terms & Conditions and Privacy Policy.
+      </label>
+    </div>
     
     <button type="submit" class="site-btn">Register</button>
   </form>
 </div>
 
-  <!-- Terms Modal -->
+<!-- ===== Terms Modal ===== -->
 <div id="termsModal" class="modal">
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal('termsModal')">×</button>
     <h3>Terms & Conditions</h3>
-      <p>
-        Welcome to Aviya Magnus. By registering or using our services, you agree to abide by the following terms:
-      </p>
-      <ul>
+    <p>Welcome to Aviya Magnus. By registering or using our services, you agree to abide by the following terms:</p>
+    <ul>
         <li>We provide tutoring, training, and additional educational support services aimed at enhancing students’ academic and professional development. Our Services include online courses, workshops, mentoring sessions, and career guidance.</li>
         <li>By using our Services, you confirm that:
 •	You are at least 18 years old, or
@@ -192,22 +262,26 @@ You also agree to provide accurate and complete information when creating an acc
 📧 [contactus@aviyamagnus.com]
 📍 [Vellore, 632202]
 </li>
-      </ul>
+            </ul>
       <p>
         These terms apply to all individuals interacting with our organization — including students, clients, employees, partners, and collaborators.
       </p>
+    </ul>
+    <div class="agree-buttons">
+      <button class="agree-btn" onclick="agree('termsModal')">Agree</button>
+      <button class="not-agree-btn" onclick="notAgree('termsModal')">Not Agree</button>
     </div>
   </div>
+</div>
 
-  <!-- Privacy Policy Modal -->
+<!-- ===== Privacy Policy Modal ===== -->
 <div id="privacyModal" class="modal">
   <div class="modal-content">
     <button class="close-btn" onclick="closeModal('privacyModal')">×</button>
     <h3>Privacy Policy</h3>
-      <p>
-        At Aviya Magnus, we value your privacy and are committed to protecting personal data collected from students, clients, and other stakeholders.
-      </p>
-      <ul>
+    <p>At Aviya Magnus, we value your privacy and are committed to protecting personal data collected from students, clients, and other stakeholders.</p>
+    <ul>
+      <li>We collect name, email, phone number, and learning details for educational purposes.</li>
         <li>This Privacy Policy explains how we collect, use, and protect your personal information when you use our Services.</li>
         <li>We may collect the following types of information:
 •	Personal Information: Name, email address, phone number, age, or educational background during registration or enrollment.
@@ -231,17 +305,18 @@ You also agree to provide accurate and complete information when creating an acc
 📧 [contactus@aviyamagnus.com	]
 📍 [Aviyamagnus, Vellore 632202]
 </li>
-      </ul>
+          </ul>
       <p>
         By registering, you acknowledge that you have read and understood our Privacy Policy and agree to our data handling practices.
       </p>
+    <div class="agree-buttons">
+      <button class="agree-btn" onclick="agree('privacyModal')">Agree</button>
+      <button class="not-agree-btn" onclick="notAgree('privacyModal')">Not Agree</button>
     </div>
   </div>
-
-  
+</div>
 
 <script>
-  // ===== Show "Others" input if selected =====
   const courseSelect = document.getElementById('course-select');
   const otherCourseInput = document.getElementById('otherCourse');
 
@@ -255,15 +330,12 @@ You also agree to provide accurate and complete information when creating an acc
     }
   });
 
-  // ===== Handle form submission =====
   document.getElementById('enrollForm').addEventListener('submit', function(e) {
     e.preventDefault();
-
     let selectedCourse = courseSelect.value;
     if(selectedCourse === 'others'){
       selectedCourse = otherCourseInput.value;
     }
-
     const enrollmentData = {
       course_name: selectedCourse,
       full_name: document.getElementById('fullName').value,
@@ -272,7 +344,6 @@ You also agree to provide accurate and complete information when creating an acc
       address: document.getElementById('address').value,
       payment_method: document.getElementById('paymentMethod').value
     };
-
     fetch('https://aviyamagnus-com.onrender.com/enrollments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -286,84 +357,42 @@ You also agree to provide accurate and complete information when creating an acc
     .catch(err => console.error('Enrollment failed:', err));
   });
 
-      // Get the course name from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const courseName = urlParams.get("course");
+  let termsAgreed = false;
+  let privacyAgreed = false;
 
-    const titleEl = document.getElementById("course-title");
-    const descEl = document.getElementById("course-description");
+  document.getElementById('openTerms').onclick = () => {
+    document.getElementById('termsModal').style.display = 'flex';
+  };
+  document.getElementById('openPrivacy').onclick = () => {
+    document.getElementById('privacyModal').style.display = 'flex';
+  };
 
-    // Course details (you can expand this easily)
-    const courseDetails = {
-      "Human Resource": "Learn about recruitment, training, employee engagement, and performance management.",
-      "Marketing and Sales": "Master marketing strategies, branding, customer engagement, and sales growth techniques.",
-      "Finance and Accounting": "Explore budgeting, investment analysis, and financial management fundamentals.",
-      "Banking and Finance": "Understand financial services, banking operations, and risk management.",
-      "Supply Chain Management": "Study logistics, inventory, and operations optimization.",
-      "Operations Management": "Focus on improving productivity, quality, and process efficiency.",
-      "Entrepreneurship and Startups": "Learn how to launch, manage, and grow successful startups.",
-      "Business Analytics": "Analyze data to make smart business decisions using analytics tools.",
-      "Leadership and Team Management": "Develop leadership skills, motivation techniques, and team-building strategies.",
-      "Event Management": "Plan and execute events with creativity, budgeting, and coordination skills.",
-      "Corporate Law and Intellectual Property Rights": "Learn about company laws, IP protection, and corporate governance.",
-      "Labor Law and Industrial Relations": "Understand employee rights, labor laws, and industrial negotiations.",
-      "Contract Management": "Study the principles of drafting, managing, and enforcing business contracts.",
-      "Education and Teaching": "Gain insights into effective teaching, curriculum design, and educational psychology.",
-      "Communication and Soft Skills": "Improve your professional communication, confidence, and interpersonal skills."
-    };
-
-    if (courseName && courseDetails[courseName]) {
-      titleEl.textContent = courseName;
-      descEl.textContent = courseDetails[courseName];
-    } else {
-      titleEl.textContent = "Course not found";
-      descEl.textContent = "Please go back and select a valid course.";
-    }
-
-let termsAgreed = false;
-let privacyAgreed = false;
-
-// Open modals
-document.getElementById('openTerms').onclick = () => {
-  document.getElementById('termsModal').style.display = 'flex';
-};
-document.getElementById('openPrivacy').onclick = () => {
-  document.getElementById('privacyModal').style.display = 'flex';
-};
-
-// Close modal
-function closeModal(id) {
-  document.getElementById(id).style.display = 'none';
-}
-
-// Agree/Not Agree handling
-function agree(id) {
-  if (id === 'termsModal') termsAgreed = true;
-  if (id === 'privacyModal') privacyAgreed = true;
-  closeModal(id);
-  checkAgreement();
-}
-
-function notAgree(id) {
-  if (id === 'termsModal') termsAgreed = false;
-  if (id === 'privacyModal') privacyAgreed = false;
-  closeModal(id);
-  checkAgreement();
-}
-
-function checkAgreement() {
-  const checkbox = document.getElementById('agreeAll');
-  if (termsAgreed && privacyAgreed) {
-    checkbox.checked = true;
-  } else {
-    checkbox.checked = false;
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
   }
-}
 
-// Close when clicking outside
-window.onclick = function(e) {
-  if (e.target.classList.contains('modal')) e.target.style.display = 'none';
-};
+  function agree(id) {
+    if (id === 'termsModal') termsAgreed = true;
+    if (id === 'privacyModal') privacyAgreed = true;
+    closeModal(id);
+    checkAgreement();
+  }
+
+  function notAgree(id) {
+    if (id === 'termsModal') termsAgreed = false;
+    if (id === 'privacyModal') privacyAgreed = false;
+    closeModal(id);
+    checkAgreement();
+  }
+
+  function checkAgreement() {
+    const checkbox = document.getElementById('agreeAll');
+    checkbox.checked = termsAgreed && privacyAgreed;
+  }
+
+  window.onclick = function(e) {
+    if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+  };
 </script>
 
 </body>
