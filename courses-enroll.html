@@ -321,6 +321,7 @@ You also agree to provide accurate and complete information when creating an acc
   const courseSelect = document.getElementById('course-select');
   const otherCourseInput = document.getElementById('otherCourse');
 
+  // 🎯 Show/Hide “Other Course” input
   courseSelect.addEventListener('change', () => {
     if (courseSelect.value === 'others') {
       otherCourseInput.style.display = 'block';
@@ -331,6 +332,7 @@ You also agree to provide accurate and complete information when creating an acc
     }
   });
 
+  // 🎯 Modal open/close handlers
   function openModal(type) {
     document.getElementById(type + 'Modal').style.display = 'flex';
   }
@@ -345,54 +347,53 @@ You also agree to provide accurate and complete information when creating an acc
     document.getElementById(checkbox).checked = isAgree;
   }
 
+  // 🎯 Form submission handler
   document.getElementById("enrollForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  // ✅ Step 1: Validate checkboxes
-  if (
-    !document.getElementById("termsCheckbox").checked ||
-    !document.getElementById("privacyCheckbox").checked
-  ) {
-    alert("⚠️ Please agree to both Terms & Conditions and Privacy Policy before proceeding.");
-    return;
-  }
-
-  try {
-    // ✅ Step 2: Collect form data
-    const enrollmentData = {
-    full_name: document.getElementById("full_name").value,
-    email: document.getElementById("email").value,
-    mobile: document.getElementById("mobile").value,
-    address: document.getElementById("address").value,
-    course_id: document.getElementById("course_id").value,
-    payment_method: document.getElementById("payment_method").value
-    };
-
-    // ✅ Step 3: Send to backend
-fetch("https://aviyamagnus-com.onrender.com/api/enroll", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ ... })
-})
-  .then(...)
-  .catch(error => {
-    console.error("Error:", error);
-  });
-    const result = await response.json();
-
-    // ✅ Step 4: Handle backend response
-    if (result.message === "User registered successfully") {
-      window.location.href = "success.html"; // Redirect to success page
-    } else {
-      alert(`⚠️ ${result.error || "Something went wrong. Please try again."}`);
+    // ✅ Step 1: Validate checkboxes
+    if (
+      !document.getElementById("termsCheckbox").checked ||
+      !document.getElementById("privacyCheckbox").checked
+    ) {
+      alert("⚠️ Please agree to both Terms & Conditions and Privacy Policy before proceeding.");
+      return;
     }
 
-  } catch (error) {
-    console.error("Error:", error);
-    alert("⚠️ Network or server error. Please try again later.");
-  }
-});
+    try {
+      // ✅ Step 2: Collect form data
+      const enrollmentData = {
+        full_name: document.getElementById("full_name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        mobile: document.getElementById("mobile").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        course_id: document.getElementById("course_id").value.trim(),
+        payment_method: document.getElementById("payment_method").value.trim(),
+      };
 
+      // ✅ Step 3: Send data to backend
+      const response = await fetch("https://aviyamagnus-com.onrender.com/api/enroll", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(enrollmentData),
+      });
+
+      // ✅ Step 4: Process backend response
+      const result = await response.json();
+
+      if (response.ok && result.message) {
+        alert("✅ " + result.message);
+        document.getElementById("enrollForm").reset();
+        window.location.href = "success.html"; // Optional redirect
+      } else {
+        alert("⚠️ " + (result.error || "Something went wrong. Please try again."));
+      }
+
+    } catch (error) {
+      console.error("Error:", error);
+      alert("⚠️ Network or server error. Please try again later.");
+    }
+  });
 </script>
 
 </body>
