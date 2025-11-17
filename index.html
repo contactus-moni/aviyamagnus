@@ -553,36 +553,43 @@
 <!-- course section end -->
 
 	<ul class="course-filter controls">
-    <li class="control active" data-filter="all">All</li>
+
+    <li class="control active" data-filter="all">
+        <button onclick="window.location.href='courses.html'" class="filter-btn">
+            All
+        </button>
+    </li>
 
     <!-- IT / Technical Courses -->
     <li class="control" data-filter=".it">
-        <a href="courses/it-courses.html" style="color: inherit; text-decoration: none;">
+        <button onclick="window.location.href='courses.html?category=it'" class="filter-btn">
             IT / Technical Courses
-        </a>
+        </button>
     </li>
 
     <!-- Non-IT / Non-Technical Courses -->
     <li class="control" data-filter=".nonit">
-        <a href="courses/non-it-courses.html" style="color: inherit; text-decoration: none;">
+        <button onclick="window.location.href='courses.html?category=nonit'" class="filter-btn">
             Non-IT / Non-Technical Courses
-        </a>
+        </button>
     </li>
 
     <!-- Competitive Exams -->
     <li class="control" data-filter=".competitive">
-        <a href="courses/competitive-exams.html" style="color: inherit; text-decoration: none;">
+        <button onclick="window.location.href='courses.html?category=competitive'" class="filter-btn">
             Competitive Exams
-        </a>
+        </button>
     </li>
 
     <!-- School Education -->
     <li class="control" data-filter=".school">
-        <a href="courses/school-education.html" style="color: inherit; text-decoration: none;">
+        <button onclick="window.location.href='courses.html?category=school'" class="filter-btn">
             School Education
-        </a>
+        </button>
     </li>
+
 </ul>
+
 
 
 
@@ -683,6 +690,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="js/main.js"></script>
 
 </html>
+
 
 
 
